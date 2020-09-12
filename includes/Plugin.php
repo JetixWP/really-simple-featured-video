@@ -1,6 +1,8 @@
 <?php
 namespace RSFV;
 
+use RSFV\Settings\Register;
+
 /**
  * Class RSFV_featured_video
  */
@@ -50,6 +52,7 @@ final class Plugin {
 	 * @return void
 	 */
 	public function register() {
+		Register::get_instance();
 		Metabox::get_instance();
 		Shortcode::get_instance();
 		FrontEnd::get_instance();
@@ -61,6 +64,7 @@ final class Plugin {
 	 * @return void
 	 */
 	public function includes() {
+		require_once RSFV_PLUGIN_DIR . 'includes/Settings/Register.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Metabox.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/FrontEnd.php';
