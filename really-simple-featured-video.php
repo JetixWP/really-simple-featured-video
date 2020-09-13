@@ -2,9 +2,9 @@
 /**
  * Plugin Name: Really Simple Featured Video
  * Plugin URI:  https://lushkant.blog/
- * Description: Upload featured videos for WordPress posts, pages & woocommerce products.
+ * Description: Upload featured videos for WordPress posts, pages & WooCommerce products.
  * Version:     1.0.0
- * Author:      lushkant
+ * Author:      Krishna Kant
  * Author URI:  https://lushkant.blog/
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
