@@ -47,15 +47,29 @@ final class Plugin {
 	}
 
 	/**
-	 * Registers plugin classes.
+	 * Registers plugin classes & translation.
 	 *
 	 * @return void
 	 */
 	public function register() {
+		// Load translation.
+		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+
+		// Load classes.
 		Register::get_instance();
 		Metabox::get_instance();
 		Shortcode::get_instance();
 		FrontEnd::get_instance();
+	}
+
+	/**
+	 *
+	 * Load translation domain & files.
+	 *
+	 * @return void
+	 */
+	public function load_plugin_textdomain() {
+		load_plugin_textdomain( 'rsfv', '', dirname( RSFV_PLUGIN_BASE ) . '/languages/' );
 	}
 
 	/**
