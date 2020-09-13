@@ -1,6 +1,8 @@
 <?php
 namespace RSFV\Settings;
 
+use RSFV\Options;
+
 /**
  * Register Settings.
  */
@@ -17,6 +19,11 @@ class Register {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'register_menu' ) );
+
+		// Handle saving settings earlier than load-{page} hook to avoid race conditions in conditional menus.
+		add_action( 'wp_loaded', array( $this, 'save_settings' ) );
+
+		add_action( 'init', array( $this, 'create_options' ) );
 	}
 
 	/**
@@ -48,6 +55,28 @@ class Register {
 			array( $this, 'settings_page' ),
 		);
 
+		add_action( 'load-rsfv_page_settings', array( $this, 'settings_page_init' ) );
+
+	}
+
+	/**
+	 * Loads methods into memory for use within settings.
+	 */
+	public function settings_page_init() {
+
+		// Include settings pages.
+		Admin_Settings::get_settings_pages();
+
+		// Add any posted messages.
+		if ( ! empty( $_GET['rsfv_error'] ) ) { // phpcs:ignore
+			Admin_Settings::add_error( wp_kses_post( wp_unslash( $_GET['rsfv_error'] ) ) ); // phpcs:ignore
+		}
+
+		if ( ! empty( $_GET['rsfv_message'] ) ) { // phpcs:ignore
+			Admin_Settings::add_message( wp_kses_post( wp_unslash( $_GET['rsfv_message'] ) ) ); // phpcs:ignore
+		}
+
+		do_action( 'rsfv_settings_page_init' );
 	}
 
 	/**
@@ -56,7 +85,142 @@ class Register {
 	 * @return void
 	 */
 	public function settings_page() {
-		// TODO: Add a settigs page.
+		Admin_Settings::output();
 	}
 
+	/**
+	 * Default options.
+	 *
+	 * Sets up the default options used on the settings page.
+	 */
+	public function create_options() {
+		if ( ! is_admin() ) {
+			return false;
+		}
+		// Include settings so that we can run through defaults.
+		include_once dirname( __FILE__ ) . '/Admin_Settings.php';
+
+		$settings = Admin_Settings::get_settings_pages();
+
+		foreach ( $settings as $section ) {
+			if ( ! method_exists( $section, 'get_settings' ) ) {
+				continue;
+			}
+			$subsections = array_unique( array_merge( array( '' ), array_keys( $section->get_sections() ) ) );
+
+			foreach ( $subsections as $subsection ) {
+				foreach ( $section->get_settings( $subsection ) as $value ) {
+					if ( isset( $value['default'], $value['id'] ) ) {
+						$autoload = isset( $value['autoload'] ) ? (bool) $value['autoload'] : true;
+						add_option( $value['id'], $value['default'], '', ( $autoload ? 'yes' : 'no' ) );
+					}
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Handle saving of settings.
+	 *
+	 * @return void
+	 */
+	public function save_settings() {
+		global $current_tab, $current_section;
+
+		// We should only save on the settings page.
+		if ( ! is_admin() || ! isset( $_GET['page'] ) || 'rsfv-settings' !== $_GET['page'] ) { // phpcs:ignore
+			return;
+		}
+
+		// Include settings pages.
+		Admin_Settings::get_settings_pages();
+
+		// Get current tab/section.
+		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( wp_unslash( $_GET['tab'] ) ); // phpcs:ignore
+		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( wp_unslash( $_REQUEST['section'] ) ); // phpcs:ignore
+
+		// Save settings if data has been posted.
+		if ( '' !== $current_section && apply_filters( "rsfv_save_settings_{$current_tab}_{$current_section}", ! empty( $_POST['save'] ) ) ) { // phpcs:ignore
+			Admin_Settings::save();
+		} elseif ( '' === $current_section && apply_filters( "rsfv_save_settings_{$current_tab}", ! empty( $_POST['save'] ) || isset( $_POST['rsfv-license_activate'] ) ) ) { // phpcs:ignore
+			Admin_Settings::save();
+		}
+	}
+
+}
+
+/**
+ * Clean variables using sanitize_text_field. Arrays are cleaned recursively.
+ * Non-scalar values are ignored.
+ *
+ * @param string|array $var Data to sanitize.
+ * @return string|array
+ */
+function rsfv_clean( $var ) {
+	if ( is_array( $var ) ) {
+		return array_map( __NAMESPACE__ . '\rsfv_clean', $var );
+	}
+
+	return is_scalar( $var ) ? sanitize_text_field( $var ) : $var;
+}
+
+/**
+ * Output admin fields.
+ *
+ * Loops though the Analog options array and outputs each field.
+ *
+ * @param array $options Opens array to output.
+ */
+function rsfv_admin_fields( $options ) {
+
+	if ( ! class_exists( 'Admin_Settings', false ) ) {
+		include dirname( __FILE__ ) . '/Admin_Settings.php';
+	}
+
+	Admin_Settings::output_fields( $options );
+}
+
+/**
+ * Update all settings which are passed.
+ *
+ * @param array $options Option fields to save.
+ * @param array $data Passed data.
+ */
+function rsfv_update_options( $options, $data = null ) {
+
+	if ( ! class_exists( 'Admin_Settings', false ) ) {
+		include dirname( __FILE__ ) . '/Admin_Settings.php';
+	}
+
+	Admin_Settings::save_fields( $options, $data );
+}
+
+/**
+ * Get a setting from the settings API.
+ *
+ * @param mixed $option_name Option name to save.
+ * @param mixed $default Default value to save.
+ * @return string
+ */
+function rsfv_settings_get_option( $option_name, $default = '' ) {
+
+	if ( ! class_exists( 'Admin_Settings', false ) ) {
+		include dirname( __FILE__ ) . '/Admin_Settings.php';
+	}
+
+	return Admin_Settings::get_option( $option_name, $default );
+}
+
+/**
+ * Get enabled post types.
+ *
+ * @return string
+ */
+function get_post_types() {
+	$post_types = array_keys( Options::get_instance()->get( 'post_types' ) );
+	if ( empty( $post_types ) ) {
+		$post_types = array( 'post' );
+	}
+	return $post_types;
 }
