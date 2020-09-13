@@ -64,6 +64,7 @@ final class Plugin {
 	 * @return void
 	 */
 	public function includes() {
+		require_once RSFV_PLUGIN_DIR . 'includes/Options.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Settings/Register.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Metabox.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Shortcode.php';
