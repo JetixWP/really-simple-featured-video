@@ -1,6 +1,8 @@
 <?php
 namespace RSFV;
 
+use function RSFV\Settings\get_post_types;
+
 /**
  * Class FrontEnd
  *
@@ -52,13 +54,23 @@ class FrontEnd {
 	public function woo_get_video( $html, $post_thumbnail_id ) {
 		global $product;
 
-		$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
-		$video_url = wp_get_attachment_url( $media_id );
-		if ( $video_url && 0 == $this->counter ) {
-			$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><video class="rsfv-video" id="rsfv_video_' . $product->get_id() . '" controls="" src="' . $video_url . '" style="max-width:100%;display:block;"></video></div>' . $html;
-			$this->counter ++;
-		}
+		// Get enabled post types.
+		$post_types = get_post_types();
 
+		// Get autoplay option.
+		$is_autoplay = Options::get_instance()->get( 'video_autoplay' );
+		$is_autoplay = $is_autoplay ? 'autoplay' : '';
+		if ( ! empty( $post_types ) ) {
+			if ( in_array( $product->post_type, $post_types ) ) {
+				$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
+				$video_url = wp_get_attachment_url( $media_id );
+
+				if ( $video_url && 0 == $this->counter ) {
+					$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><video class="rsfv-video" id="rsfv_video_' . $product->get_id() . '" controls="" src="' . $video_url . '" style="max-width:100%;display:block;" ' . $is_autoplay . '></video></div>' . $html;
+					$this->counter ++;
+				}
+			}
+		}
 		return $html;
 	}
 
@@ -74,9 +86,18 @@ class FrontEnd {
 	 * @return string
 	 */
 	public function get_post_video( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
-		$video_id = get_post_meta( $post_id, RSFV_META_KEY, true );
-		if ( $video_id ) {
-			return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+		global $post;
+
+		// Get enabled post types.
+		$post_types = get_post_types();
+
+		if ( ! empty( $post_types ) ) {
+			if ( in_array( $post->post_type, $post_types ) ) {
+				$video_id = get_post_meta( $post_id, RSFV_META_KEY, true );
+				if ( $video_id ) {
+					return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+				}
+			}
 		}
 		return $html;
 	}

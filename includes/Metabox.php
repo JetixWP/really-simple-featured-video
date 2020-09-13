@@ -1,6 +1,8 @@
 <?php
 namespace RSFV;
 
+use function RSFV\Settings\get_post_types;
+
 /**
  * Class Metabox
  */
@@ -41,9 +43,10 @@ class Metabox {
 	 * @return void
 	 */
 	public function add_metabox() {
-		$post_types = 'post, page, product'; // TODO: Set an option for this at settings.
+		// Get enabled post types.
+		$post_types = get_post_types();
 		if ( ! empty( $post_types ) ) {
-			add_meta_box( 'featured-video', __( 'Featured Video', 'rsfv' ), array( $this, 'upload_video' ), array( 'post' ), 'side', 'low' );
+			add_meta_box( 'featured-video', __( 'Featured Video', 'rsfv' ), array( $this, 'upload_video' ), $post_types, 'side', 'low' );
 		}
 	}
 
@@ -91,8 +94,12 @@ class Metabox {
 		$display   = 'none';
 		$video_url = wp_get_attachment_url( $video_id );
 
+		// Get autoplay option.
+		$is_autoplay = Options::get_instance()->get( 'video_autoplay' );
+		$is_autoplay = $is_autoplay ? 'autoplay' : '';
+
 		if ( $video_url ) {
-			$image   = '"><video controls="" src="' . $video_url . '" style="max-width:95%;display:block;"></video>';
+			$image   = '"><video controls="" src="' . $video_url . '" style="max-width:95%;display:block;" ' . $is_autoplay . '></video>';
 			$display = 'inline-block';
 		}
 
@@ -113,7 +120,7 @@ class Metabox {
 	 * @return string
 	 */
 	public function save_video( $post_id ) {
-		if ( ! current_user_can( 'edit_post' ) ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
 			return;
 		}
 
