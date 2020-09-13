@@ -70,4 +70,13 @@ final class Plugin {
 		require_once RSFV_PLUGIN_DIR . 'includes/Shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/FrontEnd.php';
 	}
+
+	/**
+	 * Checks if WooCommerce is activated.
+	 *
+	 * @return bool
+	 */
+	public static function is_woo_activated() {
+		return class_exists( 'WooCommerce' ) ? true : false;
+	}
 }

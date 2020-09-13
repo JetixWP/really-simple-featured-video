@@ -7,6 +7,7 @@
 
 namespace RSFV\Settings;
 
+use RSFV\Plugin;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -34,6 +35,15 @@ class General extends Settings_Page {
 	 */
 	public function get_settings( $current_section = '' ) {
 
+		$post_types = array(
+			'post' => __( 'Posts' ),
+			'page' => __( 'Pages' ),
+		);
+
+		if ( Plugin::is_woo_activated() ) {
+			$post_types['product'] = __( 'Products' );
+		}
+
 		$settings = apply_filters(
 			'rsfv_general_settings',
 			array(
@@ -53,11 +63,7 @@ class General extends Settings_Page {
 					'id'      => 'post_types',
 					'default' => false,
 					'type'    => 'multi-checkbox',
-					'options' => array(
-						'post' => __( 'Posts' ),
-						'page' => __( 'Pages' ),
-						'product' => __( 'Products' ),
-					),
+					'options' => $post_types,
 				),
 				array(
 					'type' => 'sectionend',

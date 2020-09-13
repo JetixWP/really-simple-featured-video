@@ -2,6 +2,7 @@
 namespace RSFV;
 
 use function RSFV\Settings\get_post_types;
+use RSFV\Plugin;
 
 /**
  * Class FrontEnd
@@ -28,8 +29,12 @@ class FrontEnd {
 	 */
 	public function __construct() {
 		$this->counter = 0;
-		add_filter( 'woocommerce_single_product_image_thumbnail_html', array( $this, 'woo_get_video' ), 10, 2 );
-		add_filter( 'post_thumbnail_html', array( $this, 'get_post_video' ), 10, 5 );
+
+		$this->get_posts_hooks();
+
+		if ( Plugin::is_woo_activated() ) {
+			$this->get_woo_hooks();
+		}
 	}
 
 	/**
@@ -42,6 +47,24 @@ class FrontEnd {
 			self::$instance = new self();
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Get posts hooks.
+	 *
+	 * @return void
+	 */
+	public function get_posts_hooks() {
+		add_filter( 'post_thumbnail_html', array( $this, 'get_post_video' ), 10, 5 );
+	}
+
+	/**
+	 * Get Woo hooks.
+	 *
+	 * @retun void
+	 */
+	public function get_woo_hooks() {
+		add_filter( 'woocommerce_single_product_image_thumbnail_html', array( $this, 'woo_get_video' ), 10, 2 );
 	}
 
 	/**
