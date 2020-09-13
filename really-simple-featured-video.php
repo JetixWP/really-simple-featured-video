@@ -3,7 +3,7 @@
  * Plugin Name: Really Simple Featured Video
  * Plugin URI:  https://lushkant.blog/
  * Description: Upload featured videos for WordPress posts, pages & WooCommerce products.
- * Version:     1.0.0
+ * Version:     0.0.1
  * Author:      Krishna Kant
  * Author URI:  https://lushkant.blog/
  * License:     GPL2
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'RSFV_VERSION', '1.0.0' );
+define( 'RSFV_VERSION', '0.0.1' );
 define( 'RSFV_PLUGIN_FILE', __FILE__ );
 define( 'RSFV_PLUGIN_URL', plugin_dir_url( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_DIR', plugin_dir_path( RSFV_PLUGIN_FILE ) );
