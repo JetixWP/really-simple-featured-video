@@ -40,6 +40,9 @@ There are also shortcodes to embed featured video at any post, page or product y
 [rsfv_by_postid] shortcode is for displaying featured video of any post anywhere you want, you just need to pass a vaild post id to it e.g. [rsfv_by_postid post_id="281"]
 
 
+You can send a feedback or a feature request at https://lushkant.blog/contact
+Or create a thread at forums here, in any case I'll make sure to resolve if any issues asap.
+
 == Changelog ==
 
 = 1.0.0 - September 13, 2020 =
