@@ -3,7 +3,7 @@ Contributors: lushkant
 Requires at least: 5.0
 Requires PHP: 5.6
 Tested up to: 5.5.1
-Stable tag: 0.0.1
+Stable tag: 0.0.2
 Tags: featured, video, featured video, woocommerce, product-video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -64,3 +64,7 @@ You can get help by reaching out to me at https://lushkant.blog/contact or suppo
 
 = 0.0.1 - September 13, 2020 =
 - Initial release
+
+= 0.0.2 - September 15, 2020 =
+- Fix array_keys throwing error when post_types option empty
+- Add Settings action link at plugins page
