@@ -218,7 +218,8 @@ function rsfv_settings_get_option( $option_name, $default = '' ) {
  * @return string
  */
 function get_post_types() {
-	$post_types = array_keys( Options::get_instance()->get( 'post_types' ) );
+	$post_types = Options::get_instance()->get( 'post_types' );
+	$post_types = is_array( $post_types ) ? array_keys( $post_types ) : '';
 	if ( empty( $post_types ) ) {
 		$post_types = array( 'post' );
 	}
