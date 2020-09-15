@@ -3,7 +3,7 @@ Contributors: lushkant
 Requires at least: 5.0
 Requires PHP: 5.6
 Tested up to: 5.5.1
-Stable tag: 1.0.0
+Stable tag: 0.0.1
 Tags: featured, video, featured video, woocommerce, product-video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -43,7 +43,24 @@ There are also shortcodes to embed featured video at any post, page or product y
 You can send a feedback or a feature request at https://lushkant.blog/contact
 Or create a thread at forums here, in any case I'll make sure to resolve if any issues asap.
 
+== Screenshots ==
+
+1. Settings page view.
+2. Single Post view with Featured video on TwentyTwenty theme.
+3. WooCommerce product view with Featured video on Storefront theme.
+4. Single Page view with Featured video on TwentyTwenty theme.
+5. Showing Featured video by post id shortcode via Block editor.
+
+
+== Frequently Asked Questions ==
+
+= Will this plugin work with any theme? =
+Yes, as long as the theme you use follows standard WordPress/WooCommerce way of handling post thumbnails, this plugin should work without any problems.
+
+= Where can I get help? =
+You can get help by reaching out to me at https://lushkant.blog/contact or support forums here.
+
 == Changelog ==
 
-= 1.0.0 - September 13, 2020 =
+= 0.0.1 - September 13, 2020 =
 - Initial release
