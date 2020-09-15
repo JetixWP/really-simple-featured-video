@@ -60,6 +60,11 @@ final class Plugin {
 		Metabox::get_instance();
 		Shortcode::get_instance();
 		FrontEnd::get_instance();
+
+		// Register action links.
+		add_filter( 'network_admin_plugin_action_links_really-simple-featured-video/really-simple-featured-video.php', array( $this, 'filter_plugin_action_links' ) );
+		add_filter( 'plugin_action_links_really-simple-featured-video/really-simple-featured-video.php', array( $this, 'filter_plugin_action_links' ) );
+
 	}
 
 	/**
@@ -84,6 +89,22 @@ final class Plugin {
 		require_once RSFV_PLUGIN_DIR . 'includes/Shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/FrontEnd.php';
 	}
+
+	/**
+	 * Add settings link at plugins page action links.
+	 *
+	 * @param array $actions
+	 *
+	 * @return array
+	 */
+	public function filter_plugin_action_links( array $actions ) {
+		$settings_url = admin_url( 'options-general.php?page=rsfv-settings' );
+
+		return array_merge( array(
+			'settings' => "<a href='{$settings_url}'>" . esc_html__( 'Settings', 'rsfv' ) . '</a>',
+		), $actions );
+	}
+
 
 	/**
 	 * Checks if WooCommerce is activated.
