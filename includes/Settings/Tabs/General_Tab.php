@@ -71,6 +71,20 @@ class General extends Settings_Page {
 				),
 				array(
 					'type' => 'title',
+					'id'   => 'rsfv_enable_controls',
+				),
+				array(
+					'title' => __( 'Enable Video Controls', 'rsfv' ),
+					'desc'  => __( 'If you want to enable video controls, please check this option.', 'rsfv' ),
+					'id'    => 'video_controls',
+					'type'  => 'checkbox',
+				),
+				array(
+					'type' => 'sectionend',
+					'id'   => 'rsfv_enable_controls',
+				),
+				array(
+					'type' => 'title',
 					'id'   => 'rsfv_enable_autoplay',
 				),
 				array(
@@ -82,6 +96,48 @@ class General extends Settings_Page {
 				array(
 					'type' => 'sectionend',
 					'id'   => 'rsfv_enable_autoplay',
+				),
+				array(
+					'type' => 'title',
+					'id'   => 'rsfv_enable_loop',
+				),
+				array(
+					'title' => __( 'Enable Video Loop', 'rsfv' ),
+					'desc'  => __( 'If you want to keep the video on loop please check this option.', 'rsfv' ),
+					'id'    => 'video_loop',
+					'type'  => 'checkbox',
+				),
+				array(
+					'type' => 'sectionend',
+					'id'   => 'rsfv_enable_loop',
+				),
+				array(
+					'type' => 'title',
+					'id'   => 'rsfv_picture_in_picture',
+				),
+				array(
+					'title' => __( 'Enable Picture in Picture', 'rsfv' ),
+					'desc'  => __( 'If you want to enable picture in picture feature, please check this option.', 'rsfv' ),
+					'id'    => 'picture_in_picture',
+					'type'  => 'checkbox',
+				),
+				array(
+					'type' => 'sectionend',
+					'id'   => 'rsfv_picture_in_picture',
+				),
+				array(
+					'type' => 'title',
+					'id'   => 'rsfv_disable_audio',
+				),
+				array(
+					'title' => __( 'Mute video sound', 'rsfv' ),
+					'desc'  => __( 'If you want to mute the audio in the video, please check this option.', 'rsfv' ),
+					'id'    => 'mute_video',
+					'type'  => 'checkbox',
+				),
+				array(
+					'type' => 'sectionend',
+					'id'   => 'rsfv_disable_audio',
 				),
 			)
 		);

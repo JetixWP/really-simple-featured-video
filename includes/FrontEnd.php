@@ -83,13 +83,30 @@ class FrontEnd {
 		// Get autoplay option.
 		$is_autoplay = Options::get_instance()->get( 'video_autoplay' );
 		$is_autoplay = $is_autoplay ? 'autoplay' : '';
+
+		// Get loop option.
+		$is_loop    = Options::get_instance()->get( 'video_loop' );
+		$is_loop    = $is_loop ? 'loop' : '';
+
+		// Get mute option.
+		$is_muted    = Options::get_instance()->get( 'mute_video' );
+		$is_muted    = $is_muted ? 'muted' : '';
+
+		// Get PictureInPicture option.
+		$is_pip    = Options::get_instance()->get( 'picture_in_picture' );
+		$is_pip    = $is_pip ? 'autopictureinpicture' : '';
+
+		// Get video controls option.
+		$has_controls = Options::get_instance()->get( 'video_controls' );
+		$has_controls = $has_controls ? 'controls' : '';
+
 		if ( ! empty( $post_types ) ) {
 			if ( in_array( $product->post_type, $post_types ) ) {
 				$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
 				$video_url = wp_get_attachment_url( $media_id );
 
 				if ( $video_url && 0 == $this->counter ) {
-					$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><video class="rsfv-video" id="rsfv_video_' . $product->get_id() . '" controls="" src="' . $video_url . '" style="max-width:100%;display:block;" ' . $is_autoplay . '></video></div>' . $html;
+					$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><video class="rsfv-video" id="rsfv_video_' . $product->get_id() . '" src="' . $video_url . '" style="max-width:100%;display:block;"' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video></div>' . $html;
 					$this->counter ++;
 				}
 			}
