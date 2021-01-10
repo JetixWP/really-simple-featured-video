@@ -1,9 +1,9 @@
-=== Really Simple Featured Video ===
+=== Really Simple Featured Video - Featured Video support for Posts, Pages & Woocommerce Products ===
 Contributors: lushkant
 Requires at least: 5.0
 Requires PHP: 5.6
-Tested up to: 5.5.1
-Stable tag: 0.0.2
+Tested up to: 5.6
+Stable tag: 0.0.3
 Tags: featured, video, featured video, woocommerce, product-video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,6 +13,8 @@ Really Simple Featured Video enables featured video support for WordPress posts,
 == Description ==
 
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
+
+https://www.youtube.com/watch?v=vbLgiRQ0Moo
 
 With Really Simple Featured Video you get a metabox at posts, pages & products edit screen at the very bottom and a very similar interface as you're used to with featured image.
 
