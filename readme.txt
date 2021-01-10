@@ -73,4 +73,5 @@ You can get help by reaching out to me at https://lushkant.blog/contact or suppo
 
 = 0.0.3 - January 11, 2021 =
 - Add option for Video controls, loop, mute & picture-in-picture at Settings
+- Added Freemius for better customer feedback & support
 - Other minor improvements
