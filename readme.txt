@@ -70,3 +70,7 @@ You can get help by reaching out to me at https://lushkant.blog/contact or suppo
 = 0.0.2 - September 15, 2020 =
 - Fix array_keys throwing error when post_types option empty
 - Add Settings action link at plugins page
+
+= 0.0.3 - January 11, 2021 =
+- Add option for Video controls, loop, mute & picture-in-picture at Settings
+- Other minor improvements
