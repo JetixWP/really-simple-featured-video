@@ -1,4 +1,4 @@
-=== Really Simple Featured Video - Featured Video support for Posts, Pages & Woocommerce Products ===
+=== Really Simple Featured Video - Featured video support for Posts, Pages & WooCommerce Products ===
 Contributors: lushkant
 Requires at least: 5.0
 Requires PHP: 5.6
@@ -29,9 +29,13 @@ Really Simple Featured Video plugin provides a straightforward implementation fo
 
 You can enable/disable support for post types via the settings page though by default featured videos are enabled for blog posts.
 
-#### Enable Video Autoplay
+#### Enable/Disable Video Controls, Autoplay, Loop & Picture-In-Picture
 
-You can also enable autoplay for featured videos, this is an option available at settings page.
+You can manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
+
+#### Mute Video Sound
+
+You also have an option to control video sound, set this at the settings page.
 
 #### Shortcodes
 
