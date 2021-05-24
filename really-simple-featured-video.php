@@ -5,7 +5,7 @@
  * Description: Upload featured videos for WordPress posts, pages & WooCommerce products.
  * Version:     0.0.3
  * Author:      Krishna Kant Chourasiya
- * Author URI:  https://lushkant.blog/
+ * Author URI:  https://lushkant.com/
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: rsfv
