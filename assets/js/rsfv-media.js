@@ -2,7 +2,6 @@
  * File rsfv-media.js.
  *
  * Plugin media script.
- *
  */
 (function($, RSFV ){
     $( function() {
@@ -25,10 +24,30 @@
                 })
                     .open();
         });
+
         // Removing video
         $('body').on('click', '.remove-video', function () {
             $(this).hide().prev().val('').prev().addClass('button').html('Upload Video');
             return false;
         });
+
+        // Toggles video input source
+        function toggleVideoInput( val ) {
+            console.log( val, typeof val);
+            if ( 'self' === val ) {
+                $( '.rsfv-self' ).show();
+                $( '.rsfv-embed' ).hide();
+            } else {
+                $( '.rsfv-embed' ).show();
+                $( '.rsfv-self' ).hide();
+            }
+        }
+
+        toggleVideoInput( $( 'input[type=radio][name=rsfv_source]:checked' ).val() );
+        $( 'input[type=radio][name=rsfv_source]' ).on( 'change', function() {
+            toggleVideoInput( $(this).val() );
+        } );
+
+
     } );
 }( jQuery, RSFV ) );
