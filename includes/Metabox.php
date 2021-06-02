@@ -87,8 +87,14 @@ class Metabox {
 		// Generate nonce field.
 		wp_nonce_field( 'rsfv_inner_custom_box', 'rsfv_inner_custom_box_nonce' );
 
+		// Get the meta value of video embed url.
+		$video_source = get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true );
+
 		// Get the meta value of video attachment.
 		$video_id = get_post_meta( $post->ID, RSFV_META_KEY, true );
+
+		// Get the meta value of video embed url.
+		$embed_url = get_post_meta( $post->ID, RSFV_EMBED_META_KEY, true );
 
 		$image     = ' button">' . __( 'Upload Video', 'rsfv' );
 		$display   = 'none';
@@ -119,13 +125,50 @@ class Metabox {
 			$display = 'inline-block';
 		}
 
-		printf(
-			'<div><a href="#" class="rsfv-upload-video-btn%1$s</a><input type="hidden" name="%2$s" id="%2$s" value="%3$s" /><a href="#" class="remove-video" style="display:%4$s">%5$s</a></div>',
+		$uploader_markup = sprintf(
+			'<div class="rsfv-self"><a href="#" class="rsfv-upload-video-btn%1$s</a><input type="hidden" name="%2$s" id="%2$s" value="%3$s" /><a href="#" class="remove-video" style="display:%4$s">%5$s</a></div>',
 			$image,
 			RSFV_META_KEY,
 			$video_id,
 			$display,
 			__( 'Remove Video', 'rsfv' )
+		);
+
+		$embed_markup = sprintf(
+			'<div class="rsfv-embed"><input type="url" name="%1$s" id="%1$s" value="%2$s" placeholder="Video url goes here" /></div>',
+			RSFV_EMBED_META_KEY,
+			$embed_url
+		);
+
+		$self_input = sprintf(
+			'<input type="radio" id="self" name="%1$s" value="self" %2$s><label for="self">%3$s</label><br>%4$s',
+			RSFV_SOURCE_META_KEY,
+			checked( 'self', $video_source, false ),
+			__( 'Self', 'rsfv' ),
+			$uploader_markup
+		);
+
+		$embed_input = sprintf(
+			'<input type="radio" id="embed" name="%1$s" value="embed" %2$s><label for="embed">%3$s</label><br>%4$s',
+			RSFV_SOURCE_META_KEY,
+			checked( 'embed', $video_source, false ),
+			__( 'Embed', 'rsfv' ),
+			$embed_markup
+		);
+
+		$select_source = sprintf(
+			'<div><p>%1$s</p>%2$s%3$s</div>',
+			__( 'Please select video source', 'rsfv' ),
+			$self_input,
+			$embed_input
+		);
+
+		$styles = '<style>.rsfv-self, .rsfv-embed { padding: 10px 0; } .remove-video { margin-top: 6px; }</style>';
+
+		printf(
+			'%1$s%2$s',
+			$select_source,
+			$styles,
 		);
 	}
 
@@ -156,10 +199,19 @@ class Metabox {
 			return $post_id;
 		}
 
-		$key_value = isset( $_POST[ RSFV_META_KEY ] ) ? sanitize_text_field( $_POST[ RSFV_META_KEY ] ) : '';
+		$keys = array(
+			RSFV_SOURCE_META_KEY,
+			RSFV_META_KEY,
+			RSFV_EMBED_META_KEY,
+		);
 
-		// Save video in meta key.
-		update_post_meta( $post_id, RSFV_META_KEY, $key_value );
+		foreach ( $keys as $key ) {
+			// Get updated value.
+			$key_value = isset( $_POST[ $key ] ) ? sanitize_text_field( $_POST[ $key ] ) : '';
+
+			// Save key value in meta key.
+			update_post_meta( $post_id, $key, $key_value );
+		}
 
 		return $post_id;
 	}

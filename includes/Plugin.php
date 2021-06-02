@@ -43,7 +43,9 @@ final class Plugin {
 	 * @retun void
 	 */
 	public function define_constants() {
+		define( 'RSFV_SOURCE_META_KEY', 'rsfv_source' );
 		define( 'RSFV_META_KEY', 'rsfv_featured_video' );
+		define( 'RSFV_EMBED_META_KEY', 'rsfv_featured_embed_video' );
 	}
 
 	/**
