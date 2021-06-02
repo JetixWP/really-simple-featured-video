@@ -105,23 +105,23 @@ class Metabox {
 		$is_autoplay = $is_autoplay ? 'autoplay' : '';
 
 		// Get loop option.
-		$is_loop    = Options::get_instance()->get( 'video_loop' );
-		$is_loop    = $is_loop ? 'loop' : '';
+		$is_loop = Options::get_instance()->get( 'video_loop' );
+		$is_loop = $is_loop ? 'loop' : '';
 
 		// Get mute option.
-		$is_muted    = Options::get_instance()->get( 'mute_video' );
-		$is_muted    = $is_muted ? 'muted' : '';
+		$is_muted = Options::get_instance()->get( 'mute_video' );
+		$is_muted = $is_muted ? 'muted' : '';
 
 		// Get Picture-In-Picture option.
-		$is_pip    = Options::get_instance()->get( 'picture_in_picture' );
-		$is_pip    = $is_pip ? 'autopictureinpicture' : '';
+		$is_pip = Options::get_instance()->get( 'picture_in_picture' );
+		$is_pip = $is_pip ? 'autopictureinpicture' : '';
 
 		// Get video controls option.
 		$has_controls = Options::get_instance()->get( 'video_controls' );
 		$has_controls = $has_controls ? 'controls' : '';
 
 		if ( $video_url ) {
-			$image   = '"><video src="' . $video_url . '" style="max-width:95%;display:block;"' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video>';
+			$image   = '"><video src="' . esc_url( $video_url ) . '" style="max-width:95%;display:block;"' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video>';
 			$display = 'inline-block';
 		}
 
