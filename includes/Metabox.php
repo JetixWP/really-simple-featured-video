@@ -87,7 +87,7 @@ class Metabox {
 		// Generate nonce field.
 		wp_nonce_field( 'rsfv_inner_custom_box', 'rsfv_inner_custom_box_nonce' );
 
-		// Get the meta value of video embed url.
+		// Get the meta value of video source.
 		$video_source = get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true );
 
 		// Get the meta value of video attachment.
