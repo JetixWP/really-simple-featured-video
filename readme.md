@@ -13,6 +13,10 @@ With Really Simple Featured Video you get a metabox at posts, pages & products e
 
 You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Explore it yourself for a better look or take a look at screenshots below.
 
+#### *NEW* Youtube, Dailymotion & Vimeo Embed Support
+
+You can now embed videos from Youtube, Dailymotion & Vimeo directly at each post/page/product or any custom type that supports featured images.
+
 #### WooCommerce Support
 
 This plugin came out of a real need with many plugins available out there yet none provides a good integration with WooCommerce.

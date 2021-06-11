@@ -15,6 +15,13 @@ final class Plugin {
 	protected static $instance;
 
 	/**
+	 * Plugin Updater.
+	 *
+	 * @var $plugin_updater
+	 */
+	public $plugin_updater;
+
+	/**
 	 * Plugin constructor.
 	 */
 	public function __construct() {
@@ -63,6 +70,10 @@ final class Plugin {
 		Shortcode::get_instance();
 		FrontEnd::get_instance();
 
+		// Updates.
+		$this->plugin_updater = new Updater();
+		add_action( 'admin_init', array( $this->plugin_updater, 'init' ) );
+
 		// Register action links.
 		add_filter( 'network_admin_plugin_action_links_really-simple-featured-video/really-simple-featured-video.php', array( $this, 'filter_plugin_action_links' ) );
 		add_filter( 'plugin_action_links_really-simple-featured-video/really-simple-featured-video.php', array( $this, 'filter_plugin_action_links' ) );
@@ -90,6 +101,7 @@ final class Plugin {
 		require_once RSFV_PLUGIN_DIR . 'includes/Metabox.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/FrontEnd.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Updater.php';
 	}
 
 	/**
