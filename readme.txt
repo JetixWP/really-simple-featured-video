@@ -2,9 +2,9 @@
 Contributors: lushkant
 Requires at least: 5.0
 Requires PHP: 5.6
-Tested up to: 5.6
-Stable tag: 0.0.3
-Tags: featured, video, featured video, woocommerce, product-video, video embed
+Tested up to: 5.7.2
+Stable tag: 0.5.0
+Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,10 @@ https://www.youtube.com/watch?v=vbLgiRQ0Moo
 With Really Simple Featured Video you get a metabox at posts, pages & products edit screen at the very bottom and a very similar interface as you're used to with featured image.
 
 You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Explore it yourself for a better look or take a look at screenshots below.
+
+#### *NEW* Youtube, Dailymotion & Vimeo Embed Support
+
+You can now embed videos from Youtube, Dailymotion & Vimeo directly at each post/page/product or any custom type that supports featured images.
 
 #### WooCommerce Support
 
@@ -64,18 +68,23 @@ Or create a thread at forums here, in any case I'll make sure to resolve if any 
 Yes, as long as the theme you use follows standard WordPress/WooCommerce way of handling post thumbnails, this plugin should work without any problems.
 
 = Where can I get help? =
-You can get help by reaching out to me at https://lushkant.blog/contact or support forums here.
+You can get help by reaching out to me at https://lushkant.com/contact or support forums here.
 
 == Changelog ==
 
-= 0.0.1 - September 13, 2020 =
-- Initial release
-
-= 0.0.2 - September 15, 2020 =
-- Fix array_keys throwing error when post_types option empty
-- Add Settings action link at plugins page
+= 0.5.0 - June 12, 2021 =
+- Adds Youtube, Dailymotion & Vimeo support
+- Update settings page
+- Other code improvements
 
 = 0.0.3 - January 11, 2021 =
 - Add option for Video controls, loop, mute & picture-in-picture at Settings
 - Added Freemius for better customer feedback & support
 - Other minor improvements
+
+= 0.0.2 - September 15, 2020 =
+- Fix array_keys throwing error when post_types option empty
+- Add Settings action link at plugins page
+
+= 0.0.1 - September 13, 2020 =
+- Initial release
