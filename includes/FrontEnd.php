@@ -2,7 +2,7 @@
 namespace RSFV;
 
 use function RSFV\Settings\get_post_types;
-use RSFV\Plugin;
+use function RSFV\Settings\get_video_controls;
 
 /**
  * Class FrontEnd
@@ -80,35 +80,59 @@ class FrontEnd {
 		// Get enabled post types.
 		$post_types = get_post_types();
 
+		// Get the meta value of video embed url.
+		$video_source = get_post_meta( $product->get_id(), RSFV_SOURCE_META_KEY, true );
+		$video_source = $video_source ? $video_source : 'self';
+
+		$video_controls = 'self' !== $video_source ? get_video_controls( 'embed' ) : get_video_controls();
+
 		// Get autoplay option.
-		$is_autoplay = Options::get_instance()->get( 'video_autoplay' );
-		$is_autoplay = $is_autoplay ? 'autoplay' : '';
+		$is_autoplay = is_array( $video_controls ) && isset( $video_controls['autoplay'] );
 
 		// Get loop option.
-		$is_loop    = Options::get_instance()->get( 'video_loop' );
-		$is_loop    = $is_loop ? 'loop' : '';
+		$is_loop = is_array( $video_controls ) && isset( $video_controls['loop'] );
 
 		// Get mute option.
-		$is_muted    = Options::get_instance()->get( 'mute_video' );
-		$is_muted    = $is_muted ? 'muted' : '';
+		$is_muted = is_array( $video_controls ) && isset( $video_controls['mute'] );
 
 		// Get PictureInPicture option.
-		$is_pip    = Options::get_instance()->get( 'picture_in_picture' );
-		$is_pip    = $is_pip ? 'autopictureinpicture' : '';
+		$is_pip = is_array( $video_controls ) && isset( $video_controls['pip'] );
 
 		// Get video controls option.
-		$has_controls = Options::get_instance()->get( 'video_controls' );
-		$has_controls = $has_controls ? 'controls' : '';
+		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
 
 		if ( ! empty( $post_types ) ) {
-			if ( in_array( $product->post_type, $post_types ) ) {
-				$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
-				$video_url = wp_get_attachment_url( $media_id );
+			if ( in_array( $product->post_type, $post_types, true ) && 0 === $this->counter ) {
 
-				if ( $video_url && 0 == $this->counter ) {
-					$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><video class="rsfv-video" id="rsfv_video_' . $product->get_id() . '" src="' . $video_url . '" style="max-width:100%;display:block;"' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video></div>' . $html;
-					$this->counter ++;
+				if ( 'self' === $video_source ) {
+					$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
+					$video_url = wp_get_attachment_url( $media_id );
+
+					// Prepare mark up attributes.
+					$is_autoplay  = $is_autoplay ? 'autoplay' : '';
+					$is_loop      = $is_loop ? 'loop' : '';
+					$is_muted     = $is_muted ? 'muted' : '';
+					$is_pip       = $is_pip ? 'autopictureinpicture' : '';
+					$has_controls = $has_controls ? 'controls' : '';
+
+					if ( $video_url ) {
+						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><video class="rsfv-video" id="rsfv_video_' . $product->get_id() . '" src="' . $video_url . '" style="max-width:100%;display:block;"' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video></div>' . $html;
+					}
+				} else {
+					// Get the meta value of video embed url.
+					$embed_url = get_post_meta( $product->get_id(), RSFV_EMBED_META_KEY, true );
+					// Prepare mark up attributes.
+					$is_autoplay  = $is_autoplay ? 'autoplay=1&' : '';
+					$is_loop      = $is_loop ? 'loop=1&' : '';
+					$is_muted     = $is_muted ? 'mute=1&muted=1&' : '';
+					$is_pip       = $is_pip ? 'picture-in-picture=1&' : '';
+
+					if ( $embed_url ) {
+						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><iframe width="100%" height="540" src="' . $embed_url . "?{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" .'" allow="" frameborder="0"></iframe></div>' . $html;
+					}
 				}
+
+				$this->counter++;
 			}
 		}
 		return $html;
@@ -133,8 +157,13 @@ class FrontEnd {
 
 		if ( ! empty( $post_types ) ) {
 			if ( in_array( $post->post_type, $post_types ) ) {
+				// Get the meta value of video attachment.
 				$video_id = get_post_meta( $post_id, RSFV_META_KEY, true );
-				if ( $video_id ) {
+
+				// Get the meta value of video embed url.
+				$embed_url = get_post_meta( $post->ID, RSFV_EMBED_META_KEY, true );
+
+				if ( $video_id || $embed_url ) {
 					return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
 				}
 			}
