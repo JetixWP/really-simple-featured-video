@@ -191,7 +191,15 @@
     align-self: center;
 }
 
-.rsfv-enable-post-types + table.form-table {
+.rsfv-enable-post-types + table.form-table,
+.rsfv-self-video-controls + table.form-table,
+.rsfv-embed-video-controls + table.form-table {
     background-color: #fff;
     border: 1px solid #DCDCDC;
+}
+
+.rsfv-enable-post-types + table.form-table td,
+.rsfv-self-video-controls + table.form-table td,
+.rsfv-embed-video-controls + table.form-table td {
+    padding: 6px 14px;
 }

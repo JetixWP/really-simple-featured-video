@@ -135,9 +135,11 @@ class Metabox {
 		);
 
 		$embed_markup = sprintf(
-			'<div class="rsfv-embed"><input type="url" name="%1$s" id="%1$s" value="%2$s" placeholder="Video url goes here" /></div>',
+			'<div class="rsfv-embed"><input type="url" name="%1$s" id="%1$s" value="%2$s" placeholder="%3$s" /><span><br><br>%4$s<br><br>Youtube: <i>https://www.youtube.com/embed/vbLgiRQ0Moo<i><br>Vimeo: <i>https://player.vimeo.com/video/218830007</i><br>Dailymotion: <i>https://www.dailymotion.com/embed/video/x2m8jpp</i></span></div>',
 			RSFV_EMBED_META_KEY,
-			$embed_url
+			$embed_url,
+			__( 'Video url goes here', 'rsfv' ),
+			__( 'Copy &amp; paste embed urls from Youtube, Vimeo &amp; Dailymotion. For e.g. - ', 'rsfv' )
 		);
 
 		$self_input = sprintf(

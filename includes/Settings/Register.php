@@ -225,3 +225,16 @@ function get_post_types() {
 	}
 	return $post_types;
 }
+
+/**
+ * Get enabled video controls.
+ *
+ * @return string
+ */
+function get_video_controls( $type = 'self' ) {
+	if ( 'self' === $type ) {
+		return Options::get_instance()->get( 'self_video_controls' );
+	}
+
+	return Options::get_instance()->get( 'embed_video_controls' );
+}
