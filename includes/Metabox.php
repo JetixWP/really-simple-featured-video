@@ -2,6 +2,7 @@
 namespace RSFV;
 
 use function RSFV\Settings\get_post_types;
+use function RSFV\Settings\get_video_controls;
 
 /**
  * Class Metabox
@@ -89,6 +90,7 @@ class Metabox {
 
 		// Get the meta value of video source.
 		$video_source = get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true );
+		$video_source = $video_source ? $video_source : 'self';
 
 		// Get the meta value of video attachment.
 		$video_id = get_post_meta( $post->ID, RSFV_META_KEY, true );
@@ -100,24 +102,26 @@ class Metabox {
 		$display   = 'none';
 		$video_url = wp_get_attachment_url( $video_id );
 
+		$video_controls = get_video_controls();
+
 		// Get autoplay option.
-		$is_autoplay = Options::get_instance()->get( 'video_autoplay' );
+		$is_autoplay = is_array( $video_controls ) && isset( $video_controls['autoplay'] );
 		$is_autoplay = $is_autoplay ? 'autoplay' : '';
 
 		// Get loop option.
-		$is_loop = Options::get_instance()->get( 'video_loop' );
+		$is_loop = is_array( $video_controls ) && isset( $video_controls['loop'] );
 		$is_loop = $is_loop ? 'loop' : '';
 
 		// Get mute option.
-		$is_muted = Options::get_instance()->get( 'mute_video' );
+		$is_muted = is_array( $video_controls ) && isset( $video_controls['mute'] );
 		$is_muted = $is_muted ? 'muted' : '';
 
-		// Get Picture-In-Picture option.
-		$is_pip = Options::get_instance()->get( 'picture_in_picture' );
+		// Get PictureInPicture option.
+		$is_pip = is_array( $video_controls ) && isset( $video_controls['pip'] );
 		$is_pip = $is_pip ? 'autopictureinpicture' : '';
 
 		// Get video controls option.
-		$has_controls = Options::get_instance()->get( 'video_controls' );
+		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
 		$has_controls = $has_controls ? 'controls' : '';
 
 		if ( $video_url ) {
