@@ -30,6 +30,7 @@ class Updater {
 	public function init() {
 		$routines = array(
 			'0.5.0' => 'upgrade_0_5',
+			'0.5.1' => 'upgrade_0_5',
 		);
 
 		$version = get_option( self::OPTION, '0.0.3' );
@@ -70,7 +71,7 @@ class Updater {
 	}
 
 	/**
-	 * Upgrade to 0.5.0.
+	 * Upgrade to 0.5.0 & 0.5.1
 	 *
 	 * @return void
 	 */

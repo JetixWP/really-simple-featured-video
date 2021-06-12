@@ -3,7 +3,7 @@ Contributors: lushkant
 Requires at least: 5.0
 Requires PHP: 5.6
 Tested up to: 5.7.2
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,9 @@ Yes, as long as the theme you use follows standard WordPress/WooCommerce way of 
 You can get help by reaching out to me at https://lushkant.com/contact or support forums here.
 
 == Changelog ==
+
+= 0.5.1 - June 13, 2021 =
+- Fix missing updater file
 
 = 0.5.0 - June 12, 2021 =
 - Adds Youtube, Dailymotion & Vimeo support
