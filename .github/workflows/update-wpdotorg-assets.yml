@@ -3,7 +3,7 @@ name: Plugin asset/readme update
 on:
   push:
     branches:
-      - main
+      - develop
 
 env:
   SLUG: really-simple-featured-video
