@@ -1,9 +1,9 @@
 === Really Simple Featured Video - Featured video support for Posts, Pages & WooCommerce Products ===
 Contributors: lushkant
-Requires at least: 5.0
-Requires PHP: 5.6
-Tested up to: 5.7.2
-Stable tag: 0.5.1
+Requires at least: 5.5
+Requires PHP: 7.0
+Tested up to: 6.0
+Stable tag: 0.5.2
 Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,12 @@ Yes, as long as the theme you use follows standard WordPress/WooCommerce way of 
 You can get help by reaching out to me at https://lushkant.com/contact or support forums here.
 
 == Changelog ==
+
+= 0.5.2 - June 16, 2022 =
+- Update Freemius version to v2.5.0rc-2 for security issue
+- Improve code as per WordPress Coding Standards
+- Fix metabox not showing as per Enabled CPT types at settings
+- Other code improvements
 
 = 0.5.1 - June 13, 2021 =
 - Fix missing updater file
