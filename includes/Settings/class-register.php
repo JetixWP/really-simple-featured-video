@@ -98,7 +98,7 @@ class Register {
 			return false;
 		}
 		// Include settings so that we can run through defaults.
-		include_once dirname( __FILE__ ) . '/Admin_Settings.php';
+		include dirname( __FILE__ ) . '/class-admin-settings.php';
 
 		$settings = Admin_Settings::get_settings_pages();
 
@@ -175,7 +175,7 @@ function rsfv_clean( $var ) {
 function rsfv_admin_fields( $options ) {
 
 	if ( ! class_exists( 'Admin_Settings', false ) ) {
-		include dirname( __FILE__ ) . '/Admin_Settings.php';
+		include dirname( __FILE__ ) . '/class-admin-settings.php';
 	}
 
 	Admin_Settings::output_fields( $options );
@@ -190,7 +190,7 @@ function rsfv_admin_fields( $options ) {
 function rsfv_update_options( $options, $data = null ) {
 
 	if ( ! class_exists( 'Admin_Settings', false ) ) {
-		include dirname( __FILE__ ) . '/Admin_Settings.php';
+		include dirname( __FILE__ ) . '/class-admin-settings.php';
 	}
 
 	Admin_Settings::save_fields( $options, $data );
@@ -206,7 +206,7 @@ function rsfv_update_options( $options, $data = null ) {
 function rsfv_settings_get_option( $option_name, $default = '' ) {
 
 	if ( ! class_exists( 'Admin_Settings', false ) ) {
-		include dirname( __FILE__ ) . '/Admin_Settings.php';
+		include dirname( __FILE__ ) . '/class-admin-settings.php';
 	}
 
 	return Admin_Settings::get_option( $option_name, $default );

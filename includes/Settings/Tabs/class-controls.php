@@ -1,6 +1,6 @@
 <?php
 /**
- * RSFV Controls Settings
+ * Controls Settings
  *
  * @package RSFV
  */

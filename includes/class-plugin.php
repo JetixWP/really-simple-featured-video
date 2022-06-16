@@ -96,29 +96,31 @@ final class Plugin {
 	 * @return void
 	 */
 	public function includes() {
-		require_once RSFV_PLUGIN_DIR . 'includes/Options.php';
-		require_once RSFV_PLUGIN_DIR . 'includes/Settings/Register.php';
-		require_once RSFV_PLUGIN_DIR . 'includes/Metabox.php';
-		require_once RSFV_PLUGIN_DIR . 'includes/Shortcode.php';
-		require_once RSFV_PLUGIN_DIR . 'includes/FrontEnd.php';
-		require_once RSFV_PLUGIN_DIR . 'includes/Updater.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/class-options.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Settings/class-register.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/class-metabox.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/class-shortcode.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/class-frontend.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/class-updater.php';
 	}
 
 	/**
 	 * Add settings link at plugins page action links.
 	 *
-	 * @param array $actions
+	 * @param array $actions Action links.
 	 *
 	 * @return array
 	 */
 	public function filter_plugin_action_links( array $actions ) {
 		$settings_url = admin_url( 'options-general.php?page=rsfv-settings' );
 
-		return array_merge( array(
-			'settings' => "<a href='{$settings_url}'>" . esc_html__( 'Settings', 'rsfv' ) . '</a>',
-		), $actions );
+		return array_merge(
+			array(
+				'settings' => "<a href='{$settings_url}'>" . esc_html__( 'Settings', 'rsfv' ) . '</a>',
+			),
+			$actions
+		);
 	}
-
 
 	/**
 	 * Checks if WooCommerce is activated.
@@ -126,6 +128,6 @@ final class Plugin {
 	 * @return bool
 	 */
 	public static function is_woo_activated() {
-		return class_exists( 'WooCommerce' ) ? true : false;
+		return class_exists( 'WooCommerce' );
 	}
 }

@@ -44,10 +44,10 @@ class Admin_Settings {
 		if ( empty( self::$settings ) ) {
 			$settings = array();
 
-			include_once dirname( __FILE__ ) . '/Settings_Page.php';
+			include_once dirname( __FILE__ ) . '/class-settings-page.php';
 
-			$settings[] = include 'Tabs/General_Tab.php';
-			$settings[] = include 'Tabs/Controls_Tab.php';
+			$settings[] = include 'Tabs/class-general-tab.php';
+			$settings[] = include 'Tabs/class-controls-tab.php';
 
 			self::$settings = apply_filters( 'rsfv_get_settings_pages', $settings );
 		}
