@@ -10,3 +10,4 @@ node_modules
 /third-party
 phpcs.xml
 gulp.config.json
+report.txt
