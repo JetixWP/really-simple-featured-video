@@ -1,2 +1,12 @@
-# OSX
+.idea/
+.vscode/
 .DS_Store
+node_modules
+/vendor
+/includes/vendor
+/includes/composer.json
+/yarn-error.log
+/build
+/third-party
+phpcs.xml
+gulp.config.json
