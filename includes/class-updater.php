@@ -1,4 +1,10 @@
 <?php
+/**
+ * Migrations handler.
+ *
+ * @package RSFV
+ */
+
 namespace RSFV;
 
 defined( 'ABSPATH' ) || exit;

@@ -10,6 +10,8 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: rsfv
  * Domain Path: /languages/
+ *
+ * @package RSFV
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -21,30 +23,34 @@ define( 'RSFV_PLUGIN_DIR', plugin_dir_path( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_BASE', plugin_basename( RSFV_PLUGIN_FILE ) );
 
 if ( ! function_exists( 'rsfv_fs' ) ) {
-	// Create a helper function for easy SDK access.
+	/**
+	 * Create a helper function for easy SDK access.
+	 */
 	function rsfv_fs() {
 		global $rsfv_fs;
 
 		if ( ! isset( $rsfv_fs ) ) {
 			// Include Freemius SDK.
-			require_once dirname(__FILE__) . '/freemius/start.php';
+			require_once dirname( __FILE__ ) . '/freemius/start.php';
 
-			$rsfv_fs = fs_dynamic_init( array(
-				'id'                  => '7560',
-				'slug'                => 'really-simple-featured-video',
-				'type'                => 'plugin',
-				'public_key'          => 'pk_6d1ecdde5701fc2158193cf7eab45',
-				'is_premium'          => false,
-				'has_addons'          => false,
-				'has_paid_plans'      => false,
-				'menu'                => array(
-					'slug'           => 'rsfv-settings',
-					'support'        => false,
-					'parent'         => array(
-						'slug' => 'options-general.php',
+			$rsfv_fs = fs_dynamic_init(
+				array(
+					'id'             => '7560',
+					'slug'           => 'really-simple-featured-video',
+					'type'           => 'plugin',
+					'public_key'     => 'pk_6d1ecdde5701fc2158193cf7eab45',
+					'is_premium'     => false,
+					'has_addons'     => false,
+					'has_paid_plans' => false,
+					'menu'           => array(
+						'slug'    => 'rsfv-settings',
+						'support' => false,
+						'parent'  => array(
+							'slug' => 'options-general.php',
+						),
 					),
-				),
-			) );
+				)
+			);
 		}
 
 		return $rsfv_fs;
@@ -63,7 +69,7 @@ add_action(
 	'plugins_loaded',
 	static function() {
 
-		require_once RSFV_PLUGIN_DIR . 'includes/Plugin.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/class-plugin.php';
 
 		// Main instance.
 		\RSFV\Plugin::get_instance();

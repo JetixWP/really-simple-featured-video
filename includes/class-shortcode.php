@@ -1,4 +1,10 @@
 <?php
+/**
+ * Shortcode handler.
+ *
+ * @package RSFV
+ */
+
 namespace RSFV;
 
 use function RSFV\Settings\get_post_types;
@@ -9,6 +15,8 @@ use function RSFV\Settings\get_video_controls;
  */
 class Shortcode {
 	/**
+	 * Class instance.
+	 *
 	 * @var $instance
 	 */
 	protected static $instance;
@@ -107,12 +115,12 @@ class Shortcode {
 	/**
 	 * Show video by post id.
 	 *
-	 * @param $atts array Shortcode attributes
+	 * @param array $atts Shortcode attributes.
 	 * @return string|void
 	 */
 	public function show_video_by_post_id( $atts ) {
 		if ( is_array( $atts ) && ! isset( $atts['post_id'] ) ) {
-			  return esc_html__( 'Please add a post id!', 'rsfv' );
+			return esc_html__( 'Please add a post id!', 'rsfv' );
 		}
 
 		$post = get_post( $atts['post_id'] );

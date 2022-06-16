@@ -1,8 +1,15 @@
-/* global rsfv_settings_data */
+/**
+ * Admin settings script.
+ *
+ * { global, rsfv_settings_data }
+ *
+ * @package RSFV
+ */
+
 ( function( $, data ) {
 	$(
 		function() {
-			// Edit prompt
+			// Edit prompt.
 			$(
 				function() {
 					let changed = false;
@@ -16,9 +23,9 @@
 					$( '.rsfv-nav-tab-wrapper a' ).click(
 						function() {
 							if ( changed ) {
-								  window.onbeforeunload = function() {
+								window.onbeforeunload = function() {
 									return data.i18n_nav_warning;
-								  };
+								};
 							} else {
 								window.onbeforeunload = '';
 							}
@@ -33,7 +40,7 @@
 				}
 			);
 
-			// Select all/none
+			// Select all/none.
 			$( '.rsfv' ).on(
 				'click',
 				'.select_all',
@@ -66,10 +73,11 @@
 				}
 			);
 
-			const collBtn = document.getElementsByClassName( 'collapsible' );
+			const collBtn      = document.getElementsByClassName( 'collapsible' );
+			const collBtnCount = collBtn.length;
 			let i;
 
-			for ( i = 0; i < collBtn.length; i++ ) {
+			for ( i = 0; i < collBtnCount; i++ ) {
 				collBtn[ i ].addEventListener(
 					'click',
 					function( e ) {
@@ -84,7 +92,7 @@
 					}
 				);
 				if ( i === 0 ) {
-					   $( collBtn[ i ] ).trigger( 'click' );
+					$( collBtn[ i ] ).trigger( 'click' );
 				}
 			}
 		}

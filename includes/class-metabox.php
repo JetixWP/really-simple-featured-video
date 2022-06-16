@@ -1,4 +1,10 @@
 <?php
+/**
+ * Metabox handler.
+ *
+ * @package RSFV
+ */
+
 namespace RSFV;
 
 use function RSFV\Settings\get_post_types;
@@ -15,14 +21,17 @@ class Metabox {
 	 */
 	protected static $instance;
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
-		// Adding meta box for featured video
+		// Adding meta box for featured video.
 		add_action( 'add_meta_boxes', array( $this, 'add_metabox' ) );
 
-		// Loading Admin scripts here
+		// Loading Admin scripts here.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
-		// Saving post by updating , "featured_video_uploading" meta key
+		// Saving post by updating "featured_video_uploading" meta key.
 		add_action( 'save_post', array( $this, 'save_video' ), 10, 1 );
 	}
 
@@ -63,7 +72,7 @@ class Metabox {
 			// Enqueue all necessary WP Media APIs.
 			wp_enqueue_media();
 			// Enqueue plugin script.
-			wp_enqueue_script( 'rsfv_custom_script', RSFV_PLUGIN_URL . 'assets/js/rsfv-media.js', array( 'jquery' ), RSFV_VERSION );
+			wp_enqueue_script( 'rsfv_custom_script', RSFV_PLUGIN_URL . 'assets/js/rsfv-media.js', array( 'jquery' ), RSFV_VERSION, true );
 
 			wp_localize_script(
 				'rsfv_custom_script',
@@ -80,7 +89,7 @@ class Metabox {
 	/**
 	 * Uploads the video.
 	 *
-	 * @param $post object Post object which holds post data.
+	 * @param object $post Post object which holds post data.
 	 * @return void
 	 */
 	public function upload_video( $post ) {
@@ -173,15 +182,15 @@ class Metabox {
 
 		printf(
 			'%1$s%2$s',
-			$select_source,
-			$styles,
+			$select_source, // phpcs:ignore
+			$styles // phpcs:ignore
 		);
 	}
 
 	/**
 	 * Saves selected video.
 	 *
-	 * @param $post_id string Holds post id.
+	 * @param string $post_id Holds post id.
 	 * @return string
 	 */
 	public function save_video( $post_id ) {
@@ -213,7 +222,7 @@ class Metabox {
 
 		foreach ( $keys as $key ) {
 			// Get updated value.
-			$key_value = isset( $_POST[ $key ] ) ? sanitize_text_field( $_POST[ $key ] ) : '';
+			$key_value = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : '';
 
 			// Save key value in meta key.
 			update_post_meta( $post_id, $key, $key_value );

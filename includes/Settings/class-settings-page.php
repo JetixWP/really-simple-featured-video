@@ -1,6 +1,6 @@
 <?php
 /**
- * RSFV Settings Page/Tab
+ * Settings Page/Tab
  *
  * @package     RSFV
  */

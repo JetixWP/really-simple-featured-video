@@ -1,4 +1,10 @@
 <?php
+/**
+ * Main plugin class.
+ *
+ * @package RSFV
+ */
+
 namespace RSFV;
 
 use RSFV\Settings\Register;
@@ -87,7 +93,7 @@ final class Plugin {
 	 * @return void
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'rsfv', '', dirname( RSFV_PLUGIN_BASE ) . '/languages/' );
+		load_plugin_textdomain( 'rsfv', false, dirname( RSFV_PLUGIN_BASE ) . '/languages/' );
 	}
 
 	/**

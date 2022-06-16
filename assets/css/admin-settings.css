@@ -1,205 +1,205 @@
 @media screen and (min-width: 768px) {
-    .rsfv-wrapper {
-        display: grid;
-        grid-template-columns: 9fr 3fr;
-        column-gap: 50px;
-    }
+	.rsfv-wrapper {
+		display: grid;
+		grid-template-columns: 9fr 3fr;
+		column-gap: 50px;
+	}
 }
 
 .rsfv .forminp .description {
-    display: block;
-    margin-top: 10px;
+	display: block;
+	margin-top: 10px;
 }
 
 .rfsv .forminp-button {
-    padding: 0 0 15px;
+	padding: 0 0 15px;
 }
 
 .rsfv .collapsible {
-    border: none;
-    border-top: 1px solid#e2e4e7;
-    border-bottom: 1px solid#e2e4e7;
-    background-color: #fff;
-    padding: 15px;
-    outline: none;
-    width: 100%;
-    font-weight: 600;
-    text-align: left;
-    box-shadow: none;
-    cursor: pointer;
+	border: none;
+	border-top: 1px solid#e2e4e7;
+	border-bottom: 1px solid#e2e4e7;
+	background-color: #fff;
+	padding: 15px;
+	outline: none;
+	width: 100%;
+	font-weight: 600;
+	text-align: left;
+	box-shadow: none;
+	cursor: pointer;
 }
 
 .rsfv .collapsible:after, .rsfv .collapsible.active:after {
-    font-family: 'Dashicons';
-    font-size: 20px;
-    color: #000;
-    float: right;
-    margin-left: 5px;
+	font-family: 'Dashicons';
+	font-size: 20px;
+	color: #000;
+	float: right;
+	margin-left: 5px;
 }
 
 .rsfv .collapsible:after {
-    content: "\f140";
+	content: "\f140";
 }
 
 .rsfv .collapsible.active:after {
-    content: "\f142";;
+	content: "\f142";;
 }
 
 .rsfv .collapsible.active, .rsfv .collapsible:hover {
-    background-color: #fff;
+	background-color: #fff;
 }
 
 .rsfv .collapsible-content {
-    padding: 0 18px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
+	padding: 0 18px;
+	background-color: white;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
 }
 
 .rsfv .form-table td.forminp-multi-checkbox fieldset label {
-    padding-left: 0;
+	padding-left: 0;
 }
 
 .rsfv .form-table td.forminp-multi-checkbox input[type=checkbox]{
-    height: 0;
-    width: 0;
-    display: none;
+	height: 0;
+	width: 0;
+	display: none;
 }
 
 .rsfv .form-table td.forminp-multi-checkbox label:focus input[type="checkbox"] + span,
 .rsfv .form-table td.forminp-multi-checkbox label:active input[type="checkbox"] + span {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 2px #fff,0 0 0 3px #6c7781;
-    border-radius: 15px;
-    display: inline-block;
-    height: 19px;
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+	box-shadow: 0 0 0 2px #fff,0 0 0 3px #6c7781;
+	border-radius: 15px;
+	display: inline-block;
+	height: 19px;
 }
 
 .rsfv .form-table td.forminp-multi-checkbox span > span {
-    cursor: pointer;
-    text-indent: -9999px;
-    width: 36px;
-    height: 19px;
-    background: #fff;
-    display: inline-block;
-    box-sizing: border-box;
-    vertical-align: top;
-    border-radius: 15px;
-    position: relative;
-    border: 2px solid #6c7781;
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 36px;
+	height: 19px;
+	background: #fff;
+	display: inline-block;
+	box-sizing: border-box;
+	vertical-align: top;
+	border-radius: 15px;
+	position: relative;
+	border: 2px solid #6c7781;
 }
 
 .rfsv .form-table td.forminp-multi-checkbox span > span:before {
-    position: absolute;
-    top: 5px;
-    right: 4px;
-    width: 3px;
-    height: 3px;
-    z-index: 999;
-    font-size: 51px;
-    content: '';
-    border-radius: 10px;
-    border: 2px solid #6c7781;
-    transition: 0.1s ease-in all;
+	position: absolute;
+	top: 5px;
+	right: 4px;
+	width: 3px;
+	height: 3px;
+	z-index: 999;
+	font-size: 51px;
+	content: '';
+	border-radius: 10px;
+	border: 2px solid #6c7781;
+	transition: 0.1s ease-in all;
 }
 
 .rsfv .form-table td.forminp-multi-checkbox span > span:after {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 2.5px;
-    width: 10px;
-    height: 10px;
-    background:#6c7781;
-    border-radius: 15px;
-    transition: 0.1s ease-in all;
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 2.5px;
+	width: 10px;
+	height: 10px;
+	background:#6c7781;
+	border-radius: 15px;
+	transition: 0.1s ease-in all;
 }
 
 .rsfv .form-table td.forminp-multi-checkbox input:checked + span > span {
-    background: #5C32B6;
-    border-color: #5C32B6;
+	background: #5C32B6;
+	border-color: #5C32B6;
 }
 
 .rfsv .form-table td.forminp-multi-checkbox input:checked + span > span:before {
-    border-radius: 0;
-    right: calc(100% - 10px);
-    transform: translateX(-100%);
-    width: 1.5px;
-    border: none;
-    height: 6px;
-    background: #fff;
+	border-radius: 0;
+	right: calc(100% - 10px);
+	transform: translateX(-100%);
+	width: 1.5px;
+	border: none;
+	height: 6px;
+	background: #fff;
 }
 
 .rsfv .form-table td.forminp-multi-checkbox input:checked + span > span:after {
-    background: #fff;
-    left: calc(100% - 3px);
-    transform: translateX(-100%);
+	background: #fff;
+	left: calc(100% - 3px);
+	transform: translateX(-100%);
 }
 
 .rsfv .form-table td.forminp-multi-checkbox span > span:active:after {
-    width: 20px;
+	width: 20px;
 }
 
 .forminp-multi-checkbox fieldset {
-    max-width: 1000px;
+	max-width: 1000px;
 }
 
 .forminp-multi-checkbox ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 80px;
-    margin: 0;
-    padding: 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 80px;
+	margin: 0;
+	padding: 0;
 }
 
 .rsfv.uroles td.forminp-multi-checkbox ul {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
 }
 
 @media screen and (max-width: 700px) {
-    .forminp-multi-checkbox ul {
-        grid-template-columns: 1fr;
-    }
+	.forminp-multi-checkbox ul {
+		grid-template-columns: 1fr;
+	}
 }
 
 .forminp-multi-checkbox li {
-    flex: 0 0 150px;
-    margin-top: 10px;
+	flex: 0 0 150px;
+	margin-top: 10px;
 }
 
 
 .forminp-multi-checkbox li label {
-    margin: 0 !important;
-    padding: 0;
+	margin: 0 !important;
+	padding: 0;
 }
 
 
 .rsfv .form-table td.forminp-multi-checkbox li label {
-    display: inline-flex;
-    flex-direction: row-reverse;
-    width: 100%;
-    justify-content: space-between;
+	display: inline-flex;
+	flex-direction: row-reverse;
+	width: 100%;
+	justify-content: space-between;
 }
 
 .rsfv .form-table td.forminp-multi-checkbox li label > * {
-    margin: 0;
-    align-self: center;
+	margin: 0;
+	align-self: center;
 }
 
 .rsfv-enable-post-types + table.form-table,
 .rsfv-self-video-controls + table.form-table,
 .rsfv-embed-video-controls + table.form-table {
-    background-color: #fff;
-    border: 1px solid #DCDCDC;
+	background-color: #fff;
+	border: 1px solid #DCDCDC;
 }
 
 .rsfv-enable-post-types + table.form-table td,
 .rsfv-self-video-controls + table.form-table td,
 .rsfv-embed-video-controls + table.form-table td {
-    padding: 6px 14px;
+	padding: 6px 14px;
 }

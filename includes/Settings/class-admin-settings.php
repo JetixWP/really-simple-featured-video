@@ -1,6 +1,6 @@
 <?php
 /**
- * RSFV Admin Settings Class
+ * Admin Settings Class
  *
  * @package  RSFV
  */
@@ -46,8 +46,8 @@ class Admin_Settings {
 
 			include_once dirname( __FILE__ ) . '/class-settings-page.php';
 
-			$settings[] = include 'Tabs/class-general-tab.php';
-			$settings[] = include 'Tabs/class-controls-tab.php';
+			$settings[] = include 'Tabs/class-general.php';
+			$settings[] = include 'Tabs/class-controls.php';
 
 			self::$settings = apply_filters( 'rsfv_get_settings_pages', $settings );
 		}
@@ -125,7 +125,7 @@ class Admin_Settings {
 			'rsfv_settings',
 			'rsfv_settings_data',
 			array(
-				'i18n_nav_warning'  => __( 'The changes you made will be lost if you navigate away from this page.', 'rsfv' ),
+				'i18n_nav_warning' => __( 'The changes you made will be lost if you navigate away from this page.', 'rsfv' ),
 			)
 		);
 
@@ -325,7 +325,7 @@ class Admin_Settings {
 
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // phpcs:ignore ?></label>
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<input
@@ -336,8 +336,8 @@ class Admin_Settings {
 								value="<?php echo esc_attr( $option_value ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
 								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
-								/><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // WPCS: XSS ok. ?>
+								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
+								/><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // phpcs:ignore. ?>
 						</td>
 					</tr>
 					<?php
@@ -351,8 +351,8 @@ class Admin_Settings {
 								id="<?php echo esc_attr( $value['id'] ); ?>"
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
-								><?php echo esc_html( $option_value ); ?></a><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // WPCS: XSS ok. ?>
+								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
+								><?php echo esc_html( $option_value ); ?></a><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // phpcs:ignore. ?>
 						</td>
 					</tr>
 					<?php
@@ -365,10 +365,10 @@ class Admin_Settings {
 					?>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // phpcs:ignore. ?></label>
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
-							<?php echo $description; // WPCS: XSS ok. ?>
+							<?php echo $description; // phpcs:ignore. ?>
 
 							<textarea
 								name="<?php echo esc_attr( $value['id'] ); ?>"
@@ -376,8 +376,8 @@ class Admin_Settings {
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
 								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
-								><?php echo esc_textarea( $option_value ); // WPCS: XSS ok. ?></textarea>
+								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
+								><?php echo esc_textarea( $option_value ); // phpcs:ignore. ?></textarea>
 						</td>
 					</tr>
 					<?php
@@ -392,7 +392,7 @@ class Admin_Settings {
 					<tr valign="top">
 						<?php if ( ! empty( $value['title'] ) ) { ?>
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // phpcs:ignore. ?></label>
 						</th>
 						<?php } ?>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
@@ -401,7 +401,7 @@ class Admin_Settings {
 								id="<?php echo esc_attr( $value['id'] ); ?>"
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
+								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
 								<?php echo 'multiselect' === $value['type'] ? 'multiple="multiple"' : ''; ?>
 								>
 								<?php
@@ -421,7 +421,7 @@ class Admin_Settings {
 									<?php
 								}
 								?>
-							</select> <?php echo $description; // WPCS: XSS ok. ?>
+							</select> <?php echo $description; // phpcs:ignore. ?>
 						</td>
 					</tr>
 					<?php
@@ -434,11 +434,11 @@ class Admin_Settings {
 					?>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // WPCS: XSS ok. ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // phpcs:ignore. ?></label>
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<fieldset>
-								<?php echo $description; // WPCS: XSS ok. ?>
+								<?php echo $description; // phpcs:ignore. ?>
 								<ul>
 								<?php
 								foreach ( $value['options'] as $key => $val ) {
@@ -450,7 +450,7 @@ class Admin_Settings {
 											type="radio"
 											style="<?php echo esc_attr( $value['css'] ); ?>"
 											class="<?php echo esc_attr( $value['class'] ); ?>"
-											<?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
+											<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
 											<?php checked( $key, $option_value ); ?>
 											/> <?php echo esc_html( $val ); ?></label>
 									</li>
@@ -546,12 +546,12 @@ class Admin_Settings {
 								class="<?php echo esc_attr( isset( $value['class'] ) ? $value['class'] : '' ); ?>"
 								value="1"
 								<?php checked( $option_value, true ); ?>
-								<?php echo implode( ' ', $custom_attributes ); // WPCS: XSS ok. ?>
-							/> <?php echo $description; // WPCS: XSS ok. ?>
+								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
+							/> <?php echo $description; // phpcs:ignore. ?>
 							<?php if ( $value['switch'] ) { ?>
 								<span><?php esc_html_e( 'Toggle', 'rsfv' ); ?></span>
 							<?php } ?>
-						</label> <?php echo $tooltip_html; // WPCS: XSS ok. ?>
+						</label> <?php echo $tooltip_html; // phpcs:ignore. ?>
 					<?php
 
 					if ( ! isset( $value['checkboxgroup'] ) || 'end' === $value['checkboxgroup'] ) {

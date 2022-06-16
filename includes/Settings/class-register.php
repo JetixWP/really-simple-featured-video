@@ -1,4 +1,10 @@
 <?php
+/**
+ * Settings handler.
+ *
+ * @package RSFV
+ */
+
 namespace RSFV\Settings;
 
 use RSFV\Options;
@@ -228,6 +234,8 @@ function get_post_types() {
 
 /**
  * Get enabled video controls.
+ *
+ * @param string $type Type of video.
  *
  * @return string
  */

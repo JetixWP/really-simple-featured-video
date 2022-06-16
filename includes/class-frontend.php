@@ -1,4 +1,10 @@
 <?php
+/**
+ * Frontend handler.
+ *
+ * @package RSFV
+ */
+
 namespace RSFV;
 
 use function RSFV\Settings\get_post_types;
@@ -70,8 +76,8 @@ class FrontEnd {
 	/**
 	 * Filter method for getting WooCommerce video markup at products.
 	 *
-	 * @param $html
-	 * @param $post_thumbnail_id
+	 * @param string $html Thumbnail markup for products.
+	 * @param int    $post_thumbnail_id Thumbnail ID.
 	 * @return string
 	 */
 	public function woo_get_video( $html, $post_thumbnail_id ) {
@@ -122,13 +128,13 @@ class FrontEnd {
 					// Get the meta value of video embed url.
 					$embed_url = get_post_meta( $product->get_id(), RSFV_EMBED_META_KEY, true );
 					// Prepare mark up attributes.
-					$is_autoplay  = $is_autoplay ? 'autoplay=1&' : '';
-					$is_loop      = $is_loop ? 'loop=1&' : '';
-					$is_muted     = $is_muted ? 'mute=1&muted=1&' : '';
-					$is_pip       = $is_pip ? 'picture-in-picture=1&' : '';
+					$is_autoplay = $is_autoplay ? 'autoplay=1&' : '';
+					$is_loop     = $is_loop ? 'loop=1&' : '';
+					$is_muted    = $is_muted ? 'mute=1&muted=1&' : '';
+					$is_pip      = $is_pip ? 'picture-in-picture=1&' : '';
 
 					if ( $embed_url ) {
-						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><iframe width="100%" height="540" src="' . $embed_url . "?{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" .'" allow="" frameborder="0"></iframe></div>' . $html;
+						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><iframe width="100%" height="540" src="' . $embed_url . "?{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>' . $html;
 					}
 				}
 
@@ -141,11 +147,11 @@ class FrontEnd {
 	/**
 	 * Filter method for getting video markup at posts & pages.
 	 *
-	 * @param $html string Holds markup data.
-	 * @param $post_id
-	 * @param $post_thumbnail_id
-	 * @param $size
-	 * @param $attr
+	 * @param string $html Holds markup data.
+	 * @param int    $post_id Post ID.
+	 * @param int    $post_thumbnail_id Thumbnail ID.
+	 * @param int    $size Requested image size.
+	 * @param string $attr Query string or array of attributes.
 	 *
 	 * @return string
 	 */
@@ -156,7 +162,7 @@ class FrontEnd {
 		$post_types = get_post_types();
 
 		if ( ! empty( $post_types ) ) {
-			if ( in_array( $post->post_type, $post_types ) ) {
+			if ( in_array( $post->post_type, $post_types, true ) ) {
 				// Get the meta value of video attachment.
 				$video_id = get_post_meta( $post_id, RSFV_META_KEY, true );
 
