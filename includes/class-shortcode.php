@@ -47,7 +47,7 @@ class Shortcode {
 	/**
 	 * Show video on posts & pages.
 	 *
-	 * @return string|void
+	 * @return string
 	 */
 	public function show_video() {
 		global $post;
@@ -59,7 +59,8 @@ class Shortcode {
 	 * Show video by post id.
 	 *
 	 * @param array $atts Shortcode attributes.
-	 * @return string|void
+	 *
+	 * @return string
 	 */
 	public function show_video_by_post_id( $atts ) {
 		if ( is_array( $atts ) && ! isset( $atts['post_id'] ) ) {
