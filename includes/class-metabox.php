@@ -114,27 +114,29 @@ class Metabox {
 		$video_controls = get_video_controls();
 
 		// Get autoplay option.
-		$is_autoplay = is_array( $video_controls ) && isset( $video_controls['autoplay'] );
+		$is_autoplay = ( is_array( $video_controls ) && isset( $video_controls['autoplay'] ) ) && $video_controls['autoplay'];
 		$is_autoplay = $is_autoplay ? 'autoplay' : '';
 
 		// Get loop option.
-		$is_loop = is_array( $video_controls ) && isset( $video_controls['loop'] );
+		$is_loop = ( is_array( $video_controls ) && isset( $video_controls['loop'] ) ) && $video_controls['loop'];
 		$is_loop = $is_loop ? 'loop' : '';
 
 		// Get mute option.
-		$is_muted = is_array( $video_controls ) && isset( $video_controls['mute'] );
+		$is_muted = ( is_array( $video_controls ) && isset( $video_controls['mute'] ) ) && $video_controls['mute'];
 		$is_muted = $is_muted ? 'muted' : '';
 
 		// Get PictureInPicture option.
-		$is_pip = is_array( $video_controls ) && isset( $video_controls['pip'] );
+		$is_pip = ( is_array( $video_controls ) && isset( $video_controls['pip'] ) ) && $video_controls['pip'];
 		$is_pip = $is_pip ? 'autopictureinpicture' : '';
 
 		// Get video controls option.
-		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
+		$has_controls = ( is_array( $video_controls ) && isset( $video_controls['controls'] ) ) && $video_controls['controls'];
+		ray( $has_controls );
 		$has_controls = $has_controls ? 'controls' : '';
+		ray( $has_controls );
 
 		if ( $video_url ) {
-			$image   = '"><video src="' . esc_url( $video_url ) . '" style="max-width:95%;display:block;"' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video>';
+			$image   = '"><video src="' . esc_url( $video_url ) . '" style="max-width:95%;display:block;" ' . esc_attr( $has_controls ) . ' ' . esc_attr( $is_autoplay ) . ' ' . esc_attr( $is_loop ) . ' ' . esc_attr( $is_muted ) . ' ' . esc_attr( $is_pip ) . '></video>';
 			$display = 'inline-block';
 		}
 
@@ -173,7 +175,7 @@ class Metabox {
 
 		$select_source = sprintf(
 			'<div><p>%1$s</p>%2$s%3$s</div>',
-			__( 'Please select video source', 'rsfv' ),
+			__( 'Please select a video source', 'rsfv' ),
 			$self_input,
 			$embed_input
 		);
@@ -182,8 +184,8 @@ class Metabox {
 
 		printf(
 			'%1$s%2$s',
-			$select_source, // phpcs:ignore
-			$styles // phpcs:ignore
+			wp_kses( $select_source, $this->get_allowed_html() ),
+			wp_kses( $styles, $this->get_allowed_html() ),
 		);
 	}
 
@@ -198,12 +200,12 @@ class Metabox {
 			return;
 		}
 
+		$nonce = isset( $_POST['rsfv_inner_custom_box_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['rsfv_inner_custom_box_nonce'] ) ) : '';
+
 		// Check if nonce is set.
-		if ( ! isset( $_POST['rsfv_inner_custom_box_nonce'] ) ) {
+		if ( empty( $nonce ) ) {
 			return $post_id;
 		}
-
-		$nonce = $_POST['rsfv_inner_custom_box_nonce']; // phpcs:ignore
 
 		// Verify that the nonce is valid.
 		if ( ! wp_verify_nonce( $nonce, 'rsfv_inner_custom_box' ) ) {
@@ -229,5 +231,48 @@ class Metabox {
 		}
 
 		return $post_id;
+	}
+
+	/**
+	 * Get a list of allowed html elements.
+	 *
+	 * @return array Allowed html elements.
+	 */
+	public function get_allowed_html() {
+		return array(
+			'video' => array(
+				'src'                  => array(),
+				'style'                => array(),
+				'loop'                 => array(),
+				'muted'                => array(),
+				'autopictureinpicture' => array(),
+				'autoplay'             => array(),
+				'controls'             => array(),
+			),
+			'input' => array(
+				'type'        => array(),
+				'id'          => array(),
+				'name'        => array(),
+				'value'       => array(),
+				'placeholder' => array(),
+				'checked'     => array(),
+			),
+			'label' => array(
+				'for' => array(),
+			),
+			'div'   => array(
+				'class' => array(),
+			),
+			'a'     => array(
+				'href' => array(),
+				'class' => array(),
+				'style' => array(),
+			),
+			'p'     => array(),
+			'span'  => array(),
+			'br'    => array(),
+			'i'     => array(),
+			'style' => array(),
+		);
 	}
 }

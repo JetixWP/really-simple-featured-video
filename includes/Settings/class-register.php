@@ -51,7 +51,6 @@ class Register {
 	 * @return void
 	 */
 	public function register_menu() {
-
 		add_submenu_page(
 			'options-general.php',
 			__( 'Really Simple Featured Video Settings', 'rsfv' ),
@@ -60,29 +59,6 @@ class Register {
 			'rsfv-settings',
 			array( $this, 'settings_page' ),
 		);
-
-		add_action( 'load-rsfv_page_settings', array( $this, 'settings_page_init' ) );
-
-	}
-
-	/**
-	 * Loads methods into memory for use within settings.
-	 */
-	public function settings_page_init() {
-
-		// Include settings pages.
-		Admin_Settings::get_settings_pages();
-
-		// Add any posted messages.
-		if ( ! empty( $_GET['rsfv_error'] ) ) { // phpcs:ignore
-			Admin_Settings::add_error( wp_kses_post( wp_unslash( $_GET['rsfv_error'] ) ) ); // phpcs:ignore
-		}
-
-		if ( ! empty( $_GET['rsfv_message'] ) ) { // phpcs:ignore
-			Admin_Settings::add_message( wp_kses_post( wp_unslash( $_GET['rsfv_message'] ) ) ); // phpcs:ignore
-		}
-
-		do_action( 'rsfv_settings_page_init' );
 	}
 
 	/**
@@ -103,6 +79,7 @@ class Register {
 		if ( ! is_admin() ) {
 			return false;
 		}
+
 		// Include settings so that we can run through defaults.
 		include dirname( __FILE__ ) . '/class-admin-settings.php';
 
@@ -125,7 +102,6 @@ class Register {
 		}
 	}
 
-
 	/**
 	 * Handle saving of settings.
 	 *
@@ -135,7 +111,7 @@ class Register {
 		global $current_tab, $current_section;
 
 		// We should only save on the settings page.
-		if ( ! is_admin() || ! isset( $_GET['page'] ) || 'rsfv-settings' !== $_GET['page'] ) { // phpcs:ignore
+		if ( ! is_admin() || ! isset( $_GET['page'] ) || 'rsfv-settings' !== $_GET['page'] ) {
 			return;
 		}
 
@@ -143,14 +119,17 @@ class Register {
 		Admin_Settings::get_settings_pages();
 
 		// Get current tab/section.
-		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( wp_unslash( $_GET['tab'] ) ); // phpcs:ignore
-		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( wp_unslash( $_REQUEST['section'] ) ); // phpcs:ignore
+		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( wp_unslash( $_GET['tab'] ) );
+		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( wp_unslash( $_REQUEST['section'] ) );
+		$nonce           = isset( $_POST['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) : '';
 
 		// Save settings if data has been posted.
-		if ( '' !== $current_section && apply_filters( "rsfv_save_settings_{$current_tab}_{$current_section}", ! empty( $_POST['save'] ) ) ) { // phpcs:ignore
-			Admin_Settings::save();
-		} elseif ( '' === $current_section && apply_filters( "rsfv_save_settings_{$current_tab}", ! empty( $_POST['save'] ) || isset( $_POST['rsfv-license_activate'] ) ) ) { // phpcs:ignore
-			Admin_Settings::save();
+		if ( wp_verify_nonce( $nonce, 'rsfv-settings' ) ) {
+			if ( '' !== $current_section && apply_filters( "rsfv_save_settings_{$current_tab}_{$current_section}", ! empty( $_POST['save'] ) ) ) {
+				Admin_Settings::save();
+			} elseif ( '' === $current_section && apply_filters( "rsfv_save_settings_{$current_tab}", ! empty( $_POST['save'] ) || isset( $_POST['rsfv-license_activate'] ) ) ) {
+				Admin_Settings::save();
+			}
 		}
 	}
 

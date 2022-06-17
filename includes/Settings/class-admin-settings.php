@@ -325,7 +325,7 @@ class Admin_Settings {
 
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // phpcs:ignore ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></label>
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<input
@@ -336,8 +336,8 @@ class Admin_Settings {
 								value="<?php echo esc_attr( $option_value ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
 								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
-								/><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // phpcs:ignore. ?>
+								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
+								/><?php echo esc_html( $value['suffix'] ); ?> <?php echo esc_html( $description ); ?>
 						</td>
 					</tr>
 					<?php
@@ -351,8 +351,8 @@ class Admin_Settings {
 								id="<?php echo esc_attr( $value['id'] ); ?>"
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
-								><?php echo esc_html( $option_value ); ?></a><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // phpcs:ignore. ?>
+								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
+								><?php echo esc_html( $option_value ); ?></a><?php echo esc_html( $value['suffix'] ); ?> <?php echo esc_html( $description ); ?>
 						</td>
 					</tr>
 					<?php
@@ -361,14 +361,13 @@ class Admin_Settings {
 				// Textarea.
 				case 'textarea':
 					$option_value = $value['value'];
-
 					?>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // phpcs:ignore. ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></label>
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
-							<?php echo $description; // phpcs:ignore. ?>
+							<?php echo esc_html( $description ); ?>
 
 							<textarea
 								name="<?php echo esc_attr( $value['id'] ); ?>"
@@ -376,8 +375,8 @@ class Admin_Settings {
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
 								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
-								><?php echo esc_textarea( $option_value ); // phpcs:ignore. ?></textarea>
+								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
+								><?php echo esc_textarea( $option_value ); ?></textarea>
 						</td>
 					</tr>
 					<?php
@@ -392,7 +391,7 @@ class Admin_Settings {
 					<tr valign="top">
 						<?php if ( ! empty( $value['title'] ) ) { ?>
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // phpcs:ignore. ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></label>
 						</th>
 						<?php } ?>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
@@ -401,7 +400,7 @@ class Admin_Settings {
 								id="<?php echo esc_attr( $value['id'] ); ?>"
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
-								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
+								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
 								<?php echo 'multiselect' === $value['type'] ? 'multiple="multiple"' : ''; ?>
 								>
 								<?php
@@ -421,7 +420,7 @@ class Admin_Settings {
 									<?php
 								}
 								?>
-							</select> <?php echo $description; // phpcs:ignore. ?>
+							</select> <?php echo esc_html( $description ); ?>
 						</td>
 					</tr>
 					<?php
@@ -434,11 +433,11 @@ class Admin_Settings {
 					?>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo $tooltip_html; // phpcs:ignore. ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></label>
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<fieldset>
-								<?php echo $description; // phpcs:ignore. ?>
+								<?php echo esc_html( $description ); ?>
 								<ul>
 								<?php
 								foreach ( $value['options'] as $key => $val ) {
@@ -450,7 +449,7 @@ class Admin_Settings {
 											type="radio"
 											style="<?php echo esc_attr( $value['css'] ); ?>"
 											class="<?php echo esc_attr( $value['class'] ); ?>"
-											<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
+											<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
 											<?php checked( $key, $option_value ); ?>
 											/> <?php echo esc_html( $val ); ?></label>
 									</li>
@@ -470,7 +469,7 @@ class Admin_Settings {
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<fieldset>
 								<?php
-								echo $description; // phpcs:ignore
+								echo esc_html( $description );
 								?>
 								<ul>
 									<?php foreach ( $value['options'] as $key => $val ) : ?>
@@ -546,12 +545,12 @@ class Admin_Settings {
 								class="<?php echo esc_attr( isset( $value['class'] ) ? $value['class'] : '' ); ?>"
 								value="1"
 								<?php checked( $option_value, true ); ?>
-								<?php echo implode( ' ', $custom_attributes ); // phpcs:ignore. ?>
-							/> <?php echo $description; // phpcs:ignore. ?>
+								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
+							/> <?php echo esc_html( $description ); ?>
 							<?php if ( $value['switch'] ) { ?>
 								<span><?php esc_html_e( 'Toggle', 'rsfv' ); ?></span>
 							<?php } ?>
-						</label> <?php echo $tooltip_html; // phpcs:ignore. ?>
+						</label> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?>
 					<?php
 
 					if ( ! isset( $value['checkboxgroup'] ) || 'end' === $value['checkboxgroup'] ) {
@@ -626,8 +625,9 @@ class Admin_Settings {
 	 * @return bool
 	 */
 	public static function save_fields( $options, $data = null ) {
-		if ( is_null( $data ) ) {
-			$data = $_POST; // phpcs:ignore
+		$nonce = isset( $_POST['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) : '';
+		if ( is_null( $data ) && wp_verify_nonce( $nonce, 'rsfv-settings' ) ) {
+			$data = $_POST;
 		}
 		if ( empty( $data ) ) {
 			return false;
