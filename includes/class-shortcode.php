@@ -52,64 +52,7 @@ class Shortcode {
 	public function show_video() {
 		global $post;
 
-		// Get enabled post types.
-		$post_types = get_post_types();
-
-		// Get the meta value of video embed url.
-		$video_source = get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true );
-		$video_source = $video_source ? $video_source : 'self';
-
-		$video_controls = 'self' !== $video_source ? get_video_controls( 'embed' ) : get_video_controls();
-
-		// Get autoplay option.
-		$is_autoplay = is_array( $video_controls ) && isset( $video_controls['autoplay'] );
-
-		// Get loop option.
-		$is_loop = is_array( $video_controls ) && isset( $video_controls['loop'] );
-
-		// Get mute option.
-		$is_muted = is_array( $video_controls ) && isset( $video_controls['mute'] );
-
-		// Get PictureInPicture option.
-		$is_pip = is_array( $video_controls ) && isset( $video_controls['pip'] );
-
-		// Get video controls option.
-		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
-
-		if ( ! empty( $post_types ) ) {
-			if ( in_array( $post->post_type, $post_types, true ) ) {
-
-				if ( 'self' === $video_source ) {
-					$video_id  = get_post_meta( $post->ID, RSFV_META_KEY, true );
-					$video_url = wp_get_attachment_url( $video_id );
-
-					// Prepare mark up attributes.
-					$is_autoplay  = $is_autoplay ? 'autoplay' : '';
-					$is_loop      = $is_loop ? 'loop' : '';
-					$is_muted     = $is_muted ? 'muted' : '';
-					$is_pip       = $is_pip ? 'autopictureinpicture' : '';
-					$has_controls = $has_controls ? 'controls' : '';
-
-					if ( $video_url ) {
-						return '<video class="rsfv-video" id="rsfv-video-' . $post->ID . '" src="' . $video_url . '" style="max-width:100%;display:block;"' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video>';
-					}
-				}
-
-				// Get the meta value of video embed url.
-				$embed_url = get_post_meta( $post->ID, RSFV_EMBED_META_KEY, true );
-
-				// Prepare mark up attributes.
-				$is_autoplay = $is_autoplay ? 'autoplay=1&' : '';
-				$is_loop     = $is_loop ? 'loop=1&' : '';
-				$is_muted    = $is_muted ? 'mute=1&muted=1&' : '';
-				$is_pip      = $is_pip ? 'picture-in-picture=1&' : '';
-
-				if ( $embed_url ) {
-					return '<div><iframe width="100%" height="540" src="' . $embed_url . "?{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>';
-				}
-			}
-		}
-
+		return $this->get_video_markup( $post->ID, $post->post_type );
 	}
 
 	/**
@@ -125,35 +68,47 @@ class Shortcode {
 
 		$post = get_post( $atts['post_id'] );
 
+		return $this->get_video_markup( $post->ID, $post->post_type );
+	}
+
+	/**
+	 * Creates video markup for showing at frontend.
+	 *
+	 * @param int    $post_id Post ID.
+	 * @param string $post_type Post type.
+	 *
+	 * @return string
+	 */
+	public function get_video_markup( $post_id, $post_type ) {
 		// Get enabled post types.
 		$post_types = get_post_types();
 
 		// Get the meta value of video embed url.
-		$video_source = get_post_meta( $atts['post_id'], RSFV_SOURCE_META_KEY, true );
+		$video_source = get_post_meta( $post_id, RSFV_SOURCE_META_KEY, true );
 		$video_source = $video_source ? $video_source : 'self';
 
 		$video_controls = 'self' !== $video_source ? get_video_controls( 'embed' ) : get_video_controls();
 
 		// Get autoplay option.
-		$is_autoplay = is_array( $video_controls ) && isset( $video_controls['autoplay'] );
+		$is_autoplay = ( is_array( $video_controls ) && isset( $video_controls['autoplay'] ) ) && $video_controls['autoplay'];
 
 		// Get loop option.
-		$is_loop = is_array( $video_controls ) && isset( $video_controls['loop'] );
+		$is_loop = ( is_array( $video_controls ) && isset( $video_controls['loop'] ) ) && $video_controls['loop'];
 
 		// Get mute option.
-		$is_muted = is_array( $video_controls ) && isset( $video_controls['mute'] );
+		$is_muted = ( is_array( $video_controls ) && isset( $video_controls['mute'] ) ) && $video_controls['mute'];
 
 		// Get PictureInPicture option.
-		$is_pip = is_array( $video_controls ) && isset( $video_controls['pip'] );
+		$is_pip = ( is_array( $video_controls ) && isset( $video_controls['pip'] ) ) && $video_controls['pip'];
 
 		// Get video controls option.
-		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
+		$has_controls = ( is_array( $video_controls ) && isset( $video_controls['controls'] ) ) && $video_controls['controls'];
 
 		if ( ! empty( $post_types ) ) {
-			if ( in_array( $post->post_type, $post_types, true ) ) {
+			if ( in_array( $post_type, $post_types, true ) ) {
 
 				if ( 'self' === $video_source ) {
-					$video_id  = get_post_meta( $atts['post_id'], RSFV_META_KEY, true );
+					$video_id  = get_post_meta( $post_id, RSFV_META_KEY, true );
 					$video_url = wp_get_attachment_url( $video_id );
 
 					// Prepare mark up attributes.
@@ -164,12 +119,12 @@ class Shortcode {
 					$has_controls = $has_controls ? 'controls' : '';
 
 					if ( $video_url ) {
-						return '<video class="rsfv-video" id="rsfv-video-' . $atts['post_id'] . '" src="' . $video_url . '" style="max-width:100%;display:block;"' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video>';
+						return '<video class="rsfv-video" id="rsfv-video-' . esc_attr( $post_id ) . '" src="' . esc_url( $video_url ) . '" style="max-width:100%;display:block;"' . esc_attr( $has_controls ) . ' ' . esc_attr( $is_autoplay ) . ' ' . esc_attr( $is_loop ) . ' ' . esc_attr( $is_muted ) . ' ' . esc_attr( $is_pip ) . '></video>';
 					}
 				}
 
 				// Get the meta value of video embed url.
-				$embed_url = get_post_meta( $atts['post_id'], RSFV_EMBED_META_KEY, true );
+				$embed_url = get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
 
 				// Prepare mark up attributes.
 				$is_autoplay = $is_autoplay ? 'autoplay=1&' : '';
@@ -178,7 +133,7 @@ class Shortcode {
 				$is_pip      = $is_pip ? 'picture-in-picture=1&' : '';
 
 				if ( $embed_url ) {
-					return '<div><iframe width="100%" height="540" src="' . $embed_url . "?{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>';
+					return '<div><iframe width="100%" height="540" src="' . esc_url( $embed_url . '?' . esc_attr( $is_autoplay ) . esc_attr( $is_loop ) . esc_attr( $is_muted ) . esc_attr( $is_pip ) ) . '" allow="" frameborder="0"></iframe></div>';
 				}
 			}
 		}
