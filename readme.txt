@@ -3,7 +3,7 @@ Contributors: lushkant
 Requires at least: 5.5
 Requires PHP: 7.0
 Tested up to: 6.0
-Stable tag: 0.5.3
+Stable tag: 0.5.4
 Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,10 @@ Yes, as long as the theme you use follows standard WordPress/WooCommerce way of 
 You can get help by reaching out to me at https://lushkant.com/contact or support forums here.
 
 == Changelog ==
+
+= 0.5.4 - June 18, 2022 =
+- Fix styling issue at edit screen
+- Update translation .pot file
 
 = 0.5.3 - June 18, 2022 =
 - Fix shortcode issues
