@@ -131,9 +131,7 @@ class Metabox {
 
 		// Get video controls option.
 		$has_controls = ( is_array( $video_controls ) && isset( $video_controls['controls'] ) ) && $video_controls['controls'];
-		ray( $has_controls );
 		$has_controls = $has_controls ? 'controls' : '';
-		ray( $has_controls );
 
 		if ( $video_url ) {
 			$image   = '"><video src="' . esc_url( $video_url ) . '" style="max-width:95%;display:block;" ' . esc_attr( $has_controls ) . ' ' . esc_attr( $is_autoplay ) . ' ' . esc_attr( $is_loop ) . ' ' . esc_attr( $is_muted ) . ' ' . esc_attr( $is_pip ) . '></video>';
