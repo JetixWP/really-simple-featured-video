@@ -33,6 +33,15 @@ class Metabox {
 
 		// Saving post by updating "featured_video_uploading" meta key.
 		add_action( 'save_post', array( $this, 'save_video' ), 10, 1 );
+
+		// Allows display property at style attribute for wp_kses.
+		add_filter(
+			'safe_style_css',
+			function( $styles ) {
+				$styles[] = 'display';
+				return $styles;
+			}
+		);
 	}
 
 	/**
@@ -139,7 +148,7 @@ class Metabox {
 		}
 
 		$uploader_markup = sprintf(
-			'<div class="rsfv-self"><a href="#" class="rsfv-upload-video-btn%1$s</a><input type="hidden" name="%2$s" id="%2$s" value="%3$s" /><a href="#" class="remove-video" style="display:%4$s">%5$s</a></div>',
+			'<div class="rsfv-self"><a href="#" class="rsfv-upload-video-btn%1$s</a><input type="hidden" name="%2$s" id="%2$s" value="%3$s" /><a href="#" class="remove-video" style="display:%4$s;">%5$s</a></div>',
 			$image,
 			RSFV_META_KEY,
 			$video_id,
@@ -262,7 +271,7 @@ class Metabox {
 				'class' => array(),
 			),
 			'a'     => array(
-				'href' => array(),
+				'href'  => array(),
 				'class' => array(),
 				'style' => array(),
 			),
