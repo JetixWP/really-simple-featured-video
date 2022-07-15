@@ -1,9 +1,9 @@
 === Really Simple Featured Video - Featured video support for Posts, Pages & WooCommerce Products ===
 Contributors: lushkant
 Requires at least: 5.5
-Requires PHP: 7.0
-Tested up to: 6.0
-Stable tag: 0.5.4
+Requires PHP: 7.1
+Tested up to: 6.0.1
+Stable tag: 0.5.5
 Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,11 @@ Yes, as long as the theme you use follows standard WordPress/WooCommerce way of 
 You can get help by reaching out to me at https://lushkant.com/contact or support forums here.
 
 == Changelog ==
+
+= 0.5.5 - July 15, 2022 =
+- Compatibility up to WordPress 6.0.1
+- Minor code improvements
+- Update settings sidebar
 
 = 0.5.4 - June 18, 2022 =
 - Fix styling issue at edit screen
