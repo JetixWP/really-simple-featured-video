@@ -14,8 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 $tab_exists        = isset( $tabs[ $current_tab ] ) || has_action( 'rsfv_sections_' . $current_tab ) || has_action( 'rsfv_settings_' . $current_tab ) || has_action( 'rsfv_settings_tabs_' . $current_tab );
 $current_tab_label = isset( $tabs[ $current_tab ] ) ? $tabs[ $current_tab ] : '';
 
-global $current_user;
-
 if ( ! $tab_exists ) {
 	wp_safe_redirect( admin_url( 'admin.php?page=rsfv-settings' ) );
 	exit;
@@ -53,5 +51,8 @@ if ( ! $tab_exists ) {
 				</p>
 			</div>
 		</form>
+		<div class="sidebar">
+			<a href="https://stalkfish.com/?utm_campaign=settings-sidebar&utm_source=rsfv-plugin" target="_blank"><img src="<?php echo esc_url( RSFV_PLUGIN_URL . 'assets/images/sidebar-banner.png' ); ?>" alt="Stalkfish.com"></a>
+		</div>
 	</div>
 </div>
