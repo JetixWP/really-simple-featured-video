@@ -36,12 +36,12 @@ class General extends Settings_Page {
 	public function get_settings( $current_section = '' ) {
 
 		$post_types = array(
-			'post' => __( 'Posts' ),
-			'page' => __( 'Pages' ),
+			'post' => __( 'Posts', 'rsfv' ),
+			'page' => __( 'Pages', 'rsfv' ),
 		);
 
 		if ( Plugin::is_woo_activated() ) {
-			$post_types['product'] = __( 'Products' );
+			$post_types['product'] = __( 'Products', 'rsfv' );
 		}
 
 		$settings = apply_filters(
