@@ -52,7 +52,6 @@ if ( ! $tab_exists ) {
 			</div>
 		</form>
 		<div class="sidebar">
-			<a href="https://stalkfish.com/?utm_campaign=settings-sidebar&utm_source=rsfv-plugin" target="_blank"><img src="<?php echo esc_url( RSFV_PLUGIN_URL . 'assets/images/sidebar-banner.png' ); ?>" alt="Stalkfish.com"></a>
 		</div>
 	</div>
 </div>
