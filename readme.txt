@@ -1,9 +1,9 @@
 === Really Simple Featured Video - Featured video support for Posts, Pages & WooCommerce Products ===
-Contributors: lushkant
-Requires at least: 5.5
-Requires PHP: 7.1
-Tested up to: 6.0.1
-Stable tag: 0.5.5
+Contributors: smalltowndev, lushkant
+Requires at least: 5.9
+Requires PHP: 7.4
+Tested up to: 6.2
+Stable tag: 0.6.0
 Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -20,9 +20,9 @@ With Really Simple Featured Video you get a metabox at posts, pages & products e
 
 You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Explore it yourself for a better look or take a look at screenshots below.
 
-#### *NEW* Youtube, Dailymotion & Vimeo Embed Support
+#### *NEW* Youtube, Dailymotion and Vimeo Embed Support
 
-You can now embed videos from Youtube, Dailymotion & Vimeo directly at each post/page/product or any custom type that supports featured images.
+You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
 
 #### WooCommerce Support
 
@@ -50,16 +50,18 @@ There are also shortcodes to embed featured video at any post, page or product y
 [rsfv_by_postid] shortcode is for displaying featured video of any post anywhere you want, you just need to pass a vaild post id to it e.g. [rsfv_by_postid post_id="281"]
 
 
-You can send a feedback or a feature request at https://lushkant.blog/contact
+You can send a feedback or a feature request at https://github.com/smalltowndev/really-simple-feature-video
 Or create a thread at forums here, in any case I'll make sure to resolve if any issues asap.
 
 == Screenshots ==
 
-1. Settings page view.
-2. Single Post view with Featured video on TwentyTwenty theme.
-3. WooCommerce product view with Featured video on Storefront theme.
-4. Single Page view with Featured video on TwentyTwenty theme.
-5. Showing Featured video by post id shortcode via Block editor.
+1. Single post/page featured video on Twenty Twenty-Three theme.
+2. Featured video posts on Twenty Twenty-Three theme.
+3. Settings page view.
+4. Video playback controls view at Really Simple Featured Video settings.
+5. WooCommerce settings page view.
+6. Single Page view with Featured video on Twenty nineteen theme.
+7. Showing Featured video by post id shortcode via Block editor.
 
 
 == Frequently Asked Questions ==
@@ -68,9 +70,19 @@ Or create a thread at forums here, in any case I'll make sure to resolve if any 
 Yes, as long as the theme you use follows standard WordPress/WooCommerce way of handling post thumbnails, this plugin should work without any problems.
 
 = Where can I get help? =
-You can get help by reaching out to me at https://lushkant.com/contact or support forums here.
+You can get help by reaching out to me at https://github.com/smalltowndev/really-simple-featured-video or support forums here.
 
 == Changelog ==
+
+= 0.6.0 - April 23, 2023 =
+- New: Theme Compatibility Engine and controls at settings
+- New: Integrations and controls at settings
+- New: WooCommerce shop archives now supported
+- New: Directly copy and paste Youtube, Vimeo and Dailymotion video urls at embeds
+- Fix: Settings page throwing error in some cases
+- Improvements: Remove settings sidebar
+- Improvements: Core FSE themes support and fallback for classic themes
+- Improvements: Compatibility with WordPress v6.2.x
 
 = 0.5.5 - July 15, 2022 =
 - Compatibility up to WordPress 6.0.1
