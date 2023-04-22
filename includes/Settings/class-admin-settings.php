@@ -48,6 +48,7 @@ class Admin_Settings {
 
 			$settings[] = include 'Tabs/class-general.php';
 			$settings[] = include 'Tabs/class-controls.php';
+			$settings[] = include 'Tabs/class-integrations.php';
 
 			self::$settings = apply_filters( 'rsfv_get_settings_pages', $settings );
 		}
@@ -420,7 +421,7 @@ class Admin_Settings {
 									<?php
 								}
 								?>
-							</select> <?php echo esc_html( $description ); ?>
+							</select> <?php echo $description; // phpcs:ignore   ?>
 						</td>
 					</tr>
 					<?php
@@ -467,10 +468,8 @@ class Admin_Settings {
 					?>
 					<tr valign="top">
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+							<?php echo $description; // phpcs:ignore	?>
 							<fieldset>
-								<?php
-								echo esc_html( $description );
-								?>
 								<ul>
 									<?php foreach ( $value['options'] as $key => $val ) : ?>
 									<li>
@@ -564,6 +563,27 @@ class Admin_Settings {
 							</fieldset>
 						<?php
 					}
+					break;
+				case 'status':
+					$current = $value['current'];
+
+					?>
+					<tr valign="top">
+						<th scope="row" class="titledesc">
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></label>
+						</th>
+						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+							<p
+								id="<?php echo esc_attr( $value['id'] ); ?>"
+								style="<?php echo esc_attr( $value['css'] ); ?>"
+								class="<?php echo esc_attr( $value['class'] ); ?>"
+								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>>
+								<?php echo esc_attr( $current ); ?>
+								</p>
+								<?php echo esc_html( $description ); ?>
+						</td>
+					</tr>
+					<?php
 					break;
 
 				// Default: run an action.
