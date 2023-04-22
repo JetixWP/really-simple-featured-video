@@ -79,10 +79,14 @@ You can get help by reaching out to me at https://github.com/smalltowndev/really
 - New: Integrations and controls at settings
 - New: WooCommerce shop archives now supported
 - New: Directly copy and paste Youtube, Vimeo and Dailymotion video urls at embeds
+- Fix: Video autoplay in iOS devices
 - Fix: Settings page throwing error in some cases
-- Improvements: Remove settings sidebar
-- Improvements: Core FSE themes support and fallback for classic themes
-- Improvements: Compatibility with WordPress v6.2.x
+- Fix: Other minor fixes
+- Fix: Missing textdomain in strings
+- Improvement: Update Freemius SDK to v2.5.6
+- Improvement: Remove settings sidebar
+- Improvement: Core FSE themes support and fallback for classic themes
+- Improvement: Compatibility with WordPress v6.2.x
 
 = 0.5.5 - July 15, 2022 =
 - Compatibility up to WordPress 6.0.1
