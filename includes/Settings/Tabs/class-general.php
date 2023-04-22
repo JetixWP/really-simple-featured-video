@@ -97,7 +97,9 @@ class General extends Settings_Page {
 				array(
 					'title'   => '',
 					'id'      => 'post_types',
-					'default' => false,
+					'default' => array(
+						'post' => true,
+					),
 					'type'    => 'multi-checkbox',
 					'options' => $post_types,
 				),
