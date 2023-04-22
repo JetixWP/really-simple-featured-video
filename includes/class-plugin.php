@@ -105,8 +105,20 @@ final class Plugin {
 		require_once RSFV_PLUGIN_DIR . 'includes/class-options.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Settings/class-register.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-metabox.php';
+
+		// Frontend loaders.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-frontend.php';
+
+		// Plugin compatibility.
+		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/class-base-compatibility.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/class-plugin-provider.php';
+
+		// Theme compatibility.
+		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/class-base-compatibility.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/class-theme-provider.php';
+
+		// Database upgraders.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-updater.php';
 	}
 
