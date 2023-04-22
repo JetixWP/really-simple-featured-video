@@ -113,7 +113,7 @@ class Shortcode {
 					$video_url = wp_get_attachment_url( $video_id );
 
 					// Prepare mark up attributes.
-					$is_autoplay  = $is_autoplay ? 'autoplay' : '';
+					$is_autoplay  = $is_autoplay ? 'autoplay playsinline' : '';
 					$is_loop      = $is_loop ? 'loop' : '';
 					$is_muted     = $is_muted ? 'muted' : '';
 					$is_pip       = $is_pip ? 'autopictureinpicture' : '';
