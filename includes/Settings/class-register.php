@@ -57,7 +57,7 @@ class Register {
 			__( 'Really Simple Featured Video', 'rsfv' ),
 			'manage_options',
 			'rsfv-settings',
-			array( $this, 'settings_page' ),
+			array( $this, 'settings_page' )
 		);
 	}
 
@@ -200,7 +200,7 @@ function rsfv_settings_get_option( $option_name, $default = '' ) {
 /**
  * Get enabled post types.
  *
- * @return string
+ * @return array
  */
 function get_post_types() {
 	$post_types = Options::get_instance()->get( 'post_types' );

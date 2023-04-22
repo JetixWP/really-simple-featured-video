@@ -113,7 +113,7 @@ class Shortcode {
 					$video_url = wp_get_attachment_url( $video_id );
 
 					// Prepare mark up attributes.
-					$is_autoplay  = $is_autoplay ? 'autoplay' : '';
+					$is_autoplay  = $is_autoplay ? 'autoplay playsinline' : '';
 					$is_loop      = $is_loop ? 'loop' : '';
 					$is_muted     = $is_muted ? 'muted' : '';
 					$is_pip       = $is_pip ? 'autopictureinpicture' : '';
@@ -124,17 +124,21 @@ class Shortcode {
 					}
 				}
 
-				// Get the meta value of video embed url.
-				$embed_url = get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
+				// Get the meta value for video url.
+				$input_url = esc_url( get_post_meta( $post_id, RSFV_EMBED_META_KEY, true ) );
+
+				// Generate video embed URL.
+				$embed_url = Plugin::get_instance()->frontend_provider->generate_embed_url( $input_url );
 
 				// Prepare mark up attributes.
-				$is_autoplay = $is_autoplay ? 'autoplay=1&' : '';
-				$is_loop     = $is_loop ? 'loop=1&' : '';
-				$is_muted    = $is_muted ? 'mute=1&muted=1&' : '';
-				$is_pip      = $is_pip ? 'picture-in-picture=1&' : '';
+				$is_autoplay  = $is_autoplay ? 'autoplay=1&' : 'autoplay=0&';
+				$is_loop      = $is_loop ? 'loop=1&' : '';
+				$is_muted     = $is_muted ? 'mute=1&muted=1&' : '';
+				$is_pip       = $is_pip ? 'picture-in-picture=1&' : '';
+				$has_controls = $has_controls ? 'controls=1&' : 'controls=0&';
 
 				if ( $embed_url ) {
-					return '<div><iframe width="100%" height="540" src="' . esc_url( $embed_url . '?' . esc_attr( $is_autoplay ) . esc_attr( $is_loop ) . esc_attr( $is_muted ) . esc_attr( $is_pip ) ) . '" allow="" frameborder="0"></iframe></div>';
+					return '<div><iframe class="rsfv-video" width="100%" height="540" src="' . esc_url( $embed_url . '?' . esc_attr( $has_controls ) . esc_attr( $is_autoplay ) . esc_attr( $is_loop ) . esc_attr( $is_muted ) . esc_attr( $is_pip ) ) . '" allow="" frameborder="0"></iframe></div>';
 				}
 			}
 		}

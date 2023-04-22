@@ -46,7 +46,7 @@ class Options {
 	public function has( $option ) {
 		$options = get_option( self::OPTION_KEY );
 
-		return ! isset( $options[ $option ] );
+		return isset( $options[ $option ] );
 	}
 
 	/**

@@ -24,23 +24,10 @@ class FrontEnd {
 	protected static $instance;
 
 	/**
-	 * A counter variable.
-	 *
-	 * @var int $counter
-	 */
-	protected $counter;
-
-	/**
 	 * Front_End constructor.
 	 */
 	public function __construct() {
-		$this->counter = 0;
-
 		$this->get_posts_hooks();
-
-		if ( Plugin::is_woo_activated() ) {
-			$this->get_woo_hooks();
-		}
 	}
 
 	/**
@@ -62,86 +49,6 @@ class FrontEnd {
 	 */
 	public function get_posts_hooks() {
 		add_filter( 'post_thumbnail_html', array( $this, 'get_post_video' ), 10, 5 );
-	}
-
-	/**
-	 * Get Woo hooks.
-	 *
-	 * @retun void
-	 */
-	public function get_woo_hooks() {
-		add_filter( 'woocommerce_single_product_image_thumbnail_html', array( $this, 'woo_get_video' ), 10, 2 );
-	}
-
-	/**
-	 * Filter method for getting WooCommerce video markup at products.
-	 *
-	 * @param string $html Thumbnail markup for products.
-	 * @param int    $post_thumbnail_id Thumbnail ID.
-	 * @return string
-	 */
-	public function woo_get_video( $html, $post_thumbnail_id ) {
-		global $product;
-
-		// Get enabled post types.
-		$post_types = get_post_types();
-
-		// Get the meta value of video embed url.
-		$video_source = get_post_meta( $product->get_id(), RSFV_SOURCE_META_KEY, true );
-		$video_source = $video_source ? $video_source : 'self';
-
-		$video_controls = 'self' !== $video_source ? get_video_controls( 'embed' ) : get_video_controls();
-
-		// Get autoplay option.
-		$is_autoplay = is_array( $video_controls ) && isset( $video_controls['autoplay'] );
-
-		// Get loop option.
-		$is_loop = is_array( $video_controls ) && isset( $video_controls['loop'] );
-
-		// Get mute option.
-		$is_muted = is_array( $video_controls ) && isset( $video_controls['mute'] );
-
-		// Get PictureInPicture option.
-		$is_pip = is_array( $video_controls ) && isset( $video_controls['pip'] );
-
-		// Get video controls option.
-		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
-
-		if ( ! empty( $post_types ) ) {
-			if ( in_array( $product->post_type, $post_types, true ) && 0 === $this->counter ) {
-
-				if ( 'self' === $video_source ) {
-					$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
-					$video_url = wp_get_attachment_url( $media_id );
-
-					// Prepare mark up attributes.
-					$is_autoplay  = $is_autoplay ? 'autoplay' : '';
-					$is_loop      = $is_loop ? 'loop' : '';
-					$is_muted     = $is_muted ? 'muted' : '';
-					$is_pip       = $is_pip ? 'autopictureinpicture' : '';
-					$has_controls = $has_controls ? 'controls' : '';
-
-					if ( $video_url ) {
-						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><video class="rsfv-video" id="rsfv_video_' . $product->get_id() . '" src="' . $video_url . '" style="max-width:100%;display:block;"' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video></div>' . $html;
-					}
-				} else {
-					// Get the meta value of video embed url.
-					$embed_url = get_post_meta( $product->get_id(), RSFV_EMBED_META_KEY, true );
-					// Prepare mark up attributes.
-					$is_autoplay = $is_autoplay ? 'autoplay=1&' : '';
-					$is_loop     = $is_loop ? 'loop=1&' : '';
-					$is_muted    = $is_muted ? 'mute=1&muted=1&' : '';
-					$is_pip      = $is_pip ? 'picture-in-picture=1&' : '';
-
-					if ( $embed_url ) {
-						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><iframe width="100%" height="540" src="' . $embed_url . "?{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>' . $html;
-					}
-				}
-
-				$this->counter++;
-			}
-		}
-		return $html;
 	}
 
 	/**
@@ -175,5 +82,161 @@ class FrontEnd {
 			}
 		}
 		return $html;
+	}
+
+	/**
+	 * Parses embed data via URL.
+	 *
+	 * @param string $url Video URL.
+	 *
+	 * @return array|string
+	 */
+	public function parse_embed_url( $url ) {
+
+		$parsed = wp_parse_url( esc_url( $url ) );
+
+		switch ( $parsed['host'] ) {
+			case 'www.youtube.com':
+			case 'youtube.com':
+			case 'youtu.be':
+				$pattern = '/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|vi|e(?:mbed)?)\/|\S*?[?&]v=|\S*?[?&]vi=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/';
+
+				$result = preg_match( $pattern, $url, $matches );
+
+				if ( false !== $result ) {
+					$id = $matches[1];
+				} else {
+					$id = false;
+				}
+
+				return array(
+					'host' => 'youtube',
+					'id'   => $id,
+				);
+
+			case 'vimeo.com':
+			case 'player.vimeo.com':
+				$pattern = '/\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/i';
+
+				$result = preg_match(
+					$pattern,
+					$url,
+					$matches
+				);
+
+				if ( false !== $result ) {
+					$id = $matches[1];
+				} else {
+					$id = false;
+				}
+
+				return array(
+					'host' => 'vimeo',
+					'id'   => $id,
+				);
+
+			case 'dailymotion.com':
+			case 'www.dailymotion.com':
+			case 'dai.ly':
+				$pattern = '/^(?:(?:https?):)?(?:\/\/)?(?:www\.)?(?:(?:dailymotion\.com(?:\/embed|\/hub)?\/video)|dai\.ly)\/([a-zA-Z0-9]+)(?:_[\w_-]+)?$/';
+
+				$result = preg_match(
+					$pattern,
+					$url,
+					$matches
+				);
+
+				if ( $result ) {
+					$id = $matches[1];
+				} else {
+					$id = false;
+				}
+
+				return array(
+					'host' => 'dailymotion',
+					'id'   => $id,
+				);
+
+			default:
+				return $url;
+
+		}
+	}
+
+	/**
+	 * Generate an embed URL.
+	 *
+	 * @param string $url Video URL.
+	 *
+	 * @return string
+	 */
+	public function generate_embed_url( $url ) {
+		$embed_data = $this->parse_embed_url( $url );
+
+		if ( is_array( $embed_data ) && isset( $embed_data['host'] ) && 'youtube' === $embed_data['host'] ) {
+			$embed_url = 'https://www.youtube.com/embed/' . $embed_data['id'];
+		} elseif ( is_array( $embed_data ) && isset( $embed_data['host'] ) && 'vimeo' === $embed_data['host'] ) {
+			$embed_url = 'https://player.vimeo.com/video/' . $embed_data['id'];
+		} elseif ( is_array( $embed_data ) && isset( $embed_data['host'] ) && 'dailymotion' === $embed_data['host'] ) {
+			$embed_url = 'https://www.dailymotion.com/embed/video/' . $embed_data['id'];
+		} else {
+			$embed_url = $url;
+		}
+
+		return $embed_url;
+	}
+
+	/**
+	 * Get allowed HTML elements.
+	 *
+	 * @return array List of elements.
+	 */
+	public function get_allowed_html() {
+		return array(
+			'video'  => array(
+				'id'                   => array(),
+				'class'                => array(),
+				'src'                  => array(),
+				'style'                => array(),
+				'loop'                 => array(),
+				'muted'                => array(),
+				'controls'             => array(),
+				'autopictureinpicture' => array(),
+				'autoplay'             => array(),
+				'playsinline'          => array(),
+			),
+			'iframe' => array(
+				'id'              => array(),
+				'class'           => array(),
+				'src'             => array(),
+				'width'           => array(),
+				'style'           => array(),
+				'height'          => array(),
+				'frameborder'     => array(),
+				'allowfullscreen' => array(),
+			),
+			'div'    => array(
+				'class'      => array(),
+				'id'         => array(),
+				'data-thumb' => array(),
+				'style'      => array(),
+			),
+			'img'    => array(
+				'src'       => array(),
+				'alt'       => array(),
+				'class'     => array(),
+				'draggable' => array(),
+			),
+			'a'      => array(
+				'href'  => array(),
+				'class' => array(),
+				'style' => array(),
+			),
+			'p'      => array(),
+			'span'   => array(),
+			'br'     => array(),
+			'i'      => array(),
+			'strong' => array(),
+		);
 	}
 }

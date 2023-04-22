@@ -7,8 +7,6 @@
 
 namespace RSFV\Settings;
 
-use RSFV\Plugin;
-
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -34,6 +32,15 @@ class Controls extends Settings_Page {
 	 * @return array
 	 */
 	public function get_settings( $current_section = '' ) {
+		$autoplay_note = __( 'Note: Autoplay will only work if mute sound is enabled as per browser policy.', 'rsfv' );
+
+		$control_options = array(
+			'controls' => __( 'Controls', 'rsfv' ),
+			'autoplay' => __( 'Autoplay', 'rsfv' ),
+			'loop'     => __( 'Loop', 'rsfv' ),
+			'pip'      => __( 'Picture in Picture', 'rsfv' ),
+			'mute'     => __( 'Mute sound', 'rsfv' ),
+		);
 
 		$settings = apply_filters(
 			'rsfv_controls_settings',
@@ -51,16 +58,13 @@ class Controls extends Settings_Page {
 				),
 				array(
 					'title'   => '',
+					'desc'    => $autoplay_note,
 					'id'      => 'self_video_controls',
-					'default' => false,
-					'type'    => 'multi-checkbox',
-					'options' => array(
-						'controls' => __( 'Controls', 'rsfv' ),
-						'autoplay' => __( 'Autoplay', 'rsfv' ),
-						'loop'     => __( 'Loop', 'rsfv' ),
-						'pip'      => __( 'Picture in Picture', 'rsfv' ),
-						'mute'     => __( 'Mute sound', 'rsfv' ),
+					'default' => array(
+						'controls' => true,
 					),
+					'type'    => 'multi-checkbox',
+					'options' => $control_options,
 				),
 				array(
 					'type' => 'sectionend',
@@ -79,15 +83,11 @@ class Controls extends Settings_Page {
 				),
 				array(
 					'title'   => '',
+					'desc'    => $autoplay_note,
 					'id'      => 'embed_video_controls',
 					'default' => false,
 					'type'    => 'multi-checkbox',
-					'options' => array(
-						'autoplay' => __( 'Autoplay', 'rsfv' ),
-						'loop'     => __( 'Loop', 'rsfv' ),
-						'pip'      => __( 'Picture in Picture', 'rsfv' ),
-						'mute'     => __( 'Mute sound', 'rsfv' ),
-					),
+					'options' => $control_options,
 				),
 				array(
 					'type' => 'sectionend',

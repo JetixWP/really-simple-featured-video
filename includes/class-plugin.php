@@ -7,7 +7,9 @@
 
 namespace RSFV;
 
+use RSFV\Compatibility\Plugin_Provider;
 use RSFV\Settings\Register;
+use RSFV\Compatibility\Theme_Provider;
 
 /**
  * Class RSFV_featured_video
@@ -21,11 +23,53 @@ final class Plugin {
 	protected static $instance;
 
 	/**
-	 * Plugin Updater.
+	 * Self Updater.
 	 *
 	 * @var $plugin_updater
 	 */
-	public $plugin_updater;
+	public $self_updater;
+
+	/**
+	 * Register instance.
+	 *
+	 * @var $registration_provider
+	 */
+	public $registration_provider;
+
+	/**
+	 * Metabox instance.
+	 *
+	 * @var $metabox_provider
+	 */
+	public $metabox_provider;
+
+	/**
+	 * Shortcode instance.
+	 *
+	 * @var $shortcode_provider
+	 */
+	public $shortcode_provider;
+
+	/**
+	 * Frontend instance.
+	 *
+	 * @var $frontend_provider
+	 */
+	public $frontend_provider;
+
+	/**
+	 * Plugin Compat Provide
+	 *
+	 * @var $plugin_provider
+	 */
+	public $plugin_provider;
+
+	/**
+	 * Theme Compat Provide
+	 *
+	 * @var $theme_provider
+	 */
+	public $theme_provider;
 
 	/**
 	 * Plugin constructor.
@@ -44,9 +88,16 @@ final class Plugin {
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self();
+			/**
+			 * RSFV loaded.
+			 *
+			 * Fires when RSFV is fully loaded and instantiated.
+			 *
+			 * @since 0.6.0
+			 */
+			do_action( 'rsfv_loaded' );
 		}
 
-		do_action( 'rsfv_loaded' );
 		return self::$instance;
 	}
 
@@ -71,14 +122,20 @@ final class Plugin {
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 
 		// Load classes.
-		Register::get_instance();
-		Metabox::get_instance();
-		Shortcode::get_instance();
-		FrontEnd::get_instance();
+		// Let's call these providers.
+		$this->registration_provider = Register::get_instance();
+		$this->metabox_provider      = Metabox::get_instance();
+		$this->shortcode_provider    = Shortcode::get_instance();
+		$this->frontend_provider     = FrontEnd::get_instance();
+
+		// Load compatibility.
+		$this->plugin_provider = Plugin_Provider::get_instance();
+		$this->theme_provider  = Theme_Provider::get_instance();
 
 		// Updates.
-		$this->plugin_updater = new Updater();
-		add_action( 'admin_init', array( $this->plugin_updater, 'init' ) );
+		$this->self_updater = new Updater();
+
+		add_action( 'admin_init', array( $this->self_updater, 'init' ) );
 
 		// Register action links.
 		add_filter( 'network_admin_plugin_action_links_really-simple-featured-video/really-simple-featured-video.php', array( $this, 'filter_plugin_action_links' ) );
@@ -105,8 +162,20 @@ final class Plugin {
 		require_once RSFV_PLUGIN_DIR . 'includes/class-options.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Settings/class-register.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-metabox.php';
+
+		// Frontend loaders.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-frontend.php';
+
+		// Plugin compatibility.
+		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/class-base-compatibility.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/class-plugin-provider.php';
+
+		// Theme compatibility.
+		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/class-base-compatibility.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/class-theme-provider.php';
+
+		// Database upgraders.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-updater.php';
 	}
 

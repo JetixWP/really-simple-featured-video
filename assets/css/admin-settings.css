@@ -225,3 +225,23 @@
 .rsfv-embed-video-controls + table.form-table td {
 	padding: 6px 14px;
 }
+
+.rsfv .forminp-status .engine-active::before {
+	content: ' ';
+	display: inline-block;
+	background: #00d084;
+	width: 8px;
+	height: 8px;
+	border-radius: 100%;
+	margin-right: 4px;
+}
+
+.rsfv .forminp-status .engine-inactive::before {
+	content: ' ';
+	display: inline-block;
+	background: #e14d43;
+	width: 8px;
+	height: 8px;
+	border-radius: 100%;
+	margin-right: 4px;
+}
