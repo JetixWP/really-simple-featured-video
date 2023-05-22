@@ -28,6 +28,27 @@ class General extends Settings_Page {
 	}
 
 	/**
+	 * Gets available post types.
+	 *
+	 * @return mixed|array
+	 */
+	public function get_available_post_types() {
+		$post_types     = array();
+		$all_post_types = \get_post_types( array( 'public' => true ) );
+
+		foreach ( $all_post_types as $post_type ) {
+			if ( ! isset( $post_types[ $post_type ] ) ) {
+				$post_types[ $post_type ] = get_post_type_object( $post_type )->labels->name;
+			}
+		}
+
+		return apply_filters(
+			'rsfv_post_types_support',
+			$post_types
+		);
+	}
+
+	/**
 	 * Get settings array.
 	 *
 	 * @param string $current_section Current section ID.
@@ -36,13 +57,7 @@ class General extends Settings_Page {
 	 */
 	public function get_settings( $current_section = '' ) {
 
-		$post_types = apply_filters(
-			'rsfv_post_types_support',
-			array(
-				'post' => __( 'Posts', 'rsfv' ),
-				'page' => __( 'Pages', 'rsfv' ),
-			)
-		);
+		$post_types = $this->get_available_post_types();
 
 		$compatibility_engines = Plugin::get_instance()->theme_provider->get_selectable_engine_options();
 

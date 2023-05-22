@@ -213,16 +213,31 @@ function get_post_types() {
 }
 
 /**
+ * Get default video controls.
+ *
+ * @return array
+ */
+function get_default_video_controls() {
+	return array(
+		'controls' => true,
+	);
+}
+
+/**
  * Get enabled video controls.
  *
  * @param string $type Type of video.
  *
- * @return string
+ * @return array
  */
 function get_video_controls( $type = 'self' ) {
+	$defaults = get_default_video_controls();
+
 	if ( 'self' === $type ) {
-		return Options::get_instance()->get( 'self_video_controls' );
+		$controls = Options::get_instance()->get( 'self_video_controls' );
+	} else {
+		$controls = Options::get_instance()->get( 'embed_video_controls' );
 	}
 
-	return Options::get_instance()->get( 'embed_video_controls' );
+	return is_array( $controls ) && ! empty( $controls ) ? $controls : $defaults;
 }

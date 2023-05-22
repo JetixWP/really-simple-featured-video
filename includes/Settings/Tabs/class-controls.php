@@ -42,6 +42,8 @@ class Controls extends Settings_Page {
 			'mute'     => __( 'Mute sound', 'rsfv' ),
 		);
 
+		$default_controls = get_default_video_controls();
+
 		$settings = apply_filters(
 			'rsfv_controls_settings',
 			array(
@@ -60,9 +62,7 @@ class Controls extends Settings_Page {
 					'title'   => '',
 					'desc'    => $autoplay_note,
 					'id'      => 'self_video_controls',
-					'default' => array(
-						'controls' => true,
-					),
+					'default' => $default_controls,
 					'type'    => 'multi-checkbox',
 					'options' => $control_options,
 				),
@@ -85,7 +85,7 @@ class Controls extends Settings_Page {
 					'title'   => '',
 					'desc'    => $autoplay_note,
 					'id'      => 'embed_video_controls',
-					'default' => false,
+					'default' => $default_controls,
 					'type'    => 'multi-checkbox',
 					'options' => $control_options,
 				),

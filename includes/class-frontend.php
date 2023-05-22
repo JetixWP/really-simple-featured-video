@@ -8,7 +8,6 @@
 namespace RSFV;
 
 use function RSFV\Settings\get_post_types;
-use function RSFV\Settings\get_video_controls;
 
 /**
  * Class FrontEnd
