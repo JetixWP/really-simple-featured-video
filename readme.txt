@@ -77,6 +77,7 @@ You can get help by reaching out to me at https://github.com/smalltowndev/really
 = 0.7.0 - May 22, 2023 =
 - New: Custom post types support (Available via settings)
 - Fix: Default video playback controls
+- Fix: Default Theme Compatibility engine throwing error at frontend
 - Improvements: Code improvements
 
 = 0.6.0 - April 23, 2023 =
