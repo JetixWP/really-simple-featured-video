@@ -41,7 +41,7 @@ class Compatibility extends Base_Compatibility {
 	 */
 	public function enqueue_scripts() {
 		// Register styles.
-		wp_register_style( 'rsfv-fallback', $this->get_current_dir_url() . 'Core/Fallback/styles.css', array(), filemtime( $this->get_current_dir() . 'Core/Fallback/styles.css' ) );
+		wp_register_style( 'rsfv-fallback', $this->get_current_dir_url() . 'Fallback/styles.css', array(), filemtime( $this->get_current_dir() . 'Fallback/styles.css' ) );
 
 		// Enqueue styles.
 		wp_enqueue_style( 'rsfv-fallback' );
