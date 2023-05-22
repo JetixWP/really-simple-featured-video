@@ -78,6 +78,7 @@ You can get help by reaching out to me at https://github.com/smalltowndev/really
 - New: Custom post types support (Available via settings)
 - Fix: Default video playback controls
 - Fix: Default Theme Compatibility engine throwing error at frontend
+- Improvement: Update Freemius SDK to v2.5.8
 - Improvements: Code improvements
 
 = 0.6.0 - April 23, 2023 =
