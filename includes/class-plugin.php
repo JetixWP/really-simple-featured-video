@@ -196,13 +196,4 @@ final class Plugin {
 			$actions
 		);
 	}
-
-	/**
-	 * Checks if WooCommerce is activated.
-	 *
-	 * @return bool
-	 */
-	public static function is_woo_activated() {
-		return class_exists( 'WooCommerce' );
-	}
 }
