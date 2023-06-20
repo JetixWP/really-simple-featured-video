@@ -14,7 +14,7 @@ Really Simple Featured Video enables featured video support for WordPress posts,
 
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
-https://www.youtube.com/watch?v=vbLgiRQ0Moo
+https://www.youtube.com/watch?v=xHrj2lcNS5Q
 
 With Really Simple Featured Video you get a metabox at posts, pages & products edit screen at the very bottom and a very similar interface as you're used to with featured image.
 
