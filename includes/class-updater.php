@@ -87,7 +87,7 @@ class Updater {
 			'loop'     => Options::get_instance()->get( 'video_loop' ),
 			'mute'     => Options::get_instance()->get( 'mute_video' ),
 			'pip'      => Options::get_instance()->get( 'picture_in_picture' ),
-			'controls' => Options::get_instance()->get( 'video_controls' ),
+			'controls' => Options::get_instance()->get( 'video_controls', true ),
 		);
 
 		$updated_values = array();

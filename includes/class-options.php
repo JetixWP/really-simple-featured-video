@@ -53,9 +53,10 @@ class Options {
 	 * Get a single option, or all if no key is provided.
 	 *
 	 * @param string|array|bool $key Option key.
+	 * @param mixed             $default Default value.
 	 * @return array|string|bool
 	 */
-	public function get( $key = false ) {
+	public function get( $key = false, $default = false ) {
 		$options = get_option( self::OPTION_KEY );
 
 		if ( ! $options || ! is_array( $options ) ) {
@@ -63,7 +64,7 @@ class Options {
 		}
 
 		if ( false !== $key ) {
-			return isset( $options[ $key ] ) ? $options[ $key ] : false;
+			return isset( $options[ $key ] ) ? $options[ $key ] : $default;
 		}
 
 		return $options;

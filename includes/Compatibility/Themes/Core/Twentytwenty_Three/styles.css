@@ -13,3 +13,7 @@
 	width: 100% !important;
 	aspect-ratio: 16/9;
 }
+
+.rsfv-video__wrapper + .woocommerce-product-gallery__image--placeholder {
+	display: none;
+}

@@ -3,7 +3,7 @@ Contributors: smalltowndev, lushkant
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.2.2
-Stable tag: 0.7.0
+Stable tag: 0.7.1
 Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -73,6 +73,11 @@ Yes, as long as the theme you use follows standard WordPress/WooCommerce way of 
 You can get help by reaching out to me at https://github.com/smalltowndev/really-simple-featured-video or support forums here.
 
 == Changelog ==
+
+= 0.7.1 - June 20, 2023 =
+- Fix: Default self hosted video controls
+- Fix: WooCommerce placeholder images appearing below featured video
+- Improvements: Other minor code improvements
 
 = 0.7.0 - May 22, 2023 =
 - New: Custom post types support (Available via settings)
