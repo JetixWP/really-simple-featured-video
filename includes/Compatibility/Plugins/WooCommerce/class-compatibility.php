@@ -78,6 +78,9 @@ class Compatibility extends Base_Compatibility {
 		// Adds support for single product.
 		add_filter( 'woocommerce_single_product_image_thumbnail_html', array( $this, 'woo_get_video' ), 10, 2 );
 
+		// Update body classes for Woo.
+		add_filter( 'rsfv_body_classes', array( $this, 'modify_body_classes' ) );
+
 		$product_archives_visibility = $options->get( 'product_archives_visibility' );
 
 		if ( ( ! $options->has( 'product_archives_visibility' ) && ! $product_archives_visibility ) || $product_archives_visibility ) {
@@ -228,4 +231,22 @@ class Compatibility extends Base_Compatibility {
 		}
 	}
 
+	/**
+	 * Modify page body classes.
+	 *
+	 * @param array $classes Body classes.
+	 *
+	 * @return array
+	 */
+	public function modify_body_classes( $classes ) {
+		$options = Options::get_instance();
+
+		$product_archives_visibility = $options->get( 'product_archives_visibility' );
+
+		if ( $product_archives_visibility && ( is_shop() || is_product_category() || is_product_tag() ) ) {
+			$classes[] = 'rsfv-archives-support';
+		}
+
+		return $classes;
+	}
 }
