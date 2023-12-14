@@ -85,6 +85,8 @@ class Compatibility extends Base_Compatibility {
 			remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'get_woo_archives_video' ), 10 );
 		}
+
+		add_action( 'rsfv_woo_archives_product_thumbnails', 'woocommerce_template_loop_product_thumbnail', 10 );
 	}
 
 	/**
@@ -222,7 +224,8 @@ class Compatibility extends Base_Compatibility {
 		if ( $video_markup ) {
 			echo wp_kses( $video_markup, Plugin::get_instance()->frontend_provider->get_allowed_html() );
 		} else {
-			woocommerce_template_loop_product_thumbnail();
+			do_action( 'rsfv_woo_archives_product_thumbnails', $post_id );
 		}
 	}
+
 }
