@@ -173,7 +173,7 @@ class Compatibility extends Base_Compatibility {
 
 				if ( 'self' === $video_source ) {
 					$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
-					$video_url = wp_get_attachment_url( $media_id );
+					$video_url = esc_url( wp_get_attachment_url( $media_id ) );
 
 					// Prepare mark up attributes.
 					$is_autoplay  = $is_autoplay ? 'autoplay playsinline' : '';
@@ -187,7 +187,11 @@ class Compatibility extends Base_Compatibility {
 					}
 				} else {
 					// Get the meta value of video embed url.
-					$embed_url = get_post_meta( $product->get_id(), RSFV_EMBED_META_KEY, true );
+					$input_url = esc_url( get_post_meta( $product->get_id(), RSFV_EMBED_META_KEY, true ) );
+
+					// Generate video embed url.
+					$embed_url = Plugin::get_instance()->frontend_provider->generate_embed_url( $input_url );
+
 					// Prepare mark up attributes.
 					$is_autoplay  = $is_autoplay ? 'autoplay=1&' : 'autoplay=0&';
 					$is_loop      = $is_loop ? 'loop=1&' : '';
