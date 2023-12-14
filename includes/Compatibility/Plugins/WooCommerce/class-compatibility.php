@@ -136,10 +136,10 @@ class Compatibility extends Base_Compatibility {
 	 *
 	 * @param string $html Thumbnail markup for products.
 	 * @param int    $post_thumbnail_id Thumbnail ID.
-	 * @param bool   $is_loop Whether to run at archives.
+	 * @param bool   $is_archives Whether to run at archives.
 	 * @return string
 	 */
-	public function woo_get_video( $html, $post_thumbnail_id, $is_loop = false ) {
+	public function woo_get_video( $html, $post_thumbnail_id, $is_archives = false ) {
 		global $product;
 
 		$post_type = get_post_type( $product->get_id() ) ?? 'product';
@@ -169,7 +169,7 @@ class Compatibility extends Base_Compatibility {
 		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
 
 		if ( ! empty( $post_types ) ) {
-			if ( in_array( $post_type, $post_types, true ) && ( 0 === $this->counter || $is_loop ) ) {
+			if ( in_array( $post_type, $post_types, true ) && ( 0 === $this->counter || $is_archives ) ) {
 
 				if ( 'self' === $video_source ) {
 					$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
