@@ -64,6 +64,11 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/Core/Twentytwenty_Three/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\Core\Twentytwenty_Three\Compatibility',
 				),
+				'twentytwentyfour'  => array(
+					'title'       => __( 'Twenty Twenty-Four', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/Core/Twentytwenty_Four/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\Core\Twentytwenty_Four\Compatibility',
+				),
 			)
 		);
 

@@ -159,6 +159,6 @@ abstract class Base_Compatibility {
 			}
 		}
 
-		return $classes;
+		return apply_filters( 'rsfv_body_classes', $classes );
 	}
 }
