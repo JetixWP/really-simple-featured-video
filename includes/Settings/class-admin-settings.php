@@ -113,7 +113,7 @@ class Admin_Settings {
 	/**
 	 * Settings page.
 	 *
-	 * Handles the display of the main Analog settings page in admin.
+	 * Handles the display of the main RSFV settings page in admin.
 	 */
 	public static function output() {
 		global $current_section, $current_tab;
@@ -191,7 +191,7 @@ class Admin_Settings {
 	/**
 	 * Output admin fields.
 	 *
-	 * Loops though the Analog options array and outputs each field.
+	 * Loops though the RSFV options array and outputs each field.
 	 *
 	 * @param array[] $options Opens array to output.
 	 */
@@ -639,7 +639,7 @@ class Admin_Settings {
 	/**
 	 * Save admin fields.
 	 *
-	 * Loops though the Analog options array and outputs each field.
+	 * Loops though the RSFV options array and outputs each field.
 	 *
 	 * @param array $options Options array to output.
 	 * @param array $data    Optional. Data to use for saving. Defaults to $_POST.

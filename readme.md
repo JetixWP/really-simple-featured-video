@@ -2,7 +2,7 @@
 ![](https://img.shields.io/wordpress/plugin/wp-version/really-simple-featured-video)
 [![WordPress](https://img.shields.io/wordpress/v/really-simple-featured-video.svg?style=flat)]()
 [![WordPress plugin](https://img.shields.io/wordpress/plugin/v/really-simple-featured-video.svg?style=flat)](https://wordpress.org/plugins/really-simple-featured-video/)
-[![WordPress plugin](https://img.shields.io/wordpress/plugin/dt/really-simple-featured-video.svg?style=flat)](https://wordpress.org/plugins/analogwp-templates/) [![Installs](https://img.shields.io/wordpress/plugin/installs/really-simple-featured-video.svg)](https://wordpress.org/plugins/really-simple-featured-video/) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/lushkant/really-simple-featured-video/blob/master/license.txt)
+[![WordPress plugin](https://img.shields.io/wordpress/plugin/dt/really-simple-featured-video.svg?style=flat)](https://wordpress.org/plugins/really-simple-featured-video/) [![Installs](https://img.shields.io/wordpress/plugin/installs/really-simple-featured-video.svg)](https://wordpress.org/plugins/really-simple-featured-video/) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/lushkant/really-simple-featured-video/blob/master/license.txt)
 
 Really Simple Featured Video
 ===

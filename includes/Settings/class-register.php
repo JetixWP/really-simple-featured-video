@@ -153,7 +153,7 @@ function rsfv_clean( $var ) {
 /**
  * Output admin fields.
  *
- * Loops though the Analog options array and outputs each field.
+ * Loops though the RSFV options array and outputs each field.
  *
  * @param array $options Opens array to output.
  */
