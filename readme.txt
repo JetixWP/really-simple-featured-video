@@ -53,8 +53,8 @@ There are also shortcodes to embed featured video at any post, page or product y
 
 [rsfv_by_postid] shortcode is for displaying featured video of any post anywhere you want, you just need to pass a vaild post id to it e.g. [rsfv_by_postid post_id="281"]
 
-You can send a feedback or a feature request at [github.com/smalltowndev/really-simple-feature-video](https://github.com/smalltowndev/really-simple-feature-video)
-Or create a thread at forums here, in any case I'll make sure to resolve if any issues asap.
+You can send a feedback or a feature request at [github.com/smalltowndev/really-simple-featured-video](https://github.com/smalltowndev/really-simple-featured-video)
+Or create a thread at forums here, in any case 
 
 = OUR PRO VERSION IS COMING SOON, READ MORE BELOW =
 
