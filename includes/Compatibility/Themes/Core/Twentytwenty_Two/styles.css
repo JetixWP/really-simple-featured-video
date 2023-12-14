@@ -17,3 +17,7 @@
 .rsfv-video__wrapper + .woocommerce-product-gallery__image--placeholder {
 	display: none;
 }
+
+body.rsfv-archives-support .product.rsfv-has-video .wc-block-components-product-image {
+	display: none;
+}
