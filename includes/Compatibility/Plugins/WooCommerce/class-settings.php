@@ -47,22 +47,25 @@ class Settings {
 		global $current_section;
 
 		if ( 'woocommerce' === $current_section ) {
-			$settings = array(
+			$settings = apply_filters(
+				'rsfv_get_integration_woocommerce_settings',
 				array(
-					'type' => 'title',
-					'id'   => 'rsfv_woocommerce_title',
-				),
-				array(
-					'title'   => __( 'Show videos at Product archives', 'rsfv' ),
-					'desc'    => __( 'When toggled on, it shows set videos at product archives such as Shop and Product category etc.', 'rsfv' ),
-					'id'      => 'product_archives_visibility',
-					'default' => true,
-					'type'    => 'checkbox',
-				),
-				array(
-					'type' => 'sectionend',
-					'id'   => 'rsfv_woocommerce_title',
-				),
+					array(
+						'type' => 'title',
+						'id'   => 'rsfv_woocommerce_title',
+					),
+					array(
+						'title'   => __( 'Show videos at Product archives', 'rsfv' ),
+						'desc'    => __( 'When toggled on, it shows set videos at product archives such as Shop and Product category etc.', 'rsfv' ),
+						'id'      => 'product_archives_visibility',
+						'default' => true,
+						'type'    => 'checkbox',
+					),
+					array(
+						'type' => 'sectionend',
+						'id'   => 'rsfv_woocommerce_title',
+					),
+				)
 			);
 		}
 		return $settings;
