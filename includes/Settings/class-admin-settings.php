@@ -173,10 +173,10 @@ class Admin_Settings {
 			}
 		} else {
 			// Single value.
-			if ( empty( $options[ $option_name ] ) ) {
+			if ( ! isset( $options[ $option_name ] ) ) {
 				$options[ $option_name ] = null;
 			}
-			$option_value = $options[ $option_name ];
+			$option_value = $options[ $option_name ] ?? null;
 		}
 
 		if ( is_array( $option_value ) ) {
@@ -233,6 +233,7 @@ class Admin_Settings {
 			if ( ! isset( $value['switch'] ) ) {
 				$value['switch'] = false;
 			}
+
 			if ( ! isset( $value['value'] ) ) {
 				$value['value'] = self::get_option( $value['id'], $value['default'] );
 			}
