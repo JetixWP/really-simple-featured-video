@@ -33,11 +33,17 @@ class General extends Settings_Page {
 	 * @return mixed|array
 	 */
 	public function get_available_post_types() {
-		$post_types     = array();
-		$all_post_types = \get_post_types( array( 'public' => true ) );
+		$post_types                        = array();
+		$all_post_types                    = \get_post_types();
+		$post_types_with_thumbnail_support = \get_post_types_by_support( 'thumbnail' );
+
+		// Just in case.
+		if ( ! is_array( $post_types_with_thumbnail_support ) ) {
+			$post_types_with_thumbnail_support = array();
+		}
 
 		foreach ( $all_post_types as $post_type ) {
-			if ( ! isset( $post_types[ $post_type ] ) ) {
+			if ( ! isset( $post_types[ $post_type ] ) && in_array( $post_type, $post_types_with_thumbnail_support, true ) ) {
 				$post_types[ $post_type ] = get_post_type_object( $post_type )->labels->name;
 			}
 		}
