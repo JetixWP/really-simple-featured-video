@@ -64,6 +64,10 @@ class FrontEnd {
 	public function get_post_video( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 		global $post;
 
+		if ( 'object' !== gettype( $post ) ) {
+			return $html;
+		}
+
 		// Get enabled post types.
 		$post_types = get_post_types();
 
