@@ -47,17 +47,17 @@ There are also shortcodes to embed featured video at any post, page or product y
 You can send a feedback or a feature request at [support@smalltowndev.com](mailto:support@smalltowndev.com)
 Or create a thread at forums here, in any case I'll make sure to resolve if any issues asap.
 
-= OUR PRO VERSION IS COMING SOON, READ MORE BELOW =
+= OUR PRO VERSION IS OUT, READ MORE BELOW =
 
-We're currently working on a Pro plugin to support additional features, where we can continue to keep them maintained and updated.
-We have quite a few requests from you guys, and the plugin is scheduled to be released by December 2023.
+We recently released the Pro plugin to support additional features, where we can continue to keep them maintained and updated.
+We got quite a few requests from you guys, and the plugin initially offers a few from the list while we work towards supporting most of them if not all.
 
-If you wish to grab on the early bird deal which will be available as a lifetime version of the plugin to first few customers.
+If you wish to grab on the early bird deal which is available as a lifetime version of the plugin to first few customers, follow the steps mentioned at plugin settings Promo tab.
 
-Initially our Pro plugin will include these features -
+Initially our Pro plugin includes these features -
 
-- **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2 and more.
-- **Change Video Order at Woo Product CPT** - Set video order of at single product pages of WooCommerce Product CPT
+- **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
+- **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT
 - **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
 - **Priority Support** - Finally we will be able to additionally solve your issues at priority and faster response times.
 
@@ -68,7 +68,7 @@ More to come in the future such as -
 - **Featured Video Blocks for Full Site Editing**
 - And much more.
 
-If you wish to lock your early bird spot beforehand please send us an email at [hello@smalltowndev.com](mailto:hello@smalltowndev.com), and you will be notified at the very moment we launch.
+If you wish to get your early bird spot right away please install the free plugin from your \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or mail us at [hello@smalltowndev.com](mailto:hello@smalltowndev.com).
 
 ### Contribution
 If you have a patch, or you've stumbled upon an issue with Really Simple Featured Video plugin, you can contribute this back to the code. You can do so by creating a fork and adding a PR against it.
