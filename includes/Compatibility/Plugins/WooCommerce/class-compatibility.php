@@ -125,14 +125,18 @@ class Compatibility extends Base_Compatibility {
 	 * @return string Inline styles.
 	 */
 	public function generate_inline_styles() {
-		// Set product videos to 1/1 aspect ratio.
-		$styles = '.woocommerce ul.products li.product .woocommerce-product-gallery__image video.rsfv-video,
+		$styles = '';
+
+		// Set product videos to 16/9 aspect ratio.
+		$styles .= '.woocommerce ul.products li.product .woocommerce-product-gallery__image video.rsfv-video,
 					.woocommerce div.product div.woocommerce-product-gallery figure.woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image video.rsfv-video,
 				 .woocommerce ul.products li.product .woocommerce-product-gallery__image iframe.rsfv-video,
 				 .woocommerce div.product div.woocommerce-product-gallery figure.woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image iframe.rsfv-video
-				 { height: auto; width: 100% !important; aspect-ratio: 1/1; }';
+				 { height: auto; width: 100% !important; aspect-ratio: 16/9; }';
 
-		return $styles;
+		$styles .= '.woocommerce-loop-product__title { margin-top: 20px; }';
+
+		return apply_filters( 'rsfv_woo_generated_dynamic_css', $styles );
 	}
 
 
