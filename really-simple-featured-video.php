@@ -40,7 +40,7 @@ if ( ! function_exists( 'rsfv_fs' ) ) {
 					'type'           => 'plugin',
 					'public_key'     => 'pk_6d1ecdde5701fc2158193cf7eab45',
 					'is_premium'     => false,
-					'has_addons'     => false,
+					'has_addons'     => true,
 					'has_paid_plans' => false,
 					'menu'           => array(
 						'slug'    => 'rsfv-settings',
