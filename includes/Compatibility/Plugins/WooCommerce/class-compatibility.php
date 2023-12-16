@@ -188,11 +188,11 @@ class Compatibility extends Base_Compatibility {
 					$has_controls = $has_controls ? 'controls' : '';
 
 					if ( $video_url ) {
-						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><video class="rsfv-video" id="rsfv_video_' . $product->get_id() . '" src="' . $video_url . '" style="max-width:100%;display:block;" ' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video></div>' . $html;
+						$video_html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . $thumbnail . '"><video class="rsfv-video" id="rsfv_video_' . $id . '" src="' . $video_url . '" style="max-width:100%;display:block;" ' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video></div>';
 					}
 				} else {
 					// Get the meta value of video embed url.
-					$input_url = esc_url( get_post_meta( $product->get_id(), RSFV_EMBED_META_KEY, true ) );
+					$input_url = esc_url( get_post_meta( $id, RSFV_EMBED_META_KEY, true ) );
 
 					// Generate video embed url.
 					$embed_url = Plugin::get_instance()->frontend_provider->generate_embed_url( $input_url );
@@ -205,9 +205,14 @@ class Compatibility extends Base_Compatibility {
 					$has_controls = $has_controls ? 'controls=1&' : 'controls=0&';
 
 					if ( $embed_url ) {
-						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><iframe width="100%" height="540" src="' . $embed_url . "?{$has_controls}{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>' . $html;
+						$video_html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . $thumbnail . '"><iframe class="rsfv-video" width="100%" height="540" src="' . $embed_url . "?{$has_controls}{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>';
 					}
+				}
+			}
 		}
+		return $video_html;
+	}
+
 	/**
 	 * Filter method for getting WooCommerce video markup at products.
 	 *
