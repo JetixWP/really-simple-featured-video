@@ -166,7 +166,6 @@ class FrontEnd {
 
 			default:
 				return $url;
-
 		}
 	}
 
@@ -245,5 +244,16 @@ class FrontEnd {
 			'i'      => array(),
 			'strong' => array(),
 		);
+	}
+
+	/**
+	 * Generate dynamic CSS.
+	 *
+	 * @return string
+	 */
+	public function generate_dynamic_css() {
+		$css = '';
+
+		return apply_filters( 'rsfv_generated_dynamic_css', $css );
 	}
 }
