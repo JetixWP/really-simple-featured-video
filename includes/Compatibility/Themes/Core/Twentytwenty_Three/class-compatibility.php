@@ -8,6 +8,7 @@
 namespace RSFV\Compatibility\Themes\Core\Twentytwenty_Three;
 
 use RSFV\Compatibility\Themes\Base_Compatibility;
+use RSFV\Plugin;
 
 /**
  * Class Compatibility
@@ -49,5 +50,8 @@ class Compatibility extends Base_Compatibility {
 
 		// Enqueue styles.
 		wp_enqueue_style( 'rsfv-twentytwentythree' );
+
+		// Add generated CSS.
+		wp_add_inline_style( 'rsfv-twentytwentythree', Plugin::get_instance()->frontend_provider->generate_dynamic_css() );
 	}
 }
