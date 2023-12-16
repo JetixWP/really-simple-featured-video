@@ -169,11 +169,15 @@ class Compatibility extends Base_Compatibility {
 		// Get video controls option.
 		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
 
+		$video_html = '';
+
 		if ( ! empty( $post_types ) ) {
-			if ( in_array( $post_type, $post_types, true ) && ( 0 === $this->counter || $is_archives ) ) {
+			if ( in_array( $post_type, $post_types, true ) ) {
+				$img_url   = RSFV_PLUGIN_URL . 'assets/images/video_frame.png';
+				$thumbnail = apply_filters( 'rsfv_featured_video_thumbnail', $img_url );
 
 				if ( 'self' === $video_source ) {
-					$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
+					$media_id  = get_post_meta( $id, RSFV_META_KEY, true );
 					$video_url = esc_url( wp_get_attachment_url( $media_id ) );
 
 					// Prepare mark up attributes.
