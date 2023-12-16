@@ -96,6 +96,10 @@ class FrontEnd {
 	 */
 	public function parse_embed_url( $url ) {
 
+		if ( empty( $url ) ) {
+			return $url;
+		}
+
 		$parsed = wp_parse_url( esc_url( $url ) );
 
 		switch ( $parsed['host'] ) {
