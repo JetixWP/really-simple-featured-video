@@ -64,6 +64,10 @@ class FrontEnd {
 	public function get_post_video( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 		global $post;
 
+		if ( 'object' !== gettype( $post ) ) {
+			return $html;
+		}
+
 		// Get enabled post types.
 		$post_types = get_post_types();
 
@@ -91,6 +95,10 @@ class FrontEnd {
 	 * @return array|string
 	 */
 	public function parse_embed_url( $url ) {
+
+		if ( empty( $url ) ) {
+			return $url;
+		}
 
 		$parsed = wp_parse_url( esc_url( $url ) );
 
@@ -158,7 +166,6 @@ class FrontEnd {
 
 			default:
 				return $url;
-
 		}
 	}
 
@@ -237,5 +244,16 @@ class FrontEnd {
 			'i'      => array(),
 			'strong' => array(),
 		);
+	}
+
+	/**
+	 * Generate dynamic CSS.
+	 *
+	 * @return string
+	 */
+	public function generate_dynamic_css() {
+		$css = '';
+
+		return apply_filters( 'rsfv_generated_dynamic_css', $css );
 	}
 }

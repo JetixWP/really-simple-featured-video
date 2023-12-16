@@ -8,6 +8,7 @@
 namespace RSFV\Compatibility\Themes\Fallback;
 
 use RSFV\Compatibility\Themes\Base_Compatibility;
+use RSFV\Plugin;
 
 /**
  * Class Compatibility
@@ -45,5 +46,8 @@ class Compatibility extends Base_Compatibility {
 
 		// Enqueue styles.
 		wp_enqueue_style( 'rsfv-fallback' );
+
+		// Add generated CSS.
+		wp_add_inline_style( 'rsfv-fallback', Plugin::get_instance()->frontend_provider->generate_dynamic_css() );
 	}
 }

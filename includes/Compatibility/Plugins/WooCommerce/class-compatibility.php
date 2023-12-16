@@ -28,7 +28,6 @@ class Compatibility extends Base_Compatibility {
 	 */
 	protected static $instance;
 
-
 	/**
 	 * A counter variable.
 	 *
@@ -126,34 +125,35 @@ class Compatibility extends Base_Compatibility {
 	 * @return string Inline styles.
 	 */
 	public function generate_inline_styles() {
-		// Set product videos to 1/1 aspect ratio.
-		$styles = '.woocommerce ul.products li.product .woocommerce-product-gallery__image video.rsfv-video,
+		$styles = '';
+
+		// Set product videos to 16/9 aspect ratio.
+		$styles .= '.woocommerce ul.products li.product .woocommerce-product-gallery__image video.rsfv-video,
 					.woocommerce div.product div.woocommerce-product-gallery figure.woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image video.rsfv-video,
 				 .woocommerce ul.products li.product .woocommerce-product-gallery__image iframe.rsfv-video,
 				 .woocommerce div.product div.woocommerce-product-gallery figure.woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image iframe.rsfv-video
-				 { height: auto; width: 100% !important; aspect-ratio: 1/1; }';
+				 { height: auto; width: 100% !important; aspect-ratio: 16/9; }';
 
-		return $styles;
+		$styles .= '.woocommerce-loop-product__title { margin-top: 20px; }';
+
+		return apply_filters( 'rsfv_woo_generated_dynamic_css', $styles );
 	}
 
+
 	/**
-	 * Filter method for getting WooCommerce video markup at products.
+	 * Product Video Markup.
 	 *
-	 * @param string $html Thumbnail markup for products.
-	 * @param int    $post_thumbnail_id Thumbnail ID.
-	 * @param bool   $is_archives Whether to run at archives.
+	 * @param int $id Product ID.
 	 * @return string
 	 */
-	public function woo_get_video( $html, $post_thumbnail_id, $is_archives = false ) {
-		global $product;
-
-		$post_type = get_post_type( $product->get_id() ) ?? 'product';
+	public static function woo_video_markup( $id ) {
+		$post_type = get_post_type( $id ) ?? 'product';
 
 		// Get enabled post types.
 		$post_types = get_post_types();
 
 		// Get the meta value of video embed url.
-		$video_source = get_post_meta( $product->get_id(), RSFV_SOURCE_META_KEY, true );
+		$video_source = get_post_meta( $id, RSFV_SOURCE_META_KEY, true );
 		$video_source = $video_source ? $video_source : 'self';
 
 		$video_controls = 'self' !== $video_source ? get_video_controls( 'embed' ) : get_video_controls();
@@ -173,11 +173,15 @@ class Compatibility extends Base_Compatibility {
 		// Get video controls option.
 		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
 
+		$video_html = '';
+
 		if ( ! empty( $post_types ) ) {
-			if ( in_array( $post_type, $post_types, true ) && ( 0 === $this->counter || $is_archives ) ) {
+			if ( in_array( $post_type, $post_types, true ) ) {
+				$img_url   = RSFV_PLUGIN_URL . 'assets/images/video_frame.png';
+				$thumbnail = apply_filters( 'rsfv_featured_video_thumbnail', $img_url );
 
 				if ( 'self' === $video_source ) {
-					$media_id  = get_post_meta( $product->get_id(), RSFV_META_KEY, true );
+					$media_id  = get_post_meta( $id, RSFV_META_KEY, true );
 					$video_url = esc_url( wp_get_attachment_url( $media_id ) );
 
 					// Prepare mark up attributes.
@@ -188,11 +192,11 @@ class Compatibility extends Base_Compatibility {
 					$has_controls = $has_controls ? 'controls' : '';
 
 					if ( $video_url ) {
-						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><video class="rsfv-video" id="rsfv_video_' . $product->get_id() . '" src="' . $video_url . '" style="max-width:100%;display:block;" ' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video></div>' . $html;
+						$video_html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . $thumbnail . '"><video class="rsfv-video" id="rsfv_video_' . $id . '" src="' . $video_url . '" style="max-width:100%;display:block;" ' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video></div>';
 					}
 				} else {
 					// Get the meta value of video embed url.
-					$input_url = esc_url( get_post_meta( $product->get_id(), RSFV_EMBED_META_KEY, true ) );
+					$input_url = esc_url( get_post_meta( $id, RSFV_EMBED_META_KEY, true ) );
 
 					// Generate video embed url.
 					$embed_url = Plugin::get_instance()->frontend_provider->generate_embed_url( $input_url );
@@ -205,10 +209,46 @@ class Compatibility extends Base_Compatibility {
 					$has_controls = $has_controls ? 'controls=1&' : 'controls=0&';
 
 					if ( $embed_url ) {
-						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><iframe width="100%" height="540" src="' . $embed_url . "?{$has_controls}{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>' . $html;
+						$video_html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . $thumbnail . '"><iframe class="rsfv-video" width="100%" height="540" src="' . $embed_url . "?{$has_controls}{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>';
 					}
 				}
+			}
+		}
+		return $video_html;
+	}
 
+	/**
+	 * Filter method for getting WooCommerce video markup at products.
+	 *
+	 * @param string $html Thumbnail markup for products.
+	 * @param int    $post_thumbnail_id Thumbnail ID.
+	 * @param bool   $is_archives Whether to run at archives.
+	 * @return string
+	 */
+	public function woo_get_video( $html, $post_thumbnail_id, $is_archives = false ) {
+		global $product;
+
+		if ( 'object' !== gettype( $product ) ) {
+			return $html;
+		}
+
+		$product_id = $product->get_id();
+		$post_type  = get_post_type( $product_id ) ?? '';
+
+		// Get enabled post types.
+		$post_types = get_post_types();
+
+		$video_html = self::woo_video_markup( $product->get_id() );
+
+		if ( ! empty( $post_types ) ) {
+			$updated_html = $video_html . $html;
+			if ( ! $is_archives && apply_filters( 'rsfv_has_modified_video_thumbnail_html', false, $this->counter, $product ) ) {
+				$html = apply_filters( 'rsfv_video_thumbnail_html', $html, $video_html, $this->counter, $product );
+			} elseif ( 0 === $this->counter || $is_archives ) {
+				$html = $updated_html;
+			}
+
+			if ( in_array( $post_type, $post_types, true ) && ! $is_archives ) {
 				$this->counter++;
 			}
 		}

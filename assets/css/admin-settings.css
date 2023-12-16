@@ -245,3 +245,66 @@
 	border-radius: 100%;
 	margin-right: 4px;
 }
+
+.rsfv.getpro .tab-content .rsfv-button {
+	display: inline-block;
+	margin-top: 10px;
+}
+.rsfv.getpro .submit {
+	display: none;
+}
+
+.rsfv.getpro .rsfv-button.rsfv-getpro-button {
+	display: inline-block;
+	margin-top: 30px;
+}
+
+.rsfv.getpro h1 {
+	margin-top: 15px;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 30px;
+}
+
+.rsfv.getpro .getpro-content ul {
+	list-style: disc;
+	list-style-position: inside;
+}
+
+.rsfv.getpro .getpro-content li {
+	line-height: 1.5;
+}
+
+.rsfv.getpro .getpro-content p, li {
+	font-size: 15px;
+}
+
+.rsfv.getpro form {
+	position: relative;
+}
+
+.rsfv.getpro form {
+	height: calc(100% - 10%);
+}
+
+.rsfv.getpro .getpro-content .offer-highlight {
+	font-size: 18px;
+}
+
+.rsfv.getpro .tab-content .rsfv-button {
+	display: inline-block;
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+@media screen and ( min-width: 1920px ) {
+	.rsfv.getpro form {
+		height: auto;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.rsfv.getpro form {
+		padding-bottom: 250px;
+	}
+}

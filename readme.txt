@@ -3,7 +3,7 @@ Contributors: smalltowndev, lushkant
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.4.2
-Stable tag: 0.8.0
+Stable tag: 0.8.1
 Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo, woo, cpt
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -56,17 +56,17 @@ There are also shortcodes to embed featured video at any post, page or product y
 You can send a feedback or a feature request at [github.com/smalltowndev/really-simple-featured-video](https://github.com/smalltowndev/really-simple-featured-video)
 Or create a thread at forums here, in any case 
 
-= OUR PRO VERSION IS COMING SOON, READ MORE BELOW =
+= OUR PRO VERSION IS OUT, READ MORE BELOW =
 
-We're currently working on a Pro plugin to support additional features, where we can continue to keep them maintained and updated.
-We have quite a few requests from you guys, and the plugin is scheduled to be released by December 2023.
+We recently released the Pro plugin to support additional features, where we can continue to keep them maintained and updated.
+We got quite a few requests from you guys, and the plugin initially offers a few from the list while we work towards supporting most of them if not all.
 
-If you wish to grab on the early bird deal which will be available as a lifetime version of the plugin to first few customers.
+If you wish to grab on the early bird deal which is available as a lifetime version of the plugin to first few customers, follow the steps mentioned at plugin settings Promo tab.
 
-Initially our Pro plugin will include these features -
+Initially our Pro plugin includes these features -
 
-- **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2 and more.
-- **Change Video Order at Woo Product CPT** - Set video order of at single product pages of WooCommerce Product CPT
+- **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
+- **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT
 - **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
 - **Priority Support** - Finally we will be able to additionally solve your issues at priority and faster response times.
 
@@ -77,7 +77,7 @@ More to come in the future such as -
 - **Featured Video Blocks for Full Site Editing**
 - And much more.
 
-If you wish to lock your early bird spot beforehand please send us an email at [hello@smalltowndev.com](mailto:hello@smalltowndev.com), and you will be notified at the very moment we launch.
+If you wish to get your early bird spot right away please install the free plugin from your \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or mail us at [hello@smalltowndev.com](mailto:hello@smalltowndev.com).
 
 == Screenshots ==
 
@@ -102,6 +102,15 @@ Yes, as long as the theme you use follows standard WordPress/WooCommerce way of 
 You can get help by reaching out to us at [github.com/smalltowndev/really-simple-featured-video](https://github.com/smalltowndev/really-simple-featured-video) or support forums here.
 
 == Changelog ==
+
+= 0.8.1 - December 16, 2023 =
+- New: Support for Pro add on
+- Fix: Warning at reading $product
+- Fix: Warning at reading post_type
+- Fix: Empty $url variable warnings
+- Improvement: Improve supported CPT options
+- Improvements: Improved markup handlers
+- Improvement: Minor code changes
 
 = 0.8.0 - December 14, 2023 =
 - New: Add TwentyTwenty Four Theme support
