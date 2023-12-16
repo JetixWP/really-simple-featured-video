@@ -207,8 +207,39 @@ class Compatibility extends Base_Compatibility {
 					if ( $embed_url ) {
 						$html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . RSFV_PLUGIN_URL . 'assets/images/video_frame.png"><iframe width="100%" height="540" src="' . $embed_url . "?{$has_controls}{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>' . $html;
 					}
-				}
+		}
+	/**
+	 * Filter method for getting WooCommerce video markup at products.
+	 *
+	 * @param string $html Thumbnail markup for products.
+	 * @param int    $post_thumbnail_id Thumbnail ID.
+	 * @param bool   $is_archives Whether to run at archives.
+	 * @return string
+	 */
+	public function woo_get_video( $html, $post_thumbnail_id, $is_archives = false ) {
+		global $product;
 
+		if ( 'object' !== gettype( $product ) ) {
+			return $html;
+		}
+
+		$product_id = $product->get_id();
+		$post_type  = get_post_type( $product_id ) ?? '';
+
+		// Get enabled post types.
+		$post_types = get_post_types();
+
+		$video_html = self::woo_video_markup( $product->get_id() );
+
+		if ( ! empty( $post_types ) ) {
+			$updated_html = $video_html . $html;
+			if ( ! $is_archives && apply_filters( 'rsfv_has_modified_video_thumbnail_html', false, $this->counter, $product ) ) {
+				$html = apply_filters( 'rsfv_video_thumbnail_html', $html, $video_html, $this->counter, $product );
+			} elseif ( 0 === $this->counter || $is_archives ) {
+				$html = $updated_html;
+			}
+
+			if ( in_array( $post_type, $post_types, true ) && ! $is_archives ) {
 				$this->counter++;
 			}
 		}
