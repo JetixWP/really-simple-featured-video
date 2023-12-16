@@ -28,7 +28,6 @@ class Compatibility extends Base_Compatibility {
 	 */
 	protected static $instance;
 
-
 	/**
 	 * A counter variable.
 	 *
@@ -136,28 +135,21 @@ class Compatibility extends Base_Compatibility {
 		return $styles;
 	}
 
+
 	/**
-	 * Filter method for getting WooCommerce video markup at products.
+	 * Product Video Markup.
 	 *
-	 * @param string $html Thumbnail markup for products.
-	 * @param int    $post_thumbnail_id Thumbnail ID.
-	 * @param bool   $is_archives Whether to run at archives.
+	 * @param int $id Product ID.
 	 * @return string
 	 */
-	public function woo_get_video( $html, $post_thumbnail_id, $is_archives = false ) {
-		global $product;
-
-		if ( 'object' !== gettype( $product ) ) {
-			return $html;
-		}
-
-		$post_type = get_post_type( $product->get_id() ) ?? 'product';
+	public static function woo_video_markup( $id ) {
+		$post_type = get_post_type( $id ) ?? 'product';
 
 		// Get enabled post types.
 		$post_types = get_post_types();
 
 		// Get the meta value of video embed url.
-		$video_source = get_post_meta( $product->get_id(), RSFV_SOURCE_META_KEY, true );
+		$video_source = get_post_meta( $id, RSFV_SOURCE_META_KEY, true );
 		$video_source = $video_source ? $video_source : 'self';
 
 		$video_controls = 'self' !== $video_source ? get_video_controls( 'embed' ) : get_video_controls();
