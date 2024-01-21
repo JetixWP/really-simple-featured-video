@@ -3,7 +3,7 @@ Contributors: smalltowndev, lushkant
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.4.2
-Stable tag: 0.8.1
+Stable tag: 0.8.2
 Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo, woo, cpt
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -94,9 +94,14 @@ Yes, and is available for purchase from the plugin settings in your /wp-admin Da
 Yes, as long as the theme you use follows standard WordPress/WooCommerce way of handling post thumbnails, this plugin should work without any problems.
 
 = Where can I get help? =
-You can get help by reaching out to us at [our website](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme) or support forums here.
+For the free version of this plugin, support is limited to support forums here.
+And if you're a Pro user, you can directly send us a mail at [support@smalltowndev.com](mailto:support@smalltowndev.com) for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.8.2 - January 21, 2023 =
+- New: RSFV Pro announcement at sidebar
+- Improvement: Minor code changes
 
 = 0.8.1 - December 16, 2023 =
 - New: Support for Pro add on

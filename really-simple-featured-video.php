@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Really Simple Featured Video
- * Plugin URI:  https://github.com/smalltowndev/really-simple-featured-video
+ * Plugin URI:  https://smalltowndev.com/really-simple-featured-video
  * Description: Upload featured videos for WordPress posts, pages & WooCommerce products.
- * Version:     0.8.1
+ * Version:     0.8.2
  * Author:      Small Town Dev, Krishna Kant Chourasiya
  * Author URI:  https://smalltowndev.com
  * License:     GPL2
@@ -16,7 +16,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'RSFV_VERSION', '0.8.1' );
+define( 'RSFV_VERSION', '0.8.2' );
 define( 'RSFV_PLUGIN_FILE', __FILE__ );
 define( 'RSFV_PLUGIN_URL', plugin_dir_url( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_DIR', plugin_dir_path( RSFV_PLUGIN_FILE ) );

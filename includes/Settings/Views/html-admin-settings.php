@@ -52,6 +52,44 @@ if ( ! $tab_exists ) {
 			</div>
 		</form>
 		<div class="sidebar">
+			<?php if ( ! class_exists( '\RSFV_Pro\Plugin' ) ) : ?>
+			<div class="upgrade-box">
+				<div>
+					<h3>🚀 &nbsp;Grab the Pro version with our Early Bird Lifetime Deal</h3>
+					<p class="desc">We recently released RSFV Pro plugin to support additional features, where we can continue to keep them maintained and updated.</p>
+				</div>
+				<div>
+					<p class="desc"><strong>Our Pro plugin includes these features -</strong></p>
+					<ul>
+						<li>✅ <strong>Change Video Aspect Ratio</strong></li>
+						<li>✅ <strong>Change Video Order at Woo Product CPT</strong></li>
+						<li>✅ <strong>Requests for Theme Compatibility</strong></li>
+						<li>✅ <strong>Priority Support</strong></li>
+					</ul>
+				</div>
+				<div>
+					<p class="desc">More features to come in the future, to name a few -</p>
+					<ul>
+						<li>🏗️ Elementor support</li>
+						<li>🏗️ Divi Support</li>
+						<li>🏗️ Featured Video Blocks for Full Site Editing </li>
+						<li>🏗️ And more Woo customizations</li>
+					</ul>
+				</div>
+
+				<div>
+				<a class="button button-primary" href="https://smalltowndev.com/really-simple-featured-video?utm_campaign=settings-sidebar&utm_source=rsfv-plugin" target="_blank">Grab this deal</a>
+				</div>
+
+				<div>
+					<p><em>Lifetime deal is available for first few customers only, thank you for supporting our launch, you are not just any supporters but truly the founders of our small business.</em></p>
+					<p><strong>Krishna</strong>, Creator of Really Simple Featured Video</p>
+
+					<p><strong>Have questions?</strong> Please mail us at <a href="mailto:support@smalltowndev.com">support@smalltowndev.com</a>, and we will get back to you at the earliest :)</p>
+
+				</div>
+			</div>
+			<?php endif; ?>
 		</div>
 	</div>
 </div>

@@ -28,6 +28,10 @@
 	border-color: rgb(38, 57, 227);
 }
 
+.rsfv .menu-title {
+	font-weight: bold;
+}
+
 .rsfv .forminp .description {
 	display: block;
 	margin-top: 10px;
@@ -294,8 +298,32 @@
 .rsfv.getpro .tab-content .rsfv-button {
 	display: inline-block;
 	margin-top: 10px;
-	font-size: 16px;
+	font-size: 18px;
+	padding: 4px 20px;
 }
+
+.rsfv .sidebar .upgrade-box {
+	background: #fff;
+	border: 1px solid #dcdcdc;
+	padding: 5px 30px 25px;
+}
+
+
+.rsfv .sidebar .upgrade-box > * {
+	margin-bottom: 15px;
+}
+
+.rsfv .sidebar .upgrade-box .desc {
+	font-size: 15px;
+}
+
+.rsfv .sidebar .upgrade-box .button.button-primary {
+	font-size: 16px;
+	width: 100%;
+	padding: 6px 0;
+	text-align: center;
+}
+
 
 @media screen and ( min-width: 1920px ) {
 	.rsfv.getpro form {
