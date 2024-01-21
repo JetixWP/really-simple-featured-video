@@ -94,7 +94,8 @@ Yes, and is available for purchase from the plugin settings in your /wp-admin Da
 Yes, as long as the theme you use follows standard WordPress/WooCommerce way of handling post thumbnails, this plugin should work without any problems.
 
 = Where can I get help? =
-You can get help by reaching out to us at [our website](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme) or support forums here.
+For the free version of this plugin, support is limited to support forums here.
+And if you're a Pro user, you can directly send us a mail at [support@smalltowndev.com](mailto:support@smalltowndev.com) for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
 
