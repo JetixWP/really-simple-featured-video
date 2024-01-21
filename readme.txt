@@ -12,6 +12,8 @@ Really Simple Featured Video enables featured video support for WordPress posts,
 
 == Description ==
 
+[✨[Pro] Early Bird Lifetime Deal is LIVE](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
 https://www.youtube.com/watch?v=xHrj2lcNS5Q
@@ -20,32 +22,23 @@ With Really Simple Featured Video you get a metabox at posts, pages, CPTs & Woo 
 
 You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Explore it yourself for a better look or take a look at screenshots below.
 
-#### *NEW* Youtube, Dailymotion and Vimeo Support
 
-You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
+== 👉️ Features ==
 
-#### WooCommerce Single and Shop Archives Support
+* **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
+* **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
+* **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
+* **Support for Core themes** - We support all the newer core themes such as TwentyTwenty Four to Classic themes.
+* **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
+* **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
+
+
+== 👉️ WooCommerce Support ==
 
 This plugin came out of a real need with many plugins available out there yet none provides a good integration with WooCommerce.
 Really Simple Featured Video plugin provides a straightforward implementation for WooCommerce Product Featured Video, with which your set featured video loads directly into product thumbnails along with any other product images.
 
-#### Supports for Core themes
-
-We now support all the major newer core themes such as TwentyTwenty Four to Classic themes.
-
-#### Enable/Disable Post Types Support
-
-You can enable/disable support for post types via the settings page though by default featured videos are enabled for blog posts.
-
-#### Enable/Disable Video Controls, Autoplay, Loop & Picture-In-Picture
-
-You can manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
-
-#### Mute Video Sound
-
-You also have an option to control video sound, set this at the settings page.
-
-#### Shortcodes
+== 👉️ How to use Shortcodes ==
 
 There are also shortcodes to embed featured video at any post, page or product you want.
 
@@ -56,29 +49,30 @@ There are also shortcodes to embed featured video at any post, page or product y
 You can send a feedback or a feature request at [github.com/smalltowndev/really-simple-featured-video](https://github.com/smalltowndev/really-simple-featured-video)
 Or create a thread at forums here, in any case 
 
-= OUR PRO VERSION IS OUT, READ MORE BELOW =
+== 👉️ Premium Features ==
 
 We recently released the Pro plugin to support additional features, where we can continue to keep them maintained and updated.
 We got quite a few requests from you guys, and the plugin initially offers a few from the list while we work towards supporting most of them if not all.
 
 If you wish to grab on the early bird deal which is available as a lifetime version of the plugin to first few customers, follow the steps mentioned at plugin settings Promo tab.
 
-Initially our Pro plugin includes these features -
+<strong>Our Pro plugin includes these features -</strong>
 
-- **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
-- **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT
-- **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
-- **Priority Support** - Finally we will be able to additionally solve your issues at priority and faster response times.
+* ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
+* ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT
+* ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
+* ✅ **Priority Support** - Finally we will be able to additionally solve your issues at priority and faster response times.
 
-More to come in the future such as -
+More features to in the future, to name a few -
 
-- **Elementor support**
-- **Divi Support**
-- **Featured Video Blocks for Full Site Editing**
-- And much more.
+* ✨ **Elementor support**
+* ✨ **Divi Support**
+* ✨ **Featured Video Blocks for Full Site Editing**
+* ✨ And more
 
-If you wish to get your early bird spot right away please install the free plugin from your \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or mail us at [hello@smalltowndev.com](mailto:hello@smalltowndev.com).
+<strong>Buy the premium version directly from the free plugin settings, just go to \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or mail us at [hello@smalltowndev.com](mailto:hello@smalltowndev.com) </strong>
 
+[Checkout Pro](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 == Screenshots ==
 
 1. Single post/page featured video on Twenty Twenty-Three theme.
@@ -92,14 +86,14 @@ If you wish to get your early bird spot right away please install the free plugi
 
 == Frequently Asked Questions ==
 
-= Is there a Pro version coming for this? =
-Yes, and is due for launch by this December 2023. If you wish to get the early bird lifetime deal, please lock your spot by emailing us at [hello@smalltowndev.com](mailto:hello@smalltowndev.com). And we will make sure you get notified at the very moment we launch.
+= Is there a Pro version for this? =
+Yes, and is available for purchase from the plugin settings in your /wp-admin Dashboard. If you wish to get your early bird spot right away please install the free plugin from your \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or visit [our website here](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme).
 
 = Will this plugin work with any theme? =
 Yes, as long as the theme you use follows standard WordPress/WooCommerce way of handling post thumbnails, this plugin should work without any problems.
 
 = Where can I get help? =
-You can get help by reaching out to us at [github.com/smalltowndev/really-simple-featured-video](https://github.com/smalltowndev/really-simple-featured-video) or support forums here.
+You can get help by reaching out to us at [our website](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme) or support forums here.
 
 == Changelog ==
 
