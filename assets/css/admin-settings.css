@@ -298,7 +298,8 @@
 .rsfv.getpro .tab-content .rsfv-button {
 	display: inline-block;
 	margin-top: 10px;
-	font-size: 20px;
+	font-size: 18px;
+	padding: 4px 20px;
 }
 
 .rsfv .sidebar .upgrade-box {
