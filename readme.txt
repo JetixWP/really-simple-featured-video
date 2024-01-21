@@ -88,7 +88,7 @@ OR
 == Frequently Asked Questions ==
 
 = Is there a Pro version for this? =
-Yes, and is available for purchase from the plugin settings in your /wp-admin Dashboard. If you wish to get your early bird spot right away please install the free plugin from your \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or visit [our website here](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme).
+Yes, and is available for purchase from the plugin settings in your /wp-admin Dashboard. If you wish to get your early bird spot right away please visit [our website here](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme).
 
 = Will this plugin work with any theme? =
 Yes, as long as the theme you use follows standard WordPress/WooCommerce way of handling post thumbnails, this plugin should work without any problems.
