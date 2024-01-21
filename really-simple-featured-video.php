@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Really Simple Featured Video
- * Plugin URI:  https://github.com/smalltowndev/really-simple-featured-video
+ * Plugin URI:  https://smalltowndev.com/really-simple-featured-video
  * Description: Upload featured videos for WordPress posts, pages & WooCommerce products.
  * Version:     0.8.1
  * Author:      Small Town Dev, Krishna Kant Chourasiya
