@@ -12,7 +12,7 @@ Really Simple Featured Video enables featured video support for WordPress posts,
 
 == Description ==
 
-[✨[Pro] Early Bird Lifetime Deal is LIVE](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+[🚀 [Pro] Early Bird Lifetime Deal is LIVE](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
@@ -46,8 +46,7 @@ There are also shortcodes to embed featured video at any post, page or product y
 
 [rsfv_by_postid] shortcode is for displaying featured video of any post anywhere you want, you just need to pass a vaild post id to it e.g. [rsfv_by_postid post_id="281"]
 
-You can send a feedback or a feature request at [github.com/smalltowndev/really-simple-featured-video](https://github.com/smalltowndev/really-simple-featured-video)
-Or create a thread at forums here, in any case 
+You can send a feedback or a feature request at [github.com/smalltowndev/really-simple-featured-video](https://github.com/smalltowndev/really-simple-featured-video) Or create a thread at forums here, in any case.
 
 == 👉️ Premium Features ==
 
@@ -63,16 +62,18 @@ If you wish to grab on the early bird deal which is available as a lifetime vers
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
 * ✅ **Priority Support** - Finally we will be able to additionally solve your issues at priority and faster response times.
 
-More features to in the future, to name a few -
+More features to come in the future, to name a few -
 
 * ✨ **Elementor support**
 * ✨ **Divi Support**
 * ✨ **Featured Video Blocks for Full Site Editing**
 * ✨ And more
 
-<strong>Buy the premium version directly from the free plugin settings, just go to \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or mail us at [hello@smalltowndev.com](mailto:hello@smalltowndev.com) </strong>
+<strong>Buy the premium version directly from the free plugin settings, just go to \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or mail us at [hello@smalltowndev.com](mailto:hello@smalltowndev.com)</strong>
+OR
+[Checkout Pro at our website](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
-[Checkout Pro](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+
 == Screenshots ==
 
 1. Single post/page featured video on Twenty Twenty-Three theme.
