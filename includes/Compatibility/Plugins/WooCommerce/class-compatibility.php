@@ -57,7 +57,7 @@ class Compatibility extends Base_Compatibility {
 	 */
 	public function includes() {
 		// Settings.
-		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/WooCommerce/class-settings.php';
+		require_once $this->get_current_dir() . 'WooCommerce/class-settings.php';
 	}
 
 	/**
