@@ -1,0 +1,34 @@
+{
+  "name": "really-simple-featured-video",
+  "version": "0.8.2",
+  "description": "Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.",
+  "main": "index.js",
+  "scripts": {
+    "plugin-zip": "wp-scripts plugin-zip",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-translate": "wp i18n make-pot . ./languages/really-simple-featured-video.pot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smalltowndev/really-simple-featured-video.git"
+  },
+  "author": "SmallTownDev",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/smalltowndev/really-simple-featured-video/issues"
+  },
+  "homepage": "https://smalltowndev.com/really-simple-featured-video",
+  "devDependencies": {
+    "@wordpress/scripts": "^27.1.0"
+  },
+  "files": [
+    "assets",
+    "freemius",
+    "includes",
+    "vendor",
+    "languages",
+    "changelog.json",
+    "readme.txt",
+    "really-simple-featured-video.php"
+  ]
+}
