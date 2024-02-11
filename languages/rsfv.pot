@@ -1,17 +1,17 @@
-# Copyright (C) 2022 Krishna Kant Chourasiya
+# Copyright (C) 2024 SmallTownDev.com
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.5.4\n"
+"Project-Id-Version: Really Simple Featured Video 0.8.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-06-17T19:42:39+00:00\n"
+"POT-Creation-Date: 2024-02-11T14:23:31+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.6.0\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: rsfv\n"
 
 #. Plugin Name of the plugin
@@ -20,7 +20,7 @@ msgid "Really Simple Featured Video"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://github.com/lushkant/really-simple-featured-video"
+msgid "https://smalltowndev.com/really-simple-featured-video"
 msgstr ""
 
 #. Description of the plugin
@@ -28,11 +28,11 @@ msgid "Upload featured videos for WordPress posts, pages & WooCommerce products.
 msgstr ""
 
 #. Author of the plugin
-msgid "Krishna Kant Chourasiya"
+msgid "SmallTownDev.com"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://lushkant.com/"
+msgid "https://smalltowndev.com"
 msgstr ""
 
 #: includes/class-metabox.php:68
@@ -60,7 +60,7 @@ msgid "Video url goes here"
 msgstr ""
 
 #: includes/class-metabox.php:164
-msgid "Copy &amp; paste embed urls from Youtube, Vimeo &amp; Dailymotion. For e.g. - "
+msgid "Directly copy &amp; paste video urls from Youtube, Vimeo &amp; Dailymotion."
 msgstr ""
 
 #: includes/class-metabox.php:171
@@ -75,7 +75,7 @@ msgstr ""
 msgid "Please select a video source"
 msgstr ""
 
-#: includes/class-plugin.php:125
+#: includes/class-plugin.php:194
 msgid "Settings"
 msgstr ""
 
@@ -83,80 +83,198 @@ msgstr ""
 msgid "Please add a post id!"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:71
+#: includes/Compatibility/class-plugin-provider.php:45
+#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:36
+msgid "WooCommerce"
+msgstr ""
+
+#: includes/Compatibility/class-plugin-provider.php:51
+msgid "Astra Pro"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:43
+msgid "Default"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:48
+msgid "Twenty Twenty"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:53
+msgid "Twenty Twenty-One"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:58
+msgid "Twenty Twenty-Two"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:63
+msgid "Twenty Twenty-Three"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:68
+msgid "Twenty Twenty-Four"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:123
+msgid "Failed at registration"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:124
+msgid "Unregistered"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:158
+msgid "Disabled (Legacy)"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:159
+msgid "Auto (Do it for me)"
+msgstr ""
+
+#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:102
+msgid "Products"
+msgstr ""
+
+#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:58
+msgid "Show videos at Product archives"
+msgstr ""
+
+#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:59
+msgid "When toggled on, it shows set videos at product archives such as Shop and Product category etc."
+msgstr ""
+
+#: includes/Settings/class-admin-settings.php:73
 msgid "Your settings have been saved."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:128
+#: includes/Settings/class-admin-settings.php:130
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:486
-#: includes/Settings/class-admin-settings.php:551
+#: includes/Settings/class-admin-settings.php:487
+#: includes/Settings/class-admin-settings.php:552
 msgid "Toggle"
 msgstr ""
 
 #: includes/Settings/class-register.php:56
-#: includes/Settings/Views/html-admin-settings.php:25
+#: includes/Settings/Views/html-admin-settings.php:23
 msgid "Really Simple Featured Video Settings"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:24
-#: includes/Settings/Tabs/class-controls.php:58
+#: includes/Settings/Tabs/class-controls.php:22
+#: includes/Settings/Tabs/class-controls.php:38
 msgid "Controls"
 msgstr ""
 
+#: includes/Settings/Tabs/class-controls.php:35
+msgid "Note: Autoplay will only work if mute sound is enabled as per browser policy."
+msgstr ""
+
+#: includes/Settings/Tabs/class-controls.php:39
+msgid "Autoplay"
+msgstr ""
+
+#: includes/Settings/Tabs/class-controls.php:40
+msgid "Loop"
+msgstr ""
+
+#: includes/Settings/Tabs/class-controls.php:41
+msgid "Picture in Picture"
+msgstr ""
+
 #: includes/Settings/Tabs/class-controls.php:42
+msgid "Mute sound"
+msgstr ""
+
+#: includes/Settings/Tabs/class-controls.php:51
 msgctxt "settings title"
 msgid "Self-hosted videos"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:43
+#: includes/Settings/Tabs/class-controls.php:52
 msgid "Please select the controls you wish to enable for your self hosted videos."
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:59
-#: includes/Settings/Tabs/class-controls.php:86
-msgid "Autoplay"
-msgstr ""
-
-#: includes/Settings/Tabs/class-controls.php:60
-#: includes/Settings/Tabs/class-controls.php:87
-msgid "Loop"
-msgstr ""
-
-#: includes/Settings/Tabs/class-controls.php:61
-#: includes/Settings/Tabs/class-controls.php:88
-msgid "Picture in Picture"
-msgstr ""
-
-#: includes/Settings/Tabs/class-controls.php:62
-#: includes/Settings/Tabs/class-controls.php:89
-msgid "Mute sound"
-msgstr ""
-
-#: includes/Settings/Tabs/class-controls.php:70
+#: includes/Settings/Tabs/class-controls.php:74
 msgctxt "settings title"
 msgid "Embed videos"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:71
+#: includes/Settings/Tabs/class-controls.php:75
 msgid "Please select the controls you wish to enable for your embedded videos."
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:24
+#: includes/Settings/Tabs/class-general.php:25
 msgid "General"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:51
+#: includes/Settings/Tabs/class-general.php:76
+msgctxt "settings title"
+msgid "Theme Compatibility Engine"
+msgstr ""
+
+#: includes/Settings/Tabs/class-general.php:77
+msgid "If featured videos aren't working as expected in your theme, you may need to set this from the list of supported theme engines. (Default engine follows standard WordPress rules, and may not work for all themes)"
+msgstr ""
+
+#: includes/Settings/Tabs/class-general.php:87
+msgid "Status"
+msgstr ""
+
+#: includes/Settings/Tabs/class-general.php:90
+msgid "Auto"
+msgstr ""
+
+#: includes/Settings/Tabs/class-general.php:96
+msgid "Set engine"
+msgstr ""
+
+#: includes/Settings/Tabs/class-general.php:108
 msgctxt "settings title"
 msgid "Enable Post Types Support"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:52
+#: includes/Settings/Tabs/class-general.php:109
 msgid "Please select the post types you wish to enable featured video support at."
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings.php:50
+#: includes/Settings/Tabs/class-getpro.php:26
+msgid "Get Pro"
+msgstr ""
+
+#: includes/Settings/Tabs/class-integrations.php:22
+msgid "Integrations"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-getpro.php:14
+msgid "Extended Featured Video support with [Pro] Really Simple Featured Video"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-getpro.php:17
+msgid "Change Video Aspect Ratio"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-getpro.php:18
+msgid "Change Video Order at WooCommerce Product page"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-getpro.php:19
+msgid "Priority Support"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-getpro.php:20
+msgid "Requests for Theme Compatibility"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-getpro.php:22
+msgid ".. and more coming soon."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-getpro.php:25
+msgid "Explore RSFV Pro"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings.php:48
 msgid "Save changes"
 msgstr ""
