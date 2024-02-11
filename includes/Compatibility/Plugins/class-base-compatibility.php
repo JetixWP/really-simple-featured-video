@@ -7,6 +7,8 @@
 
 namespace RSFV\Compatibility\Plugins;
 
+use RSFV\Compatibility\Plugin_Provider;
+
 /**
  * Abstract class definition for plugin compat.
  *
@@ -98,7 +100,7 @@ abstract class Base_Compatibility {
 	 * @return string
 	 */
 	public function get_current_dir_url() {
-		return RSFV_PLUGIN_URL . 'includes/Compatibility/Plugins/';
+		return Plugin_Provider::COMPAT_URL;
 	}
 
 	/**
@@ -107,6 +109,6 @@ abstract class Base_Compatibility {
 	 * @return string
 	 */
 	public function get_current_dir() {
-		return RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/';
+		return Plugin_Provider::COMPAT_DIR;
 	}
 }

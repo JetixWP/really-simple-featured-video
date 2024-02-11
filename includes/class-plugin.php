@@ -196,4 +196,13 @@ final class Plugin {
 			$actions
 		);
 	}
+
+	/**
+	 * Checks if pro addon is active.
+	 *
+	 * @return bool
+	 */
+	public function has_pro_active() {
+		return defined( 'RSFV_PRO_VERSION' );
+	}
 }

@@ -57,7 +57,7 @@ class Compatibility extends Base_Compatibility {
 	 */
 	public function includes() {
 		// Settings.
-		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/WooCommerce/class-settings.php';
+		require_once $this->get_current_dir() . 'WooCommerce/class-settings.php';
 	}
 
 	/**
@@ -143,10 +143,12 @@ class Compatibility extends Base_Compatibility {
 	/**
 	 * Product Video Markup.
 	 *
-	 * @param int $id Product ID.
+	 * @param int    $id Product ID.
+	 * @param string $wrapper_class Wrapper markup classes.
+	 *
 	 * @return string
 	 */
-	public static function woo_video_markup( $id ) {
+	public static function woo_video_markup( $id, $wrapper_class = 'woocommerce-product-gallery__image', $wrapper_attributes = '', $thumbnail_only = false ) {
 		$post_type = get_post_type( $id ) ?? 'product';
 
 		// Get enabled post types.
@@ -177,8 +179,14 @@ class Compatibility extends Base_Compatibility {
 
 		if ( ! empty( $post_types ) ) {
 			if ( in_array( $post_type, $post_types, true ) ) {
-				$img_url   = RSFV_PLUGIN_URL . 'assets/images/video_frame.png';
-				$thumbnail = apply_filters( 'rsfv_featured_video_thumbnail', $img_url );
+				$img_url           = RSFV_PLUGIN_URL . 'assets/images/video_frame.png';
+				$thumbnail         = apply_filters( 'rsfv_featured_video_thumbnail', $img_url );
+				$gallery_thumbnail = wc_get_image_size( 'gallery_thumbnail' );
+
+				// Return early if thumbnail is only required.
+				if ( $thumbnail_only ) {
+					return '<div class="' . esc_attr( $wrapper_class ) . '" data-thumb="' . esc_url( $thumbnail ) . '"' . esc_attr( $wrapper_attributes ) . '><img width="' . $gallery_thumbnail['width'] . '" height="' . $gallery_thumbnail['height'] . '" src="' . esc_url( $thumbnail ) . '" alt /></div>';
+				}
 
 				if ( 'self' === $video_source ) {
 					$media_id  = get_post_meta( $id, RSFV_META_KEY, true );
@@ -192,7 +200,7 @@ class Compatibility extends Base_Compatibility {
 					$has_controls = $has_controls ? 'controls' : '';
 
 					if ( $video_url ) {
-						$video_html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . $thumbnail . '"><video class="rsfv-video" id="rsfv_video_' . $id . '" src="' . $video_url . '" style="max-width:100%;display:block;" ' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video></div>';
+						$video_html = '<div class="' . esc_attr( $wrapper_class ) . '" data-thumb="' . $thumbnail . '"' . esc_attr( $wrapper_attributes ) . '><video class="rsfv-video" id="rsfv_video_' . $id . '" src="' . $video_url . '" style="max-width:100%;display:block;" ' . "{$has_controls} {$is_autoplay} {$is_loop} {$is_muted} {$is_pip}" . '></video></div>';
 					}
 				} else {
 					// Get the meta value of video embed url.
@@ -209,7 +217,7 @@ class Compatibility extends Base_Compatibility {
 					$has_controls = $has_controls ? 'controls=1&' : 'controls=0&';
 
 					if ( $embed_url ) {
-						$video_html = '<div class="woocommerce-product-gallery__image rsfv-video__wrapper" data-thumb="' . $thumbnail . '"><iframe class="rsfv-video" width="100%" height="540" src="' . $embed_url . "?{$has_controls}{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>';
+						$video_html = '<div class="' . esc_attr( $wrapper_class ) . '" data-thumb="' . $thumbnail . '" ' . esc_attr( $wrapper_attributes ) . '><iframe class="rsfv-video" width="100%" height="540" src="' . $embed_url . "?{$has_controls}{$is_autoplay}{$is_loop}{$is_muted}{$is_pip}" . '" allow="" frameborder="0"></iframe></div>';
 					}
 				}
 			}

@@ -73,18 +73,78 @@ class FrontEnd {
 
 		if ( ! empty( $post_types ) ) {
 			if ( in_array( $post->post_type, $post_types, true ) ) {
-				// Get the meta value of video attachment.
-				$video_id = get_post_meta( $post_id, RSFV_META_KEY, true );
-
 				// Get the meta value of video embed url.
-				$embed_url = get_post_meta( $post->ID, RSFV_EMBED_META_KEY, true );
+				$video_source = get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true );
+				$video_source = $video_source ? $video_source : 'self';
 
-				if ( $video_id || $embed_url ) {
-					return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+				if ( 'self' === $video_source ) {
+					// Get the meta value of video attachment.
+					$video_id = get_post_meta( $post->ID, RSFV_META_KEY, true );
+
+					if ( $video_id ) {
+						return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+					}
+				} else {
+					// Get the meta value of video embed url.
+					$embed_url = get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
+
+					if ( $embed_url ) {
+						return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+					}
 				}
 			}
 		}
 		return $html;
+	}
+
+	/**
+	 * Method for checking if the post has a featured video set.
+	 *
+	 * @param int $post_id Post ID.
+	 *
+	 * @return bool
+	 */
+	public static function has_featured_video( $post_id ) {
+
+		// Exit early if no post id is provided.
+		if ( empty( $post_id ) ) {
+			return false;
+		}
+
+		$post = get_post( $post_id );
+
+		if ( 'object' !== gettype( $post ) ) {
+			return false;
+		}
+
+		// Get enabled post types.
+		$post_types = get_post_types();
+
+		if ( ! empty( $post_types ) ) {
+			if ( in_array( $post->post_type, $post_types, true ) ) {
+
+				// Get the meta value of video embed url.
+				$video_source = get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true );
+				$video_source = $video_source ? $video_source : 'self';
+
+				if ( 'self' === $video_source ) {
+					// Get the meta value of video attachment.
+					$video_id = get_post_meta( $post->ID, RSFV_META_KEY, true );
+
+					if ( $video_id ) {
+						return true;
+					}
+				} else {
+					// Get the meta value of video embed url.
+					$embed_url = get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
+
+					if ( $embed_url ) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -222,16 +282,19 @@ class FrontEnd {
 				'allowfullscreen' => array(),
 			),
 			'div'    => array(
-				'class'      => array(),
-				'id'         => array(),
-				'data-thumb' => array(),
-				'style'      => array(),
+				'class'             => array(),
+				'id'                => array(),
+				'data-thumb'        => array(),
+				'style'             => array(),
+				'data-slide-number' => array(),
 			),
 			'img'    => array(
 				'src'       => array(),
 				'alt'       => array(),
 				'class'     => array(),
 				'draggable' => array(),
+				'width'     => array(),
+				'height'    => array(),
 			),
 			'a'      => array(
 				'href'  => array(),
