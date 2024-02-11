@@ -222,16 +222,19 @@ class FrontEnd {
 				'allowfullscreen' => array(),
 			),
 			'div'    => array(
-				'class'      => array(),
-				'id'         => array(),
-				'data-thumb' => array(),
-				'style'      => array(),
+				'class'             => array(),
+				'id'                => array(),
+				'data-thumb'        => array(),
+				'style'             => array(),
+				'data-slide-number' => array(),
 			),
 			'img'    => array(
 				'src'       => array(),
 				'alt'       => array(),
 				'class'     => array(),
 				'draggable' => array(),
+				'width'     => array(),
+				'height'    => array(),
 			),
 			'a'      => array(
 				'href'  => array(),
