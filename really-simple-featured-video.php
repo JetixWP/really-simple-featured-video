@@ -4,7 +4,7 @@
  * Plugin URI:  https://smalltowndev.com/really-simple-featured-video
  * Description: Upload featured videos for WordPress posts, pages & WooCommerce products.
  * Version:     0.8.2
- * Author:      Small Town Dev, Krishna Kant Chourasiya
+ * Author:      SmallTownDev.com
  * Author URI:  https://smalltowndev.com
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
