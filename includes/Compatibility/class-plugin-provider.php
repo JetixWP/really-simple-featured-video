@@ -7,7 +7,6 @@
 
 namespace RSFV\Compatibility;
 
-use RSFV\Compatibility\Plugins\Base_Compatibility;
 use RSFV\Options;
 
 /**
@@ -44,7 +43,7 @@ class Plugin_Provider {
 			array(
 				'woocommerce' => array(
 					'title'            => __( 'WooCommerce', 'rsfv' ),
-					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/WooCommerce/class-compatibility.php',
+					'file_source'      => self::COMPAT_DIR . 'WooCommerce/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\WooCommerce\Compatibility',
 					'has_class_loaded' => 'WooCommerce',
 				),
