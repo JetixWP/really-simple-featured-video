@@ -28,6 +28,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
+* **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Support for Core themes** - We support all the newer core themes such as TwentyTwenty Four to Classic themes.
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
@@ -37,6 +38,10 @@ You get a really simple settings page which has all the controls you need for ma
 
 This plugin came out of a real need with many plugins available out there yet none provides a good integration with WooCommerce.
 Really Simple Featured Video plugin provides a straightforward implementation for WooCommerce Product Featured Video, with which your set featured video loads directly into product thumbnails along with any other product images.
+
+== 👉️ Astra Pro WooCommerce Module Support ==
+
+RSFV now supports Astra Pro WooCommerce module with horizontal and vertical product gallery types, which in turn brings you more control and customizable features.
 
 == 👉️ How to use Shortcodes ==
 
