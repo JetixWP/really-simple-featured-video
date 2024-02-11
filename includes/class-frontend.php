@@ -73,14 +73,24 @@ class FrontEnd {
 
 		if ( ! empty( $post_types ) ) {
 			if ( in_array( $post->post_type, $post_types, true ) ) {
-				// Get the meta value of video attachment.
-				$video_id = get_post_meta( $post_id, RSFV_META_KEY, true );
-
 				// Get the meta value of video embed url.
-				$embed_url = get_post_meta( $post->ID, RSFV_EMBED_META_KEY, true );
+				$video_source = get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true );
+				$video_source = $video_source ? $video_source : 'self';
 
-				if ( $video_id || $embed_url ) {
-					return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+				if ( 'self' === $video_source ) {
+					// Get the meta value of video attachment.
+					$video_id = get_post_meta( $post->ID, RSFV_META_KEY, true );
+
+					if ( $video_id ) {
+						return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+					}
+				} else {
+					// Get the meta value of video embed url.
+					$embed_url = get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
+
+					if ( $embed_url ) {
+						return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+					}
 				}
 			}
 		}
