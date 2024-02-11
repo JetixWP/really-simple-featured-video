@@ -16,6 +16,9 @@ use RSFV\Options;
  * @package RSFV
  */
 class Plugin_Provider {
+	const COMPAT_DIR = RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/';
+	const COMPAT_URL = RSFV_PLUGIN_URL . 'includes/Compatibility/Plugins/';
+
 	/**
 	 * Class instance.
 	 *
@@ -44,6 +47,12 @@ class Plugin_Provider {
 					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/WooCommerce/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\WooCommerce\Compatibility',
 					'has_class_loaded' => 'WooCommerce',
+				),
+				'astra-addon' => array(
+					'title'            => __( 'Astra Pro', 'rsfv' ),
+					'file_source'      => self::COMPAT_DIR . 'AstraPro/class-compatibility.php',
+					'class'            => 'RSFV\Compatibility\Plugins\AstraPro\Compatibility',
+					'has_class_loaded' => 'Astra_Addon_Update',
 				),
 			)
 		);
