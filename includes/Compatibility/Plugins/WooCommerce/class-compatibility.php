@@ -136,6 +136,9 @@ class Compatibility extends Base_Compatibility {
 
 		$styles .= '.woocommerce-loop-product__title { margin-top: 20px; }';
 
+		$styles .= '.woocommerce.product.rsfv-has-video .woocommerce-product-gallery__wrapper .woocommerce-product-gallery__image + .woocommerce-product-gallery__image--placeholder
+					{ display: none; }';
+
 		return apply_filters( 'rsfv_woo_generated_dynamic_css', $styles );
 	}
 
