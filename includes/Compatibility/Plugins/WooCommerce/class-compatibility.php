@@ -150,6 +150,8 @@ class Compatibility extends Base_Compatibility {
 	 *
 	 * @param int    $id Product ID.
 	 * @param string $wrapper_class Wrapper markup classes.
+	 * @param string $wrapper_attributes Wrapper markup attributes.
+	 * @param bool   $thumbnail_only Whether only thumbnail should be returned.
 	 *
 	 * @return string
 	 */
