@@ -68,6 +68,30 @@ class FrontEnd {
 			return $html;
 		}
 
+		return self::get_featured_video_markup( $post->ID, $html );
+	}
+
+	/**
+	 * Get featured video markup.
+	 *
+	 * @param int    $post_id Post ID.
+	 * @param string $markup Holds markup data.
+	 *
+	 * @return string
+	 */
+	public static function get_featured_video_markup( $post_id, $markup = '' ) {
+
+		// Exit early if no post id is provided.
+		if ( ! $post_id ) {
+			return $markup;
+		}
+
+		$post = get_post( $post_id );
+
+		if ( 'object' !== gettype( $post ) ) {
+			return $markup;
+		}
+
 		// Get enabled post types.
 		$post_types = get_post_types();
 
@@ -94,7 +118,8 @@ class FrontEnd {
 				}
 			}
 		}
-		return $html;
+
+		return $markup;
 	}
 
 	/**
