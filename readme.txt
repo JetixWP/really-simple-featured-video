@@ -29,6 +29,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
+* **Salient Theme WPBakery Builder Support** - Support for Post Loop Builder element with Salient theme.
 * **Support for Core themes** - We support all the newer core themes such as TwentyTwenty Four to Classic themes.
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
@@ -41,7 +42,12 @@ Really Simple Featured Video plugin provides a straightforward implementation fo
 
 == 👉️ Astra Pro WooCommerce Module Support ==
 
-RSFV now supports Astra Pro WooCommerce module with horizontal and vertical product gallery types, which in turn brings you more control and customizable features.
+RSFV supports Astra Pro WooCommerce module with horizontal and vertical product gallery types, which in turn brings you more control and customizable features.
+
+== 👉️ Salient Theme WPBakery Builder Support ==
+
+RSFV supports Salient Theme WPBakery builder with its Post Loop Builder element, giving you more control and support for Custom post loops.
+
 
 == 👉️ How to use Shortcodes ==
 
@@ -65,14 +71,14 @@ If you wish to grab on the early bird deal which is available as a lifetime vers
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
-* ✅ **Priority Support** - Finally we will be able to additionally solve your issues at priority and faster response times.
+* ✅ **Priority Support** - Solving your problems are our priority with superfast response times.
 
 More features to come in the future, to name a few -
 
 * ✨ **Elementor support**
 * ✨ **Divi Support**
 * ✨ **Featured Video Blocks for Full Site Editing**
-* ✨ And more
+* ✨ And more in each update..
 
 <strong>Buy the premium version directly from the free plugin settings, just go to \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or mail us at [hello@smalltowndev.com](mailto:hello@smalltowndev.com)</strong>
 OR
@@ -83,11 +89,12 @@ OR
 
 1. Single post/page featured video on Twenty Twenty-Three theme.
 2. Featured video posts on Twenty Twenty-Three theme.
-3. Settings page view.
-4. Video playback controls view at Really Simple Featured Video settings.
-5. WooCommerce settings page view.
-6. Single Page view with Featured video on Twenty nineteen theme.
-7. Showing Featured video by post id shortcode via Block editor.
+3. WooCommerce Product page with self-hosted Featured Video.
+4. Settings page view.
+5. Video playback controls view at Really Simple Featured Video settings.
+6. WooCommerce settings page view.
+7. Single Page view with Featured video on Twenty nineteen theme.
+8. Showing Featured video by post id shortcode via Block editor.
 
 
 == Frequently Asked Questions ==
