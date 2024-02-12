@@ -2,20 +2,20 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.8.4\n"
+"Project-Id-Version: Really Simple Featured Video 0.8.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-11T14:23:31+00:00\n"
+"POT-Creation-Date: 2024-02-12T06:44:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: rsfv\n"
 
 #. Plugin Name of the plugin
-#: includes/Settings/class-register.php:57
+#: includes/Settings/class-register.php:59
 msgid "Really Simple Featured Video"
 msgstr ""
 
@@ -24,7 +24,7 @@ msgid "https://smalltowndev.com/really-simple-featured-video"
 msgstr ""
 
 #. Description of the plugin
-msgid "Upload featured videos for WordPress posts, pages & WooCommerce products."
+msgid "Adds support for Featured Video to WordPress posts, pages & WooCommerce products."
 msgstr ""
 
 #. Author of the plugin
@@ -92,6 +92,10 @@ msgstr ""
 msgid "Astra Pro"
 msgstr ""
 
+#: includes/Compatibility/class-plugin-provider.php:57
+msgid "Salient Core"
+msgstr ""
+
 #: includes/Compatibility/class-theme-provider.php:43
 msgid "Default"
 msgstr ""
@@ -157,7 +161,7 @@ msgstr ""
 msgid "Toggle"
 msgstr ""
 
-#: includes/Settings/class-register.php:56
+#: includes/Settings/class-register.php:58
 #: includes/Settings/Views/html-admin-settings.php:23
 msgid "Really Simple Featured Video Settings"
 msgstr ""
