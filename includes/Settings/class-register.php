@@ -30,6 +30,8 @@ class Register {
 		add_action( 'wp_loaded', array( $this, 'save_settings' ) );
 
 		add_action( 'init', array( $this, 'create_options' ) );
+
+		add_action( 'load-settings_page_rsfv-settings', array( $this, 'cleanup_plugin_settings_page' ) );
 	}
 
 	/**
@@ -131,6 +133,15 @@ class Register {
 				Admin_Settings::save();
 			}
 		}
+	}
+
+	/**
+	 * Remove all notices from settings page for a clean and minimal look.
+	 *
+	 * @return void
+	 */
+	public function cleanup_plugin_settings_page() {
+		remove_all_actions( 'admin_notices' );
 	}
 
 }
