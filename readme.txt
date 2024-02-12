@@ -3,7 +3,7 @@ Contributors: smalltowndev, lushkant
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.4.3
-Stable tag: 0.8.4
+Stable tag: 0.8.5
 Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo, woo, cpt
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -110,6 +110,13 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can directly send us a mail at [support@smalltowndev.com](mailto:support@smalltowndev.com) for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.8.5 =
+- New: Support for Salient Theme WPBakery Builder with Post Loop Builder element
+- New: Hide all plugin notices from Settings page
+- Fix: Hide WooCommerce product page placeholder thumbnail when with featured video only
+- Improvement: Default featured video markup getters
+- Improvement: Updated translation files
 
 = 0.8.4 =
 - New: Support for Astra Pro WooCommerce module with Vertical and Horizontal product galleries
