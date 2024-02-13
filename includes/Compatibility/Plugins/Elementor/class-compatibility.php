@@ -64,20 +64,20 @@ class Compatibility extends Base_Compatibility {
 			return $html;
 		}
 
-		// Check if the image markup is from somewhere else than post/archive widgets.
-		if ( $settings && ! isset( $settings['posts_post_type'] ) ) {
-			return $html;
+		// If the image markup is from posts/archive/featured image widgets.
+		if ( is_array( $settings ) && ( isset( $settings['posts_post_type'] ) || isset( $settings['archive_classic_thumbnail'] ) || isset( $settings['__dynamic__'] ) ) ) {
+			global $post;
+
+			// Check if the $post object is not defined.
+			if ( 'object' !== gettype( $post ) ) {
+				return $html;
+			}
+
+			$post_id = $post->ID;
+
+			return FrontEnd::get_featured_video_markup( $post_id, $html );
 		}
 
-		global $post;
-
-		// Check if the $post object is not defined.
-		if ( 'object' !== gettype( $post ) ) {
-			return $html;
-		}
-
-		$post_id = $post->ID;
-
-		return FrontEnd::get_featured_video_markup( $post_id, $html );
+		return $html;
 	}
 }
