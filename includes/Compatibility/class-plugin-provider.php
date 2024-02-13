@@ -59,6 +59,12 @@ class Plugin_Provider {
 					'class'            => 'RSFV\Compatibility\Plugins\SalientCore\Compatibility',
 					'has_class_loaded' => 'Salient_Core',
 				),
+				'elementor'    => array(
+					'title'            => __( 'Elementor', 'rsfv' ),
+					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Elementor/class-compatibility.php',
+					'class'            => 'RSFV\Compatibility\Plugins\Elementor\Compatibility',
+					'has_class_loaded' => 'Elementor\Plugin',
+				),
 			)
 		);
 
