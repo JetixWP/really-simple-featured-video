@@ -25,6 +25,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme Builder (WPBakery) Support** - Support for Post Loop Builder element within Salient theme.
+* **Elementor Pro Support** - Support for Posts/archive widgets with Elementor Pro builder.
 * **Support for Core themes** - We support all the newer core themes such as TwentyTwenty Four to Classic themes.
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
@@ -39,10 +40,13 @@ Really Simple Featured Video plugin provides a straightforward implementation fo
 
 RSFV supports Astra Pro WooCommerce module with horizontal and vertical product gallery types, which in turn brings you more control and customizable features.
 
-
 == 👉️ Salient Theme WPBakery Builder Support ==
 
-RSFV supports Salient Theme WPBakery builder with its Post Loop Builder element, giving you more control and support for Custom post loops.
+RSFV supports Salient Theme WPBakery builder with its Post Loop Builder element, giving you more control and support for Custom post loops. You can also display Featured Video on single pages via the shortcode - [rsfv].
+
+== 👉️ Elementor Pro Builder Support ==
+
+RSFV supports Elementor Pro builder with its Posts/archive widgets, you can use them to display Featured Videos for posts, pages and CPTs (with Featured Images). You can also display Featured Video on single pages via the shortcode - [rsfv]
 
 == 👉️ How to use Shortcodes ==
 
