@@ -3,7 +3,7 @@ Contributors: smalltowndev, lushkant
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.4.3
-Stable tag: 0.8.5
+Stable tag: 0.8.6
 Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo, woo, cpt
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -113,6 +113,12 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can directly send us a mail at [support@smalltowndev.com](mailto:support@smalltowndev.com) for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.8.6 =
+- New: Support for Elementor and Elementor Pro Posts/archive widgets
+- New: Override wp_kses_post allowed html array for videos
+- Fix: Shortcode output markup for spacing between attributes
+- Improvement: Updated translation files
 
 = 0.8.5 =
 - New: Support for Salient Theme WPBakery Builder with Post Loop Builder element

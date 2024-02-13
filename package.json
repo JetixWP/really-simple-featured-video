@@ -1,6 +1,6 @@
 {
   "name": "really-simple-featured-video",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.",
   "main": "index.js",
   "scripts": {
