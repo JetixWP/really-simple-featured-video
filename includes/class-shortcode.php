@@ -120,7 +120,7 @@ class Shortcode {
 					$has_controls = $has_controls ? 'controls' : '';
 
 					if ( $video_url ) {
-						return '<video class="rsfv-video" id="rsfv-video-' . esc_attr( $post_id ) . '" src="' . esc_url( $video_url ) . '" style="max-width:100%;display:block;"' . esc_attr( $has_controls ) . ' ' . esc_attr( $is_autoplay ) . ' ' . esc_attr( $is_loop ) . ' ' . esc_attr( $is_muted ) . ' ' . esc_attr( $is_pip ) . '></video>';
+						return '<video class="rsfv-video" id="rsfv-video-' . esc_attr( $post_id ) . '" src="' . esc_url( $video_url ) . '" style="max-width:100%;display:block;" ' . esc_attr( $has_controls ) . ' ' . esc_attr( $is_autoplay ) . ' ' . esc_attr( $is_loop ) . ' ' . esc_attr( $is_muted ) . ' ' . esc_attr( $is_pip ) . '></video>';
 					}
 				}
 
