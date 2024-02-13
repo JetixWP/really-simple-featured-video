@@ -48,6 +48,7 @@ class FrontEnd {
 	 */
 	public function get_posts_hooks() {
 		add_filter( 'post_thumbnail_html', array( $this, 'get_post_video' ), 10, 5 );
+		add_filter( 'wp_kses_allowed_html', array( $this, 'update_wp_kses_allowed_html' ), 10, 2 );
 	}
 
 	/**
@@ -343,5 +344,25 @@ class FrontEnd {
 		$css = '';
 
 		return apply_filters( 'rsfv_generated_dynamic_css', $css );
+	}
+
+	/**
+	 * Override wp_kses_post allowed html array to make way for videos.
+	 *
+	 * @param array  $allowed_html List of html tags.
+	 * @param string $context Key of current context.
+	 *
+	 * @return array
+	 */
+	public function update_wp_kses_allowed_html( $allowed_html, $context ) {
+
+		// Keep only for 'post' contenxt.
+		if ( 'post' === $context ) {
+			$additional_html = $this->get_allowed_html();
+
+			return array_merge( $allowed_html, $additional_html );
+		}
+
+		return $allowed_html;
 	}
 }
