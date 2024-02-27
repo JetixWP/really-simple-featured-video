@@ -37,13 +37,6 @@ abstract class Base_Compatibility {
 	protected static $instance;
 
 	/**
-	 * Settings instance.
-	 *
-	 * @var $settings
-	 */
-	protected $settings;
-
-	/**
 	 * Get instance.
 	 *
 	 * @param string $id Compat ID.
