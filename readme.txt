@@ -4,7 +4,7 @@ Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.4.3
 Stable tag: 0.9.0
-Tags: featured, video, featured video, woocommerce, product-video, video embed, youtube, dailymotion, vimeo, woo, cpt
+Tags: video, featured video, woocommerce, product-video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
