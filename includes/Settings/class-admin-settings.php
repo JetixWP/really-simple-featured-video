@@ -51,7 +51,7 @@ class Admin_Settings {
 
 			$settings = apply_filters( 'rsfv_get_settings_pages', $settings );
 
-            // To make sure Promotional tab shows up at the very last.
+			// To make sure Promotional tab shows up at the very last.
 			$settings[] = include 'Tabs/class-getpro.php';
 
 			self::$settings = $settings;
@@ -314,6 +314,21 @@ class Admin_Settings {
 						echo '</div>';
 					}
 					break;
+				case 'promo-content':
+					if ( ! empty( $value['class'] ) ) {
+						echo '<div class="' . esc_attr( $value['class'] ) . '">';
+					}
+					if ( ! empty( $value['title'] ) ) {
+						echo '<a href="' . esc_url( RSFV_PLUGIN_PRO_URL . '/?utm_source=plugin&utm_medium=referral&utm_campaign=settings' ) . '" target="_blank">';
+						echo '<h2 id="' . esc_attr( sanitize_title( $value['id'] ) ) . '-content-title"><span class="pro-tag">' . esc_html__( 'Pro', 'rsfv' ) . '</span>' . esc_html( $value['title'] ) . '</h2></a>';
+					}
+					if ( ! empty( $value['desc'] ) ) {
+						echo '<p id="' . esc_attr( sanitize_title( $value['id'] ) ) . '-content-desc">' . wp_kses_post( $value['desc'] ) . '</p>';
+					}
+					if ( ! empty( $value['class'] ) ) {
+						echo '</div>';
+					}
+					break;
 				// Standard text inputs and subtypes like 'number'.
 				case 'text':
 				case 'password':
@@ -430,6 +445,41 @@ class Admin_Settings {
 						</td>
 					</tr>
 					<?php
+					break;
+
+				// Pro Select boxes.
+				case 'promo-select':
+				case 'promo-multiselect':
+					$option_value = $value['value'];
+
+					?>
+				<tr valign="top" class="<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+					<?php if ( ! empty( $value['title'] ) ) { ?>
+					<th scope="row" class="titledesc">
+						<label for="<?php echo esc_attr( $value['id'] ); ?>"><a href="<?php echo esc_url( RSFV_PLUGIN_PRO_URL . '/?utm_source=plugin&utm_medium=referral&utm_campaign=settings' ); ?>" target="_blank"><span class="pro-tag">Pro</span><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></a></label>
+					</th>
+					<?php } ?>
+					<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+						<select
+							name="<?php echo esc_attr( $value['id'] ); ?><?php echo ( 'multiselect' === $value['type'] ) ? '[]' : ''; ?>"
+							id="<?php echo esc_attr( $value['id'] ); ?>"
+							style="<?php echo esc_attr( $value['css'] ); ?>"
+							class="<?php echo esc_attr( $value['class'] ); ?>"
+							<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
+							<?php echo 'multiselect' === $value['type'] ? 'multiple="multiple"' : ''; ?>
+							>
+							<?php
+							foreach ( $value['options'] as $key => $val ) {
+								?>
+								<option value="<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $val ); ?></option>
+											<?php
+							}
+							?>
+                                    </select> <?php echo $description; // phpcs:ignore   ?>
+									<a href="<?php echo esc_url( RSFV_PLUGIN_PRO_URL . '/?utm_source=plugin&utm_medium=referral&utm_campaign=settings' ); ?>" target="_blank"><?php echo esc_html__( 'Checkout Pro now', 'rsfv' ); ?></a>
+								</td>
+							</tr>
+								<?php
 					break;
 
 				// Radio inputs.

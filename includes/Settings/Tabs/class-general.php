@@ -69,66 +69,104 @@ class General extends Settings_Page {
 
 		$current_engine = Options::get_instance()->get( 'active-theme-engine' );
 
+		$settings = array(
+			array(
+				'title' => esc_html_x( 'Theme Compatibility Engine', 'settings title', 'rsfv' ),
+				'desc'  => __( 'If featured videos aren\'t working as expected in your theme, you may need to set this from the list of supported theme engines. (Default engine follows standard WordPress rules, and may not work for all themes)', 'rsfv' ),
+				'class' => 'rsfv-theme-compatibility-engine',
+				'type'  => 'content',
+				'id'    => 'rsfv-theme-compatibility',
+			),
+			array(
+				'type' => 'title',
+				'id'   => 'rsfv_theme_support_title',
+			),
+			array(
+				'title'   => __( 'Status', 'rsfv' ),
+				'desc'    => '',
+				'id'      => 'theme-engine-status',
+				'default' => __( 'Auto', 'rsfv' ),
+				'class'   => 'disabled' !== $current_engine ? 'engine-active' : 'engine-inactive',
+				'type'    => 'status',
+				'current' => $compatibility_engines[ $current_engine ] ?? $current_engine,
+			),
+			array(
+				'title'   => __( 'Set engine', 'rsfv' ),
+				'desc'    => '',
+				'id'      => 'theme-compatibility-engine',
+				'default' => 'auto',
+				'type'    => 'select',
+				'options' => $compatibility_engines,
+			),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'rsfv_theme_support_title',
+			),
+			array(
+				'title' => esc_html_x( 'Enable Post Types Support', 'settings title', 'rsfv' ),
+				'desc'  => __( 'Please select the post types you wish to enable featured video support at.', 'rsfv' ),
+				'class' => 'rsfv-enable-post-types',
+				'type'  => 'content',
+				'id'    => 'rsfv-enable-post-types',
+			),
+			array(
+				'type' => 'title',
+				'id'   => 'rsfv_post_types_title',
+			),
+			array(
+				'title'   => '',
+				'id'      => 'post_types',
+				'default' => array(
+					'post' => true,
+				),
+				'type'    => 'multi-checkbox',
+				'options' => $post_types,
+			),
+			array(
+				'type' => 'sectionend',
+				'id'   => 'rsfv_post_types_title',
+			),
+		);
+
+		if ( ! Plugin::get_instance()->has_pro_active() ) {
+			$settings = array_merge(
+				$settings,
+				array(
+					array(
+						'title' => esc_html_x( 'Global Aspect Ratio', 'settings title', 'rsfv' ),
+						'desc'  => __( 'Set aspect ratio for featured videos shown sitewide.', 'rsfv' ),
+						'class' => 'promo-aspect-ratios',
+						'type'  => 'promo-content',
+						'id'    => 'promo-aspect-ratios',
+					),
+					array(
+						'type' => 'title',
+						'id'   => 'rsfv_pro_aspect_ratio_title',
+					),
+					array(
+						'title'   => __( 'Video Aspect Ratio', 'rsfv' ),
+						'desc'    => __( 'Available in the Pro version.', 'rsfv' ),
+						'id'      => 'promo-global-aspect-ratio',
+						'default' => 'sixteen-nine',
+						'type'    => 'promo-select',
+						'options' => array(
+							'sixteen-nine' => '16:9 (Default)',
+							'one-one'      => '1:1',
+							'three-two'    => '3:2',
+							'four-three'   => '4:3',
+						),
+					),
+					array(
+						'type' => 'sectionend',
+						'id'   => 'rsfv_pro_aspect_ratio_title',
+					),
+				)
+			);
+		}
+
 		$settings = apply_filters(
 			'rsfv_general_settings',
-			array(
-				array(
-					'title' => esc_html_x( 'Theme Compatibility Engine', 'settings title', 'rsfv' ),
-					'desc'  => __( 'If featured videos aren\'t working as expected in your theme, you may need to set this from the list of supported theme engines. (Default engine follows standard WordPress rules, and may not work for all themes)', 'rsfv' ),
-					'class' => 'rsfv-theme-compatibility-engine',
-					'type'  => 'content',
-					'id'    => 'rsfv-theme-compatibility',
-				),
-				array(
-					'type' => 'title',
-					'id'   => 'rsfv_theme_support_title',
-				),
-				array(
-					'title'   => __( 'Status', 'rsfv' ),
-					'desc'    => '',
-					'id'      => 'theme-engine-status',
-					'default' => __( 'Auto', 'rsfv' ),
-					'class'   => 'disabled' !== $current_engine ? 'engine-active' : 'engine-inactive',
-					'type'    => 'status',
-					'current' => $compatibility_engines[ $current_engine ] ?? $current_engine,
-				),
-				array(
-					'title'   => __( 'Set engine', 'rsfv' ),
-					'desc'    => '',
-					'id'      => 'theme-compatibility-engine',
-					'default' => 'auto',
-					'type'    => 'select',
-					'options' => $compatibility_engines,
-				),
-				array(
-					'type' => 'sectionend',
-					'id'   => 'rsfv_theme_support_title',
-				),
-				array(
-					'title' => esc_html_x( 'Enable Post Types Support', 'settings title', 'rsfv' ),
-					'desc'  => __( 'Please select the post types you wish to enable featured video support at.', 'rsfv' ),
-					'class' => 'rsfv-enable-post-types',
-					'type'  => 'content',
-					'id'    => 'rsfv-enable-post-types',
-				),
-				array(
-					'type' => 'title',
-					'id'   => 'rsfv_post_types_title',
-				),
-				array(
-					'title'   => '',
-					'id'      => 'post_types',
-					'default' => array(
-						'post' => true,
-					),
-					'type'    => 'multi-checkbox',
-					'options' => $post_types,
-				),
-				array(
-					'type' => 'sectionend',
-					'id'   => 'rsfv_post_types_title',
-				),
-			)
+			$settings
 		);
 
 		return apply_filters( 'rsfv_get_settings_' . $this->id, $settings );

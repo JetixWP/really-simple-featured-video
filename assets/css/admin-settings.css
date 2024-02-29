@@ -250,6 +250,31 @@
 	margin-right: 4px;
 }
 
+.rsfv .form-table + div[class*="promo-"] {
+	margin-top: 30px;
+}
+
+.rsfv tr[class*="promo-"] label > a,
+.rsfv div[class*="promo-"] > a {
+	text-decoration: none;
+	color: currentColor;
+}
+
+.rsfv tr[class*="promo-"] .pro-tag,
+.rsfv div[class*="promo-"] .pro-tag{
+	padding: 4px 6px;
+	display: inline-block;
+	background: #000;
+	color: #fff;
+	font-size: 14px;
+	border-radius: 4px;
+	margin-right: 8px;
+}
+
+.rsfv td[class*=" forminp-promo-"] select {
+	opacity: 0.7;
+}
+
 .rsfv.getpro .tab-content .rsfv-button {
 	display: inline-block;
 	margin-top: 10px;

@@ -21,6 +21,7 @@ define( 'RSFV_PLUGIN_FILE', __FILE__ );
 define( 'RSFV_PLUGIN_URL', plugin_dir_url( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_DIR', plugin_dir_path( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_BASE', plugin_basename( RSFV_PLUGIN_FILE ) );
+define( 'RSFV_PLUGIN_PRO_URL', 'https://smalltowndev.com/really-simple-featured-video' );
 
 if ( ! function_exists( 'rsfv_fs' ) ) {
 	/**
