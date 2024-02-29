@@ -55,7 +55,7 @@ if ( ! $tab_exists ) {
 			<?php if ( ! class_exists( '\RSFV_Pro\Plugin' ) ) : ?>
 			<div class="upgrade-box">
 				<div>
-					<h3>🚀 &nbsp;Grab the Pro version with our Early Bird Lifetime Deal</h3>
+					<h3>🚀 &nbsp;Grab the Pro version with our Early Bird Lifetime Deals</h3>
 					<p class="desc">We recently released RSFV Pro plugin to support additional features, where we can continue to keep them maintained and updated.</p>
 				</div>
 				<div>
@@ -70,7 +70,6 @@ if ( ! $tab_exists ) {
 				<div>
 					<p class="desc">More features to come in the future, to name a few -</p>
 					<ul>
-						<li>🏗️ Elementor support</li>
 						<li>🏗️ Divi Support</li>
 						<li>🏗️ Featured Video Blocks for Full Site Editing </li>
 						<li>🏗️ And more Woo customizations</li>
@@ -82,8 +81,8 @@ if ( ! $tab_exists ) {
 				</div>
 
 				<div>
-					<p><em>Lifetime deal is available for first few customers only, thank you for supporting our launch, you are not just any supporters but truly the founders of our small business.</em></p>
-					<p><strong>Krishna</strong>, Creator of Really Simple Featured Video</p>
+					<p><em>Lifetime deals are available for early supporters, thank you for supporting our launch, you are not just any supporter but truly the founders of our small business.</em></p>
+					<p><strong>Krishna</strong>, Founder and Lead Developer</p>
 
 					<p><strong>Have questions?</strong> Please mail us at <a href="mailto:support@smalltowndev.com">support@smalltowndev.com</a>, and we will get back to you at the earliest :)</p>
 

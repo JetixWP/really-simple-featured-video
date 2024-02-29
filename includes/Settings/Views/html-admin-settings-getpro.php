@@ -20,7 +20,7 @@ namespace RSFV\Settings\views;
 		<li><?php esc_html_e( 'Requests for Theme Compatibility', 'rsfv' ); ?></li>
 	</ul>
 	<p><?php esc_html_e( '.. and more coming soon.', 'rsfv' ); ?></p>
-	<h1 class="offer-highlight">Grab it with the early bird deal with a lifetime version for just <strong>$69.99 (For first few customers)</strong>.</h1>
-	<p>p.s. You can buy it directly from the dashboard here, by visiting the <a href="<?php echo esc_url( get_admin_url() . 'options-general.php?page=rsfv-settings-addons' ); ?>">addons page</a>.</p>
+	<h1 class="offer-highlight">Grab the Pro plugin with the early bird lifetime deals starting at just <strong>$39.99</strong>.</h1>
+	<p>p.s. You can also buy it directly from the dashboard here, by visiting the <a href="<?php echo esc_url( get_admin_url() . 'options-general.php?page=rsfv-settings-addons' ); ?>">addons page</a>.</p>
 	<a href="https://smalltowndev.com/really-simple-featured-video?utm_campaign=settings-protab&utm_source=rsfv-plugin" target="_blank" class="rsfv-button button-primary"><?php esc_html_e( 'Explore RSFV Pro', 'rsfv' ); ?></a>
 </div>

@@ -1,54 +1,61 @@
 <?php
 /**
- * WooCommerce integration settings.
+ * WooCommerce Settings
  *
  * @package RSFV
  */
 
 namespace RSFV\Compatibility\Plugins\WooCommerce;
 
-defined( 'ABSPATH' ) || exit;
+use RSFV\Settings\Settings_Page;
+use RSFV\Settings\Admin_Settings;
 
-if ( ! class_exists( '\RSFV\Settings\Admin_Settings' ) && ! class_exists( '\RSFV\Settings\Integrations' ) ) {
+if ( ! class_exists( '\RSFV\Settings\Admin_Settings' ) ) {
 	return;
 }
 
+defined( 'ABSPATH' ) || exit;
+
 /**
- * WooCommerce Subtab Settings.
+ * Integrations controls.
  */
-class Settings {
+class Settings extends Settings_Page {
 
 	/**
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_filter( 'rsfv_get_sections_integrations', array( $this, 'update_sections' ) );
-		add_filter( 'rsfv_get_settings_integrations', array( $this, 'get_settings' ) );
+		$this->id    = 'woocommerce';
+		$this->label = __( 'WooCommerce', 'rsfv' );
+
+		parent::__construct();
 	}
 
 	/**
-	 * Update sections array.
+	 * Get sections.
 	 *
-	 * @param array $sections Sections array data.
 	 * @return array
 	 */
-	public function update_sections( $sections ) {
-		$sections['woocommerce'] = __( 'WooCommerce', 'rsfv' );
-		return $sections;
+	public function get_sections() {
+		return apply_filters( 'rsfv_get_sections_' . $this->id, array() );
 	}
 
 	/**
 	 * Get settings array.
 	 *
-	 * @param array $settings Settings.
+	 * @param string $current_section Current section ID.
+	 *
 	 * @return array
 	 */
-	public function get_settings( $settings = array() ) {
+	public function get_settings( $current_section = '' ) {
 		global $current_section;
 
-		if ( 'woocommerce' === $current_section ) {
+		$settings = array();
+
+		if ( '' === $current_section ) {
+
 			$settings = apply_filters(
-				'rsfv_get_integration_woocommerce_settings',
+				'rsfv_' . $this->id . '_settings',
 				array(
 					array(
 						'type' => 'title',
@@ -68,6 +75,23 @@ class Settings {
 				)
 			);
 		}
-		return $settings;
+
+		return apply_filters( 'rsfv_get_settings_' . $this->id, $settings );
+	}
+
+	/**
+	 * Save settings.
+	 */
+	public function save() {
+		global $current_section;
+
+		$settings = $this->get_settings( $current_section );
+
+		Admin_Settings::save_fields( $settings );
+		if ( $current_section ) {
+			do_action( 'rsfv_update_options_' . $this->id . '_' . $current_section );
+		}
 	}
 }
+
+return new Settings();

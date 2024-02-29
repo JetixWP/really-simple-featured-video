@@ -43,21 +43,22 @@ class Compatibility extends Base_Compatibility {
 	 */
 	public function __construct( $id, $title ) {
 		parent::__construct( $id, $title );
-		$this->includes();
-
-		$this->counter  = 0;
-		$this->settings = new Settings();
+		$this->counter = 0;
 		$this->setup();
 	}
 
 	/**
-	 * Include required files.
+	 * Register Settings.
 	 *
-	 * @return void
+	 * @param array $settings Active settings file array.
+	 *
+	 * @return array
 	 */
-	public function includes() {
+	public function register_settings( $settings ) {
 		// Settings.
-		require_once $this->get_current_dir() . 'WooCommerce/class-settings.php';
+		$settings[] = include 'class-settings.php';
+
+		return $settings;
 	}
 
 	/**
@@ -67,6 +68,8 @@ class Compatibility extends Base_Compatibility {
 	 */
 	public function setup() {
 		$options = Options::get_instance();
+
+		add_filter( 'rsfv_get_settings_pages', array( $this, 'register_settings' ) );
 
 		// Include post type.
 		add_filter( 'rsfv_post_types_support', array( $this, 'update_post_types' ) );
