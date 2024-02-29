@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.8.6\n"
+"Project-Id-Version: Really Simple Featured Video 0.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-13T17:54:41+00:00\n"
+"POT-Creation-Date: 2024-02-29T06:07:32+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: rsfv\n"
@@ -84,7 +84,7 @@ msgid "Please add a post id!"
 msgstr ""
 
 #: includes/Compatibility/class-plugin-provider.php:45
-#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:36
+#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:29
 msgid "WooCommerce"
 msgstr ""
 
@@ -140,28 +140,28 @@ msgstr ""
 msgid "Auto (Do it for me)"
 msgstr ""
 
-#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:102
+#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:105
 msgid "Products"
 msgstr ""
 
-#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:58
+#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:65
 msgid "Show videos at Product archives"
 msgstr ""
 
-#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:59
+#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:66
 msgid "When toggled on, it shows set videos at product archives such as Shop and Product category etc."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:73
+#: includes/Settings/class-admin-settings.php:76
 msgid "Your settings have been saved."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:130
+#: includes/Settings/class-admin-settings.php:133
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:487
-#: includes/Settings/class-admin-settings.php:552
+#: includes/Settings/class-admin-settings.php:490
+#: includes/Settings/class-admin-settings.php:555
 msgid "Toggle"
 msgstr ""
 
@@ -249,10 +249,6 @@ msgstr ""
 
 #: includes/Settings/Tabs/class-getpro.php:26
 msgid "Get Pro"
-msgstr ""
-
-#: includes/Settings/Tabs/class-integrations.php:22
-msgid "Integrations"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-getpro.php:14

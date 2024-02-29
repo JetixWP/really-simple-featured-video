@@ -116,6 +116,7 @@ And if you're a Pro user, you can directly send us a mail at [support@smalltownd
 
 = 0.9.0 =
 - New: WooCommerce settings now migrated to its own tab
+- Improvement: Updated translation files
 - Improvement: Other minor changes
 
 = 0.8.6 =
