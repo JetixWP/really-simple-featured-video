@@ -47,6 +47,7 @@ class Admin_Settings {
 			include_once dirname( __FILE__ ) . '/class-settings-page.php';
 
 			$settings[] = include 'Tabs/class-general.php';
+			$settings[] = include 'Tabs/class-global-settings.php';
 			$settings[] = include 'Tabs/class-controls.php';
 
 			$settings = apply_filters( 'rsfv_get_settings_pages', $settings );

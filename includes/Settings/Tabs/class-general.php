@@ -128,42 +128,6 @@ class General extends Settings_Page {
 			),
 		);
 
-		if ( ! Plugin::get_instance()->has_pro_active() ) {
-			$settings = array_merge(
-				$settings,
-				array(
-					array(
-						'title' => esc_html_x( 'Global Aspect Ratio', 'settings title', 'rsfv' ),
-						'desc'  => __( 'Set aspect ratio for featured videos shown sitewide.', 'rsfv' ),
-						'class' => 'promo-aspect-ratios',
-						'type'  => 'promo-content',
-						'id'    => 'promo-aspect-ratios',
-					),
-					array(
-						'type' => 'title',
-						'id'   => 'rsfv_pro_aspect_ratio_title',
-					),
-					array(
-						'title'   => __( 'Video Aspect Ratio', 'rsfv' ),
-						'desc'    => __( 'Available in the Pro version.', 'rsfv' ),
-						'id'      => 'promo-global-aspect-ratio',
-						'default' => 'sixteen-nine',
-						'type'    => 'promo-select',
-						'options' => array(
-							'sixteen-nine' => '16:9 (Default)',
-							'one-one'      => '1:1',
-							'three-two'    => '3:2',
-							'four-three'   => '4:3',
-						),
-					),
-					array(
-						'type' => 'sectionend',
-						'id'   => 'rsfv_pro_aspect_ratio_title',
-					),
-				)
-			);
-		}
-
 		$settings = apply_filters(
 			'rsfv_general_settings',
 			$settings
