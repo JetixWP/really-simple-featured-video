@@ -280,11 +280,6 @@ class Compatibility extends Base_Compatibility {
 	 * @return void
 	 */
 	public function get_woo_archives_video( $post_id = '' ) {
-		// Exit early if no post id is provided.
-		if ( empty( $post_id ) ) {
-			return;
-		}
-
 		$video_markup = $this->woo_get_video( '', 0, true );
 
 		if ( $video_markup ) {
