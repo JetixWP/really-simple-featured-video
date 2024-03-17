@@ -37,12 +37,12 @@ class Compatibility extends Base_Compatibility {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param string $id Compat ID.
-	 * @param string $title Compat title.
 	 */
-	public function __construct( $id, $title ) {
-		parent::__construct( $id, $title );
+	public function __construct() {
+		parent::__construct();
+
+		$this->id = 'woocommerce';
+
 		$this->counter = 0;
 		$this->setup();
 	}
@@ -267,7 +267,7 @@ class Compatibility extends Base_Compatibility {
 			}
 
 			if ( in_array( $post_type, $post_types, true ) && ! $is_archives ) {
-				$this->counter++;
+				++$this->counter;
 			}
 		}
 		return $html;
@@ -279,7 +279,12 @@ class Compatibility extends Base_Compatibility {
 	 * @param int $post_id Product ID.
 	 * @return void
 	 */
-	public function get_woo_archives_video( $post_id ) {
+	public function get_woo_archives_video( $post_id = '' ) {
+		// Exit early if no post id is provided.
+		if ( empty( $post_id ) ) {
+			return;
+		}
+
 		$video_markup = $this->woo_get_video( '', 0, true );
 
 		if ( $video_markup ) {

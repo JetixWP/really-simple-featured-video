@@ -20,14 +20,7 @@ abstract class Base_Compatibility {
 	 *
 	 * @var string $id
 	 */
-	protected $id;
-
-	/**
-	 * Compatibility title.
-	 *
-	 * @var string $title
-	 */
-	protected $title;
+	public $id = '';
 
 	/**
 	 * Class instance.
@@ -39,14 +32,11 @@ abstract class Base_Compatibility {
 	/**
 	 * Get instance.
 	 *
-	 * @param string $id Compat ID.
-	 * @param string $title Compat title.
-	 *
 	 * @return mixed
 	 */
-	final public static function get_instance( $id, $title ) {
+	final public static function get_instance() {
 		if ( null === static::$instance ) {
-			static::$instance = new static( $id, $title );
+			static::$instance = new static();
 		}
 		return static::$instance;
 	}
@@ -60,13 +50,8 @@ abstract class Base_Compatibility {
 
 	/**
 	 * Constructor
-	 *
-	 * @param string $id Compat ID.
-	 * @param string $title Compat title.
 	 */
-	public function __construct( $id, $title ) {
-		$this->id    = $id;
-		$this->title = $title;
+	public function __construct() {
 	}
 
 	/**
