@@ -38,7 +38,7 @@ class Global_Settings extends Settings_Page {
 		$settings = array(
 			array(
 				'title' => esc_html_x( 'Blogs & Archives', 'settings title', 'rsfv' ),
-				'desc'  => __( '', 'rsfv' ),
+				'desc'  => '',
 				'class' => 'rsfv-blog-archives-title',
 				'type'  => 'content',
 				'id'    => 'rsfv-blog-archives-title',

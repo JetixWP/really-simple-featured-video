@@ -32,7 +32,7 @@ if ( ! function_exists( 'rsfv_fs' ) ) {
 
 		if ( ! isset( $rsfv_fs ) ) {
 			// Include Freemius SDK.
-			require_once dirname( __FILE__ ) . '/freemius/start.php';
+			require_once __DIR__ . '/freemius/start.php';
 
 			$rsfv_fs = fs_dynamic_init(
 				array(
@@ -68,7 +68,7 @@ if ( ! function_exists( 'rsfv_fs' ) ) {
  */
 add_action(
 	'plugins_loaded',
-	static function() {
+	static function () {
 
 		require_once RSFV_PLUGIN_DIR . 'includes/class-plugin.php';
 
