@@ -2,8 +2,8 @@
 Contributors: smalltowndev, lushkant
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 6.4.3
-Stable tag: 0.9.0
+Tested up to: 6.5.2
+Stable tag: 0.10.0
 Tags: video, featured video, woocommerce, product-video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
