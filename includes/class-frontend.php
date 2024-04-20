@@ -284,54 +284,57 @@ class FrontEnd {
 	 * @return array List of elements.
 	 */
 	public function get_allowed_html() {
-		return array(
-			'video'  => array(
-				'id'                   => array(),
-				'class'                => array(),
-				'src'                  => array(),
-				'style'                => array(),
-				'loop'                 => array(),
-				'muted'                => array(),
-				'controls'             => array(),
-				'autopictureinpicture' => array(),
-				'autoplay'             => array(),
-				'playsinline'          => array(),
-			),
-			'iframe' => array(
-				'id'              => array(),
-				'class'           => array(),
-				'src'             => array(),
-				'width'           => array(),
-				'style'           => array(),
-				'height'          => array(),
-				'frameborder'     => array(),
-				'allowfullscreen' => array(),
-			),
-			'div'    => array(
-				'class'             => array(),
-				'id'                => array(),
-				'data-thumb'        => array(),
-				'style'             => array(),
-				'data-slide-number' => array(),
-			),
-			'img'    => array(
-				'src'       => array(),
-				'alt'       => array(),
-				'class'     => array(),
-				'draggable' => array(),
-				'width'     => array(),
-				'height'    => array(),
-			),
-			'a'      => array(
-				'href'  => array(),
-				'class' => array(),
-				'style' => array(),
-			),
-			'p'      => array(),
-			'span'   => array(),
-			'br'     => array(),
-			'i'      => array(),
-			'strong' => array(),
+		return apply_filters(
+			'rsfv_allowed_html',
+			array(
+				'video'  => array(
+					'id'                   => array(),
+					'class'                => array(),
+					'src'                  => array(),
+					'style'                => array(),
+					'loop'                 => array(),
+					'muted'                => array(),
+					'controls'             => array(),
+					'autopictureinpicture' => array(),
+					'autoplay'             => array(),
+					'playsinline'          => array(),
+				),
+				'iframe' => array(
+					'id'              => array(),
+					'class'           => array(),
+					'src'             => array(),
+					'width'           => array(),
+					'style'           => array(),
+					'height'          => array(),
+					'frameborder'     => array(),
+					'allowfullscreen' => array(),
+				),
+				'div'    => array(
+					'class'             => array(),
+					'id'                => array(),
+					'data-thumb'        => array(),
+					'style'             => array(),
+					'data-slide-number' => array(),
+				),
+				'img'    => array(
+					'src'       => array(),
+					'alt'       => array(),
+					'class'     => array(),
+					'draggable' => array(),
+					'width'     => array(),
+					'height'    => array(),
+				),
+				'a'      => array(
+					'href'  => array(),
+					'class' => array(),
+					'style' => array(),
+				),
+				'p'      => array(),
+				'span'   => array(),
+				'br'     => array(),
+				'i'      => array(),
+				'strong' => array(),
+			)
 		);
 	}
 

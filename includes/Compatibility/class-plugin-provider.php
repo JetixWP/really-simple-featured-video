@@ -100,9 +100,8 @@ class Plugin_Provider {
 			}
 
 			require_once $plugin_data['file_source'];
-			$plugin_compat = $plugin_data['class']::get_instance( $plugin_engine, $plugin_data['title'] );
+			$plugin_compat = $plugin_data['class']::get_instance();
 		}
-
 	}
 
 	/**
@@ -112,6 +111,7 @@ class Plugin_Provider {
 	 */
 	public function get_available_engines() {
 		$registered_engines = array();
+
 		foreach ( $this->plugin_engines as $engine_id => $engine_data ) {
 			$registered_engines[ $engine_id ] = $engine_data['title'];
 		}

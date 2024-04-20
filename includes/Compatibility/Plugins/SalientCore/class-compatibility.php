@@ -27,12 +27,11 @@ class Compatibility extends Base_Compatibility {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param string $id Compat ID.
-	 * @param string $title Compat title.
 	 */
-	public function __construct( $id, $title ) {
-		parent::__construct( $id, $title );
+	public function __construct() {
+		parent::__construct();
+
+		$this->id = 'salient-core';
 
 		$this->setup();
 	}

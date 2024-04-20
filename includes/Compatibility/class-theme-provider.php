@@ -24,19 +24,31 @@ class Theme_Provider {
 	protected static $instance;
 
 	/**
-	 * Theme engines.
-	 *
-	 * @var array $theme_engines
-	 */
-	private $theme_engines;
-
-	/**
 	 * Constructor.
 	 */
 	public function __construct() {
+		add_action( 'after_setup_theme', array( $this, 'load_theme_compat' ) );
+	}
 
-		// Register theme engines.
-		$this->theme_engines = apply_filters(
+	/**
+	 * Get a class instance.
+	 *
+	 * @return Object
+	 */
+	public static function get_instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
+	}
+
+	/**
+	 * Get theme engines.
+	 *
+	 * @return array
+	 */
+	public function get_theme_engines() {
+		return apply_filters(
 			'rsfv_theme_compatibility_engines',
 			array(
 				'default'           => array(
@@ -71,22 +83,7 @@ class Theme_Provider {
 				),
 			)
 		);
-
-		add_action( 'after_setup_theme', array( $this, 'load_theme_compat' ) );
 	}
-
-	/**
-	 * Get a class instance.
-	 *
-	 * @return Object
-	 */
-	public static function get_instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 
 	/**
 	 * Load theme compatibility.
@@ -112,12 +109,14 @@ class Theme_Provider {
 
 		$theme_compat = null;
 
-		if ( ! in_array( $theme_slug, array_keys( $this->theme_engines ), true ) ) {
+		$theme_engines = $this->get_theme_engines();
+
+		if ( ! in_array( $theme_slug, array_keys( $theme_engines ), true ) ) {
 			$theme_slug = 'default';
 		}
 
-		require_once $this->theme_engines[ $theme_slug ]['file_source'];
-		$theme_compat = $this->theme_engines[ $theme_slug ]['class']::get_instance( $theme_slug, $this->theme_engines[ $theme_slug ]['title'] );
+		require_once $theme_engines[ $theme_slug ]['file_source'];
+		$theme_compat = $theme_engines[ $theme_slug ]['class']::get_instance();
 
 		if ( ! $theme_compat instanceof Base_Compatibility ) {
 			$options->set( 'theme-engine-error', __( 'Failed at registration', 'rsfv' ) );
@@ -141,7 +140,9 @@ class Theme_Provider {
 	 */
 	public function get_available_engines() {
 		$registered_engines = array();
-		foreach ( $this->theme_engines as $engine_id => $engine_data ) {
+		$theme_engines      = $this->get_theme_engines();
+
+		foreach ( $theme_engines as $engine_id => $engine_data ) {
 			$registered_engines[ $engine_id ] = $engine_data['title'];
 		}
 
@@ -159,7 +160,9 @@ class Theme_Provider {
 			'auto'     => __( 'Auto (Do it for me)', 'rsfv' ),
 		);
 
-		foreach ( $this->theme_engines as $engine_id => $engine_data ) {
+		$theme_engines = $this->get_theme_engines();
+
+		foreach ( $theme_engines as $engine_id => $engine_data ) {
 			$selectable_engines[ $engine_id ] = $engine_data['title'];
 		}
 

@@ -9,7 +9,7 @@ namespace RSFV\Compatibility\Plugins\AstraPro;
 
 defined( 'ABSPATH' ) || exit;
 
-use \ASTRA_Ext_WooCommerce_Markup;
+use ASTRA_Ext_WooCommerce_Markup;
 use RSFV\Compatibility\Plugins\Base_Compatibility;
 
 /**
@@ -27,12 +27,11 @@ class Compatibility extends Base_Compatibility {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param string $id Compat ID.
-	 * @param string $title Compat title.
 	 */
-	public function __construct( $id, $title ) {
-		parent::__construct( $id, $title );
+	public function __construct() {
+		parent::__construct();
+
+		$this->id = 'astra-addon';
 
 		$this->setup();
 	}
@@ -69,7 +68,7 @@ class Compatibility extends Base_Compatibility {
 
 				add_filter(
 					'woocommerce_gallery_thumbnail_size',
-					function( $size ) {
+					function ( $size ) {
 						return 'thumbnail';
 					}
 				);
@@ -84,7 +83,7 @@ class Compatibility extends Base_Compatibility {
 
 				add_filter(
 					'woocommerce_gallery_thumbnail_size',
-					function( $size ) {
+					function ( $size ) {
 						return 'medium';
 					}
 				);
