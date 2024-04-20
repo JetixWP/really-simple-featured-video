@@ -123,6 +123,7 @@ And if you're a Pro user, you can directly send us a mail at [support@smalltownd
 - Improvement: Other minor changes
 - Improvement: Compatibility with WordPress v6.5.x
 - Improvement: Update Freemius SDK to v2.7.0
+- Improvement: Updated translation files
 
 = 0.9.0 =
 - New: WooCommerce settings now migrated to its own tab
