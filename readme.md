@@ -7,7 +7,7 @@
 Really Simple Featured Video
 ===
 
-[🚀 [Pro] Early Bird Lifetime Deal is LIVE](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+[🚀 [Pro] Few Spots left for Lifetime Deals](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
@@ -74,7 +74,7 @@ If you wish to grab on the early bird deal which is available as a lifetime vers
 
 More features to come in the future, to name a few -
 
-* ✨ **Elementor support**
+* ✨ **Bricks Support**
 * ✨ **Divi Support**
 * ✨ **Featured Video Blocks for Full Site Editing**
 * ✨ And more
