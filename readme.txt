@@ -74,6 +74,7 @@ If you wish to grab on the early bird deal which is available as a lifetime vers
 
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT
+* ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
 * ✅ **Priority Support** - Solving your problems are our priority with superfast response times.
 
