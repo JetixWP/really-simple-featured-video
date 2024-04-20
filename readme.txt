@@ -12,7 +12,7 @@ Really Simple Featured Video enables featured video support for WordPress posts,
 
 == Description ==
 
-[🚀 [Pro] Early Bird Lifetime Deal is LIVE](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+[🚀 [Pro] Few Spots left for Lifetime Deals](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
@@ -79,6 +79,7 @@ If you wish to grab on the early bird deal which is available as a lifetime vers
 
 More features to come in the future, to name a few -
 
+* ✨ **Bricks Support**
 * ✨ **Divi Support**
 * ✨ **Featured Video Blocks for Full Site Editing**
 * ✨ And more in each update..
@@ -113,6 +114,14 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can directly send us a mail at [support@smalltowndev.com](mailto:support@smalltowndev.com) for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.10.0 =
+- New: Global settings tab for options that apply sitewide
+- New: Add `rsfv_allowed_html` filter at allowed html array for easy mods
+- Improvement: Restructure plugin and theme providers
+- Improvement: Other minor changes
+- Improvement: Compatibility with WordPress v6.5.x
+- Improvement: Update Freemius SDK to v2.7.0
 
 = 0.9.0 =
 - New: WooCommerce settings now migrated to its own tab
