@@ -2,8 +2,8 @@
 Contributors: smalltowndev, lushkant
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 6.5.2
-Stable tag: 0.10.0
+Tested up to: 6.5.3
+Stable tag: 0.11.0
 Tags: video, featured video, woocommerce, product-video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -115,6 +115,12 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can directly send us a mail at [support@smalltowndev.com](mailto:support@smalltowndev.com) for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.11.0 =
+- Fix: Elementor template header logo getting replaced in some cases
+- Improvement: Other minor changes
+- Improvement: Update Freemius SDK to v2.7.2
+- Improvement: Updated translation files
 
 = 0.10.0 =
 - New: Global settings tab for options that apply sitewide
