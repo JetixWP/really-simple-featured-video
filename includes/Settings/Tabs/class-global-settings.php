@@ -82,10 +82,11 @@ class Global_Settings extends Settings_Page {
 						'default' => 'sixteen-nine',
 						'type'    => 'promo-select',
 						'options' => array(
-							'sixteen-nine' => '16:9 (Default)',
-							'one-one'      => '1:1',
-							'three-two'    => '3:2',
-							'four-three'   => '4:3',
+							'custom'       => __( 'Custom', 'rsfv' ),
+							'sixteen-nine' => '16/9 (Default)',
+							'one-one'      => '1/1',
+							'three-two'    => '3/2',
+							'four-three'   => '4/3',
 						),
 					),
 					array(
