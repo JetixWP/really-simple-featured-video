@@ -359,7 +359,7 @@ class Admin_Settings {
 								class="<?php echo esc_attr( $value['class'] ); ?>"
 								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
 								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
-								/><?php echo esc_html( $value['suffix'] ); ?> <?php echo esc_html( $description ); ?>
+								/><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // phpcs:ignore. ?>
 						</td>
 					</tr>
 					<?php
