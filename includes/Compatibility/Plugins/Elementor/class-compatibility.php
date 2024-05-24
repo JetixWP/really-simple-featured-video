@@ -63,6 +63,14 @@ class Compatibility extends Base_Compatibility {
 			return $html;
 		}
 
+		// Exit if the image contains site-logo.
+		if ( isset( $settings['__dynamic__'] ) ) {
+			$image = $settings['__dynamic__']['image'] ?? '';
+			if ( str_contains( $image, 'site-logo' ) ) {
+				return $html;
+			}
+		}
+
 		// If the image markup is from posts/archive/featured image widgets.
 		if ( is_array( $settings ) && ( isset( $settings['posts_post_type'] ) || isset( $settings['archive_classic_thumbnail'] ) || isset( $settings['__dynamic__'] ) ) ) {
 			global $post;
