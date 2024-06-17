@@ -23,7 +23,7 @@ class GetPro extends Settings_Page {
 	 */
 	public function __construct() {
 		$this->id    = 'getpro';
-		$this->label = __( 'Get Pro', 'rsfv' );
+		$this->label = __( 'Get PRO', 'rsfv' );
 
 		parent::__construct();
 

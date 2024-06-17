@@ -44,7 +44,7 @@ class Admin_Settings {
 		if ( empty( self::$settings ) ) {
 			$settings = array();
 
-			include_once dirname( __FILE__ ) . '/class-settings-page.php';
+			include_once RSFV_PLUGIN_DIR . 'includes/Settings/class-settings-page.php';
 
 			$settings[] = include 'Tabs/class-general.php';
 			$settings[] = include 'Tabs/class-global-settings.php';
@@ -126,6 +126,7 @@ class Admin_Settings {
 		do_action( 'rsfv_settings_start' );
 		wp_enqueue_style( 'rsfv_settings', RSFV_PLUGIN_URL . 'assets/css/admin-settings.css', array(), filemtime( RSFV_PLUGIN_DIR . 'assets/css/admin-settings.css' ) );
 		wp_enqueue_script( 'rsfv_settings', RSFV_PLUGIN_URL . 'assets/js/admin-settings.js', array( 'jquery', 'wp-util', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'iris' ), filemtime( RSFV_PLUGIN_DIR . 'assets/js/admin-settings.js' ), true );
+		do_action( 'rsfv_settings_after_scripts' );
 
 		wp_localize_script(
 			'rsfv_settings',
@@ -138,7 +139,7 @@ class Admin_Settings {
 		// Get tabs for the settings page.
 		$tabs = apply_filters( 'rsfv_settings_tabs_array', array() );
 
-		include dirname( __FILE__ ) . '/Views/html-admin-settings.php';
+		include RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-settings.php';
 	}
 
 	/**
