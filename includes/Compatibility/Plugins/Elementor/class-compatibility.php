@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || exit;
 
 use RSFV\Compatibility\Plugins\Base_Compatibility;
 use RSFV\FrontEnd;
+use RSFV\Options;
 
 /**
  * Class Compatibility
@@ -37,12 +38,34 @@ class Compatibility extends Base_Compatibility {
 	}
 
 	/**
+	 * Register Settings.
+	 *
+	 * @param array $settings Active settings file array.
+	 *
+	 * @return array
+	 */
+	public function register_settings( $settings ) {
+		// Settings.
+		$settings[] = include 'class-settings.php';
+
+		return $settings;
+	}
+
+	/**
 	 * Sets up hooks and filters.
 	 *
 	 * @return void
 	 */
 	public function setup() {
-		add_filter( 'elementor/image_size/get_attachment_image_html', array( $this, 'update_with_video_html' ), 10, 4 );
+		add_filter( 'rsfv_get_settings_pages', array( $this, 'register_settings' ) );
+
+		$options = Options::get_instance();
+
+		$disable_elementor_support = $options->get( 'disable_elementor_support' );
+
+		if ( ! $options->has( 'disable_elementor_support' ) || ! $disable_elementor_support ) {
+			add_filter( 'elementor/image_size/get_attachment_image_html', array( $this, 'update_with_video_html' ), 10, 4 );
+		}
 	}
 
 	/**
