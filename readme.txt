@@ -1,5 +1,5 @@
 === Really Simple Featured Video - Featured video support for Posts, Pages & WooCommerce Products ===
-Contributors: smalltowndev, lushkant
+Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 7.4
 Tested up to: 6.5.4
@@ -99,7 +99,7 @@ If you wish to grab the PRO version with a lifetime deal please do [checkout Pro
 == Frequently Asked Questions ==
 
 = Is there a Pro version for this? =
-Yes, and is available for purchase from our site. If you wish to get a lifetime deal for our plugin please visit [our website here](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme).
+Yes, and is available for purchase from our site. If you wish to get a lifetime deal for our plugin please visit [our website here](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme).
 
 = Will this plugin work with any theme? =
 Yes, as long as the theme you use follows standard WordPress/WooCommerce way of handling post thumbnails, this plugin should work without any problems.
