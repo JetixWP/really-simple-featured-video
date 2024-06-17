@@ -2,9 +2,9 @@
 Contributors: smalltowndev, lushkant
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 6.5.3
-Stable tag: 0.11.0
-Tags: video, featured video, woocommerce, product-video, video embed
+Tested up to: 6.5.4
+Stable tag: 0.12.0
+Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Really Simple Featured Video enables featured video support for WordPress posts,
 
 == Description ==
 
-[🚀 [Pro] Few Spots left for Lifetime Deals](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+[🚀 [PRO] Grab the premium version at a Lifetime Deal](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
@@ -61,34 +61,28 @@ There are also shortcodes to embed featured video at any post, page or product y
 
 [rsfv_by_postid] shortcode is for displaying featured video of any post anywhere you want, you just need to pass a vaild post id to it e.g. [rsfv_by_postid post_id="281"]
 
-You can send a feedback or a feature request at [github.com/smalltowndev/really-simple-featured-video](https://github.com/smalltowndev/really-simple-featured-video) Or create a thread at forums here, in any case.
+You can send a feedback or a feature request at [github.com/JetixWP/really-simple-featured-video](https://github.com/JetixWP/really-simple-featured-video) Or create a thread at forums here, in any case.
 
 == 👉️ Premium Features ==
 
-We recently released the Pro plugin to support additional features, where we can continue to keep them maintained and updated.
-We got quite a few requests from you guys, and the plugin initially offers a few from the list while we work towards supporting most of them if not all.
+Really Simple Featured Video PRO plugin supports additional features, where we can continue to keep them maintained and updated.
+We get quite a few requests from you guys, and the plugin offers most if not all features from these requests while we continuously work towards adding more and more useful features.
 
-If you wish to grab on the early bird deal which is available as a lifetime version of the plugin to first few customers, follow the steps mentioned at plugin settings Promo tab.
-
-<strong>Our Pro plugin includes these features -</strong>
+<strong>RSFV PRO plugin includes these features -</strong>
 
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
-* ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT
-* ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes
+* ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.
+* ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes.
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
 * ✅ **Priority Support** - Solving your problems are our priority with superfast response times.
 
 More features to come in the future, to name a few -
 
 * ✨ **Bricks Support**
-* ✨ **Divi Support**
 * ✨ **Featured Video Blocks for Full Site Editing**
-* ✨ And more in each update..
+* ✨ And more from your requests
 
-<strong>Buy the premium version directly from the free plugin settings, just go to \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or mail us at [hello@smalltowndev.com](mailto:hello@smalltowndev.com)</strong>
-OR
-[Checkout Pro at our website](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
-
+If you wish to grab the PRO version with a lifetime deal please do [checkout Pro at our website](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
 == Screenshots ==
 
@@ -105,16 +99,23 @@ OR
 == Frequently Asked Questions ==
 
 = Is there a Pro version for this? =
-Yes, and is available for purchase from the plugin settings in your /wp-admin Dashboard. If you wish to get your early bird spot right away please visit [our website here](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme).
+Yes, and is available for purchase from our site. If you wish to get a lifetime deal for our plugin please visit [our website here](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme).
 
 = Will this plugin work with any theme? =
 Yes, as long as the theme you use follows standard WordPress/WooCommerce way of handling post thumbnails, this plugin should work without any problems.
 
 = Where can I get help? =
 For the free version of this plugin, support is limited to support forums here.
-And if you're a Pro user, you can directly send us a mail at [support@smalltowndev.com](mailto:support@smalltowndev.com) for any query you may have, and we will get back to you at the earliest.
+And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.12.0 =
+- New: Elementor compatibility settings tab
+- New: WooCommerce Product CPT support enabled by default
+- Improvement: New and improved Settings Page UI
+- Improvement: Other minor changes
+- Improvement: Updated translation files
 
 = 0.11.0 =
 - Fix: Elementor template header logo getting replaced in some cases
