@@ -69,6 +69,13 @@ class General extends Settings_Page {
 
 		$current_engine = Options::get_instance()->get( 'active-theme-engine' );
 
+		$default_enabled_post_types = apply_filters(
+			'rsfv_default_enabled_post_types',
+			array(
+				'post' => true,
+			)
+		);
+
 		$settings = array(
 			array(
 				'title' => esc_html_x( 'Theme Compatibility Engine', 'settings title', 'rsfv' ),
@@ -116,9 +123,7 @@ class General extends Settings_Page {
 			array(
 				'title'   => '',
 				'id'      => 'post_types',
-				'default' => array(
-					'post' => true,
-				),
+				'default' => $default_enabled_post_types,
 				'type'    => 'multi-checkbox',
 				'options' => $post_types,
 			),

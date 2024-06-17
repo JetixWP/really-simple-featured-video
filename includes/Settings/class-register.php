@@ -83,7 +83,7 @@ class Register {
 		}
 
 		// Include settings so that we can run through defaults.
-		include dirname( __FILE__ ) . '/class-admin-settings.php';
+		include RSFV_PLUGIN_DIR . 'includes/Settings/class-admin-settings.php';
 
 		$settings = Admin_Settings::get_settings_pages();
 
@@ -143,7 +143,6 @@ class Register {
 	public function cleanup_plugin_settings_page() {
 		remove_all_actions( 'admin_notices' );
 	}
-
 }
 
 /**
@@ -171,7 +170,7 @@ function rsfv_clean( $var ) {
 function rsfv_admin_fields( $options ) {
 
 	if ( ! class_exists( 'Admin_Settings', false ) ) {
-		include dirname( __FILE__ ) . '/class-admin-settings.php';
+		include __DIR__ . '/class-admin-settings.php';
 	}
 
 	Admin_Settings::output_fields( $options );
@@ -186,7 +185,7 @@ function rsfv_admin_fields( $options ) {
 function rsfv_update_options( $options, $data = null ) {
 
 	if ( ! class_exists( 'Admin_Settings', false ) ) {
-		include dirname( __FILE__ ) . '/class-admin-settings.php';
+		include __DIR__ . '/class-admin-settings.php';
 	}
 
 	Admin_Settings::save_fields( $options, $data );
@@ -202,7 +201,7 @@ function rsfv_update_options( $options, $data = null ) {
 function rsfv_settings_get_option( $option_name, $default = '' ) {
 
 	if ( ! class_exists( 'Admin_Settings', false ) ) {
-		include dirname( __FILE__ ) . '/class-admin-settings.php';
+		include __DIR__ . '/class-admin-settings.php';
 	}
 
 	return Admin_Settings::get_option( $option_name, $default );
@@ -220,7 +219,8 @@ function get_post_types() {
 	if ( ! is_array( $post_types ) && empty( $post_types ) ) {
 		$post_types = array( 'post' );
 	}
-	return $post_types;
+
+	return apply_filters( 'rsfv_get_enabled_post_types', $post_types );
 }
 
 /**

@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Really Simple Featured Video
- * Plugin URI:  https://smalltowndev.com/really-simple-featured-video
+ * Plugin URI:  https://jetixwp.com/plugins/really-simple-featured-video
  * Description: Adds support for Featured Video to WordPress posts, pages & WooCommerce products.
- * Version:     0.11.0
- * Author:      SmallTownDev.com
- * Author URI:  https://smalltowndev.com
+ * Version:     0.12.0
+ * Author:      JetixWP, Krishna Kant Chourasiya
+ * Author URI:  https://jetixwp.com
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: rsfv
@@ -16,12 +16,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'RSFV_VERSION', '0.11.0' );
+define( 'RSFV_VERSION', '0.12.0' );
 define( 'RSFV_PLUGIN_FILE', __FILE__ );
 define( 'RSFV_PLUGIN_URL', plugin_dir_url( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_DIR', plugin_dir_path( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_BASE', plugin_basename( RSFV_PLUGIN_FILE ) );
-define( 'RSFV_PLUGIN_PRO_URL', 'https://smalltowndev.com/really-simple-featured-video' );
+define( 'RSFV_PLUGIN_PRO_URL', 'https://jetixwp.com/plugins/really-simple-featured-video' );
 
 if ( ! function_exists( 'rsfv_fs' ) ) {
 	/**

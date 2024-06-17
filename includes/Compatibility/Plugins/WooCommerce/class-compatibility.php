@@ -69,10 +69,17 @@ class Compatibility extends Base_Compatibility {
 	public function setup() {
 		$options = Options::get_instance();
 
+		// Registers WooCommerce related settings tab.
 		add_filter( 'rsfv_get_settings_pages', array( $this, 'register_settings' ) );
 
 		// Include post type.
 		add_filter( 'rsfv_post_types_support', array( $this, 'update_post_types' ) );
+
+		// Update default settings for Enabled Post Types.
+		add_filter( 'rsfv_default_enabled_post_types', array( $this, 'update_default_enabled_post_types' ) );
+
+		// Enable product post type by default.
+		add_filter( 'rsfv_get_enabled_post_types', array( $this, 'update_enabled_post_types' ) );
 
 		// Custom styles.
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -105,6 +112,37 @@ class Compatibility extends Base_Compatibility {
 		$post_types['product'] = __( 'Products', 'rsfv' );
 
 		return $post_types;
+	}
+
+	/**
+	 * Include Product post type at default enabled post types.
+	 *
+	 * @param array $post_types Default post types.
+	 *
+	 * @return array Supported post types
+	 */
+	public function update_default_enabled_post_types( $post_types ) {
+		$post_types['product'] = true;
+
+		return $post_types;
+	}
+
+	/**
+	 * Enable Product post type by default.
+	 *
+	 * @param array $enabled_post_types Existing post types.
+	 *
+	 * @return array Supported post types
+	 */
+	public function update_enabled_post_types( $enabled_post_types ) {
+		$post_types = Options::get_instance()->get( 'post_types' );
+		$post_types = is_array( $post_types ) ? array_keys( $post_types ) : '';
+
+		if ( ! is_array( $post_types ) && empty( $post_types ) ) {
+			$enabled_post_types[] = 'product';
+		}
+
+		return $enabled_post_types;
 	}
 
 	/**

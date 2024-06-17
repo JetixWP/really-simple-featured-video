@@ -7,7 +7,7 @@
 Really Simple Featured Video
 ===
 
-[🚀 [Pro] Few Spots left for Lifetime Deals](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+[🚀 [PRO] Grab the premium version at a Lifetime Deal](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
@@ -58,34 +58,40 @@ There are also shortcodes to embed featured video at any post, page or product y
 
 You can send a feedback or a feature request at [github.com/smalltowndev/really-simple-featured-video](https://github.com/smalltowndev/really-simple-featured-video) Or create a thread at forums here, in any case.
 
+== 👉️ How to use Shortcodes ==
+
+There are also shortcodes to embed featured video at any post, page or product you want.
+
+[rsfv] shortcode is for displaying set featured video of the individual post anywhere in the post.
+
+[rsfv_by_postid] shortcode is for displaying featured video of any post anywhere you want, you just need to pass a vaild post id to it e.g. [rsfv_by_postid post_id="281"]
+
+You can send a feedback or a feature request at [github.com/JetixWP/really-simple-featured-video](https://github.com/JetixWP/really-simple-featured-video) Or create a thread at forums here, in any case.
+
 == 👉️ Premium Features ==
 
-We recently released the Pro plugin to support additional features, where we can continue to keep them maintained and updated.
-We got quite a few requests from you guys, and the plugin initially offers a few from the list while we work towards supporting most of them if not all.
+Really Simple Featured Video PRO plugin supports additional features, where we can continue to keep them maintained and updated.
+We get quite a few requests from you guys, and the plugin offers most if not all features from these requests while we continuously work towards adding more and more useful features.
 
-If you wish to grab on the early bird deal which is available as a lifetime version of the plugin to first few customers, follow the steps mentioned at plugin settings Promo tab.
-
-<strong>Our Pro plugin includes these features -</strong>
+<strong>RSFV PRO plugin includes these features -</strong>
 
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
-* ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT
+* ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.
+* ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes.
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
-* ✅ **Priority Support** - Finally we will be able to additionally solve your issues at priority and faster response times.
+* ✅ **Priority Support** - Solving your problems are our priority with superfast response times.
 
 More features to come in the future, to name a few -
 
 * ✨ **Bricks Support**
-* ✨ **Divi Support**
 * ✨ **Featured Video Blocks for Full Site Editing**
-* ✨ And more
+* ✨ And more from your requests
 
-<strong>Buy the premium version directly from the free plugin settings, just go to \wp-admin dashboard and then visit Settings >> Really Simple Featured Video >> Addons or mail us at [hello@smalltowndev.com](mailto:hello@smalltowndev.com)</strong>
-OR
-[Checkout Pro at our website](https://smalltowndev.com/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+If you wish to grab the PRO version with a lifetime deal please do [checkout Pro at our website](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
 ### Contribution
 If you have a patch, or you've stumbled upon an issue with Really Simple Featured Video plugin, you can contribute this back to the code. You can do so by creating a fork and adding a PR against it.
 It is also a plus to follow Git Flow branches.
 
 ### Report bugs
-If you find a 🐞 or an issue, please [create an issue](https://github.com/smalltowndev/really-simple-featured-video/issues/new).
+If you find a 🐞 or an issue, please [create an issue](https://github.com/JetixWP/really-simple-featured-video/issues/new).

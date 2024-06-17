@@ -141,6 +141,7 @@ final class Plugin {
 		add_filter( 'network_admin_plugin_action_links_really-simple-featured-video/really-simple-featured-video.php', array( $this, 'filter_plugin_action_links' ) );
 		add_filter( 'plugin_action_links_really-simple-featured-video/really-simple-featured-video.php', array( $this, 'filter_plugin_action_links' ) );
 
+		add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ) );
 	}
 
 	/**
@@ -204,5 +205,36 @@ final class Plugin {
 	 */
 	public function has_pro_active() {
 		return defined( 'RSFV_PRO_VERSION' );
+	}
+
+	/**
+	 * Modifies admin footer text.
+	 *
+	 * @param string $html Existing html markup.
+	 * @return mixed
+	 */
+	public function admin_footer_text( $html ) {
+		// Exit early if the function doesn't load for some reason.
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			return $html;
+		}
+
+		$screen     = get_current_screen();
+		$page_slugs = array(
+			'settings_page_rsfv-settings',
+		);
+
+		if ( in_array( $screen->id, $page_slugs, true ) ) {
+			// Modified html goes here.
+			return sprintf(
+			/* translators: %1$s is a link to RSFV's plugin page, %2$s is a link to JetixWP's website, and %3$s is the existing html,. */
+				__( '%1$s is developed and maintained by %2$s. %3$s', 'wp-migrate-db' ),
+				'<a href="https://jetixwp.com/plugins/really-simple-featured-video">Really Simple Featured Video</a>',
+				'<a href="https://jetixwp.com/" target="_blank">JetixWP</a>',
+				$html
+			);
+		} else {
+			return $html;
+		}
 	}
 }

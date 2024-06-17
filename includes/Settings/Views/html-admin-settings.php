@@ -20,77 +20,97 @@ if ( ! $tab_exists ) {
 }
 ?>
 <div class="wrap rsfv <?php echo esc_attr( $current_tab ); ?>">
-	<h1 class="menu-title"><?php esc_html_e( 'Really Simple Featured Video Settings', 'rsfv' ); ?></h1>
+	<div class="plugin-header">
+		<div class="plugin-header-wrap">
+			<div class="plugin-info">
+				<h1 class="menu-title"><?php esc_html_e( 'Really Simple Featured Video', 'rsfv' ); ?></h1>
+				<?php do_action( 'rsfv_extend_plugin_header' ); ?>
+				<div class="plugin-version">
+					<span>v<?php echo esc_html( RSFV_VERSION ); ?></span>
+				</div>
+			</div>
+
+			<div class="brand-info">
+				<a href="https://jetixwp.com?utm_campaign=settings-header&utm_source=rsfv-plugin" target="_blank"><img class="brand-logo" src="<?php echo esc_url( RSFV_PLUGIN_URL . 'assets/images/icon-dark.svg' ); ?>" alt="RSFV"></a>
+			</div>
+		</div>
+	</div>
 	<div class="rsfv-wrapper">
 		<form method="<?php echo esc_attr( apply_filters( 'rsfv_settings_form_method_tab_' . $current_tab, 'post' ) ); ?>" id="mainform" action="" enctype="multipart/form-data">
-			<nav class="nav-tab-wrapper rsfv-nav-tab-wrapper">
-				<?php
 
-				foreach ( $tabs as $slug => $label ) {
-					echo '<a href="' . esc_html( admin_url( 'admin.php?page=rsfv-settings&tab=' . esc_attr( $slug ) ) ) . '" class="nav-tab ' . ( $current_tab === $slug ? 'nav-tab-active' : '' ) . '">' . esc_html( $label ) . '</a>';
-				}
+			<div class="nav-content">
+				<nav class="nav-tab-wrapper rsfv-nav-tab-wrapper">
+					<?php
 
-				do_action( 'rsfv_settings_tabs' );
+					foreach ( $tabs as $slug => $label ) {
+						echo '<a href="' . esc_html( admin_url( 'admin.php?page=rsfv-settings&tab=' . esc_attr( $slug ) ) ) . '" class="nav-tab ' . ( $current_tab === $slug ? 'nav-tab-active' : '' ) . '">' . esc_html( $label ) . '</a>';
+					}
 
-				?>
-			</nav>
+					do_action( 'rsfv_settings_tabs' );
+
+					?>
+				</nav>
+			</div>
 			<div class="tab-content">
-				<h1 class="screen-reader-text"><?php echo esc_html( $current_tab_label ); ?></h1>
-				<?php
-				do_action( 'rsfv_sections_' . $current_tab );
+				<div class="content">
+					<h1 class="screen-reader-text"><?php echo esc_html( $current_tab_label ); ?></h1>
+					<?php
+					do_action( 'rsfv_sections_' . $current_tab );
 
-				self::show_messages();
+					self::show_messages();
 
-				do_action( 'rsfv_settings_' . $current_tab );
-				?>
-				<p class="submit">
-					<?php if ( empty( $GLOBALS['hide_save_button'] ) ) : ?>
-						<button name="save" class="button-primary rsfv-save-button" type="submit" value="<?php esc_attr_e( 'Save changes', 'rsfv' ); ?>"><?php esc_html_e( 'Save changes', 'rsfv' ); ?></button>
+					do_action( 'rsfv_settings_' . $current_tab );
+					?>
+					<p class="submit">
+						<?php if ( empty( $GLOBALS['hide_save_button'] ) ) : ?>
+							<button name="save" class="button-primary rsfv-save-button" type="submit" value="<?php esc_attr_e( 'Save changes', 'rsfv' ); ?>"><?php esc_html_e( 'Save changes', 'rsfv' ); ?></button>
+						<?php endif; ?>
+						<?php wp_nonce_field( 'rsfv-settings' ); ?>
+					</p>
+				</div>
+
+				<div class="sidebar">
+					<?php if ( ! class_exists( '\RSFV_Pro\Plugin' ) ) : ?>
+						<div class="upgrade-box">
+							<div>
+								<h3>🚀 &nbsp;Grab the PRO version with a Lifetime Deal</h3>
+								<p class="desc">Our RSFV Pro plugin is now available to support additional features, where we continue to keep them maintained and updated. We are also continuously working on adding more and more theme support.</p>
+							</div>
+							<div>
+								<p class="desc"><strong>Our Pro plugin includes these features -</strong></p>
+								<ul>
+									<li>✅ <strong>Change Video Aspect Ratio</strong></li>
+									<li>✅ <strong>Change Video Order at Woo Product CPT</strong></li>
+									<li>✅ <strong>Support for more Premium/Custom Themes</strong></li>
+									<li>✅ <strong>Requests for Theme Compatibility</strong></li>
+									<li>✅ <strong>Priority Support</strong></li>
+								</ul>
+							</div>
+							<div>
+								<p class="desc">New features in every update, to name a few upcoming changes -</p>
+								<ul>
+									<li>🏗️ Bricks Support</li>
+									<li>🏗️ Featured Video Blocks for Full Site Editing </li>
+									<li>🏗️ And more Woo customizations related to videos</li>
+								</ul>
+							</div>
+
+							<div>
+								<a class="button button-primary" href="https://jetixwp.com/plugins/really-simple-featured-video?utm_campaign=settings-sidebar&utm_source=rsfv-plugin" target="_blank">✨ Unlock Extra features with PRO</a>
+							</div>
+
+							<div>
+								<p><em>If you like our free plugin, you will absolutely love the PRO version with a Lifetime deal. Thank you for using RSFV again, you are not just any supporter but truly the founders of our small business.</em></p>
+								<p><strong>Krishna</strong>, Founder and Lead Developer</p>
+
+								<p><strong>Have questions?</strong> Please mail us at <a href="mailto:hello@jetixwp.com">hello@jetixwp.com</a>, and we will get back to you at the earliest :)</p>
+
+							</div>
+						</div>
 					<?php endif; ?>
-					<?php wp_nonce_field( 'rsfv-settings' ); ?>
-				</p>
+					<?php do_action( 'rsfv_extend_settings_sidebar' ); ?>
+				</div>
 			</div>
 		</form>
-		<div class="sidebar">
-			<?php if ( ! class_exists( '\RSFV_Pro\Plugin' ) ) : ?>
-			<div class="upgrade-box">
-				<div>
-					<h3>🚀 &nbsp;Grab the Pro version with our Early Bird Lifetime Deals</h3>
-					<p class="desc">We recently released RSFV Pro plugin to support additional features, where we can continue to keep them maintained and updated.</p>
-				</div>
-				<div>
-					<p class="desc"><strong>Our Pro plugin includes these features -</strong></p>
-					<ul>
-						<li>✅ <strong>Change Video Aspect Ratio</strong></li>
-						<li>✅ <strong>Change Video Order at Woo Product CPT</strong></li>
-						<li>✅ <strong>Support for more Premium/Custom Themes</strong></li>
-						<li>✅ <strong>Requests for Theme Compatibility</strong></li>
-						<li>✅ <strong>Priority Support</strong></li>
-					</ul>
-				</div>
-				<div>
-					<p class="desc">More features to come in the future, to name a few -</p>
-					<ul>
-						<li>🏗️ Bricks Support</li>
-						<li>🏗️ Divi Support</li>
-						<li>🏗️ Featured Video Blocks for Full Site Editing </li>
-						<li>🏗️ And more Woo customizations</li>
-					</ul>
-				</div>
-
-				<div>
-				<a class="button button-primary" href="https://smalltowndev.com/really-simple-featured-video?utm_campaign=settings-sidebar&utm_source=rsfv-plugin" target="_blank">Grab this deal</a>
-				</div>
-
-				<div>
-					<p><em>Few spots left for Lifetime deals for early supporters, thank you for using RSFV, you are not just any supporter but truly the founders of our small business.</em></p>
-					<p><strong>Krishna</strong>, Founder and Lead Developer</p>
-
-					<p><strong>Have questions?</strong> Please mail us at <a href="mailto:support@smalltowndev.com">support@smalltowndev.com</a>, and we will get back to you at the earliest :)</p>
-
-				</div>
-			</div>
-			<?php endif; ?>
-		</div>
 	</div>
 </div>
