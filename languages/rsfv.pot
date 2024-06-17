@@ -1,38 +1,44 @@
-# Copyright (C) 2024 SmallTownDev.com
+# Copyright (C) 2024 JetixWP, Krishna Kant Chourasiya
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.10.0\n"
+"Project-Id-Version: Really Simple Featured Video 0.12.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-04-20T20:06:33+00:00\n"
+"POT-Creation-Date: 2024-06-17T06:26:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.8.1\n"
+"X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
 
 #. Plugin Name of the plugin
+#: really-simple-featured-video.php
 #: includes/Settings/class-register.php:59
+#: includes/Settings/Views/html-admin-settings.php:26
 msgid "Really Simple Featured Video"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://smalltowndev.com/really-simple-featured-video"
+#: really-simple-featured-video.php
+msgid "https://jetixwp.com/plugins/really-simple-featured-video"
 msgstr ""
 
 #. Description of the plugin
+#: really-simple-featured-video.php
 msgid "Adds support for Featured Video to WordPress posts, pages & WooCommerce products."
 msgstr ""
 
 #. Author of the plugin
-msgid "SmallTownDev.com"
+#: really-simple-featured-video.php
+msgid "JetixWP, Krishna Kant Chourasiya"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://smalltowndev.com"
+#: really-simple-featured-video.php
+msgid "https://jetixwp.com"
 msgstr ""
 
 #: includes/class-metabox.php:68
@@ -75,7 +81,7 @@ msgstr ""
 msgid "Please select a video source"
 msgstr ""
 
-#: includes/class-plugin.php:194
+#: includes/class-plugin.php:195
 msgid "Settings"
 msgstr ""
 
@@ -97,6 +103,7 @@ msgid "Salient Core"
 msgstr ""
 
 #: includes/Compatibility/class-plugin-provider.php:63
+#: includes/Compatibility/Plugins/Elementor/class-settings.php:25
 msgid "Elementor"
 msgstr ""
 
@@ -140,7 +147,15 @@ msgstr ""
 msgid "Auto (Do it for me)"
 msgstr ""
 
-#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:105
+#: includes/Compatibility/Plugins/Elementor/class-settings.php:58
+msgid "Disable Elementor Support"
+msgstr ""
+
+#: includes/Compatibility/Plugins/Elementor/class-settings.php:59
+msgid "Toggle this on if in Elementor you see the site logo, footer logo or any other part of the site images getting replaced with featured video."
+msgstr ""
+
+#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:112
 msgid "Products"
 msgstr ""
 
@@ -176,25 +191,24 @@ msgstr ""
 msgid "Your settings have been saved."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:134
+#: includes/Settings/class-admin-settings.php:135
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:324
+#: includes/Settings/class-admin-settings.php:325
 msgid "Pro"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:480
+#: includes/Settings/class-admin-settings.php:481
 msgid "Checkout Pro now"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:541
-#: includes/Settings/class-admin-settings.php:606
+#: includes/Settings/class-admin-settings.php:542
+#: includes/Settings/class-admin-settings.php:607
 msgid "Toggle"
 msgstr ""
 
 #: includes/Settings/class-register.php:58
-#: includes/Settings/Views/html-admin-settings.php:23
 msgid "Really Simple Featured Video Settings"
 msgstr ""
 
@@ -245,38 +259,38 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:74
+#: includes/Settings/Tabs/class-general.php:81
 msgctxt "settings title"
 msgid "Theme Compatibility Engine"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:75
+#: includes/Settings/Tabs/class-general.php:82
 msgid "If featured videos aren't working as expected in your theme, you may need to set this from the list of supported theme engines. (Default engine follows standard WordPress rules, and may not work for all themes)"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:85
+#: includes/Settings/Tabs/class-general.php:92
 msgid "Status"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:88
+#: includes/Settings/Tabs/class-general.php:95
 msgid "Auto"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:94
+#: includes/Settings/Tabs/class-general.php:101
 msgid "Set engine"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:106
+#: includes/Settings/Tabs/class-general.php:113
 msgctxt "settings title"
 msgid "Enable Post Types Support"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:107
+#: includes/Settings/Tabs/class-general.php:114
 msgid "Please select the post types you wish to enable featured video support at."
 msgstr ""
 
 #: includes/Settings/Tabs/class-getpro.php:26
-msgid "Get Pro"
+msgid "Get PRO"
 msgstr ""
 
 #: includes/Settings/Tabs/class-global-settings.php:24
@@ -313,8 +327,12 @@ msgstr ""
 msgid "Available in the Pro version."
 msgstr ""
 
+#: includes/Settings/Tabs/class-global-settings.php:85
+msgid "Custom"
+msgstr ""
+
 #: includes/Settings/Views/html-admin-settings-getpro.php:14
-msgid "Extended Featured Video support with [Pro] Really Simple Featured Video"
+msgid "Get Premium Featured Video support with Really Simple Featured Video Pro"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-getpro.php:17
@@ -337,10 +355,10 @@ msgstr ""
 msgid ".. and more coming soon."
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings-getpro.php:25
-msgid "Explore RSFV Pro"
+#: includes/Settings/Views/html-admin-settings-getpro.php:24
+msgid "Explore RSFV and PRO"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings.php:48
+#: includes/Settings/Views/html-admin-settings.php:66
 msgid "Save changes"
 msgstr ""
