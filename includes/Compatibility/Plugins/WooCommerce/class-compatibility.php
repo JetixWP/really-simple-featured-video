@@ -337,7 +337,8 @@ class Compatibility extends Base_Compatibility {
 	public function modify_body_classes( $classes ) {
 		$options = Options::get_instance();
 
-		$product_archives_visibility = $options->get( 'product_archives_visibility' );
+		// Default is enabled.
+		$product_archives_visibility = $options->has( 'product_archives_visibility' ) ? $options->get( 'product_archives_visibility' ) : true;
 
 		if ( $product_archives_visibility && ( is_shop() || is_product_category() || is_product_tag() ) ) {
 			$classes[] = 'rsfv-archives-support';
