@@ -4,7 +4,7 @@
  * Plugin URI:  https://jetixwp.com/plugins/really-simple-featured-video
  * Description: Adds support for Featured Video to WordPress posts, pages & WooCommerce products.
  * Version:     0.12.0
- * Author:      JetixWP, Krishna Kant Chourasiya
+ * Author:      JetixWP Plugins
  * Author URI:  https://jetixwp.com
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
