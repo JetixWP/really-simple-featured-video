@@ -65,6 +65,11 @@ class Plugin_Provider {
 					'class'            => 'RSFV\Compatibility\Plugins\Elementor\Compatibility',
 					'has_class_loaded' => 'Elementor\Plugin',
 				),
+				'divi'         => array(
+					'title'       => __( 'Divi', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Divi/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Plugins\Divi\Compatibility',
+				),
 			)
 		);
 
@@ -95,7 +100,14 @@ class Plugin_Provider {
 		$plugin_compat = null;
 
 		foreach ( $this->plugin_engines as $plugin_engine => $plugin_data ) {
-			if ( ! class_exists( $plugin_data['has_class_loaded'] ) ) {
+
+			// For classes.
+			if ( isset( $plugin_data['has_class_loaded'] ) && ! class_exists( $plugin_data['has_class_loaded'] ) ) {
+				continue;
+			}
+
+			// For constants.
+			if ( isset( $plugin_data['has_defined_constant'] ) && ! defined( $plugin_data['has_defined_constant'] ) ) {
 				continue;
 			}
 
