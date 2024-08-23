@@ -115,6 +115,7 @@ And if you're a Pro user, you can send a support ticket via the [account](https:
 - New: Plugin Banner and logo
 - Fix: FSE Blocks at WooCommerce Shop and Archive pages not working right
 - Improvement: Renamed WooCommerce default gallery video thumbnail filter
+- Improvement: Update Freemius SDK to v2.7.4
 - Improvement: Other minor changes
 - Improvement: Updated translation files
 
