@@ -228,7 +228,7 @@ class Compatibility extends Base_Compatibility {
 		if ( ! empty( $post_types ) ) {
 			if ( in_array( $post_type, $post_types, true ) ) {
 				$img_url           = RSFV_PLUGIN_URL . 'assets/images/video_frame.png';
-				$thumbnail         = apply_filters( 'rsfv_featured_video_thumbnail', $img_url );
+				$thumbnail         = apply_filters( 'rsfv_default_woo_gallery_video_thumb', $img_url );
 				$gallery_thumbnail = wc_get_image_size( 'gallery_thumbnail' );
 
 				// Return early if thumbnail is only required.
@@ -337,7 +337,8 @@ class Compatibility extends Base_Compatibility {
 	public function modify_body_classes( $classes ) {
 		$options = Options::get_instance();
 
-		$product_archives_visibility = $options->get( 'product_archives_visibility' );
+		// Default is enabled.
+		$product_archives_visibility = $options->has( 'product_archives_visibility' ) ? $options->get( 'product_archives_visibility' ) : true;
 
 		if ( $product_archives_visibility && ( is_shop() || is_product_category() || is_product_tag() ) ) {
 			$classes[] = 'rsfv-archives-support';

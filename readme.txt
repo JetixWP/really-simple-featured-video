@@ -2,8 +2,8 @@
 Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 7.4
-Tested up to: 6.5.4
-Stable tag: 0.12.0
+Tested up to: 6.6.1
+Stable tag: 0.14.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -109,6 +109,15 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.14.0 =
+- New: Divi compatibility settings tab
+- New: Plugin Banner and logo
+- Fix: FSE Blocks at WooCommerce Shop and Archive pages not working right
+- Improvement: Renamed WooCommerce default gallery video thumbnail filter
+- Improvement: Update Freemius SDK to v2.7.4
+- Improvement: Other minor changes
+- Improvement: Updated translation files
 
 = 0.12.0 =
 - New: Elementor compatibility settings tab

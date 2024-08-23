@@ -95,6 +95,51 @@
 					$( collBtn[ i ] ).trigger( 'click' );
 				}
 			}
+
+			$( 'body' ).on(
+				'click',
+				'.rsfv-upload-image-btn',
+				function (e) {
+					e.preventDefault();
+					const button     = $( this ),
+						customUploader = wp.media(
+							{
+								title: data.uploader_title,
+								library: {
+									type: 'image'
+								},
+								button: {
+									text: data.uploader_btn_text // button label text.
+								},
+								multiple: false // for multiple image selection set to true.
+							}
+						).on(
+							'select',
+							function () {
+								// it also has "open" and "close" events.
+								const attachment       = customUploader.state().get( 'selection' ).first().toJSON();
+								const image_element_id = $( button ).attr( 'data-element-id' );
+								$( `#${image_element_id}` ).attr( 'src', attachment.url );
+								$( button ).next().show();
+								$( button ).next().next().val( attachment.id );
+							}
+						)
+							.open();
+				}
+			);
+
+			// Removing video.
+			$( 'body' ).on(
+				'click',
+				'.rsfv-remove-image-btn',
+				function () {
+					const default_image = $( this ).attr( 'data-default-image' );
+					$( this ).prev().prev().attr( 'src', default_image );
+					$( this ).next().val( '' );
+					$( this ).hide();
+					return false;
+				}
+			);
 		}
 	);
 }( jQuery, rsfv_settings_data ) );

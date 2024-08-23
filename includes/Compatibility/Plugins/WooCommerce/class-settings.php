@@ -96,6 +96,21 @@ class Settings extends Settings_Page {
 							'type' => 'sectionend',
 							'id'   => 'rsfv_pro_woocommerce',
 						),
+						array(
+							'type' => 'title',
+							'id'   => 'rsfv_pro_change_default_gallery_thumb',
+						),
+						array(
+							'title'   => __( 'Default Gallery Thumb', 'rsfv' ),
+							'desc'    => __( 'Set default product gallery thumb on single product page.', 'rsfv' ),
+							'id'      => 'promo-default-woo-gallery-video-thumb',
+							'default' => RSFV_PLUGIN_URL . 'assets/images/video_frame.png',
+							'type'    => 'promo-media-image',
+						),
+						array(
+							'type' => 'sectionend',
+							'id'   => 'rsfv_pro_change_default_gallery_thumb',
+						),
 					)
 				);
 			}

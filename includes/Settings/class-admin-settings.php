@@ -125,6 +125,10 @@ class Admin_Settings {
 
 		do_action( 'rsfv_settings_start' );
 		wp_enqueue_style( 'rsfv_settings', RSFV_PLUGIN_URL . 'assets/css/admin-settings.css', array(), filemtime( RSFV_PLUGIN_DIR . 'assets/css/admin-settings.css' ) );
+
+		// Enqueue all necessary WP Media APIs.
+		wp_enqueue_media();
+		// Enqueue RSFV settings scripts.
 		wp_enqueue_script( 'rsfv_settings', RSFV_PLUGIN_URL . 'assets/js/admin-settings.js', array( 'jquery', 'wp-util', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'iris' ), filemtime( RSFV_PLUGIN_DIR . 'assets/js/admin-settings.js' ), true );
 		do_action( 'rsfv_settings_after_scripts' );
 
@@ -132,7 +136,9 @@ class Admin_Settings {
 			'rsfv_settings',
 			'rsfv_settings_data',
 			array(
-				'i18n_nav_warning' => __( 'The changes you made will be lost if you navigate away from this page.', 'rsfv' ),
+				'i18n_nav_warning'  => __( 'The changes you made will be lost if you navigate away from this page.', 'rsfv' ),
+				'uploader_title'    => __( 'Select Thumbnail Image', 'rsfv' ),
+				'uploader_btn_text' => __( 'Use this image', 'rsfv' ),
 			)
 		);
 
@@ -140,6 +146,54 @@ class Admin_Settings {
 		$tabs = apply_filters( 'rsfv_settings_tabs_array', array() );
 
 		include RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-settings.php';
+	}
+
+	/**
+	 * Get allowed html tags for settings.
+	 *
+	 * @return array
+	 */
+	public static function get_settings_allowed_html() {
+		return array(
+			'abbr'       => array(
+				'title' => true,
+			),
+			'acronym'    => array(
+				'title' => true,
+			),
+			'b'          => array(),
+			'blockquote' => array(
+				'cite' => true,
+			),
+			'cite'       => array(),
+			'code'       => array(),
+			'del'        => array(
+				'datetime' => true,
+			),
+			'em'         => array(),
+			'i'          => array(),
+			'q'          => array(
+				'cite' => true,
+			),
+			's'          => array(),
+			'strike'     => array(),
+			'strong'     => array(),
+			'a'          => array(
+				'href'   => array(),
+				'title'  => array(),
+				'class'  => array(),
+				'id'     => array(),
+				'target' => array(),
+			),
+			'span'       => array(
+				'title' => array(),
+				'src'   => array(),
+				'alt'   => array(),
+				'class' => array(),
+				'id'    => array(),
+			),
+			'br'         => array(),
+		);
 	}
 
 	/**
@@ -258,6 +312,10 @@ class Admin_Settings {
 			$description       = $field_description['description'];
 			$tooltip_html      = $field_description['tooltip_html'];
 
+			$allowed_html_tags = self::get_settings_allowed_html();
+			$pro_tag_html      = '<span class="pro-tag">' . esc_html__( 'Pro', 'rsfv' ) . '</span>';
+			$pro_link_html     = '<a href="' . esc_url( RSFV_PLUGIN_PRO_URL . '/?utm_source=plugin&utm_medium=referral&utm_campaign=settings' ) . '" target="_blank">' . esc_html__( 'Checkout Pro now', 'rsfv' ) . '</a>';
+
 			// Switch based on type.
 			switch ( $value['type'] ) {
 
@@ -322,10 +380,10 @@ class Admin_Settings {
 					}
 					if ( ! empty( $value['title'] ) ) {
 						echo '<a href="' . esc_url( RSFV_PLUGIN_PRO_URL . '/?utm_source=plugin&utm_medium=referral&utm_campaign=settings' ) . '" target="_blank">';
-						echo '<h2 id="' . esc_attr( sanitize_title( $value['id'] ) ) . '-content-title"><span class="pro-tag">' . esc_html__( 'Pro', 'rsfv' ) . '</span>' . esc_html( $value['title'] ) . '</h2></a>';
+						echo '<h2 id="' . esc_attr( sanitize_title( $value['id'] ) ) . '-content-title">' . wp_kses( $pro_tag_html, $allowed_html_tags ) . esc_html( $value['title'] ) . '</h2></a>';
 					}
 					if ( ! empty( $value['desc'] ) ) {
-						echo '<p id="' . esc_attr( sanitize_title( $value['id'] ) ) . '-content-desc">' . wp_kses_post( $value['desc'] ) . '</p>';
+						echo '<p id="' . esc_attr( sanitize_title( $value['id'] ) ) . '-content-desc">' . wp_kses( $value['desc'], $allowed_html_tags ) . '</p>';
 					}
 					if ( ! empty( $value['class'] ) ) {
 						echo '</div>';
@@ -348,7 +406,7 @@ class Admin_Settings {
 
 					?><tr valign="top">
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?></label>
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<input
@@ -361,6 +419,67 @@ class Admin_Settings {
 								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
 								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
 								/><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // phpcs:ignore. ?>
+						</td>
+					</tr>
+					<?php
+					break;
+				case 'media-image':
+					$option_value = $value['value'];
+					// Get the meta value of video attachment.
+					$image_id      = $option_value;
+					$image_url     = wp_get_attachment_url( $image_id );
+					$display       = 'none';
+					$default_image = $value['default'];
+					$has_image_set = false;
+
+					if ( ! empty( $option_value ) && $option_value !== $default_image ) {
+						$has_image_set = true;
+					}
+
+					if ( ! empty( $image_url ) && ! empty( $option_value ) ) {
+						$display = 'inline-block';
+					} else {
+						$image_url = $default_image;
+					}
+					?>
+					<tr valign="top">
+						<th scope="row" class="titledesc">
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?></label>
+						</th>
+						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+							<img class="<?php echo esc_attr( $value['type'] ); ?>" id="<?php echo esc_attr( $value['type'] ) . '-' . esc_attr( $value['id'] ); ?>" src="<?php echo esc_url( $image_url ); ?>" />
+							<a href="#" class="rsfv-upload-image-btn" data-element-id="<?php echo esc_attr( $value['type'] ) . '-' . esc_attr( $value['id'] ); ?>"><?php esc_html_e( 'Change Image', 'rsfv' ); ?></a>
+							<a href="#" class="rsfv-remove-image-btn" data-default-image="<?php echo esc_url( $default_image ); ?>" style="display:<?php echo esc_attr( $display ); ?>;"><?php esc_html_e( 'Revert to Default', 'rsfv' ); ?></a>
+							<input
+								name="<?php echo esc_attr( $value['id'] ); ?>"
+								id="<?php echo esc_attr( $value['id'] ); ?>"
+								type="hidden"
+								style="<?php echo esc_attr( $value['css'] ); ?>"
+								value="<?php echo $has_image_set ? esc_attr( $option_value ) : ''; ?>"
+								class="<?php echo esc_attr( $value['class'] ); ?>"
+								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
+								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
+								/><?php echo esc_html( $value['suffix'] ); ?>
+								<?php echo $description; // phpcs:ignore. ?>
+						</td>
+					</tr>
+					<?php
+					break;
+				case 'promo-media-image':
+					// Get the meta value of video attachment.
+					$default_image = $value['default'];
+					$image_url     = $default_image;
+					?>
+					<tr valign="top" class="<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+						<th scope="row" class="titledesc">
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><a href="<?php echo esc_url( RSFV_PLUGIN_PRO_URL . '/?utm_source=plugin&utm_medium=referral&utm_campaign=settings' ); ?>" target="_blank"><?php echo wp_kses( $pro_tag_html, $allowed_html_tags ) . esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?></a></label>
+						</th>
+						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+							<img class="<?php echo esc_attr( $value['type'] ); ?>" id="<?php echo esc_attr( $value['type'] ) . '-' . esc_attr( $value['id'] ); ?>" src="<?php echo esc_url( $image_url ); ?>" />
+							<a href="#" class="disabled"><?php esc_html_e( 'Change Image', 'rsfv' ); ?></a>
+							<?php echo esc_html( $value['suffix'] ); ?>
+							<?php echo $description; // phpcs:ignore. ?>
+							<?php echo wp_kses( $pro_link_html, $allowed_html_tags ); ?>
 						</td>
 					</tr>
 					<?php
@@ -387,7 +506,7 @@ class Admin_Settings {
 					?>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?></label>
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<?php echo esc_html( $description ); ?>
@@ -414,7 +533,7 @@ class Admin_Settings {
 					<tr valign="top">
 						<?php if ( ! empty( $value['title'] ) ) { ?>
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?></label>
 						</th>
 						<?php } ?>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
@@ -452,13 +571,11 @@ class Admin_Settings {
 				// Pro Select boxes.
 				case 'promo-select':
 				case 'promo-multiselect':
-					$option_value = $value['value'];
-
 					?>
 				<tr valign="top" class="<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 					<?php if ( ! empty( $value['title'] ) ) { ?>
 					<th scope="row" class="titledesc">
-						<label for="<?php echo esc_attr( $value['id'] ); ?>"><a href="<?php echo esc_url( RSFV_PLUGIN_PRO_URL . '/?utm_source=plugin&utm_medium=referral&utm_campaign=settings' ); ?>" target="_blank"><span class="pro-tag">Pro</span><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></a></label>
+						<label for="<?php echo esc_attr( $value['id'] ); ?>"><a href="<?php echo esc_url( RSFV_PLUGIN_PRO_URL . '/?utm_source=plugin&utm_medium=referral&utm_campaign=settings' ); ?>" target="_blank"><?php echo wp_kses( $pro_tag_html, $allowed_html_tags ) . esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?></a></label>
 					</th>
 					<?php } ?>
 					<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
@@ -478,7 +595,7 @@ class Admin_Settings {
 							}
 							?>
                                     </select> <?php echo $description; // phpcs:ignore   ?>
-									<a href="<?php echo esc_url( RSFV_PLUGIN_PRO_URL . '/?utm_source=plugin&utm_medium=referral&utm_campaign=settings' ); ?>" target="_blank"><?php echo esc_html__( 'Checkout Pro now', 'rsfv' ); ?></a>
+									<?php echo wp_kses( $pro_link_html, $allowed_html_tags ); ?>
 								</td>
 							</tr>
 								<?php
@@ -602,11 +719,84 @@ class Admin_Settings {
 								value="1"
 								<?php checked( $option_value, true ); ?>
 								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
-							/> <?php echo esc_html( $description ); ?>
+							/> <?php echo $description; // phpcs:ignore. ?>
 							<?php if ( $value['switch'] ) { ?>
 								<span><?php esc_html_e( 'Toggle', 'rsfv' ); ?></span>
 							<?php } ?>
-						</label> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?>
+						</label> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?>
+					<?php
+
+					if ( ! isset( $value['checkboxgroup'] ) || 'end' === $value['checkboxgroup'] ) {
+						?>
+									</fieldset>
+								</td>
+							</tr>
+						<?php
+					} else {
+						?>
+							</fieldset>
+						<?php
+					}
+					break;
+                // Pro checkbox.
+				case 'promo-checkbox':
+					$visibility_class = array();
+
+					if ( ! isset( $value['hide_if_checked'] ) ) {
+						$value['hide_if_checked'] = false;
+					}
+					if ( ! isset( $value['show_if_checked'] ) ) {
+						$value['show_if_checked'] = false;
+					}
+					if ( 'yes' === $value['hide_if_checked'] || 'yes' === $value['show_if_checked'] ) {
+						$visibility_class[] = 'hidden_option';
+					}
+					if ( 'option' === $value['hide_if_checked'] ) {
+						$visibility_class[] = 'hide_options_if_checked';
+					}
+					if ( 'option' === $value['show_if_checked'] ) {
+						$visibility_class[] = 'show_options_if_checked';
+					}
+
+					if ( ! isset( $value['checkboxgroup'] ) || 'start' === $value['checkboxgroup'] ) {
+						?>
+							<tr valign="top" class="
+							<?php
+							echo esc_attr( implode( ' ', $visibility_class ) ) . ' ' . esc_attr( sanitize_title( $value['type'] ) );
+							?>
+">
+								<th scope="row" class="titledesc"><a href="<?php echo esc_url( RSFV_PLUGIN_PRO_URL . '/?utm_source=plugin&utm_medium=referral&utm_campaign=settings' ); ?>" target="_blank"><?php echo wp_kses( $pro_tag_html, $allowed_html_tags ) . esc_html( $value['title'] ); ?></a></th>
+								<td class="forminp forminp-<?php echo esc_attr( $value['type'] ); ?>">
+									<fieldset>
+						<?php
+					} else {
+						?>
+							<fieldset class="<?php echo esc_attr( implode( ' ', $visibility_class ) ); ?>">
+						<?php
+					}
+
+					if ( ! empty( $value['title'] ) ) {
+						?>
+							<legend class="screen-reader-text"><span><?php echo esc_html( $value['title'] ); ?></span></legend>
+						<?php
+					}
+
+					?>
+						<label for="<?php echo esc_attr( $value['id'] ); ?>">
+							<input
+								name="<?php echo esc_attr( $value['id'] ); ?>"
+								id="<?php echo esc_attr( $value['id'] ); ?>"
+								type="checkbox"
+								class="<?php echo esc_attr( isset( $value['class'] ) ? $value['class'] : '' ); ?>"
+								value="1"
+								disabled
+								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
+							/> <?php echo $description; // phpcs:ignore. ?>
+							<?php if ( $value['switch'] ) { ?>
+								<span><?php esc_html_e( 'Toggle', 'rsfv' ); ?></span>
+							<?php } ?>
+						</label> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?>
+						<?php echo wp_kses( $pro_link_html, $allowed_html_tags ); ?>
 					<?php
 
 					if ( ! isset( $value['checkboxgroup'] ) || 'end' === $value['checkboxgroup'] ) {
@@ -627,7 +817,7 @@ class Admin_Settings {
 					?>
 					<tr valign="top">
 						<th scope="row" class="titledesc">
-							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, wp_kses_allowed_html() ); ?></label>
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?></label>
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
 							<p
@@ -660,8 +850,9 @@ class Admin_Settings {
 	 * @return array The description and tip as a 2 element array.
 	 */
 	public static function get_field_description( $value ) {
-		$description  = '';
-		$tooltip_html = '';
+		$description       = '';
+		$tooltip_html      = '';
+		$allowed_html_tags = self::get_settings_allowed_html();
 
 		if ( true === $value['desc_tip'] ) {
 			$tooltip_html = $value['desc'];
@@ -674,16 +865,16 @@ class Admin_Settings {
 
 		if ( $description && in_array( $value['type'], array( 'textarea', 'radio' ), true ) ) {
 			$description = '<p style="margin-top:0">' . wp_kses_post( $description ) . '</p>';
-		} elseif ( $description && in_array( $value['type'], array( 'checkbox' ), true ) ) {
-			$description = wp_kses_post( $description );
+		} elseif ( $description && in_array( $value['type'], array( 'checkbox', 'promo-checkbox' ), true ) ) {
+			$description = wp_kses( $description, $allowed_html_tags );
 		} elseif ( $description ) {
-			$description = '<p class="description">' . wp_kses_post( $description ) . '</p>';
+			$description = '<p class="description">' . wp_kses( $description, $allowed_html_tags ) . '</p>';
 		}
 
 		if ( $tooltip_html && in_array( $value['type'], array( 'checkbox' ), true ) ) {
 			$tooltip_html = '<p class="description">' . $tooltip_html . '</p>';
 		} elseif ( $tooltip_html ) {
-			$tooltip_html = wp_kses_post( $tooltip_html );
+			$tooltip_html = wp_kses( $tooltip_html, $allowed_html_tags );
 		}
 
 		return array(
