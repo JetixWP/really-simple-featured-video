@@ -228,7 +228,7 @@ class Compatibility extends Base_Compatibility {
 		if ( ! empty( $post_types ) ) {
 			if ( in_array( $post_type, $post_types, true ) ) {
 				$img_url           = RSFV_PLUGIN_URL . 'assets/images/video_frame.png';
-				$thumbnail         = apply_filters( 'rsfv_featured_video_thumbnail', $img_url );
+				$thumbnail         = apply_filters( 'rsfv_default_woo_gallery_video_thumb', $img_url );
 				$gallery_thumbnail = wc_get_image_size( 'gallery_thumbnail' );
 
 				// Return early if thumbnail is only required.
