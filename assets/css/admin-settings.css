@@ -370,6 +370,7 @@ body.settings_page_rsfv-settings #wpcontent {
 }
 
 .rsfv tr[class*="promo-"] label > a,
+.rsfv tr[class*="promo-"] th > a,
 .rsfv div[class*="promo-"] > a {
 	text-decoration: none;
 	color: currentColor;
@@ -398,6 +399,20 @@ body.settings_page_rsfv-settings #wpcontent {
 	color: var(--jwp-wtc__color-brand) !important;
 	box-shadow: none;
 	outline: none;
+}
+
+.rsfv tr[class*="promo-"] img {
+	opacity: 0.6;
+	height: 80px;
+	width: auto;
+}
+
+.rsfv tr[class*="promo-"] a.disabled {
+	pointer-events: none;
+	cursor: none;
+	display: block;
+	margin-top: 10px;
+	opacity: 0.6;
 }
 
 .rsfv td[class*=" forminp-promo-"] select {
