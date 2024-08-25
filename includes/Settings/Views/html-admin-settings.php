@@ -79,11 +79,11 @@ if ( ! $tab_exists ) {
 							<div>
 								<p class="desc"><strong>Our Pro plugin includes these features -</strong></p>
 								<ul>
+									<li>✅ <strong>Priority Support</strong></li>
 									<li>✅ <strong>Change Video Aspect Ratio</strong></li>
 									<li>✅ <strong>Change Video Order at Woo Product CPT</strong></li>
 									<li>✅ <strong>Support for more Premium/Custom Themes</strong></li>
 									<li>✅ <strong>Requests for Theme Compatibility</strong></li>
-									<li>✅ <strong>Priority Support</strong></li>
 								</ul>
 							</div>
 							<div>
@@ -100,7 +100,7 @@ if ( ! $tab_exists ) {
 							</div>
 
 							<div>
-								<p><em>If you like our free plugin, you will absolutely love the PRO version with a Lifetime deal. Thank you for using RSFV again, you are not just any supporter but truly the founders of our small business.</em></p>
+								<p><em>If you like our free plugin, you will absolutely love the PRO version. Thank you for using RSFV again, you are not just any supporter but truly the founders of our small business.</em></p>
 								<p><strong>Krishna</strong>, Founder and Lead Developer</p>
 
 								<p><strong>Have questions?</strong> Please mail us at <a href="mailto:hello@jetixwp.com">hello@jetixwp.com</a>, and we will get back to you at the earliest :)</p>

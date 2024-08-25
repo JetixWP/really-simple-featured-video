@@ -423,7 +423,9 @@ body.settings_page_rsfv-settings #wpcontent {
 	display: inline-block;
 	margin-top: 10px;
 }
-.rsfv.getpro .submit {
+
+.rsfv.getpro .submit,
+.rsfv.help .submit {
 	display: none;
 }
 
@@ -432,7 +434,8 @@ body.settings_page_rsfv-settings #wpcontent {
 	margin-top: 30px;
 }
 
-.rsfv.getpro h1:not(.menu-title) {
+.rsfv.getpro h1:not(.menu-title),
+.rsfv.help h1:not(.menu-title) {
 	margin-top: 15px;
 	font-weight: 600;
 	font-size: 20px;
@@ -446,9 +449,12 @@ body.settings_page_rsfv-settings #wpcontent {
 
 .rsfv.getpro .getpro-content li {
 	line-height: 1.5;
+	font-weight: 600;
 }
 
-.rsfv.getpro .getpro-content p, li {
+.rsfv.getpro .getpro-content p,
+.rsfv.getpro .getpro-content li,
+.rsfv.help .help-content p {
 	font-size: 15px;
 }
 
@@ -485,7 +491,8 @@ body.settings_page_rsfv-settings #wpcontent {
 }
 
 .rsfv .sidebar .upgrade-box .desc,
-.rsfv .notice-box .desc {
+.rsfv .notice-box .desc,
+.rsfv .sidebar .upgrade-box li {
 	font-size: 15px;
 }
 

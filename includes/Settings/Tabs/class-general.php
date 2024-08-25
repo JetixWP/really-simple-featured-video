@@ -64,10 +64,19 @@ class General extends Settings_Page {
 	public function get_settings( $current_section = '' ) {
 
 		$post_types = $this->get_available_post_types();
+		$plugin     = Plugin::get_instance();
+		$options    = Options::get_instance();
 
-		$compatibility_engines = Plugin::get_instance()->theme_provider->get_selectable_engine_options();
+		$compatibility_engines = $plugin->theme_provider->get_selectable_engine_options();
+		$current_engine        = $options->get( 'active-theme-engine' );
 
-		$current_engine = Options::get_instance()->get( 'active-theme-engine' );
+		$engine_description = '';
+
+		if ( ! class_exists( '\RSFV_Pro\Plugin' ) ) {
+			$pro_compatibility_engines = $plugin->theme_provider->get_selectable_pro_engine_options_promo();
+			$compatibility_engine      = $options->get( 'theme-compatibility-engine' );
+			$engine_description        = in_array( $compatibility_engine, array_keys( $pro_compatibility_engines ), true ) ? __( 'If you set a PRO compatibility engine in the Free version of the plugin, the compatibility will fall back to the Default engine.', 'rsfv' ) : '';
+		}
 
 		$default_enabled_post_types = apply_filters(
 			'rsfv_default_enabled_post_types',
@@ -99,7 +108,7 @@ class General extends Settings_Page {
 			),
 			array(
 				'title'   => __( 'Set engine', 'rsfv' ),
-				'desc'    => '',
+				'desc'    => $engine_description,
 				'id'      => 'theme-compatibility-engine',
 				'default' => 'auto',
 				'type'    => 'select',

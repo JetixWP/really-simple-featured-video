@@ -359,11 +359,40 @@ class FrontEnd {
 	 */
 	public function update_wp_kses_allowed_html( $allowed_html, $context ) {
 
-		// Keep only for 'post' contenxt.
+		// Keep only for 'post' context.
 		if ( 'post' === $context ) {
 			$additional_html = $this->get_allowed_html();
 
-			return array_merge( $allowed_html, $additional_html );
+			$updated_tags = $allowed_html;
+
+			// This fixes overriding existing html tag attributes data.
+			foreach ( $additional_html as $tag => $attrs ) {
+				if ( in_array( $tag, array_keys( $allowed_html ), true ) ) {
+					if ( ! empty( $attrs ) ) {
+						$ex_attrs = $allowed_html[ $tag ];
+
+						if ( ! empty( $ex_attrs ) ) {
+							foreach ( $attrs as $attr => $value ) {
+								if ( ! empty( $ex_attrs[ $attr ] ) ) {
+									$updated_tags[ $tag ][ $attr ] = $ex_attrs[ $attr ];
+								} else {
+									$updated_tags[ $tag ][ $attr ] = $value;
+								}
+							}
+						} else {
+							$updated_tags[ $tag ] = $attrs;
+						}
+					} else {
+						$updated_tags[ $tag ] = $allowed_html[ $tag ];
+					}
+
+					continue;
+				}
+
+				$updated_tags[ $tag ] = $attrs;
+			}
+
+			return $updated_tags;
 		}
 
 		return $allowed_html;
