@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.14.0\n"
+"Project-Id-Version: Really Simple Featured Video 0.15.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-23T08:34:14+00:00\n"
+"POT-Creation-Date: 2024-08-25T09:17:34+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -152,6 +152,30 @@ msgstr ""
 msgid "Auto (Do it for me)"
 msgstr ""
 
+#: includes/Compatibility/class-theme-provider.php:189
+msgid "OceanWP (PRO)"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:190
+msgid "Jupiter X (PRO)"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:191
+msgid "Flatsome (PRO)"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:192
+msgid "Wellco (PRO)"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:193
+msgid "Avanam (PRO)"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:194
+msgid "Divi Builder (PRO)"
+msgstr ""
+
 #: includes/Compatibility/Plugins/Divi/class-settings.php:68
 msgid "Featured Video for Divi Woo Product Images"
 msgstr ""
@@ -208,42 +232,42 @@ msgstr ""
 msgid "Set default product gallery thumb on single product page."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:77
+#: includes/Settings/class-admin-settings.php:78
 msgid "Your settings have been saved."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:139
+#: includes/Settings/class-admin-settings.php:140
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:140
+#: includes/Settings/class-admin-settings.php:141
 msgid "Select Thumbnail Image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:141
+#: includes/Settings/class-admin-settings.php:142
 msgid "Use this image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:316
+#: includes/Settings/class-admin-settings.php:317
 msgid "Pro"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:317
+#: includes/Settings/class-admin-settings.php:318
 msgid "Checkout Pro now"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:451
-#: includes/Settings/class-admin-settings.php:479
+#: includes/Settings/class-admin-settings.php:452
+#: includes/Settings/class-admin-settings.php:480
 msgid "Change Image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:452
+#: includes/Settings/class-admin-settings.php:453
 msgid "Revert to Default"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:659
-#: includes/Settings/class-admin-settings.php:724
-#: includes/Settings/class-admin-settings.php:796
+#: includes/Settings/class-admin-settings.php:660
+#: includes/Settings/class-admin-settings.php:725
+#: includes/Settings/class-admin-settings.php:797
 msgid "Toggle"
 msgstr ""
 
@@ -298,33 +322,37 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:81
+#: includes/Settings/Tabs/class-general.php:78
+msgid "If you set a PRO compatibility engine in the Free version of the plugin, the compatibility will fall back to the Default engine."
+msgstr ""
+
+#: includes/Settings/Tabs/class-general.php:90
 msgctxt "settings title"
 msgid "Theme Compatibility Engine"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:82
+#: includes/Settings/Tabs/class-general.php:91
 msgid "If featured videos aren't working as expected in your theme, you may need to set this from the list of supported theme engines. (Default engine follows standard WordPress rules, and may not work for all themes)"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:92
+#: includes/Settings/Tabs/class-general.php:101
 msgid "Status"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:95
+#: includes/Settings/Tabs/class-general.php:104
 msgid "Auto"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:101
+#: includes/Settings/Tabs/class-general.php:110
 msgid "Set engine"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:113
+#: includes/Settings/Tabs/class-general.php:122
 msgctxt "settings title"
 msgid "Enable Post Types Support"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:114
+#: includes/Settings/Tabs/class-general.php:123
 msgid "Please select the post types you wish to enable featured video support at."
 msgstr ""
 
@@ -370,32 +398,48 @@ msgstr ""
 msgid "Custom"
 msgstr ""
 
+#: includes/Settings/Tabs/class-help.php:26
+msgid "Help"
+msgstr ""
+
 #: includes/Settings/Views/html-admin-settings-getpro.php:14
 msgid "Get Premium Featured Video support with Really Simple Featured Video Pro"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-getpro.php:17
-msgid "Change Video Aspect Ratio"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:18
-msgid "Change Video Order at WooCommerce Product page"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:19
 msgid "Priority Support"
 msgstr ""
 
+#: includes/Settings/Views/html-admin-settings-getpro.php:18
+msgid "Change Video Aspect Ratio"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-getpro.php:19
+msgid "Change Video Order at WooCommerce Product page"
+msgstr ""
+
 #: includes/Settings/Views/html-admin-settings-getpro.php:20
-msgid "Requests for Theme Compatibility"
+msgid "Change Default Gallery Video Thumbnail at Woo Single Product page"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-getpro.php:21
+msgid "Support for more Premium/Custom themes"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-getpro.php:22
-msgid ".. and more coming soon."
+msgid "Requests for Theme Compatibility"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-getpro.php:24
+msgid ".. and more coming soon."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-getpro.php:26
 msgid "Explore RSFV and PRO"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-help.php:14
+msgid "Help and Support"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings.php:66
