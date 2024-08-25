@@ -70,6 +70,12 @@ class Plugin_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Divi/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Plugins\Divi\Compatibility',
 				),
+				'tp-product-image-flipper' => array(
+					'title'        => __( 'TP Product Image Flipper', 'rsfv' ),
+					'file_source'  => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/TPProductImageFlipper/class-compatibility.php',
+					'class'        => 'RSFV\Compatibility\Plugins\TPProductImageFlipper\Compatibility',
+					'has_function' => 'tp_remove_action',
+				),
 				'cix-woo-gallery-slider'   => array(
 					'title'            => __( 'Codeixer Product Gallery Slider', 'rsfv' ),
 					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/CIXWooGallerySlider/class-compatibility.php',
