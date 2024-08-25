@@ -41,31 +41,31 @@ class Plugin_Provider {
 		$this->plugin_engines = apply_filters(
 			'rsfv_plugin_compatibility_engines',
 			array(
-				'woocommerce'  => array(
+				'woocommerce'              => array(
 					'title'            => __( 'WooCommerce', 'rsfv' ),
 					'file_source'      => self::COMPAT_DIR . 'WooCommerce/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\WooCommerce\Compatibility',
 					'has_class_loaded' => 'WooCommerce',
 				),
-				'astra-addon'  => array(
+				'astra-addon'              => array(
 					'title'            => __( 'Astra Pro', 'rsfv' ),
 					'file_source'      => self::COMPAT_DIR . 'AstraPro/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\AstraPro\Compatibility',
 					'has_class_loaded' => 'Astra_Addon_Update',
 				),
-				'salient-core' => array(
+				'salient-core'             => array(
 					'title'            => __( 'Salient Core', 'rsfv' ),
 					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/SalientCore/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\SalientCore\Compatibility',
 					'has_class_loaded' => 'Salient_Core',
 				),
-				'elementor'    => array(
+				'elementor'                => array(
 					'title'            => __( 'Elementor', 'rsfv' ),
 					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Elementor/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\Elementor\Compatibility',
 					'has_class_loaded' => 'Elementor\Plugin',
 				),
-				'divi'         => array(
+				'divi'                     => array(
 					'title'       => __( 'Divi', 'rsfv' ),
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Divi/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Plugins\Divi\Compatibility',
