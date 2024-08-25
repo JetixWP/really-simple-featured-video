@@ -44,9 +44,10 @@ if ( ! function_exists( 'rsfv_fs' ) ) {
 					'has_addons'     => true,
 					'has_paid_plans' => false,
 					'menu'           => array(
-						'slug'    => 'rsfv-settings',
-						'support' => false,
-						'parent'  => array(
+						'slug'       => 'rsfv-settings',
+						'first-path' => 'options-general.php?page=rsfv-settings',
+						'support'    => false,
+						'parent'     => array(
 							'slug' => 'options-general.php',
 						),
 					),
