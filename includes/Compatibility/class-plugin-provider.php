@@ -70,6 +70,12 @@ class Plugin_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Divi/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Plugins\Divi\Compatibility',
 				),
+				'cix-woo-gallery-slider'   => array(
+					'title'            => __( 'Codeixer Product Gallery Slider', 'rsfv' ),
+					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/CIXWooGallerySlider/class-compatibility.php',
+					'class'            => 'RSFV\Compatibility\Plugins\CIXWooGallerySlider\Compatibility',
+					'has_class_loaded' => 'Product_Gallery_Sldier\Product',
+				),
 			)
 		);
 
