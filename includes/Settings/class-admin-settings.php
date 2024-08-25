@@ -52,7 +52,8 @@ class Admin_Settings {
 
 			$settings = apply_filters( 'rsfv_get_settings_pages', $settings );
 
-			// To make sure Promotional tab shows up at the very last.
+			// To make sure Promotional and Help tabs shows up at the very last.
+			$settings[] = include 'Tabs/class-help.php';
 			$settings[] = include 'Tabs/class-getpro.php';
 
 			self::$settings = $settings;
