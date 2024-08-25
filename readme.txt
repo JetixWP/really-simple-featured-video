@@ -1,9 +1,9 @@
 === Really Simple Featured Video - Featured video support for Posts, Pages & WooCommerce Products ===
 Contributors: jetixwp, lushkant
 Requires at least: 6.0
-Requires PHP: 7.4
+Requires PHP: 8.0
 Tested up to: 6.6.1
-Stable tag: 0.14.0
+Stable tag: 0.15.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -30,7 +30,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme WPBakery Builder Support** - Support for Post Loop Builder element with Salient theme.
-* **Elementor Pro Support** - Support for Posts/archive widgets with Elementor Pro builder.
+* **Elementor Pro Support** - Support for Posts/Archive, WooCommerce Product widgets with Elementor Pro builder.
 * **Support for Core themes** - We support all the newer core themes such as TwentyTwenty Four to Classic themes.
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
@@ -51,7 +51,7 @@ RSFV supports Salient Theme WPBakery builder with its Post Loop Builder element,
 
 == 👉️ Elementor Pro Builder Support ==
 
-RSFV supports Elementor Pro builder with its Posts/archive widgets, you can use them to display Featured Videos for posts, pages and CPTs (with Featured Images). You can also display Featured Video on single pages via the shortcode - [rsfv]
+RSFV supports Elementor Pro builder with its Posts/Archives and WooCommerce Product widgets, you can use them to display Featured Videos for posts, pages, products and CPTs (with Featured Images). You can also display Featured Video on single pages via the shortcode - [rsfv]
 
 == 👉️ How to use Shortcodes ==
 
@@ -70,11 +70,11 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
+* ✅ **Priority Support** - Solving your problems are our priority with superfast response times.
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.
 * ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes.
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
-* ✅ **Priority Support** - Solving your problems are our priority with superfast response times.
 
 More features to come in the future, to name a few -
 
@@ -109,6 +109,18 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.15.0 =
+- New: Add Support for Product Image Flipper by TP Plugins
+- New: Add support for Product Gallery Slider plugin by Codeixer
+- New: Help Tab at Settings page
+- New: Shows Theme Engines from Pro plugin for Promo
+- Fix: Filter for wp_kses overriding existing allowed_html tags
+- Improvement: Improve plugin provider for function based loading
+- Improvement: Improved settings page
+- Improvement: Redirect to settings page on first install
+- Improvement: Other minor changes
+- Improvement: Updated translation files
 
 = 0.14.0 =
 - New: Divi compatibility settings tab
