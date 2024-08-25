@@ -118,6 +118,11 @@ class Plugin_Provider {
 				continue;
 			}
 
+			// For functions.
+			if ( isset( $plugin_data['has_function'] ) && ! function_exists( $plugin_data['has_function'] ) ) {
+				continue;
+			}
+
 			// For constants.
 			if ( isset( $plugin_data['has_defined_constant'] ) && ! defined( $plugin_data['has_defined_constant'] ) ) {
 				continue;
