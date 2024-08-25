@@ -166,6 +166,32 @@ class Theme_Provider {
 			$selectable_engines[ $engine_id ] = $engine_data['title'];
 		}
 
+		// Pro theme Engines for promo.
+		$pro_selectable_engines = $this->get_selectable_pro_engine_options_promo();
+
+		// Include promo engines.
+		foreach ( $pro_selectable_engines as $engine_id => $engine_label ) {
+			if ( ! array_key_exists( $engine_id, $selectable_engines ) ) {
+				$selectable_engines[ $engine_id ] = $engine_label;
+			}
+		}
+
 		return $selectable_engines;
+	}
+
+	/**
+	 * Returns the list of theme engines available in PRO plugin.
+	 *
+	 * @return array
+	 */
+	public function get_selectable_pro_engine_options_promo() {
+		return array(
+			'oceanwp'  => __( 'OceanWP (PRO)', 'rsfv' ),
+			'jupiterx' => __( 'Jupiter X (PRO)', 'rsfv' ),
+			'flatsome' => __( 'Flatsome (PRO)', 'rsfv' ),
+			'wellco'   => __( 'Wellco (PRO)', 'rsfv' ),
+			'avanam'   => __( 'Avanam (PRO)', 'rsfv' ),
+			'divi'     => __( 'Divi Builder (PRO)', 'rsfv' ),
+		);
 	}
 }
