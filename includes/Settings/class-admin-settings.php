@@ -739,7 +739,7 @@ class Admin_Settings {
 						<?php
 					}
 					break;
-                // Pro checkbox.
+				// Pro checkbox.
 				case 'promo-checkbox':
 					$visibility_class = array();
 
