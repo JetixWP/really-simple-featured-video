@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-25T09:17:34+00:00\n"
+"POT-Creation-Date: 2024-08-25T14:43:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -110,6 +110,14 @@ msgstr ""
 #: includes/Compatibility/class-plugin-provider.php:69
 #: includes/Compatibility/Plugins/Divi/class-settings.php:30
 msgid "Divi"
+msgstr ""
+
+#: includes/Compatibility/class-plugin-provider.php:74
+msgid "TP Product Image Flipper"
+msgstr ""
+
+#: includes/Compatibility/class-plugin-provider.php:80
+msgid "Codeixer Product Gallery Slider"
 msgstr ""
 
 #: includes/Compatibility/class-theme-provider.php:55
