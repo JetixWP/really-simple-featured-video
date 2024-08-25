@@ -383,7 +383,7 @@ class FrontEnd {
 							$updated_tags[ $tag ] = $attrs;
 						}
 					} else {
-						$updated_tags[ $tag ] = $attrs;
+						$updated_tags[ $tag ] = $allowed_html[ $tag ];
 					}
 
 					continue;
