@@ -92,7 +92,7 @@ class Theme_Provider {
 	 */
 	public function load_theme_compat() {
 		$theme      = wp_get_theme();
-		$theme_slug = $theme->get_stylesheet();
+		$theme_slug = strtolower( $theme->get_stylesheet() );
 		$options    = Options::get_instance();
 
 		$compatibility_engine = $options->get( 'theme-compatibility-engine' );
