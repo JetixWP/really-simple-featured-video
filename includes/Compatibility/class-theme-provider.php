@@ -90,6 +90,16 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Neve/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Neve\Compatibility',
 				),
+				'generatepress'     => array(
+					'title'       => __( 'GeneratePress', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/GeneratePress/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\GeneratePress\Compatibility',
+				),
+				'astra'             => array(
+					'title'       => __( 'Astra', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Astra/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Astra\Compatibility',
+				),
 			)
 		);
 	}
