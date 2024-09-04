@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 use RSFV\FrontEnd;
 use RSFV\Compatibility\Plugins\Base_Compatibility;
 use RSFV\Compatibility\Plugins\WooCommerce\Compatibility as WooBaseCompatibility;
+use RSFV\Options;
 
 /**
  * Class Compatibility
@@ -45,11 +46,16 @@ class Compatibility extends Base_Compatibility {
 	 */
 	public function setup() {
 		if ( has_action( 'woocommerce_before_shop_loop_item_title', 'tp_create_flipper_images' ) ) {
-			$woo_base_compatibility = WooBaseCompatibility::get_instance();
+			$options                     = Options::get_instance();
+			$product_archives_visibility = $options->get( 'product_archives_visibility' );
 
-			remove_action( 'woocommerce_before_shop_loop_item_title', 'tp_create_flipper_images' );
-			remove_action( 'woocommerce_before_shop_loop_item_title', array( $woo_base_compatibility, 'get_woo_archives_video' ) );
-			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'update_flipper_images' ) );
+			if ( ( ! $options->has( 'product_archives_visibility' ) && ! $product_archives_visibility ) || $product_archives_visibility ) {
+				$woo_base_compatibility = WooBaseCompatibility::get_instance();
+
+				remove_action( 'woocommerce_before_shop_loop_item_title', 'tp_create_flipper_images' );
+				remove_action( 'woocommerce_before_shop_loop_item_title', array( $woo_base_compatibility, 'get_woo_archives_video' ) );
+				add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'update_flipper_images' ) );
+			}
 		}
 	}
 
