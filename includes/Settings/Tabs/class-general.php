@@ -110,6 +110,7 @@ class General extends Settings_Page {
 				'title'   => __( 'Set engine', 'rsfv' ),
 				'desc'    => $engine_description,
 				'id'      => 'theme-compatibility-engine',
+				'class'   => 'rsfv-theme-compatibility-select',
 				'default' => 'auto',
 				'type'    => 'select',
 				'options' => $compatibility_engines,

@@ -140,6 +140,8 @@
 					return false;
 				}
 			);
+
+			$( '.rsfv-theme-compatibility-select' ).select2();
 		}
 	);
 }( jQuery, rsfv_settings_data ) );

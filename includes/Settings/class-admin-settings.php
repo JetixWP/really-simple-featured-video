@@ -125,12 +125,22 @@ class Admin_Settings {
 		global $current_section, $current_tab;
 
 		do_action( 'rsfv_settings_start' );
+
+		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+		// Enqueue RSFV settings styles.
+		wp_enqueue_style( 'rsfv_settings_select2', RSFV_PLUGIN_URL . 'assets/css/select2/select2' . $suffix . '.css', array(), filemtime( RSFV_PLUGIN_DIR . 'assets/css/select2/select2.css' ) );
+
 		wp_enqueue_style( 'rsfv_settings', RSFV_PLUGIN_URL . 'assets/css/admin-settings.css', array(), filemtime( RSFV_PLUGIN_DIR . 'assets/css/admin-settings.css' ) );
 
 		// Enqueue all necessary WP Media APIs.
 		wp_enqueue_media();
+
 		// Enqueue RSFV settings scripts.
-		wp_enqueue_script( 'rsfv_settings', RSFV_PLUGIN_URL . 'assets/js/admin-settings.js', array( 'jquery', 'wp-util', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'iris' ), filemtime( RSFV_PLUGIN_DIR . 'assets/js/admin-settings.js' ), true );
+		wp_enqueue_script( 'rsfv_settings_select2', RSFV_PLUGIN_URL . 'assets/js/select2/select2' . $suffix . '.js', array( 'jquery' ), filemtime( RSFV_PLUGIN_DIR . 'assets/js/select2/select2.js' ), true );
+
+		wp_enqueue_script( 'rsfv_settings', RSFV_PLUGIN_URL . 'assets/js/admin-settings.js', array( 'jquery', 'wp-util', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'iris', 'rsfv_settings_select2' ), filemtime( RSFV_PLUGIN_DIR . 'assets/js/admin-settings.js' ), true );
+
 		do_action( 'rsfv_settings_after_scripts' );
 
 		wp_localize_script(
