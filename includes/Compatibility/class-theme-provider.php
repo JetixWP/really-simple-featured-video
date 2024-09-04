@@ -192,6 +192,8 @@ class Theme_Provider {
 			'wellco'   => __( 'Wellco (PRO)', 'rsfv' ),
 			'avanam'   => __( 'Avanam (PRO)', 'rsfv' ),
 			'divi'     => __( 'Divi Builder (PRO)', 'rsfv' ),
+			'avada'    => __( 'Avada (PRO)', 'rsfv' ),
+			'konte'    => __( 'Konte (PRO)', 'rsfv' ),
 		);
 	}
 }
