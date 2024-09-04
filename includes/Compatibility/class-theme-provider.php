@@ -56,6 +56,8 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/Fallback/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\Fallback\Compatibility',
 				),
+
+				// Core.
 				'twentytwenty'      => array(
 					'title'       => __( 'Twenty Twenty', 'rsfv' ),
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/Core/Twentytwenty/class-compatibility.php',
@@ -80,6 +82,13 @@ class Theme_Provider {
 					'title'       => __( 'Twenty Twenty-Four', 'rsfv' ),
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/Core/Twentytwenty_Four/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\Core\Twentytwenty_Four\Compatibility',
+				),
+
+				// Third-Party.
+				'neve'              => array(
+					'title'       => __( 'Neve', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Neve/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Neve\Compatibility',
 				),
 			)
 		);
