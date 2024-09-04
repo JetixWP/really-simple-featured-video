@@ -107,14 +107,14 @@ class FrontEnd {
 					$video_id = get_post_meta( $post->ID, RSFV_META_KEY, true );
 
 					if ( $video_id ) {
-						return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+						return '<div class="rsfv-shortcode-wrapper" style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
 					}
 				} else {
 					// Get the meta value of video embed url.
 					$embed_url = get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
 
 					if ( $embed_url ) {
-						return '<div style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+						return '<div class="rsfv-shortcode-wrapper" style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
 					}
 				}
 			}
