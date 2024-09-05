@@ -30,7 +30,7 @@ class Compatibility extends Base_Compatibility {
 	public function __construct() {
 		parent::__construct();
 
-		$this->id    = 'twentytwentyfour';
+		$this->id = 'twentytwentyfour';
 
 		$this->setup();
 
