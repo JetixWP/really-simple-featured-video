@@ -33,7 +33,7 @@ class Compatibility extends Base_Compatibility {
 
 		$this->id = 'hestia';
 
-		$this->setup();
+		$this->woo_setup();
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
@@ -55,11 +55,15 @@ class Compatibility extends Base_Compatibility {
 	}
 
 	/**
-	 * Setup compat.
+	 * Setup Woo compat.
 	 *
 	 * @return void
 	 */
-	public function setup() {
+	public function woo_setup() {
+		if ( ! class_exists( 'WooCommerce' ) ) {
+			return;
+		}
+
 		$options                     = Options::get_instance();
 		$product_archives_visibility = $options->get( 'product_archives_visibility' );
 
