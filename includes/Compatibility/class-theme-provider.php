@@ -83,6 +83,11 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/Core/Twentytwenty_Four/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\Core\Twentytwenty_Four\Compatibility',
 				),
+				'storefront'        => array(
+					'title'       => __( 'Storefront', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/Core/Storefront/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\Core\Storefront\Compatibility',
+				),
 
 				// Third-Party.
 				'neve'              => array(
@@ -99,6 +104,21 @@ class Theme_Provider {
 					'title'       => __( 'Astra', 'rsfv' ),
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Astra/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Astra\Compatibility',
+				),
+				'go'                => array(
+					'title'       => __( 'Go', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Go/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Go\Compatibility',
+				),
+				'kadence'           => array(
+					'title'       => __( 'Kadence', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Kadence/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Kadence\Compatibility',
+				),
+				'hestia'            => array(
+					'title'       => __( 'Hestia', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Hestia/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Hestia\Compatibility',
 				),
 			)
 		);
