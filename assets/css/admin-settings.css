@@ -353,6 +353,10 @@ body.settings_page_rsfv-settings #wpcontent {
 	margin-right: 4px;
 }
 
+.rsfv .forminp-select .rsfv-theme-compatibility-select + .select2-container {
+	width: 220px !important;
+}
+
 .rsfv .forminp-media-image .media-image {
 	height: 80px;
 	width: auto;
@@ -542,6 +546,10 @@ body.settings_page_rsfv-settings #wpcontent {
 .rsfv a:focus,
 .rsfv a:active {
 	text-decoration: none;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+	background-color: var(--jwp-wtc__color-brand);
 }
 
 @media screen and ( min-width: 1920px ) {
