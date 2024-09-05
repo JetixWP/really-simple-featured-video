@@ -1,0 +1,19 @@
+.rsfv-has-video > figure.wp-block-post-featured-image, .rsfv-has-video > figure.wp-block-post-featured-image > a {
+    height: auto !important;
+}
+
+.single.rsfv-has-video .wp-block-post-featured-image span.wp-block-post-featured-image__overlay,
+.page.rsfv-has-video .wp-block-post-featured-image span.wp-block-post-featured-image__overlay {
+    display: none;
+}
+
+.rsfv-has-video video.rsfv-video,
+.rsfv-has-video iframe.rsfv-video {
+    height: auto;
+    width: 100% !important;
+    aspect-ratio: 16/9;
+}
+
+.rsfv-video__wrapper + .woocommerce-product-gallery__image--placeholder {
+    display: none;
+}
