@@ -90,10 +90,11 @@ If you wish to grab the PRO version with a lifetime deal please do [checkout Pro
 2. Featured video posts on Twenty Twenty-Three theme.
 3. WooCommerce Product page with self-hosted Featured Video.
 4. Settings page view.
-5. Video playback controls view at Really Simple Featured Video settings.
-6. WooCommerce settings page view.
-7. Single Page view with Featured video on Twenty nineteen theme.
-8. Showing Featured video by post id shortcode via Block editor.
+5. Global settings page view.
+6. Video playback controls view at Really Simple Featured Video settings.
+7. WooCommerce settings page view.
+8. Single Page view with Featured video on Twenty nineteen theme.
+9. Showing Featured video by post id shortcode via Block editor.
 
 
 == Frequently Asked Questions ==

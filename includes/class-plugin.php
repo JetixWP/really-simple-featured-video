@@ -230,7 +230,7 @@ final class Plugin {
 			/* translators: %1$s is a link to RSFV's plugin page, %2$s is a link to JetixWP's website, and %3$s is the existing html,. */
 				__( '%1$s is developed and maintained by %2$s. %3$s', 'wp-migrate-db' ),
 				'<a href="https://jetixwp.com/plugins/really-simple-featured-video">Really Simple Featured Video</a>',
-				'<a href="https://jetixwp.com/" target="_blank">JetixWP</a>',
+				'<a href="https://jetixwp.com/" target="_blank">JetixWP Plugins</a>',
 				$html
 			);
 		} else {
