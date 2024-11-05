@@ -233,6 +233,7 @@ class Theme_Provider {
 			'divi'     => __( 'Divi Builder (PRO)', 'rsfv' ),
 			'avada'    => __( 'Avada (PRO)', 'rsfv' ),
 			'konte'    => __( 'Konte (PRO)', 'rsfv' ),
+			'lay'      => __( 'Lay (PRO)', 'rsfv' ),
 		);
 	}
 }
