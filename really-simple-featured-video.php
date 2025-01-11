@@ -3,20 +3,22 @@
  * Plugin Name: Really Simple Featured Video
  * Plugin URI:  https://jetixwp.com/plugins/really-simple-featured-video
  * Description: Adds support for Featured Video to WordPress posts, pages & WooCommerce products.
- * Version:     0.17.0
+ * Version:     0.20.0
  * Author:      JetixWP Plugins
  * Author URI:  https://jetixwp.com
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: rsfv
  * Domain Path: /languages/
+ * Requires at least: 6.0
+ * Requires PHP: 8.0
  *
  * @package RSFV
  */
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'RSFV_VERSION', '0.17.0' );
+define( 'RSFV_VERSION', '0.20.0' );
 define( 'RSFV_PLUGIN_FILE', __FILE__ );
 define( 'RSFV_PLUGIN_URL', plugin_dir_url( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_DIR', plugin_dir_path( RSFV_PLUGIN_FILE ) );
