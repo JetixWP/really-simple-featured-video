@@ -83,6 +83,11 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/Core/Twentytwenty_Four/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\Core\Twentytwenty_Four\Compatibility',
 				),
+				'twentytwentyfive'  => array(
+					'title'       => __( 'Twenty Twenty-Five', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/Core/Twentytwenty_Five/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\Core\Twentytwenty_Five\Compatibility',
+				),
 				'storefront'        => array(
 					'title'       => __( 'Storefront', 'rsfv' ),
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/Core/Storefront/class-compatibility.php',
