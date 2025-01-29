@@ -55,6 +55,13 @@ class Global_Settings extends Settings_Page {
 				'type'    => 'checkbox',
 			),
 			array(
+				'title'   => __( 'Show videos at Blog single posts', 'rsfv' ),
+				'desc'    => __( 'When toggled on, it shows set videos at blog single posts.', 'rsfv' ),
+				'id'      => 'blog_single_visibility',
+				'default' => true,
+				'type'    => 'checkbox',
+			),
+			array(
 				'type' => 'sectionend',
 				'id'   => 'rsfv_archives_visibilitiy',
 			),
