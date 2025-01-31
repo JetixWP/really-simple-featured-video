@@ -125,6 +125,11 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Hestia/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Hestia\Compatibility',
 				),
+				'flatsome'          => array(
+					'title'       => __( 'Flatsome', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Flatsome/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Flatsome\Compatibility',
+				),
 			)
 		);
 	}
@@ -154,6 +159,11 @@ class Theme_Provider {
 		$theme_compat = null;
 
 		$theme_engines = $this->get_theme_engines();
+
+		// To make sure child themes don't escape parents.
+		if ( str_contains( $theme_slug, '-child' ) ) {
+			$theme_slug = str_replace( '-child', '', $theme_slug );
+		}
 
 		if ( ! in_array( $theme_slug, array_keys( $theme_engines ), true ) ) {
 			$theme_slug = 'default';
