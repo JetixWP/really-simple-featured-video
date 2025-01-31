@@ -38,6 +38,8 @@ You get a really simple settings page which has all the controls you need for ma
 
 == 👉️ WooCommerce Support ==
 
+https://www.youtube.com/watch?v=FLw3ntOXaLY
+
 This plugin came out of a real need with many plugins available out there yet none provides a good integration with WooCommerce.
 Really Simple Featured Video plugin provides a straightforward implementation for WooCommerce Product Featured Video, with which your set featured video loads directly into product thumbnails along with any other product images.
 
