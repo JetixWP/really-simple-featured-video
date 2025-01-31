@@ -209,19 +209,19 @@ class Compatibility extends Base_Compatibility {
 		$video_controls = 'self' !== $video_source ? get_video_controls( 'embed' ) : get_video_controls();
 
 		// Get autoplay option.
-		$is_autoplay = is_array( $video_controls ) && isset( $video_controls['autoplay'] );
+		$is_autoplay = ( is_array( $video_controls ) && isset( $video_controls['autoplay'] ) ) && $video_controls['autoplay'];
 
 		// Get loop option.
-		$is_loop = is_array( $video_controls ) && isset( $video_controls['loop'] );
+		$is_loop = ( is_array( $video_controls ) && isset( $video_controls['loop'] ) ) && $video_controls['loop'];
 
 		// Get mute option.
-		$is_muted = is_array( $video_controls ) && isset( $video_controls['mute'] );
+		$is_muted = ( is_array( $video_controls ) && isset( $video_controls['mute'] ) ) && $video_controls['mute'];
 
 		// Get PictureInPicture option.
-		$is_pip = is_array( $video_controls ) && isset( $video_controls['pip'] );
+		$is_pip = ( is_array( $video_controls ) && isset( $video_controls['pip'] ) ) && $video_controls['pip'];
 
 		// Get video controls option.
-		$has_controls = is_array( $video_controls ) && isset( $video_controls['controls'] );
+		$has_controls = ( is_array( $video_controls ) && isset( $video_controls['controls'] ) ) && $video_controls['controls'];
 
 		$video_html = '';
 
