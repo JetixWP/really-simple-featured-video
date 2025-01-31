@@ -155,6 +155,11 @@ class Theme_Provider {
 
 		$theme_engines = $this->get_theme_engines();
 
+		// To make sure child themes don't escape parents.
+		if ( str_contains( $theme_slug, '-child' ) ) {
+			$theme_slug = str_replace( '-child', '', $theme_slug );
+		}
+
 		if ( ! in_array( $theme_slug, array_keys( $theme_engines ), true ) ) {
 			$theme_slug = 'default';
 		}
