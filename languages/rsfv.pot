@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.22.0\n"
+"Project-Id-Version: Really Simple Featured Video 0.23.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-01-29T19:31:13+00:00\n"
+"POT-Creation-Date: 2025-01-31T18:19:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -176,55 +176,59 @@ msgstr ""
 msgid "Hestia"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:166
+#: includes/Compatibility/class-theme-provider.php:129
+msgid "Flatsome"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:176
 msgid "Failed at registration"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:167
+#: includes/Compatibility/class-theme-provider.php:177
 msgid "Unregistered"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:203
+#: includes/Compatibility/class-theme-provider.php:213
 msgid "Disabled (Legacy)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:204
+#: includes/Compatibility/class-theme-provider.php:214
 msgid "Auto (Do it for me)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:233
+#: includes/Compatibility/class-theme-provider.php:243
 msgid "OceanWP (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:234
+#: includes/Compatibility/class-theme-provider.php:244
 msgid "Jupiter X (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:235
+#: includes/Compatibility/class-theme-provider.php:245
 msgid "Flatsome (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:236
+#: includes/Compatibility/class-theme-provider.php:246
 msgid "Wellco (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:237
+#: includes/Compatibility/class-theme-provider.php:247
 msgid "Avanam (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:238
+#: includes/Compatibility/class-theme-provider.php:248
 msgid "Divi Builder (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:239
+#: includes/Compatibility/class-theme-provider.php:249
 msgid "Avada (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:240
+#: includes/Compatibility/class-theme-provider.php:250
 msgid "Konte (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:241
+#: includes/Compatibility/class-theme-provider.php:251
 msgid "Lay (PRO)"
 msgstr ""
 
