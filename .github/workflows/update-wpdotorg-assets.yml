@@ -10,7 +10,7 @@ env:
 
 jobs:
   master:
-    name: Push to master
+    name: Push to WP.org
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
