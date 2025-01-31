@@ -125,6 +125,11 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Hestia/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Hestia\Compatibility',
 				),
+				'flatsome'          => array(
+					'title'       => __( 'Flatsome', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Flatsome/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Flatsome\Compatibility',
+				),
 			)
 		);
 	}
