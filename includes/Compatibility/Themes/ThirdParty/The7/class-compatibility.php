@@ -45,7 +45,7 @@ class Compatibility extends Base_Compatibility {
 	 */
 	public function enqueue_scripts() {
 		// Register dummy styles.
-        wp_register_style( 'rsfv-dt-the7', false ); // phpcs:ignore.
+		wp_register_style( 'rsfv-dt-the7', $this->get_current_dir_url() . 'ThirdParty/The7/styles.css', array(), filemtime( $this->get_current_dir() . 'ThirdParty/The7/styles.css' ) );
 
 		// Enqueue styles.
 		wp_enqueue_style( 'rsfv-dt-the7' );
