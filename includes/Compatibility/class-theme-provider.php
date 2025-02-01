@@ -135,6 +135,11 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/The7/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\The7\Compatibility',
 				),
+				'savoy'             => array(
+					'title'       => __( 'Savoy', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Savoy/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Savoy\Compatibility',
+				),
 			)
 		);
 	}
