@@ -84,5 +84,21 @@ class Compatibility extends Base_Compatibility {
 				}
 			);
 		}
+
+		add_filter( 'woocommerce_locate_template', array( $this, 'override_woocommerce_template_part' ), 10, 3 );
+	}
+
+	/**
+	 * Overrides Woo templates with available ones.
+	 *
+	 * @param string $template Template path absolute url.
+	 * @param string $template_name Template name.
+	 * @param string $template_path Template path.
+	 * @return string
+	 */
+	public function override_woocommerce_template_part( $template, $template_name, $template_path ) {
+		$template_directory = untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/templates/';
+		$path               = $template_directory . $template_name;
+		return file_exists( $path ) ? $path : $template;
 	}
 }
