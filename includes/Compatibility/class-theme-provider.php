@@ -130,6 +130,11 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Flatsome/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Flatsome\Compatibility',
 				),
+				'dt-the7'           => array(
+					'title'       => __( 'The7', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/The7/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\The7\Compatibility',
+				),
 			)
 		);
 	}
