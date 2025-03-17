@@ -2,8 +2,8 @@
 Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
-Tested up to: 6.7.1
-Stable tag: 0.26.0
+Tested up to: 6.7.2
+Stable tag: 0.27.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -112,6 +112,11 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.27.0 =
+- New: Added support for Ollie and respective theme compatibility engine
+- Improvement: Updated translation files
+- Improvement: Other minor changes
 
 = 0.26.0 =
 - New: Added support for Savoy and respective theme compatibility engine

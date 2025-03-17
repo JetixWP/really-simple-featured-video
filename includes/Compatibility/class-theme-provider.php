@@ -140,6 +140,11 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Savoy/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Savoy\Compatibility',
 				),
+				'ollie'             => array(
+					'title'       => __( 'Ollie', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Ollie/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Ollie\Compatibility',
+				),
 			)
 		);
 	}
