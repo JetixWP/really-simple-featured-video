@@ -2,8 +2,8 @@
 Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
-Tested up to: 6.7.2
-Stable tag: 0.28.0
+Tested up to: 6.8
+Stable tag: 0.29.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -112,6 +112,11 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.29.0 =
+- New: Registers a WP Script localize handler class
+- Improvement: Update CIX Woo Product Gallery slider overrides
+- Improvement: Other minor changes
 
 = 0.28.0 =
 - Hotfix: Last release didn't bump the primary plugin version
