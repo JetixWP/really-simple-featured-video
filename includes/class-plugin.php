@@ -164,6 +164,9 @@ final class Plugin {
 		require_once RSFV_PLUGIN_DIR . 'includes/Settings/class-register.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-metabox.php';
 
+		// Core overrides.
+		require_once RSFV_PLUGIN_DIR . 'includes/class-filterable-scripts.php';
+
 		// Frontend loaders.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-frontend.php';
