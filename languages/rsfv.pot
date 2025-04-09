@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.28.0\n"
+"Project-Id-Version: Really Simple Featured Video 0.29.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-03-17T06:48:03+00:00\n"
+"POT-Creation-Date: 2025-04-09T14:26:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -81,7 +81,7 @@ msgstr ""
 msgid "Please select a video source"
 msgstr ""
 
-#: includes/class-plugin.php:195
+#: includes/class-plugin.php:198
 msgid "Settings"
 msgstr ""
 

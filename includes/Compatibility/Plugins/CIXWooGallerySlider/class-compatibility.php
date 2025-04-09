@@ -18,7 +18,6 @@ use RSFV\Compatibility\Plugins\Base_Compatibility;
  */
 class Compatibility extends Base_Compatibility {
 
-
 	/**
 	 * Class instance.
 	 *
