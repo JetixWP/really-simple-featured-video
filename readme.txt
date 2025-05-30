@@ -2,8 +2,8 @@
 Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
-Tested up to: 6.8
-Stable tag: 0.29.0
+Tested up to: 6.8.1
+Stable tag: 0.30.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -31,6 +31,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme WPBakery Builder Support** - Support for Post Loop Builder element with Salient theme.
 * **Elementor Pro Support** - Support for Posts/Archive, WooCommerce Product widgets with Elementor Pro builder.
+* **Bricks Builder Support** - Support for Posts/Archive with Bricks builder using custom widget elements.
 * **Support for Core themes** - We support all the newer core themes such as TwentyTwenty Four to Classic themes.
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
@@ -80,7 +81,6 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 More features to come in the future, to name a few -
 
-* ✨ **Bricks Support**
 * ✨ **Featured Video Blocks for Full Site Editing**
 * ✨ And more from your requests
 
@@ -112,6 +112,11 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.30.0 =
+- New: Added support for Bricks builder
+- Improvement: Updated translation files
+- Improvement: Other minor changes
 
 = 0.29.0 =
 - New: Registers a WP Script localize handler class

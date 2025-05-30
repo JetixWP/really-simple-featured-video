@@ -82,6 +82,11 @@ class Plugin_Provider {
 					'class'            => 'RSFV\Compatibility\Plugins\CIXWooGallerySlider\Compatibility',
 					'has_class_loaded' => 'Product_Gallery_Sldier\Product',
 				),
+				'bricks'                => array(
+					'title'            => __( 'Bricks', 'rsfv' ),
+					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Bricks/class-compatibility.php',
+					'class'            => 'RSFV\Compatibility\Plugins\Bricks\Compatibility',
+				),
 			)
 		);
 
