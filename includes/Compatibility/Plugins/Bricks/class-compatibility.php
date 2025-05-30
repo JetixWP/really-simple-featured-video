@@ -38,20 +38,6 @@ class Compatibility extends Base_Compatibility {
 	}
 
 	/**
-	 * Register Settings.
-	 *
-	 * @param array $settings Active settings file array.
-	 *
-	 * @return array
-	 */
-	public function register_settings( $settings ) {
-		// Settings.
-		$settings[] = include 'class-settings.php';
-
-		return $settings;
-	}
-
-	/**
 	 * Sets up hooks and filters.
 	 *
 	 * @since 1.0.0

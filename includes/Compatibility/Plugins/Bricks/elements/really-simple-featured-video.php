@@ -75,7 +75,7 @@ class Bricks_Really_Simple_Featured_Video extends \Bricks\Element {
 		$post_id = get_the_ID();
 		if ( ! $post_id ) {
 			if ( is_admin() ) {
-				echo '<p>Make sure Really Simple Featured Video element is inside a Query Loop. In case you have done that, you can safely ignore this.</p>';
+				echo '<p>' . esc_html__( 'Make sure Really Simple Featured Video element is inside a Query Loop. In case you have done that, you can safely ignore this.', 'rsfv' ) . '</p>';
 			}
 			return;
 		}
