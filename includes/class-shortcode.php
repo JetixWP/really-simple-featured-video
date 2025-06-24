@@ -119,8 +119,11 @@ class Shortcode {
 					$is_pip       = $is_pip ? 'autopictureinpicture' : '';
 					$has_controls = $has_controls ? 'controls' : '';
 
+					$poster_id  = get_post_meta( $post_id, RSFV_POSTER_META_KEY, true );
+					$poster_url = $poster_id ? wp_get_attachment_url( $poster_id ) : '';
+
 					if ( $video_url ) {
-						return '<video class="rsfv-video" id="rsfv-video-' . esc_attr( $post_id ) . '" src="' . esc_url( $video_url ) . '" style="max-width:100%;display:block;" ' . esc_attr( $has_controls ) . ' ' . esc_attr( $is_autoplay ) . ' ' . esc_attr( $is_loop ) . ' ' . esc_attr( $is_muted ) . ' ' . esc_attr( $is_pip ) . '></video>';
+						return '<video ' . ( $poster_url ? 'poster="' . esc_url( $poster_url ) . '" ' : '' ) . 'class="rsfv-video" id="rsfv-video-' . esc_attr( $post_id ) . '" src="' . esc_url( $video_url ) . '" style="max-width:100%;display:block;" ' . esc_attr( $has_controls ) . ' ' . esc_attr( $is_autoplay ) . ' ' . esc_attr( $is_loop ) . ' ' . esc_attr( $is_muted ) . ' ' . esc_attr( $is_pip ) . '></video>';
 					}
 				}
 

@@ -110,6 +110,7 @@ final class Plugin {
 		define( 'RSFV_SOURCE_META_KEY', 'rsfv_source' );
 		define( 'RSFV_META_KEY', 'rsfv_featured_video' );
 		define( 'RSFV_EMBED_META_KEY', 'rsfv_featured_embed_video' );
+		define( 'RSFV_POSTER_META_KEY', 'rsfv_featured_poster' );
 	}
 
 	/**
@@ -119,7 +120,7 @@ final class Plugin {
 	 */
 	public function register() {
 		// Load translation.
-		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
 		// Load classes.
 		// Let's call these providers.
