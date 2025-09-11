@@ -185,6 +185,23 @@ class Compatibility extends Base_Compatibility {
 		return apply_filters( 'rsfv_woo_generated_dynamic_css', $styles );
 	}
 
+	/**
+	 * Get counter.
+	 *
+	 * @return int
+	 */
+	public function get_counter() {
+		return $this->counter;
+	}
+
+	/**
+	 * Set counter.
+	 *
+	 * @param int $counter Counter.
+	 */
+	public function set_counter( $counter ) {
+		$this->counter = $counter;
+	}
 
 	/**
 	 * Product Video Markup.
