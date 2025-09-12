@@ -31,7 +31,8 @@ class Controls extends Settings_Page {
 	 */
 	public function get_sections() {
 		$sections = array(
-			'' => __( 'Standard', 'rsfv' ),
+			''               => __( 'Standard', 'rsfv' ),
+			'hover-autoplay' => __( 'Hover Autoplay [NEW]', 'rsfv' ),
 		);
 		return apply_filters( 'rsfv_get_sections_' . $this->id, $sections );
 	}
@@ -111,6 +112,19 @@ class Controls extends Settings_Page {
 						'id'   => 'rsfv_embed_video_controls_title',
 					),
 				)
+			);
+		} else if ( 'hover-autoplay' === $current_section ) {
+			$settings = array(
+				array(
+					'title' => __( 'Hover Autoplay Controls', 'rsfv' ),
+					'desc'  => sprintf(
+						'%1$s',
+						__( 'Below you can manage the visibility of each Style Kits panel individually. Any existing values in a disabled Style Kit panel will lose its values.', 'rsfv' ),
+					),
+					'type'  => 'content',
+					'id'    => 'rsfv-pro-hover-autoplay-controls',
+				),
+
 			);
 		}
 
