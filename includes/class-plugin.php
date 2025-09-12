@@ -10,6 +10,7 @@ namespace RSFV;
 use RSFV\Compatibility\Plugin_Provider;
 use RSFV\Settings\Register;
 use RSFV\Compatibility\Theme_Provider;
+use RSFV\Featuresets\Register_Featuresets;
 
 /**
  * Class RSFV_featured_video
@@ -129,6 +130,9 @@ final class Plugin {
 		$this->shortcode_provider    = Shortcode::get_instance();
 		$this->frontend_provider     = FrontEnd::get_instance();
 
+		// Register Featuresets.
+		Register_Featuresets::get_instance();
+
 		// Load compatibility.
 		$this->plugin_provider = Plugin_Provider::get_instance();
 		$this->theme_provider  = Theme_Provider::get_instance();
@@ -161,6 +165,7 @@ final class Plugin {
 	 * @return void
 	 */
 	public function includes() {
+		// Core.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-options.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Settings/class-register.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-metabox.php';
@@ -171,6 +176,9 @@ final class Plugin {
 		// Frontend loaders.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-frontend.php';
+
+		// Featuresets.
+		require_once RSFV_PLUGIN_DIR . 'includes/Featuresets/class-register-featuresets.php';
 
 		// Plugin compatibility.
 		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/class-base-compatibility.php';
