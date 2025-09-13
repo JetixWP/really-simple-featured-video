@@ -10,7 +10,7 @@ namespace RSFV;
 use RSFV\Compatibility\Plugin_Provider;
 use RSFV\Settings\Register;
 use RSFV\Compatibility\Theme_Provider;
-use RSFV\Featuresets\Register_Featuresets;
+use RSFV\Featuresets\Register_Featuresets as Featuresets;
 
 /**
  * Class RSFV_featured_video
@@ -50,6 +50,13 @@ final class Plugin {
 	 * @var $shortcode_provider
 	 */
 	public $shortcode_provider;
+
+	/**
+	 * Featuresets instance.
+	 *
+	 * @var $featuresets_provider
+	 */
+	public $featuresets_provider;
 
 	/**
 	 * Frontend instance.
@@ -127,11 +134,9 @@ final class Plugin {
 		// Let's call these providers.
 		$this->registration_provider = Register::get_instance();
 		$this->metabox_provider      = Metabox::get_instance();
+		$this->featuresets_provider  = Featuresets::get_instance();
 		$this->shortcode_provider    = Shortcode::get_instance();
 		$this->frontend_provider     = FrontEnd::get_instance();
-
-		// Register Featuresets.
-		Register_Featuresets::get_instance();
 
 		// Load compatibility.
 		$this->plugin_provider = Plugin_Provider::get_instance();
@@ -174,11 +179,9 @@ final class Plugin {
 		require_once RSFV_PLUGIN_DIR . 'includes/class-filterable-scripts.php';
 
 		// Frontend loaders.
+		require_once RSFV_PLUGIN_DIR . 'includes/Featuresets/class-register-featuresets.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-frontend.php';
-
-		// Featuresets.
-		require_once RSFV_PLUGIN_DIR . 'includes/Featuresets/class-register-featuresets.php';
 
 		// Plugin compatibility.
 		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/class-base-compatibility.php';
