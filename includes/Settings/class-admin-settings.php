@@ -52,6 +52,8 @@ class Admin_Settings {
 
 			$settings = apply_filters( 'rsfv_get_settings_pages', $settings );
 
+			$settings[] = include 'Tabs/class-version-control.php';
+
 			// To make sure Promotional and Help tabs shows up at the very last.
 			$settings[] = include 'Tabs/class-help.php';
 			$settings[] = include 'Tabs/class-getpro.php';
