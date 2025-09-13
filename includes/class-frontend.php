@@ -209,7 +209,7 @@ class FrontEnd {
 				$result = preg_match( $pattern, $url, $matches );
 
 				if ( false !== $result ) {
-					$id = $matches[1];
+					$id = $matches[1] ?? false;
 				} else {
 					$id = false;
 				}
@@ -230,7 +230,7 @@ class FrontEnd {
 				);
 
 				if ( false !== $result ) {
-					$id = $matches[1];
+					$id = $matches[1] ?? false;
 				} else {
 					$id = false;
 				}
@@ -252,7 +252,7 @@ class FrontEnd {
 				);
 
 				if ( $result ) {
-					$id = $matches[1];
+					$id = $matches[1] ?? false;
 				} else {
 					$id = false;
 				}
