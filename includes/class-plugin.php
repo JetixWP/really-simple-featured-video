@@ -203,7 +203,7 @@ final class Plugin {
 	 * @return array
 	 */
 	public function filter_plugin_action_links( array $actions ) {
-		$settings_url = admin_url( 'options-general.php?page=rsfv-settings' );
+		$settings_url = admin_url( 'admin.php?page=rsfv-settings' );
 
 		return array_merge(
 			array(
@@ -236,7 +236,7 @@ final class Plugin {
 
 		$screen     = get_current_screen();
 		$page_slugs = array(
-			'settings_page_rsfv-settings',
+			'jetixwp_page_rsfv-settings',
 		);
 
 		if ( in_array( $screen->id, $page_slugs, true ) ) {
