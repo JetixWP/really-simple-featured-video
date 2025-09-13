@@ -37,7 +37,7 @@ class Metabox {
 		// Allows display property at style attribute for wp_kses.
 		add_filter(
 			'safe_style_css',
-			function( $styles ) {
+			function ( $styles ) {
 				$styles[] = 'display';
 				return $styles;
 			}
@@ -219,10 +219,10 @@ class Metabox {
 			$embed_input
 		);
 
-		$styles = '<style>.rsfv-self, .rsfv-embed { padding: 10px 0; } .remove-video { margin-top: 6px; }</style>';
+		$styles = '<style>.rsfv-self, .rsfv-embed { padding: 10px 0; } .remove-video { margin-top: 6px; } .rsfv-poster { margin: 8px 0 !important; } .rsfv-set-poster { margin: 4px 0 !important; }</style>';
 
 		echo wp_kses( $select_source, $this->get_allowed_html() );
-		echo wp_kses( $styles,        $this->get_allowed_html() );
+		echo wp_kses( $styles, $this->get_allowed_html() );
 	}
 
 	/**
