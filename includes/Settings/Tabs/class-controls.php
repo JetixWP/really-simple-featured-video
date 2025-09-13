@@ -34,7 +34,7 @@ class Controls extends Settings_Page {
 	public function get_sections() {
 		$sections = array(
 			''               => __( 'Standard', 'rsfv' ),
-			'hover-autoplay' => __( 'Hover Autoplay [BETA]', 'rsfv' ),
+			'hover-autoplay' => __( 'Autoplay on Hover [BETA]', 'rsfv' ),
 		);
 		return apply_filters( 'rsfv_get_sections_' . $this->id, $sections );
 	}
@@ -119,10 +119,10 @@ class Controls extends Settings_Page {
 
 			$settings = array(
 				array(
-					'title' => __( 'Hover Autoplay Controls', 'rsfv' ),
+					'title' => __( 'Autoplay on Hover Controls', 'rsfv' ),
 					'desc'  => sprintf(
 						'%1$s',
-						__( 'Below you can manage the visibility of each Style Kits panel individually. Any existing values in a disabled Style Kit panel will lose its values.', 'rsfv' ),
+						__( 'Below you can manage the autoplay on hover controls. Any existing values in a disabled Style Kit panel will lose its values.', 'rsfv' ),
 					),
 					'type'  => 'content',
 					'id'    => 'rsfv-pro-hover-autoplay-controls',
@@ -220,7 +220,7 @@ class Controls extends Settings_Page {
 						),
 						array(
 							'title'   => __( 'Set Hover Delay (ms)', 'rsfv' ),
-							'desc'      => __( 'Delay before video starts playing on hover. Default: 200ms', 'rsfv' ),
+							'desc'      => __( 'Delay before video starts playing on hover. Default: 100ms', 'rsfv' ),
 							'id'      => 'promo-hover-autoplay-delay',
 							'default' => 100,
 							'type'    => 'promo-number',

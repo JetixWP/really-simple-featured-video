@@ -80,6 +80,7 @@ if ( ! $tab_exists ) {
 								<p class="desc"><strong>Our Pro plugin includes these features -</strong></p>
 								<ul>
 									<li>✅ <strong>Priority Support</strong></li>
+									<li>✅ <strong>Extended Autoplay on Hover [Currently in BETA]</strong></li>
 									<li>✅ <strong>Change Video Aspect Ratio</strong></li>
 									<li>✅ <strong>Change Video Order at Woo Product CPT</strong></li>
 									<li>✅ <strong>Support for more Premium/Custom Themes</strong></li>

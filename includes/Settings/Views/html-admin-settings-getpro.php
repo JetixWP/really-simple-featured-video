@@ -15,6 +15,7 @@ namespace RSFV\Settings\views;
 	<p>Loving the free version of RSFV? We have our PRO Plugin available now with a suite of features you will love even more, give it a try and optimise your Featured Video workflow with these useful features:</p>
 	<ul>
 		<li><?php esc_html_e( 'Priority Support', 'rsfv' ); ?></li>
+		<li><?php esc_html_e( 'Extended Autoplay on Hover [Currently in BETA]', 'rsfv' ); ?></li>
 		<li><?php esc_html_e( 'Change Video Aspect Ratio', 'rsfv' ); ?></li>
 		<li><?php esc_html_e( 'Change Video Order at WooCommerce Product page', 'rsfv' ); ?></li>
 		<li><?php esc_html_e( 'Change Default Gallery Video Thumbnail at Woo Single Product page', 'rsfv' ); ?></li>
