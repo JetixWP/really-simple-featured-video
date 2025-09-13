@@ -439,6 +439,44 @@ class Admin_Settings {
 					</tr>
 					<?php
 					break;
+
+				case 'promo-text':
+				case 'promo-password':
+				case 'promo-datetime':
+				case 'promo-datetime-local':
+				case 'promo-date':
+				case 'promo-month':
+				case 'promo-time':
+				case 'promo-week':
+				case 'promo-number':
+				case 'promo-email':
+				case 'promo-url':
+				case 'promo-tel':
+					$option_value = $value['value'];
+					$input_type = str_replace( 'promo-', '', $value['type'] );
+
+					?>
+					<tr valign="top">
+						<th scope="row" class="titledesc">
+							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?></label>
+						</th>
+						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+							<input
+								name="<?php echo esc_attr( $value['id'] ); ?>"
+								id="<?php echo esc_attr( $value['id'] ); ?>"
+								type="<?php echo esc_attr( $input_type ); ?>"
+								style="<?php echo esc_attr( $value['css'] ); ?>"
+								value="<?php echo esc_attr( $option_value ); ?>"
+								class="<?php echo esc_attr( $value['class'] ); ?>"
+								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
+								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
+								/><?php echo esc_html( $value['suffix'] ); ?> <?php echo $description; // phpcs:ignore. ?>
+								<?php echo wp_kses( $pro_link_html, $allowed_html_tags ); ?>
+						</td>
+					</tr>
+					<?php
+					break;
+
 				case 'media-image':
 					$option_value = $value['value'];
 					// Get the meta value of video attachment.
@@ -685,6 +723,40 @@ class Admin_Settings {
 					<?php
 					break;
 
+					// Pro multi-checkbox.
+				case 'promo-multi-checkbox':
+					$option_value = $value['value'];
+					?>
+					<tr valign="top">
+						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
+							<?php echo $description; // phpcs:ignore	?>
+							<fieldset>
+								<ul>
+									<?php foreach ( $value['options'] as $key => $val ) : ?>
+									<li>
+										<label>
+											<input
+												type="checkbox"
+												name="<?php echo esc_attr( $value['id'] ); ?>[<?php echo esc_attr( $key ); ?>]"
+												id="<?php echo esc_attr( $value['id'] ); ?>[<?php echo esc_attr( $key ); ?>]"
+												value="1"
+												<?php checked( isset( $option_value[ $key ] ) ? $option_value[ $key ] : 0, true ); ?>
+											/>
+											<span>
+												<span><?php esc_html_e( 'Toggle', 'rsfv' ); ?></span>
+											</span>
+											<p><?php echo esc_html( $val ); ?></p>
+										</label>
+									</li>
+									<?php endforeach; ?>
+								</ul>
+							</fieldset>
+							<p><?php echo wp_kses( $pro_link_html, $allowed_html_tags ); ?></p>
+						</td>
+					</tr>
+					<?php
+					break;
+
 				// Checkbox input.
 				case 'checkbox':
 					$option_value     = $value['value'];
@@ -805,7 +877,6 @@ class Admin_Settings {
 								type="checkbox"
 								class="<?php echo esc_attr( isset( $value['class'] ) ? $value['class'] : '' ); ?>"
 								value="1"
-								disabled
 								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
 							/> <?php echo $description; // phpcs:ignore. ?>
 							<?php if ( $value['switch'] ) { ?>
