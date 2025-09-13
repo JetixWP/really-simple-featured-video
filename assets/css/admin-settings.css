@@ -4,7 +4,7 @@
 	--jwp-wtc__color-brand-light: #f1faee;
 }
 
-body.settings_page_rsfv-settings #wpcontent {
+body.jetixwp_page_rsfv-settings #wpcontent {
 	padding-left: 0px;
 }
 
@@ -73,6 +73,15 @@ body.settings_page_rsfv-settings #wpcontent {
 		display: grid;
 		grid-template-columns: 8fr 4fr;
 		column-gap: 40px;
+	}
+
+	#rsfv_plugin_rollback_version-description + .form-table tbody {
+		display: grid;
+		grid-template-columns: auto 1fr;
+	}
+
+	#rsfv_plugin_rollback_version-description + .form-table .forminp-button {
+		padding: 15px 0;
 	}
 }
 
@@ -538,6 +547,15 @@ body.settings_page_rsfv-settings #wpcontent {
 	color: var(--jwp-wtc__color-brand) !important;
 	box-shadow: none;
 	outline: none;
+}
+
+.rsfv .button-secondary,
+.rsfv .rsfv-button.button-secondary {
+	border-color: var(--jwp-wtc__color-brand);
+	color: var(--jwp-wtc__color-brand);;
+	box-shadow: none;
+	outline: none;
+	transition: all .1s ease-in-out;
 }
 
 .rsfv .tab-content a {

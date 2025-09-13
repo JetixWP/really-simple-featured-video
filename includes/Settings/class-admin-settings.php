@@ -141,17 +141,20 @@ class Admin_Settings {
 		// Enqueue RSFV settings scripts.
 		wp_enqueue_script( 'rsfv_settings_select2', RSFV_PLUGIN_URL . 'assets/js/select2/select2' . $suffix . '.js', array( 'jquery' ), filemtime( RSFV_PLUGIN_DIR . 'assets/js/select2/select2.js' ), true );
 
-		wp_enqueue_script( 'rsfv_settings', RSFV_PLUGIN_URL . 'assets/js/admin-settings.js', array( 'jquery', 'wp-util', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'iris', 'rsfv_settings_select2' ), filemtime( RSFV_PLUGIN_DIR . 'assets/js/admin-settings.js' ), true );
+		wp_enqueue_script( 'rsfv_settings', RSFV_PLUGIN_URL . 'assets/js/admin-settings.js', array( 'jquery', 'wp-util', 'jquery-ui-datepicker', 'jquery-ui-sortable', 'iris', 'rsfv_settings_select2', 'wp-api-fetch' ), filemtime( RSFV_PLUGIN_DIR . 'assets/js/admin-settings.js' ), true );
 
 		do_action( 'rsfv_settings_after_scripts' );
 
 		wp_localize_script(
 			'rsfv_settings',
 			'rsfv_settings_data',
-			array(
-				'i18n_nav_warning'  => __( 'The changes you made will be lost if you navigate away from this page.', 'rsfv' ),
-				'uploader_title'    => __( 'Select Thumbnail Image', 'rsfv' ),
-				'uploader_btn_text' => __( 'Use this image', 'rsfv' ),
+			apply_filters(
+				'rsfv_settings_localized_data',
+				array(
+					'i18n_nav_warning'  => __( 'The changes you made will be lost if you navigate away from this page.', 'rsfv' ),
+					'uploader_title'    => __( 'Select Thumbnail Image', 'rsfv' ),
+					'uploader_btn_text' => __( 'Use this image', 'rsfv' ),
+				)
 			)
 		);
 
