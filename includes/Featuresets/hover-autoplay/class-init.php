@@ -45,38 +45,31 @@ class Init {
 
 	/**
 	 * Get current settings with defaults
+	 *
+	 * @return array
 	 */
-	public function get_settings() {
-
+	public static function get_settings() {
 		$default_settings = array(
 			'enable_hover_autoplay' => false,
-			'enable_on_desktop' => true,
-			'enable_on_mobile' => true,
-			'mobile_breakpoint' => 768,
-			'hover_delay' => 200,
-			'respect_user_preferences' => true,
-			'enable_focus_events' => true,
-			'debug_mode' => false,
 			'video_types' => array(
 				'html5' => true,
 				'youtube' => true,
 				'vimeo' => false,
 				'dailymotion' => false,
 			),
+			'enable_on_desktop' => true,
+			'enable_on_mobile' => true,
+			'mobile_breakpoint' => 768,
+			'hover_delay' => 100,
+			'respect_user_preferences' => true,
+			'enable_focus_events' => true,
+			'debug_mode' => false,
 		);
 
 		$options = Options::get_instance();
 
-		// Get screen sizes settings.
-		$hover_autoplay_screens = $options->get(
-			'hover_autoplay_screens',
-			array(
-				'desktop' => true,
-				'mobile' => true,
-			)
-		);
-
 		// Get video types settings.
+		$has_hover_autoplay_video_types = $options->has( 'hover_autoplay_video_types' );
 		$hover_autoplay_video_types = $options->get(
 			'hover_autoplay_video_types',
 			array(
@@ -88,21 +81,18 @@ class Init {
 		);
 
 		// Match with controls option keys.
-		$settings = array(
-			'enable_hover_autoplay' => $options->get( 'enable_hover_autoplay', false ), // works.
-			'enable_on_desktop' => $hover_autoplay_screens['desktop'] || false, // works.
-			'enable_on_mobile' => $hover_autoplay_screens['mobile'] || false, // works.
-			'mobile_breakpoint' => $options->get( 'hover_autoplay_mobile_breakpoint', 768 ), // works.
-			'hover_delay' => $options->get( 'hover_autoplay_delay', 200 ), // works.
-			'respect_user_preferences' => $options->get( 'hover_autoplay_respect_user_prefs', true ), // works.
-			'enable_focus_events' => $options->get( 'hover_autoplay_focus_events', true ), // works.
-			'debug_mode' => false, // Not implemented yet.
-			'video_types' => array(
-				'html5' => $hover_autoplay_video_types['html5'] ?? false,
-				'youtube' => $hover_autoplay_video_types['youtube'] ?? false,
-				'vimeo' => $hover_autoplay_video_types['vimeo'] ?? false,
-				'dailymotion' => $hover_autoplay_video_types['dailymotion'] ?? false,
-			), // works.
+		$settings = apply_filters(
+			'rsfv_hover_autoplay_options',
+			array(
+				'enable_hover_autoplay' => $options->get( 'enable_hover_autoplay', false ),
+				'video_types' => array(
+					'html5' => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['html5'] ?? false : true,
+					'youtube' => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['youtube'] ?? false : true,
+					'vimeo' => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['vimeo'] ?? false : false,
+					'dailymotion' => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['dailymotion'] ?? false : false,
+				),
+				'debug_mode' => false, // Not implemented yet.
+			)
 		);
 
 		return wp_parse_args( $settings, $default_settings );
@@ -114,9 +104,7 @@ class Init {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		$settings = $this->get_settings();
-
-		ray( $settings );
+		$settings = self::get_settings();
 
 		// Only continue if hover autoplay is enabled.
 		if ( ! $settings['enable_hover_autoplay'] ) {
@@ -153,5 +141,92 @@ class Init {
 
 		// Enqueue script.
 		wp_enqueue_script( 'rsfv-hover-autoplay' );
+
+		// Add inline CSS for mobile-specific styles.
+		$mobile_css = $this->get_mobile_css( $settings );
+		if ( ! empty( $mobile_css ) ) {
+			wp_add_inline_style( 'rsfv-hover-autoplay', $mobile_css );
+		}
+	}
+
+	/**
+	 * Get mobile-specific CSS
+	 *
+	 * @param array $settings Current settings.
+	 * @return string CSS styles
+	 */
+	private function get_mobile_css( $settings ) {
+		if ( ! $settings['enable_hover_autoplay'] ) {
+			return '';
+		}
+
+		$mobile_breakpoint = absint( $settings['mobile_breakpoint'] ?? 768 );
+
+		return "
+    /* Mobile Iframe Video Enhancements */
+    @media (max-width: {$mobile_breakpoint}px) {
+        .rsfv-iframe-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .rsfv-iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+        
+        /* Enhanced mobile iframe containers */
+        [data-rsfv-video] .rsfv-iframe-wrapper {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            cursor: pointer;
+        }
+        
+        /* Mobile overlay for iframe interaction */
+        [data-rsfv-video] .rsfv-mobile-overlay {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 10 !important;
+            background: transparent !important;
+            cursor: pointer !important;
+            border-radius: 8px;
+        }
+        
+        /* Hide overlay when video is playing */
+        [data-state='playing'] .rsfv-mobile-overlay {
+            display: none !important;
+        }
+        
+        /* Mobile iframe touch feedback */
+        [data-rsfv-video]:active .rsfv-iframe-wrapper {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+    }
+    
+    /* Tablet specific iframe styles */
+    @media (min-width: 481px) and (max-width: 768px) {
+        [data-rsfv-video]:hover .rsfv-iframe-wrapper {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s ease;
+        }
+    }
+    ";
 	}
 }
+
+// Initialize Hover Autoplay Featureset.
+Init::get_instance();
