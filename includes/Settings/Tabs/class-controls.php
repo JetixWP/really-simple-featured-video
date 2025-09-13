@@ -32,7 +32,7 @@ class Controls extends Settings_Page {
 	public function get_sections() {
 		$sections = array(
 			''               => __( 'Standard', 'rsfv' ),
-			'hover-autoplay' => __( 'Hover Autoplay [NEW]', 'rsfv' ),
+			'hover-autoplay' => __( 'Hover Autoplay [BETA]', 'rsfv' ),
 		);
 		return apply_filters( 'rsfv_get_sections_' . $this->id, $sections );
 	}
@@ -114,17 +114,65 @@ class Controls extends Settings_Page {
 				)
 			);
 		} else if ( 'hover-autoplay' === $current_section ) {
-			$settings = array(
+			$settings = apply_filters(
+				'rsfv_controls_hover_autoplay_settings',
 				array(
-					'title' => __( 'Hover Autoplay Controls', 'rsfv' ),
-					'desc'  => sprintf(
-						'%1$s',
-						__( 'Below you can manage the visibility of each Style Kits panel individually. Any existing values in a disabled Style Kit panel will lose its values.', 'rsfv' ),
+					array(
+						'title' => __( 'Hover Autoplay Controls', 'rsfv' ),
+						'desc'  => sprintf(
+							'%1$s',
+							__( 'Below you can manage the visibility of each Style Kits panel individually. Any existing values in a disabled Style Kit panel will lose its values.', 'rsfv' ),
+						),
+						'type'  => 'content',
+						'id'    => 'rsfv-pro-hover-autoplay-controls',
 					),
-					'type'  => 'content',
-					'id'    => 'rsfv-pro-hover-autoplay-controls',
-				),
-
+					array(
+						'type' => 'title',
+						'id'   => 'rsfv_pro_hover_autoplay',
+					),
+					array(
+						'title'   => __( 'Enable BETA Feature', 'rsfv' ),
+						'id'      => 'enable_hover_autoplay',
+						'default' => false,
+						'type'    => 'checkbox',
+					),
+					array(
+						'type' => 'sectionend',
+						'id'   => 'rsfv_pro_hover_autoplay',
+					),
+					array(
+						'title' => esc_html_x( 'Video Types', 'settings title', 'rsfv' ),
+						'desc'  => __( 'Please toggle the video types you wish to enable/disable autoplay on hover support at.', 'rsfv' ),
+						'type'  => 'content',
+						'class' => 'rsfv-multi-checkbox-card',
+						'id'    => 'rsfv-pro-hover-autoplay-video-types',
+					),
+					array(
+						'type' => 'title',
+						'id'   => 'rsfv_pro_hover_autoplay_video_types_title',
+					),
+					array(
+						'title'   => '',
+						'id'      => 'hover_autoplay_video_types',
+						'default' => array(
+							'html5' => true,
+							'youtube'  => true,
+							'vimeo'  => true,
+							'dailymotion'  => true,
+						),
+						'type'    => 'multi-checkbox',
+						'options' => array(
+							'html5'      => __( 'Self Hosted', 'rsfv' ),
+							'youtube'    => __( 'YouTube', 'rsfv' ),
+							'vimeo'      => __( 'Vimeo', 'rsfv' ),
+							'dailymotion' => __( 'Dailymotion', 'rsfv' ),
+						),
+					),
+					array(
+						'type' => 'sectionend',
+						'id'   => 'rsfv_pro_hover_autoplay_video_types_title',
+					),
+				)
 			);
 		}
 
