@@ -38,6 +38,10 @@ You get a really simple settings page which has all the controls you need for ma
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
 
 
+== 👉️ Video Autoplay on Hover Support ==
+
+RSFV supports autoplaying videos on hover, just enable the feature via Settings and the videos will start to autoplay. Autoplay videos when users hover on them not by default, creating a much better experience for the user as well as the site.
+
 == 👉️ WooCommerce Support ==
 
 https://www.youtube.com/watch?v=FLw3ntOXaLY
@@ -74,11 +78,12 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
-* ✅ **Priority Support** - Solving your problems are our priority with superfast response times.
+* ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.
 * ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes.
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
+* ✅ **Priority Support** - Solving your problems are our priority with superfast response times.
 
 More features to come in the future, to name a few -
 
