@@ -119,6 +119,18 @@ And if you're a Pro user, you can send a support ticket via the [account](https:
 
 == Changelog ==
 
+= 0.50.0 =
+- New: Video Autoplay on Hover feature
+- New: Add New Menu structure and redirect for old menu
+- New: Add Plugin Rollbacks feature
+- New: Add Version Control settings tab for Rollbacks
+- New: Add Video poster support for self-hosted video
+- Improvement: Update old logo at settings
+- Improvement: Hide submenus under settings page sidebar menu
+- Improvement: Update Freemius SDK
+- Improvement: Updated translation files
+- Improvement: Other minor changes
+
 = 0.32.0 =
 - Improvement: Minor bug fixes
 
