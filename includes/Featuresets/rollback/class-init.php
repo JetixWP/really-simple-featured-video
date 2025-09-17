@@ -72,7 +72,7 @@ class Init {
 		$version = filter_input( INPUT_GET, 'version', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
 		if ( ! $version || ! in_array( $version, $rollback_versions, true ) ) {
-			wp_die( esc_html__( 'Error occurred, the version selected is invalid. Try selecting different version.', 'ang' ) );
+			wp_die( esc_html__( 'Error occurred, the version selected is invalid. Try selecting different version.', 'rsfv' ) );
 		}
 
 		$plugin_slug = 'really-simple-featured-video';
