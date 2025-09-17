@@ -53,6 +53,9 @@ class Register {
 	 * @return void
 	 */
 	public function register_menu() {
+		/**
+		 * Default framework menu.
+		 */
 		global $admin_page_hooks;
 		$primary_slug = 'jetixwp';
 		$menu_icon    = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAxNyAyMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xNC4zNjE0IDAuNzVMNy4xMDAwMyAxMy4zMjcxTDAuNjA0ODM4IDkuNTc3MDdMMTQuMzYxNCAwLjc1Wk0yLjM3NzE5IDIxLjUwNzNMOS42Mzg1NyA4LjkzMDE5TDE2LjEzMzggMTIuNjgwMkwyLjM3NzE5IDIxLjUwNzNaIiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjMjUyNDIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+';
@@ -67,6 +70,8 @@ class Register {
 				$menu_icon,
 				30
 			);
+
+			add_action( 'admin_enqueue_scripts', array( $this, 'hide_freemius_submenus') );
 		}
 
 		add_submenu_page(
@@ -91,6 +96,19 @@ class Register {
 			'rsfv-settings-old',
 			array( $this, 'old_settings_menu' )
 		);
+	}
+
+	/**
+	 * Hide Freemius submenus if they exist.
+	 *
+	 * @return void
+	 */
+	public function hide_freemius_submenus() {
+		// Enqueue a core admin style as a handle for inline CSS.
+    wp_enqueue_style( 'wp-admin' );
+
+    $custom_css = '.toplevel_page_jetixwp .wp-submenu li a[href*="-addons"] { display: none !important; }';
+    wp_add_inline_style( 'wp-admin', $custom_css );
 	}
 
 	/**
