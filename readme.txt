@@ -2,8 +2,8 @@
 Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
-Tested up to: 6.8.1
-Stable tag: 0.32.0
+Tested up to: 6.8.2
+Stable tag: 0.50.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -27,6 +27,7 @@ You get a really simple settings page which has all the controls you need for ma
 
 * **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
+* **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme WPBakery Builder Support** - Support for Post Loop Builder element with Salient theme.
@@ -36,6 +37,10 @@ You get a really simple settings page which has all the controls you need for ma
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
 
+
+== 👉️ Video Autoplay on Hover Support ==
+
+RSFV supports autoplaying videos on hover, just enable the feature via Settings and the videos will start to autoplay. Autoplay videos when users hover on them not by default, creating a much better experience for the user as well as the site.
 
 == 👉️ WooCommerce Support ==
 
@@ -73,11 +78,12 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
-* ✅ **Priority Support** - Solving your problems are our priority with superfast response times.
+* ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.
 * ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes.
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
+* ✅ **Priority Support** - Solving your problems are our priority with superfast response times.
 
 More features to come in the future, to name a few -
 

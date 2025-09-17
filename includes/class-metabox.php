@@ -37,7 +37,7 @@ class Metabox {
 		// Allows display property at style attribute for wp_kses.
 		add_filter(
 			'safe_style_css',
-			function( $styles ) {
+			function ( $styles ) {
 				$styles[] = 'display';
 				return $styles;
 			}
@@ -89,6 +89,7 @@ class Metabox {
 				array(
 					'uploader_title'    => __( 'Insert Video', 'rsfv' ),
 					'uploader_btn_text' => __( 'Use this video', 'rsfv' ),
+					'meta_poster_key'   => RSFV_POSTER_META_KEY,
 				)
 			);
 		}
@@ -147,13 +148,44 @@ class Metabox {
 			$display = 'inline-block';
 		}
 
+		$poster_html = '';
+		if ( 'self' === $video_source ) {
+			$poster_id  = get_post_meta( $post->ID, RSFV_POSTER_META_KEY, true );
+			$poster_url = $poster_id ? wp_get_attachment_image_url( $poster_id, 'medium' ) : '';
+			$style_img  = $poster_url ? 'display:block;' : 'display:none;';
+			$style_btn  = $poster_url ? 'display:inline-block;' : 'display:none;';
+
+			$poster_html  = '<div class="rsfv-poster" style="padding:10px 0;">';
+			$poster_html .= sprintf(
+				'<img id="rsfv-poster-preview" src="%1$s" style="max-width:95%%;%2$s" />',
+				esc_url( $poster_url ),
+				esc_attr( $style_img )
+			);
+			$poster_html .= sprintf(
+				'<input type="hidden" name="%1$s" id="%1$s" value="%2$s" />',
+				RSFV_POSTER_META_KEY,
+				esc_attr( $poster_id )
+			);
+			$poster_html .= sprintf(
+				'<a href="#" class="button rsfv-set-poster">%s</a> ',
+				__( 'Set Poster Image', 'rsfv' )
+			);
+			$poster_html .= sprintf(
+				'<a href="#" class="button rsfv-remove-poster" style="%s">%s</a>',
+				esc_attr( $style_btn ),
+				__( 'Remove Poster', 'rsfv' )
+			);
+			$poster_html .= '</div>';
+		}
+
 		$uploader_markup = sprintf(
-			'<div class="rsfv-self"><a href="#" class="rsfv-upload-video-btn%1$s</a><input type="hidden" name="%2$s" id="%2$s" value="%3$s" /><a href="#" class="remove-video" style="display:%4$s;">%5$s</a></div>',
+			'<div class="rsfv-self"><a href="#" class="rsfv-upload-video-btn%1$s</a><input type="hidden" name="%2$s" id="%2$s" value="%3$s" /><a href="#" class="remove-video" style="display:%4$s;">%5$s</a>%6$s</div>',
 			$image,
 			RSFV_META_KEY,
 			$video_id,
 			$display,
-			__( 'Remove Video', 'rsfv' )
+			__( 'Remove Video', 'rsfv' ),
+			$poster_html
 		);
 
 		$embed_markup = sprintf(
@@ -165,7 +197,7 @@ class Metabox {
 		);
 
 		$self_input = sprintf(
-			'<input type="radio" id="self" name="%1$s" value="self" %2$s><label for="self">%3$s</label><br>%4$s',
+			'<div class="rsfv-radio-wrap"><input type="radio" id="self" name="%1$s" value="self" %2$s><label for="self">%3$s</label></div>%4$s',
 			RSFV_SOURCE_META_KEY,
 			checked( 'self', $video_source, false ),
 			__( 'Self', 'rsfv' ),
@@ -173,7 +205,7 @@ class Metabox {
 		);
 
 		$embed_input = sprintf(
-			'<input type="radio" id="embed" name="%1$s" value="embed" %2$s><label for="embed">%3$s</label><br>%4$s',
+			'<div class="rsfv-radio-wrap"><input type="radio" id="embed" name="%1$s" value="embed" %2$s><label for="embed">%3$s</label></div>%4$s',
 			RSFV_SOURCE_META_KEY,
 			checked( 'embed', $video_source, false ),
 			__( 'Embed', 'rsfv' ),
@@ -187,13 +219,10 @@ class Metabox {
 			$embed_input
 		);
 
-		$styles = '<style>.rsfv-self, .rsfv-embed { padding: 10px 0; } .remove-video { margin-top: 6px; }</style>';
+		$styles = '<style>.rsfv-self, .rsfv-embed { padding: 10px 0; } .remove-video { margin-top: 6px; } .rsfv-poster { margin: 8px 0 !important; } .rsfv-set-poster { margin: 4px 0 !important; }</style>';
 
-		printf(
-			'%1$s%2$s',
-			wp_kses( $select_source, $this->get_allowed_html() ),
-			wp_kses( $styles, $this->get_allowed_html() ),
-		);
+		echo wp_kses( $select_source, $this->get_allowed_html() );
+		echo wp_kses( $styles, $this->get_allowed_html() );
 	}
 
 	/**
@@ -227,6 +256,7 @@ class Metabox {
 			RSFV_SOURCE_META_KEY,
 			RSFV_META_KEY,
 			RSFV_EMBED_META_KEY,
+			RSFV_POSTER_META_KEY,
 		);
 
 		foreach ( $keys as $key ) {
@@ -280,6 +310,11 @@ class Metabox {
 			'br'    => array(),
 			'i'     => array(),
 			'style' => array(),
+			'img'   => array(
+				'id'    => array(),
+				'src'   => array(),
+				'style' => array(),
+			),
 		);
 	}
 }

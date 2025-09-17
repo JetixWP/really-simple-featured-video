@@ -119,14 +119,27 @@ class FrontEnd {
 					$video_id = get_post_meta( $post->ID, RSFV_META_KEY, true );
 
 					if ( $video_id ) {
-						return '<div class="rsfv-shortcode-wrapper" style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+						$shortcode_output = do_shortcode( '[rsfv]' );
+
+						return '<div class="rsfv-shortcode-wrapper" data-rsfv-video="true" data-rsfv-source="self" style="clear:both">' . $shortcode_output . '</div>';
 					}
 				} else {
 					// Get the meta value of video embed url.
 					$embed_url = get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
 
 					if ( $embed_url ) {
-						return '<div class="rsfv-shortcode-wrapper" style="clear:both">' . do_shortcode( '[rsfv]' ) . '</div>';
+						$embed_data = self::get_instance()->parse_embed_url( $embed_url );
+						$video_type = is_array( $embed_data ) ? $embed_data['host'] : 'unknown';
+
+						$video_data = array(
+							'post_id' => $post_id,
+							'embed_url' => $embed_url,
+							'type' => $video_type,
+							'source' => 'embed',
+						);
+
+						$shortcode_output = do_shortcode( '[rsfv]' );
+						return '<div class="rsfv-shortcode-wrapper" data-rsfv-video="true" data-rsfv-source="embed" data-rsfv-type="' . esc_attr( $video_type ) . '" style="clear:both">' . $shortcode_output . '</div>';
 					}
 				}
 			}
@@ -209,7 +222,7 @@ class FrontEnd {
 				$result = preg_match( $pattern, $url, $matches );
 
 				if ( false !== $result ) {
-					$id = $matches[1];
+					$id = $matches[1] ?? false;
 				} else {
 					$id = false;
 				}
@@ -230,7 +243,7 @@ class FrontEnd {
 				);
 
 				if ( false !== $result ) {
-					$id = $matches[1];
+					$id = $matches[1] ?? false;
 				} else {
 					$id = false;
 				}
@@ -252,7 +265,7 @@ class FrontEnd {
 				);
 
 				if ( $result ) {
-					$id = $matches[1];
+					$id = $matches[1] ?? false;
 				} else {
 					$id = false;
 				}
@@ -310,6 +323,17 @@ class FrontEnd {
 					'autopictureinpicture' => array(),
 					'autoplay'             => array(),
 					'playsinline'          => array(),
+					'preload'              => array(),
+					'poster'               => array(),
+					'tabindex'             => array(),
+					'role'                 => array(),
+					'aria-label'           => array(),
+					'aria-hidden'          => array(),
+					'data-rsfv-video'      => array(),
+					'data-rsfv-type'       => array(),
+					'data-rsfv-source'     => array(),
+					'data-rsfv-hover-enabled' => array(),
+					'data-state'           => array(),
 				),
 				'iframe' => array(
 					'id'              => array(),
@@ -320,6 +344,17 @@ class FrontEnd {
 					'height'          => array(),
 					'frameborder'     => array(),
 					'allowfullscreen' => array(),
+					'allow'           => array(),
+					'loading'         => array(),
+					'tabindex'        => array(),
+					'role'            => array(),
+					'aria-label'      => array(),
+					'aria-hidden'     => array(),
+					'data-rsfv-video' => array(),
+					'data-rsfv-type'  => array(),
+					'data-rsfv-source' => array(),
+					'data-rsfv-hover-enabled' => array(),
+					'data-rsfv-embed-type' => array(),
 				),
 				'div'    => array(
 					'class'             => array(),
@@ -327,6 +362,23 @@ class FrontEnd {
 					'data-thumb'        => array(),
 					'style'             => array(),
 					'data-slide-number' => array(),
+					'data-rsfv-video'   => array(),
+					'data-rsfv-type'    => array(),
+					'data-rsfv-source'  => array(),
+					'data-rsfv-hover-enabled' => array(),
+					'data-rsfv-context' => array(),
+					'data-rsfv-archives' => array(),
+					'data-rsfv-lazy'    => array(),
+					'data-rsfv-threshold' => array(),
+					'data-aspect-ratio' => array(),
+					'data-state'        => array(),
+					'role'              => array(),
+					'aria-hidden'       => array(),
+					'aria-label'        => array(),
+					'tabindex'          => array(),
+					// WooCommerce specific.
+					'data-rsfv-woo-product-id' => array(),
+					'data-rsfv-embed-type' => array(),
 				),
 				'img'    => array(
 					'src'       => array(),
@@ -335,21 +387,42 @@ class FrontEnd {
 					'draggable' => array(),
 					'width'     => array(),
 					'height'    => array(),
+					'loading'   => array(),
+					'style'     => array(),
+					'role'      => array(),
+					'aria-hidden' => array(),
+					'tabindex'  => array(),
 				),
 				'a'      => array(
 					'href'  => array(),
 					'class' => array(),
 					'style' => array(),
+					'role'  => array(),
+					'aria-label' => array(),
+					'tabindex' => array(),
+					'data-rsfv-product' => array(),
 				),
-				'p'      => array(),
-				'span'   => array(),
+				'p'      => array(
+					'class' => array(),
+					'style' => array(),
+				),
+				'span'   => array(
+					'class' => array(),
+					'style' => array(),
+					'role'  => array(),
+					'aria-hidden' => array(),
+				),
 				'br'     => array(),
-				'i'      => array(),
-				'strong' => array(),
+				'i'      => array(
+					'class' => array(),
+					'aria-hidden' => array(),
+				),
+				'strong' => array(
+					'class' => array(),
+				),
 			)
 		);
 	}
-
 	/**
 	 * Generate dynamic CSS.
 	 *

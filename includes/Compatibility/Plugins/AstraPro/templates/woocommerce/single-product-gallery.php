@@ -209,9 +209,9 @@ function rsfv_get_video_slide_number( $has_featured_video, $has_order_change, $v
 	$video_slide_number = 0;
 	$has_pro            = Plugin::get_instance()->has_pro_active();
 
-    if ( ! $has_pro ) {
-        return $video_slide_number;
-    }
+	if ( ! $has_pro ) {
+		return $video_slide_number;
+	}
 
 	if ( ! $has_order_change ) {
 		return $video_slide_number;

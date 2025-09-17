@@ -53,14 +53,80 @@ class Register {
 	 * @return void
 	 */
 	public function register_menu() {
+		/**
+		 * Default framework menu.
+		 */
+		global $admin_page_hooks;
+		$primary_slug = 'jetixwp';
+		$menu_icon    = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTUiIGhlaWdodD0iODQiIHZpZXdCb3g9IjAgMCA5NSA4NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzE2NTBfNikiPgo8cGF0aCBkPSJNOTMuMjUwNiAyNC42NTFMMzEuNzY5NCA4Mi4zMjE0TDEuOTg2NiA1MC41NzA2TDkzLjI1MDYgMjQuNjUxWiIgZmlsbD0id2hpdGUiIHN0cm9rZT0iIzI1MjQyMiIgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTAuNTY3OCAxLjU1ODU1TDMyLjg3MjMgODIuODUwMUw3NC44NTM4IDcxLjMzMTRMMTAuNTY3OCAxLjU1ODU1WiIgZmlsbD0id2hpdGUiIHN0cm9rZT0iIzI1MjQyMiIgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzE2NTBfNiI+CjxyZWN0IHdpZHRoPSI5NSIgaGVpZ2h0PSI4NCIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K';
+
+		if ( ! isset( $admin_page_hooks['jetixwp'] ) ) {
+			add_menu_page(
+				_x( 'JetixWP Plugins', 'Page title', 'rsfv' ),
+				_x( 'JetixWP', 'Menu title', 'rsfv' ),
+				'manage_options',
+				$primary_slug,
+				'__return_null',
+				$menu_icon,
+				30
+			);
+
+			add_action( 'admin_enqueue_scripts', array( $this, 'hide_freemius_submenus') );
+		}
+
 		add_submenu_page(
-			'options-general.php',
+			$primary_slug,
 			__( 'Really Simple Featured Video Settings', 'rsfv' ),
-			__( 'Really Simple Featured Video', 'rsfv' ),
+			__( 'Featured Video', 'rsfv' ),
 			'manage_options',
 			'rsfv-settings',
 			array( $this, 'settings_page' )
 		);
+
+		// Remove duplicate menu hack.
+		// Note: It needs to go after the above add_submenu_page call.
+		remove_submenu_page( $primary_slug, $primary_slug );
+
+		// To remove later in 1.0.0.
+		add_submenu_page(
+			'options-general.php',
+			__( 'Really Simple Featured Video Settings', 'rsfv' ),
+			__( 'Really Simple Featured Video (Old)', 'rsfv' ),
+			'manage_options',
+			'rsfv-settings-old',
+			array( $this, 'old_settings_menu' )
+		);
+	}
+
+	/**
+	 * Hide Freemius submenus if they exist.
+	 *
+	 * @return void
+	 */
+	public function hide_freemius_submenus() {
+		// Enqueue a core admin style as a handle for inline CSS.
+    wp_enqueue_style( 'wp-admin' );
+
+    $custom_css = '.toplevel_page_jetixwp .wp-submenu li a[href*="-addons"] { display: none !important; }';
+    wp_add_inline_style( 'wp-admin', $custom_css );
+	}
+
+	/**
+	 * Redirect old settings menu to new one.
+	 *
+	 * To remove later in 1.0.0.
+	 *
+	 * @return void
+	 */
+	public function old_settings_menu() {
+		echo "<p>Hello! This page has been moved to the <a href='" . esc_url( admin_url( 'admin.php?page=jetixwp' ) ) . "'>JetixWP menu</a>. You will be redirected there in a second...</p>";
+		?>
+			<script type="text/javascript">
+				setTimeout(function() {
+					window.location.href = "<?php echo esc_url( admin_url( 'admin.php?page=rsfv-settings' ) ); ?>";
+				}, 1000);
+			</script>
+		<?php
 	}
 
 	/**

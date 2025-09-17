@@ -9,6 +9,8 @@
 ( function( $, data ) {
 	$(
 		function() {
+			const { addQueryArgs } = wp.url;
+
 			// Edit prompt.
 			$(
 				function() {
@@ -142,6 +144,20 @@
 			);
 
 			$( '.rsfv-theme-compatibility-select' ).select2();
+
+		// Process Plugin Rollback.
+		function processPluginRollback( e ) {
+			if ( e.preventDefault ) {
+				e.preventDefault();
+			}
+
+			const version = $( '#rsfv_rollback_version_select_option' ).val();
+			const rollbackUrl = addQueryArgs( data.rollback_url, { version: version } );
+
+			window.location.href = rollbackUrl;
+			return false;
+		}
+		$( '#rsfv_rollback_version_button' ).on( 'click', processPluginRollback );
 		}
 	);
 }( jQuery, rsfv_settings_data ) );

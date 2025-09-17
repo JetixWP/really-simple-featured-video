@@ -4,7 +4,7 @@
 	--jwp-wtc__color-brand-light: #f1faee;
 }
 
-body.settings_page_rsfv-settings #wpcontent {
+body.jetixwp_page_rsfv-settings #wpcontent {
 	padding-left: 0px;
 }
 
@@ -74,6 +74,15 @@ body.settings_page_rsfv-settings #wpcontent {
 		grid-template-columns: 8fr 4fr;
 		column-gap: 40px;
 	}
+
+	#rsfv_plugin_rollback_version-description + .form-table tbody {
+		display: grid;
+		grid-template-columns: auto 1fr;
+	}
+
+	#rsfv_plugin_rollback_version-description + .form-table .forminp-button {
+		padding: 15px 0;
+	}
 }
 
 .rsfv-wrapper .rsfv-nav-tab-wrapper {
@@ -111,6 +120,10 @@ body.settings_page_rsfv-settings #wpcontent {
 
 .rsfv-wrapper .tab-content > .content {
 	margin-top: -20px;
+}
+
+.rsfv-wrapper .sidebar .help-box {
+	margin-bottom: 30px;
 }
 
 .rsfv-wrapper .sidebar a {
@@ -186,18 +199,22 @@ body.settings_page_rsfv-settings #wpcontent {
 	transition: max-height 0.2s ease-out;
 }
 
-.rsfv .form-table td.forminp-multi-checkbox fieldset label {
+.rsfv .form-table td.forminp-multi-checkbox fieldset label,
+.rsfv .form-table td.forminp-promo-multi-checkbox fieldset label {
 	padding-left: 0;
 }
 
-.rsfv .form-table td.forminp-multi-checkbox input[type=checkbox]{
+.rsfv .form-table td.forminp-multi-checkbox input[type=checkbox],
+.rsfv .form-table td.forminp-promo-multi-checkbox input[type=checkbox] {
 	height: 0;
 	width: 0;
 	display: none;
 }
 
 .rsfv .form-table td.forminp-multi-checkbox label:focus input[type="checkbox"] + span,
-.rsfv .form-table td.forminp-multi-checkbox label:active input[type="checkbox"] + span {
+.rsfv .form-table td.forminp-multi-checkbox label:active input[type="checkbox"] + span,
+.rsfv .form-table td.forminp-promo-multi-checkbox label:focus input[type="checkbox"] + span,
+.rsfv .form-table td.forminp-promo-multi-checkbox label:active input[type="checkbox"] + span {
 	outline: 2px solid transparent;
 	outline-offset: 2px;
 	box-shadow: 0 0 0 2px #fff,0 0 0 3px #6c7781;
@@ -206,7 +223,8 @@ body.settings_page_rsfv-settings #wpcontent {
 	height: 19px;
 }
 
-.rsfv .form-table td.forminp-multi-checkbox span > span {
+.rsfv .form-table td.forminp-multi-checkbox span > span,
+.rsfv .form-table td.forminp-promo-multi-checkbox span > span {
 	cursor: pointer;
 	text-indent: -9999px;
 	width: 36px;
@@ -220,7 +238,8 @@ body.settings_page_rsfv-settings #wpcontent {
 	border: 2px solid #6c7781;
 }
 
-.rfsv .form-table td.forminp-multi-checkbox span > span:before {
+.rfsv .form-table td.forminp-multi-checkbox span > span:before,
+.rfsv .form-table td.forminp-promo-multi-checkbox span > span:before {
 	position: absolute;
 	top: 5px;
 	right: 4px;
@@ -234,7 +253,8 @@ body.settings_page_rsfv-settings #wpcontent {
 	transition: 0.1s ease-in all;
 }
 
-.rsfv .form-table td.forminp-multi-checkbox span > span:after {
+.rsfv .form-table td.forminp-multi-checkbox span > span:after,
+.rsfv .form-table td.forminp-promo-multi-checkbox span > span:after {
 	content: '';
 	position: absolute;
 	top: 3px;
@@ -246,12 +266,14 @@ body.settings_page_rsfv-settings #wpcontent {
 	transition: 0.1s ease-in all;
 }
 
-.rsfv .form-table td.forminp-multi-checkbox input:checked + span > span {
+.rsfv .form-table td.forminp-multi-checkbox input:checked + span > span,
+.rsfv .form-table td.forminp-promo-multi-checkbox input:checked + span > span {
 	background: var(--jwp-wtc__color-brand);
 	border-color: var(--jwp-wtc__color-brand);
 }
 
-.rfsv .form-table td.forminp-multi-checkbox input:checked + span > span:before {
+.rfsv .form-table td.forminp-multi-checkbox input:checked + span > span:before,
+.rfsv .form-table td.forminp-promo-multi-checkbox input:checked + span > span:before {
 	border-radius: 0;
 	right: calc(100% - 10px);
 	transform: translateX(-100%);
@@ -261,21 +283,25 @@ body.settings_page_rsfv-settings #wpcontent {
 	background: #fff;
 }
 
-.rsfv .form-table td.forminp-multi-checkbox input:checked + span > span:after {
+.rsfv .form-table td.forminp-multi-checkbox input:checked + span > span:after,
+.rsfv .form-table td.forminp-promo-multi-checkbox input:checked + span > span:after {
 	background: #fff;
 	left: calc(100% - 3px);
 	transform: translateX(-100%);
 }
 
-.rsfv .form-table td.forminp-multi-checkbox span > span:active:after {
+.rsfv .form-table td.forminp-multi-checkbox span > span:active:after,
+.rsfv .form-table td.forminp-promo-multi-checkbox span > span:active:after {
 	width: 20px;
 }
 
-.forminp-multi-checkbox fieldset {
+.forminp-multi-checkbox fieldset,
+.forminp-promo-multi-checkbox fieldset {
 	max-width: 1000px;
 }
 
-.forminp-multi-checkbox ul {
+.forminp-multi-checkbox ul,
+.forminp-promo-multi-checkbox ul {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-column-gap: 80px;
@@ -283,7 +309,8 @@ body.settings_page_rsfv-settings #wpcontent {
 	padding: 0;
 }
 
-.rsfv.uroles td.forminp-multi-checkbox ul {
+.rsfv.uroles td.forminp-multi-checkbox ul,
+.rsfv.uroles td.forminp-promo-multi-checkbox ul {
 	display: flex;
 	flex-wrap: wrap;
 	margin: 0;
@@ -291,45 +318,54 @@ body.settings_page_rsfv-settings #wpcontent {
 }
 
 @media screen and (max-width: 700px) {
-	.forminp-multi-checkbox ul {
+	.forminp-multi-checkbox ul,
+	.forminp-promo-multi-checkbox ul {
 		grid-template-columns: 1fr;
 	}
 }
 
-.forminp-multi-checkbox li {
+.forminp-multi-checkbox li,
+.forminp-promo-multi-checkbox li {
 	flex: 0 0 150px;
 	margin-top: 10px;
 }
 
 
-.forminp-multi-checkbox li label {
+.forminp-multi-checkbox li label,
+.forminp-promo-multi-checkbox li label {
 	margin: 0 !important;
 	padding: 0;
 }
 
 
-.rsfv .form-table td.forminp-multi-checkbox li label {
+.rsfv .form-table td.forminp-multi-checkbox li label,
+.rsfv .form-table td.forminp-promo-multi-checkbox li label {
 	display: inline-flex;
 	flex-direction: row-reverse;
 	width: 100%;
 	justify-content: space-between;
 }
 
-.rsfv .form-table td.forminp-multi-checkbox li label > * {
+.rsfv .form-table td.forminp-multi-checkbox li label > *,
+.rsfv .form-table td.forminp-promo-multi-checkbox li label > * {
 	margin: 0;
 	align-self: center;
 }
 
 .rsfv-enable-post-types + table.form-table,
 .rsfv-self-video-controls + table.form-table,
-.rsfv-embed-video-controls + table.form-table {
+.rsfv-embed-video-controls + table.form-table,
+.rsfv-multi-checkbox-card + table.form-table,
+.rsfv-promo-multi-checkbox-card + table.form-table {
 	background-color: #fff;
 	border: 1px solid #DCDCDC;
 }
 
 .rsfv-enable-post-types + table.form-table td,
 .rsfv-self-video-controls + table.form-table td,
-.rsfv-embed-video-controls + table.form-table td {
+.rsfv-embed-video-controls + table.form-table td,
+.rsfv-multi-checkbox-card + table.form-table td,
+.rsfv-promo-multi-checkbox-card + table.form-table td {	
 	padding: 6px 14px;
 }
 
@@ -419,7 +455,12 @@ body.settings_page_rsfv-settings #wpcontent {
 	opacity: 0.6;
 }
 
-.rsfv td[class*=" forminp-promo-"] select {
+.rsfv td[class*=" forminp-promo-"] select,
+.rsfv td[class*=" forminp-promo-"] input[type="text"],
+.rsfv td[class*=" forminp-promo-"] input[type="number"],
+.rsfv td[class*=" forminp-promo-"] textarea,
+.rsfv td[class*=" forminp-promo-"] span > span,
+.rsfv td[class*=" forminp-promo-"] input[type="checkbox"] {
 	opacity: 0.7;
 }
 
@@ -536,6 +577,15 @@ body.settings_page_rsfv-settings #wpcontent {
 	color: var(--jwp-wtc__color-brand) !important;
 	box-shadow: none;
 	outline: none;
+}
+
+.rsfv .button-secondary,
+.rsfv .rsfv-button.button-secondary {
+	border-color: var(--jwp-wtc__color-brand);
+	color: var(--jwp-wtc__color-brand);;
+	box-shadow: none;
+	outline: none;
+	transition: all .1s ease-in-out;
 }
 
 .rsfv .tab-content a {

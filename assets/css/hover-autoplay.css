@@ -1,0 +1,428 @@
+/**
+ * Really Simple Featured Video - Complete Mobile CSS Fix
+ * Enhanced styles for mobile iframe video interaction
+ */
+
+/* Base mobile video containers */
+@media (max-width: 768px) {
+    .rsfv-video-container[data-rsfv-hover-enabled="true"],
+    .rsfv-featured-video[data-rsfv-hover-enabled="true"],
+    [data-rsfv-video][data-rsfv-hover-enabled="true"],
+    .woocommerce-product-gallery__image[data-rsfv-hover-enabled="true"] {
+        position: relative;
+        overflow: hidden;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        cursor: pointer;
+        border-radius: 8px;
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Enhanced iframe containers */
+    .rsfv-video-container iframe,
+    .rsfv-featured-video iframe,
+    [data-rsfv-video] iframe,
+    .woocommerce-product-gallery__image iframe {
+        pointer-events: auto;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Responsive iframe wrapper */
+    .rsfv-iframe-wrapper {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 50.25%;
+        overflow: hidden;
+        border-radius: 8px;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        cursor: pointer;
+    }
+    
+    .rsfv-iframe-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 8px;
+    }
+    
+    /* Mobile overlay for iframe interaction */
+    .rsfv-mobile-overlay {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 10 !important;
+        background: transparent !important;
+        cursor: pointer !important;
+        -webkit-tap-highlight-color: transparent !important;
+        touch-action: manipulation !important;
+        border-radius: 8px;
+    }
+    
+    /* Hide overlay when video is playing */
+    [data-state="playing"] .rsfv-mobile-overlay {
+        display: none !important;
+    }
+    
+    /* Enhanced play overlay for mobile */
+    .rsfv-play-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 15;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+    }
+    
+    .rsfv-play-overlay::before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 20px solid #ffffff;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        margin-left: 3px;
+    }
+    
+    /* Show play overlay by default on mobile */
+    .rsfv-video-container[data-rsfv-hover-enabled="true"] .rsfv-play-overlay,
+    .rsfv-featured-video[data-rsfv-hover-enabled="true"] .rsfv-play-overlay,
+    [data-rsfv-video][data-rsfv-hover-enabled="true"] .rsfv-play-overlay,
+    .woocommerce-product-gallery__image[data-rsfv-hover-enabled="true"] .rsfv-play-overlay {
+        opacity: 0.8;
+    }
+    
+    /* Hide overlay when video is playing */
+    .rsfv-video-container[data-state="playing"] .rsfv-play-overlay,
+    .rsfv-featured-video[data-state="playing"] .rsfv-play-overlay,
+    [data-rsfv-video][data-state="playing"] .rsfv-play-overlay,
+    .woocommerce-product-gallery__image[data-state="playing"] .rsfv-play-overlay {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    
+    /* Mobile touch feedback */
+    .rsfv-video-container[data-rsfv-hover-enabled="true"]:active,
+    .rsfv-featured-video[data-rsfv-hover-enabled="true"]:active,
+    [data-rsfv-video][data-rsfv-hover-enabled="true"]:active,
+    .woocommerce-product-gallery__image[data-rsfv-hover-enabled="true"]:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    /* Mobile iframe touch feedback */
+    [data-rsfv-video]:active .rsfv-iframe-wrapper {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    /* Video spacing */
+    .rsfv-video-container + .rsfv-video-container,
+    .rsfv-featured-video + .rsfv-featured-video,
+    [data-rsfv-video] + [data-rsfv-video] {
+        margin-top: 16px;
+    }
+}
+
+/* Tablet specific styles (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .rsfv-video-container[data-rsfv-hover-enabled="true"]:hover,
+    .rsfv-featured-video[data-rsfv-hover-enabled="true"]:hover,
+    [data-rsfv-video][data-rsfv-hover-enabled="true"]:hover,
+    .woocommerce-product-gallery__image[data-rsfv-hover-enabled="true"]:hover {
+        transform: scale(1.02);
+        transition: transform 0.2s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .rsfv-play-overlay {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .rsfv-play-overlay::before {
+        border-left-width: 16px;
+        border-top-width: 10px;
+        border-bottom-width: 10px;
+    }
+    
+    /* Tablet iframe hover effects */
+    [data-rsfv-video]:hover .rsfv-iframe-wrapper {
+        transform: scale(1.02);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        transition: all 0.2s ease;
+    }
+}
+
+/* Mobile phone specific styles (max 480px) */
+@media (max-width: 480px) {
+    .rsfv-video-container[data-rsfv-hover-enabled="true"],
+    .rsfv-featured-video[data-rsfv-hover-enabled="true"],
+    [data-rsfv-video][data-rsfv-hover-enabled="true"] {
+        border-radius: 12px;
+        margin-bottom: 0;
+    }
+    
+    .rsfv-play-overlay {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .rsfv-play-overlay::before {
+        border-left-width: 16px;
+        border-top-width: 10px;
+        border-bottom-width: 10px;
+        margin-left: 2px;
+    }
+    
+    .rsfv-iframe-wrapper {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+}
+
+/* WooCommerce specific mobile enhancements */
+@media (max-width: 768px) {
+    .woocommerce-product-gallery__image[data-rsfv-hover-enabled="true"] {
+        border-radius: 8px;
+        margin-bottom: 8px;
+    }
+    
+    .woocommerce ul.products li.product .woocommerce-product-gallery__image[data-rsfv-hover-enabled="true"] {
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .woocommerce ul.products li.product .woocommerce-product-gallery__image[data-rsfv-hover-enabled="true"]:active {
+        transform: scale(0.97);
+    }
+    
+    .woocommerce div.product .woocommerce-product-gallery .woocommerce-product-gallery__image[data-rsfv-hover-enabled="true"] {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Loading animations */
+@media (max-width: 768px) {
+    .rsfv-video-container.loading,
+    .rsfv-featured-video.loading,
+    [data-rsfv-video].loading {
+        position: relative;
+    }
+    
+    .rsfv-video-container.loading::after,
+    .rsfv-featured-video.loading::after,
+    [data-rsfv-video].loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #005cee;
+        border-radius: 50%;
+        animation: rsfv-spin 1s linear infinite;
+        z-index: 20;
+    }
+    
+    @keyframes rsfv-spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+}
+
+/* Video state indicators */
+@media (max-width: 768px) {
+    .rsfv-video-container[data-state="playing"]::before,
+    .rsfv-featured-video[data-state="playing"]::before,
+    [data-rsfv-video][data-state="playing"]::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 8px;
+        height: 8px;
+        background: #ff0000;
+        border-radius: 50%;
+        animation: rsfv-pulse 2s infinite;
+        z-index: 15;
+        border: 1px solid white;
+    }
+    
+    @keyframes rsfv-pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.2); }
+    }
+}
+
+/* Error states */
+@media (max-width: 768px) {
+    .rsfv-video-container.error,
+    .rsfv-featured-video.error,
+    [data-rsfv-video].error {
+        background: #f8f8f8;
+        border: 2px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+        color: #666;
+        font-size: 14px;
+        text-align: center;
+        border-radius: 8px;
+    }
+    
+    .rsfv-video-container.error::before,
+    .rsfv-featured-video.error::before,
+    [data-rsfv-video].error::before {
+        content: '⚠️ Video not available\ATap to retry';
+        white-space: pre-line;
+        line-height: 1.4;
+    }
+}
+
+/* Accessibility improvements */
+@media (max-width: 768px) {
+    .rsfv-video-container[data-rsfv-hover-enabled="true"]:focus,
+    .rsfv-featured-video[data-rsfv-hover-enabled="true"]:focus,
+    [data-rsfv-video][data-rsfv-hover-enabled="true"]:focus {
+        outline: 3px solid #005cee;
+        outline-offset: 2px;
+    }
+}
+
+/* Landscape orientation handling */
+@media (max-width: 768px) and (orientation: landscape) {
+    .rsfv-video-container[data-rsfv-hover-enabled="true"],
+    .rsfv-featured-video[data-rsfv-hover-enabled="true"],
+    [data-rsfv-video][data-rsfv-hover-enabled="true"] {
+        max-height: 60vh;
+        overflow: hidden;
+    }
+    
+    .rsfv-play-overlay {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .rsfv-play-overlay::before {
+        border-left-width: 14px;
+        border-top-width: 8px;
+        border-bottom-width: 8px;
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    @media (max-width: 768px) {
+        .rsfv-video-container[data-rsfv-hover-enabled="true"],
+        .rsfv-featured-video[data-rsfv-hover-enabled="true"],
+        [data-rsfv-video][data-rsfv-hover-enabled="true"] {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        .rsfv-mobile-overlay {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-touch-callout: none;
+        }
+        
+        .rsfv-video-container iframe,
+        .rsfv-featured-video iframe,
+        [data-rsfv-video] iframe {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+    }
+}
+
+/* Android Chrome optimizations */
+@media (max-width: 768px) {
+    .rsfv-video-container[data-rsfv-hover-enabled="true"],
+    .rsfv-featured-video[data-rsfv-hover-enabled="true"],
+    [data-rsfv-video][data-rsfv-hover-enabled="true"] {
+        touch-action: manipulation;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* High DPI display optimizations */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+    .rsfv-play-overlay {
+        border-width: 3px;
+    }
+    
+    .rsfv-play-overlay::before {
+        border-left-width: 18px;
+        border-top-width: 11px;
+        border-bottom-width: 11px;
+    }
+}
+
+/* Dark mode support */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+    .rsfv-video-container.loading::after,
+    .rsfv-featured-video.loading::after,
+    [data-rsfv-video].loading::after {
+        border-color: #333;
+        border-top-color: #00a0d2;
+    }
+    
+    .rsfv-play-overlay {
+        background: rgba(255, 255, 255, 0.9);
+        border-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    .rsfv-play-overlay::before {
+        border-left-color: #000000;
+    }
+}
+
+/* Reduced motion support */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+    .rsfv-video-container,
+    .rsfv-featured-video,
+    [data-rsfv-video],
+    .rsfv-play-overlay {
+        transition: none !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    .rsfv-play-overlay,
+    .rsfv-mobile-overlay {
+        display: none !important;
+    }
+    
+    .rsfv-video-container,
+    .rsfv-featured-video,
+    [data-rsfv-video] {
+        page-break-inside: avoid;
+    }
+}

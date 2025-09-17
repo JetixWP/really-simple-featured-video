@@ -10,6 +10,7 @@ namespace RSFV;
 use RSFV\Compatibility\Plugin_Provider;
 use RSFV\Settings\Register;
 use RSFV\Compatibility\Theme_Provider;
+use RSFV\Featuresets\Register_Featuresets as Featuresets;
 
 /**
  * Class RSFV_featured_video
@@ -49,6 +50,13 @@ final class Plugin {
 	 * @var $shortcode_provider
 	 */
 	public $shortcode_provider;
+
+	/**
+	 * Featuresets instance.
+	 *
+	 * @var $featuresets_provider
+	 */
+	public $featuresets_provider;
 
 	/**
 	 * Frontend instance.
@@ -110,6 +118,7 @@ final class Plugin {
 		define( 'RSFV_SOURCE_META_KEY', 'rsfv_source' );
 		define( 'RSFV_META_KEY', 'rsfv_featured_video' );
 		define( 'RSFV_EMBED_META_KEY', 'rsfv_featured_embed_video' );
+		define( 'RSFV_POSTER_META_KEY', 'rsfv_featured_poster' );
 	}
 
 	/**
@@ -119,12 +128,13 @@ final class Plugin {
 	 */
 	public function register() {
 		// Load translation.
-		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
 		// Load classes.
 		// Let's call these providers.
 		$this->registration_provider = Register::get_instance();
 		$this->metabox_provider      = Metabox::get_instance();
+		$this->featuresets_provider  = Featuresets::get_instance();
 		$this->shortcode_provider    = Shortcode::get_instance();
 		$this->frontend_provider     = FrontEnd::get_instance();
 
@@ -160,6 +170,7 @@ final class Plugin {
 	 * @return void
 	 */
 	public function includes() {
+		// Core.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-options.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Settings/class-register.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-metabox.php';
@@ -168,6 +179,7 @@ final class Plugin {
 		require_once RSFV_PLUGIN_DIR . 'includes/class-filterable-scripts.php';
 
 		// Frontend loaders.
+		require_once RSFV_PLUGIN_DIR . 'includes/Featuresets/class-register-featuresets.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-frontend.php';
 
@@ -191,7 +203,7 @@ final class Plugin {
 	 * @return array
 	 */
 	public function filter_plugin_action_links( array $actions ) {
-		$settings_url = admin_url( 'options-general.php?page=rsfv-settings' );
+		$settings_url = admin_url( 'admin.php?page=rsfv-settings' );
 
 		return array_merge(
 			array(
@@ -224,7 +236,7 @@ final class Plugin {
 
 		$screen     = get_current_screen();
 		$page_slugs = array(
-			'settings_page_rsfv-settings',
+			'jetixwp_page_rsfv-settings',
 		);
 
 		if ( in_array( $screen->id, $page_slugs, true ) ) {
