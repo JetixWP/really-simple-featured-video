@@ -22,6 +22,7 @@ You get a really simple settings page which has all the controls you need for ma
 
 * **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
+* **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme Builder (WPBakery) Support** - Support for Post Loop Builder element within Salient theme.
