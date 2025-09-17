@@ -119,8 +119,14 @@ class Register {
 	 * @return void
 	 */
 	public function old_settings_menu() {
-		wp_safe_redirect( admin_url( 'admin.php?page=rsfv-settings' ) );
-		exit;
+		echo "<p>Hello! This page has been moved to the <a href='" . esc_url( admin_url( 'admin.php?page=jetixwp' ) ) . "'>JetixWP menu</a>. You will be redirected there in a second...</p>";
+		?>
+			<script type="text/javascript">
+				setTimeout(function() {
+					window.location.href = "<?php echo esc_url( admin_url( 'admin.php?page=rsfv-settings' ) ); ?>";
+				}, 1000);
+			</script>
+		<?php
 	}
 
 	/**
