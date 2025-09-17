@@ -122,6 +122,10 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 	margin-top: -20px;
 }
 
+.rsfv-wrapper .sidebar .help-box {
+	margin-bottom: 30px;
+}
+
 .rsfv-wrapper .sidebar a {
 	outline: none;
 	box-shadow: none;
