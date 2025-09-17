@@ -23,6 +23,6 @@ namespace RSFV\Settings\views;
 		<li><?php esc_html_e( 'Requests for Theme Compatibility', 'rsfv' ); ?></li>
 	</ul>
 	<p><?php esc_html_e( '.. and more coming soon.', 'rsfv' ); ?></p>
-	<h1 class="offer-highlight">Grab the Premium version starting at just <strong>$39</strong>!</h1>
+	<h1 class="offer-highlight">Grab the Premium version with a Lifetime License!</h1>
 	<a href="https://jetixwp.com/plugins/really-simple-featured-video?utm_campaign=settings-protab&utm_source=rsfv-plugin" target="_blank" class="rsfv-button button-primary"><?php esc_html_e( 'Explore RSFV and PRO', 'rsfv' ); ?></a>
 </div>

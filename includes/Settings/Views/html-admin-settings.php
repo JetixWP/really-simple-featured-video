@@ -90,9 +90,8 @@ if ( ! $tab_exists ) {
 							<div>
 								<p class="desc">New features in every update, to name a few upcoming changes -</p>
 								<ul>
-									<li>🏗️ Bricks Support</li>
 									<li>🏗️ Featured Video Blocks for Full Site Editing </li>
-									<li>🏗️ And more Woo customizations related to videos</li>
+									<li>🏗️ And more Video related customizations</li>
 								</ul>
 							</div>
 

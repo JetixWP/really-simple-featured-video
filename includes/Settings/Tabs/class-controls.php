@@ -242,14 +242,14 @@ class Controls extends Settings_Page {
 						),
 						array(
 							'title'   => __( 'User Preferences', 'rsfv' ),
-							'desc'    => __( 'Respect "reduced motion" preference', 'rsfv' ),
+							'desc'    => __( 'Respect "reduced motion" preference.', 'rsfv' ),
 							'id'      => 'promo-hover-autoplay-respect-user-prefs',
 							'default' => true,
 							'type'    => 'promo-checkbox',
 						),
 						array(
 							'title'   => __( 'Focus Events', 'rsfv' ),
-							'desc'    => __( 'Enable focus events for keyboard navigation', 'rsfv' ),
+							'desc'    => __( 'Enable focus events for keyboard navigation.', 'rsfv' ),
 							'id'      => 'promo-hover-autoplay-focus-events',
 							'default' => true,
 							'type'    => 'promo-checkbox',
