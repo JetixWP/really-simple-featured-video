@@ -12,6 +12,12 @@ class RSFVHoverAutoplay {
             enableOnDesktop: true,
             respectUserPreferences: true,
             debugMode: false,
+						videoTypes: {
+								html5: "1",
+								youtube: "1",
+								vimeo: "1",
+								dailymotion: "1",
+						},
             ...options
         };
         
@@ -153,6 +159,10 @@ class RSFVHoverAutoplay {
             this.setupVideoContainer(container, index);
         });
     }
+
+		checkVideoTypeAllowed(type) {
+			return this.options.videoTypes && this.options.videoTypes[type] === "1";
+		}
     
     setupVideoContainer(container, index) {
         if (container.dataset.rsfvHoverInit) return;
@@ -168,7 +178,14 @@ class RSFVHoverAutoplay {
         
         const videoType = this.getVideoType(video);
 
+				if (!this.checkVideoTypeAllowed(videoType)) {
+					this.log(`Video type ${videoType} not allowed for hover autoplay, skipping container ${index}`);
+					return;
+				}
+
         this.log(`Setting up ${videoType} video ${index} for ${this.isMobile ? 'mobile' : this.isTablet ? 'tablet' : 'desktop'}`);
+        this.log(`Video element:`, video);
+        this.log(`Video src:`, video.src || video.getAttribute('src'));
         
         if (videoType === 'html5') {
             this.setupHTML5Video(container, video, index);
@@ -650,6 +667,7 @@ document.addEventListener('DOMContentLoaded', function() {
         enableOnDesktop: rsfvOptions.enableOnDesktop === "1", // default true
         respectUserPreferences: rsfvOptions.respectUserPreferences === "1", // default true
         debugMode: rsfvOptions.debugMode || false,
+        videoTypes: rsfvOptions.videoTypes,
     });
 });
 
