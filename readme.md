@@ -89,7 +89,6 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 More features to come in the future, to name a few -
 
-* ✨ **Bricks Support**
 * ✨ **Featured Video Blocks for Full Site Editing**
 * ✨ And more from your requests
 
