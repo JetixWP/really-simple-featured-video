@@ -12,7 +12,7 @@ Really Simple Featured Video enables featured video support for WordPress posts,
 
 == Description ==
 
-[🚀 [PRO] Grab the premium version at a Lifetime Deal](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+[🚀 **Get the PRO version - Limited Lifetime Deal**](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your Posts, Pages & WooCommerce Products. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
@@ -26,8 +26,8 @@ You get a really simple settings page which has all the controls you need for ma
 == 👉️ Features ==
 
 * **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
-* **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
+* **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme WPBakery Builder Support** - Support for Post Loop Builder element with Salient theme.
