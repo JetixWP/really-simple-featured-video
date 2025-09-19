@@ -23,9 +23,30 @@ class RSFVHoverAutoplay {
         this.touchStartTime = 0;
         this.touchMoved = false;
         
+        // MULTISITE FIX: Force use root domain for YouTube origin in subdirectories
+        this.useRootOrigin = this.shouldUseRootOrigin();
+        
         this.init();
     }
-    
+
+    // MULTISITE FIX: Detect if we should use root domain instead of subdirectory
+    shouldUseRootOrigin() {
+        const path = window.location.pathname;
+        const isSubdirectory = path.split('/').filter(p => p).length > 0 && 
+                              !path.startsWith('/wp-admin') && 
+                              !path.startsWith('/wp-content');
+        
+        // Check if this looks like a WordPress multisite subdirectory
+        const hasWpIndicators = document.body.classList.contains('wp-admin') ||
+                               document.body.classList.contains('wordpress') ||
+                               document.querySelector('meta[name="generator"]')?.content?.includes('WordPress') ||
+                               window.wp !== undefined;
+        
+        const useRoot = isSubdirectory && hasWpIndicators;
+        this.log('Should use root origin for YouTube:', useRoot, 'Path:', path);
+        return useRoot;
+    }
+
     init() {
         this.checkReducedMotion();
         this.checkDeviceType();
@@ -253,6 +274,7 @@ class RSFVHoverAutoplay {
     setupIframeVideo(container, iframe, videoType, index) {
         if (!this.shouldEnableHover()) return;
         
+        this.log(`setupIframeVideo called for ${videoType} video ${index}`);
         this.ensureIframeAPI(iframe, videoType);
         
         let hoverTimeout;
@@ -442,13 +464,29 @@ class RSFVHoverAutoplay {
         const currentSrc = iframe.src;
         let newSrc = currentSrc;
         
+        this.log(`ensureIframeAPI called for ${videoType}, current src:`, currentSrc);
+        
         switch (videoType) {
             case 'youtube':
+                this.log('Processing YouTube iframe...');
                 if (!currentSrc.includes('enablejsapi=1')) {
                     newSrc += (currentSrc.includes('?') ? '&' : '?') + 'enablejsapi=1';
+                    this.log('Added enablejsapi=1');
                 }
-                if (!currentSrc.includes('origin=')) {
-                    newSrc += '&origin=' + encodeURIComponent(window.location.origin);
+                
+                // MULTISITE FIX: Replace existing origin parameter with root domain
+                const correctOrigin = this.useRootOrigin ? 
+                    `${window.location.protocol}//${window.location.hostname}${window.location.port ? ':' + window.location.port : ''}` :
+                    window.location.origin;
+                
+                if (currentSrc.includes('origin=')) {
+                    // Replace existing origin parameter
+                    newSrc = newSrc.replace(/([?&])origin=[^&]*(&|$)/, `$1origin=${encodeURIComponent(correctOrigin)}$2`);
+                    this.log('Replaced existing origin parameter with:', correctOrigin);
+                } else {
+                    // Add new origin parameter
+                    newSrc += '&origin=' + encodeURIComponent(correctOrigin);
+                    this.log('Added new origin parameter:', correctOrigin);
                 }
                 break;
                 
