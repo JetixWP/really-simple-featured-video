@@ -264,6 +264,9 @@ class Theme_Provider {
 			'avada'    => __( 'Avada (PRO)', 'rsfv' ),
 			'konte'    => __( 'Konte (PRO)', 'rsfv' ),
 			'lay'      => __( 'Lay (PRO)', 'rsfv' ),
+			'uncode'   => __( 'Uncode (PRO)', 'rsfv' ),
+			'bravada'  => __( 'Bravada (PRO)', 'rsfv' ),
+			'electro'  => __( 'Electro (PRO)', 'rsfv' ),
 		);
 	}
 }
