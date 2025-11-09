@@ -145,6 +145,11 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Ollie/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Ollie\Compatibility',
 				),
+				'electro'             => array(
+					'title'       => __( 'Electro', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Electro/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Electro\Compatibility',
+				),
 			)
 		);
 	}
@@ -266,7 +271,6 @@ class Theme_Provider {
 			'lay'      => __( 'Lay (PRO)', 'rsfv' ),
 			'uncode'   => __( 'Uncode (PRO)', 'rsfv' ),
 			'bravada'  => __( 'Bravada (PRO)', 'rsfv' ),
-			'electro'  => __( 'Electro (PRO)', 'rsfv' ),
 		);
 	}
 }
