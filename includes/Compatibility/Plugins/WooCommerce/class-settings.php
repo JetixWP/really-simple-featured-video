@@ -67,6 +67,13 @@ class Settings extends Settings_Page {
 					'type'    => 'checkbox',
 				),
 				array(
+					'title'   => __( 'Show videos from external URLs (External Products)', 'rsfv' ),
+					'desc'    => __( 'When toggled on, it fetches supported video URLs from external URLs for External Products.', 'rsfv' ),
+					'id'      => 'product_video_external_url',
+					'default' => false,
+					'type'    => 'checkbox',
+				),
+				array(
 					'type' => 'sectionend',
 					'id'   => 'rsfv_woocommerce_title',
 				),

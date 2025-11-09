@@ -7,8 +7,7 @@
 
 namespace RSFV\Compatibility\Themes;
 
-use function RSFV\Settings\get_post_types;
-
+use RSFV\FrontEnd;
 
 /**
  * Abstract class definition for controllers.
@@ -106,14 +105,9 @@ abstract class Base_Compatibility {
 	public function set_post_classes( $classes ) {
 		$post_id = get_the_ID();
 
-		// Get the meta value of video embed url.
-		$video_source = get_post_meta( $post_id, RSFV_SOURCE_META_KEY, true );
-		$media_id     = get_post_meta( $post_id, RSFV_META_KEY, true );
-		$video_url    = get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
+		$has_video = FrontEnd::has_featured_video( $post_id );
 
-		$enabled_post_types = get_post_types();
-
-		if ( in_array( get_post_type(), $enabled_post_types, true ) && ( ( 'self' === $video_source && $media_id ) || ( 'embed' === $video_source && $video_url ) ) ) {
+		if ( $has_video ) {
 			$classes[] = 'rsfv-has-video';
 		}
 
@@ -131,14 +125,9 @@ abstract class Base_Compatibility {
 		if ( is_singular() ) {
 			$post_id = get_the_ID();
 
-			// Get the meta value of video embed url.
-			$video_source = get_post_meta( $post_id, RSFV_SOURCE_META_KEY, true );
-			$media_id     = get_post_meta( $post_id, RSFV_META_KEY, true );
-			$video_url    = get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
+			$has_video = FrontEnd::has_featured_video( $post_id );
 
-			$enabled_post_types = get_post_types();
-
-			if ( in_array( get_post_type(), $enabled_post_types, true ) && ( ( 'self' === $video_source && $media_id ) || ( 'embed' === $video_source && $video_url ) ) ) {
+			if ( $has_video ) {
 				$classes[] = 'rsfv-has-video';
 			}
 		}

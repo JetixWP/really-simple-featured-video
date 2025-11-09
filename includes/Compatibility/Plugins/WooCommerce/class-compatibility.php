@@ -104,6 +104,13 @@ class Compatibility extends Base_Compatibility {
 		}
 
 		add_action( 'rsfv_woo_archives_product_thumbnails', 'woocommerce_template_loop_product_thumbnail', 10 );
+
+		$product_video_external_url = $options->get( 'product_video_external_url' );
+
+		if ( $options->has( 'product_video_external_url' ) && $product_video_external_url ) {
+			add_filter( 'rsfv_get_video_source', array( $this, 'set_external_product_url' ), 10, 2 );
+			add_filter( 'rsfv_get_woo_video_source', array( $this, 'set_external_product_url' ), 10, 2 );
+		}
 	}
 
 	/**
@@ -298,6 +305,83 @@ class Compatibility extends Base_Compatibility {
 	}
 
 	/**
+	 * Sets the video source for external products if supported video url in external product url.
+	 *
+	 * @param string $video_source Video source type.
+	 * @param int    $product_id Product ID.
+	 *
+	 * @return string
+	 */
+	public function set_external_product_url( $video_source, $product_id ) {
+		// Only modify for product post type.
+		if ( 'product' !== get_post_type( $product_id ) ) {
+			return $video_source;
+		}
+
+		$product = wc_get_product( $product_id );
+		$product_type = $product ? $product->get_type() : '';
+
+		$video_url = '';
+		if ( 'self' === $video_source ) {
+			$video_url = get_post_meta( $product_id, RSFV_META_KEY, true );
+		} else if ( 'embed' === $video_source ) {
+			$video_url = get_post_meta( $product_id, RSFV_EMBED_META_KEY, true );
+		}
+
+		if ( '' === $video_url && 'external' === $product_type ) {
+			$options              = Options::get_instance();
+			$external_url_enabled = $options->get( 'product_video_external_url', false );
+			$external_url         = get_post_meta( $product_id, '_product_url', true );
+
+			if ( $external_url_enabled ) {
+				$frontend   = Plugin::get_instance()->frontend_provider;
+				$embed_data = $frontend->parse_embed_url( $external_url );
+
+				if ( is_array( $embed_data ) && isset( $embed_data['host'] ) && in_array( $embed_data['host'], array( 'youtube', 'vimeo', 'dailymotion' ), true ) ) {
+					$video_source = 'embed';
+
+					add_filter(
+						'rsfv_get_embed_woo_video_url',
+						function () use ( $external_url ) {
+							return esc_url( $external_url );
+						}
+					);
+
+					add_filter(
+						'rsfv_get_embed_video_url',
+						function () use ( $external_url ) {
+							return esc_url( $external_url );
+						}
+					);
+				}
+			}
+		}
+
+		return $video_source;
+	}
+
+	/**
+	 * Get external product URL if available.
+	 *
+	 * @param int $product_id Product ID.
+	 *
+	 * @return string
+	 */
+	public function get_external_product_url( $product_id ) {
+		$product = wc_get_product( $product_id );
+		$product_type = $product ? $product->get_type() : '';
+
+		$video_url = '';
+
+		if ( 'external' === $product_type ) {
+			$external_url = get_post_meta( $product_id, '_product_url', true );
+			$video_url = esc_url( $external_url );
+		}
+
+		return $video_url;
+	}
+
+	/**
 	 * Product Video Markup.
 	 *
 	 * @param int    $id Product ID.
@@ -317,6 +401,9 @@ class Compatibility extends Base_Compatibility {
 		// Get the meta value of video embed url.
 		$video_source = get_post_meta( $id, RSFV_SOURCE_META_KEY, true );
 		$video_source = $video_source ? $video_source : 'self';
+
+		// Catalyst for external products support.
+		$video_source = apply_filters( 'rsfv_get_woo_video_source', $video_source, $id );
 
 		$video_controls = 'self' !== $video_source ? get_video_controls( 'embed' ) : get_video_controls();
 
@@ -484,7 +571,7 @@ class Compatibility extends Base_Compatibility {
 	 * @return string
 	 */
 	private static function get_embed_woo_video( $id, $wrapper_class, $wrapper_attributes, $thumbnail, $video_controls, $video_data ) {
-		$input_url = esc_url( get_post_meta( $id, RSFV_EMBED_META_KEY, true ) );
+		$input_url = apply_filters( 'rsfv_get_embed_woo_video_url', esc_url( get_post_meta( $id, RSFV_EMBED_META_KEY, true ) ), $id );
 
 		if ( ! $input_url ) {
 			return '';
@@ -666,7 +753,7 @@ class Compatibility extends Base_Compatibility {
 		}
 
 		$product_id = $product->get_id();
-		$post_type = get_post_type( $product_id ) ?? '';
+		$post_type  = get_post_type( $product_id ) ?? '';
 		$post_types = get_post_types();
 
 		// Enhanced video markup with hover support.

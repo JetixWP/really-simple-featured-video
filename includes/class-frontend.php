@@ -156,7 +156,6 @@ class FrontEnd {
 	 * @return bool
 	 */
 	public static function has_featured_video( $post_id ) {
-
 		// Exit early if no post id is provided.
 		if ( empty( $post_id ) ) {
 			return false;
@@ -178,16 +177,18 @@ class FrontEnd {
 				$video_source = get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true );
 				$video_source = $video_source ? $video_source : 'self';
 
+				$video_source = apply_filters( 'rsfv_get_video_source', $video_source, $post->ID );
+
 				if ( 'self' === $video_source ) {
 					// Get the meta value of video attachment.
-					$video_id = get_post_meta( $post->ID, RSFV_META_KEY, true );
+					$video_id = esc_url( get_post_meta( $post->ID, RSFV_META_KEY, true ) );
 
 					if ( $video_id ) {
 						return true;
 					}
 				} else {
 					// Get the meta value of video embed url.
-					$embed_url = get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
+					$embed_url = apply_filters( 'rsfv_get_embed_video_url', esc_url( get_post_meta( $post_id, RSFV_EMBED_META_KEY, true ) ), $post_id );
 
 					if ( $embed_url ) {
 						return true;
@@ -195,6 +196,7 @@ class FrontEnd {
 				}
 			}
 		}
+
 		return false;
 	}
 
