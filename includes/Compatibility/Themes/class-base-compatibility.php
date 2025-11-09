@@ -8,7 +8,6 @@
 namespace RSFV\Compatibility\Themes;
 
 use RSFV\FrontEnd;
-use function RSFV\Settings\get_post_types;
 
 /**
  * Abstract class definition for controllers.
