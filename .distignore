@@ -14,11 +14,6 @@
 .wp-env.json
 phpcs.xml.dist
 
-# Exclude vendor folder, except required dependencies.
-/vendor
-!/vendor/composer
-!/vendor/autoload.php
-
 # Files
 .babelrc
 .distignore

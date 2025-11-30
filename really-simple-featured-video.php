@@ -25,6 +25,13 @@ define( 'RSFV_PLUGIN_DIR', plugin_dir_path( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_BASE', plugin_basename( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_PRO_URL', 'https://jetixwp.com/plugins/really-simple-featured-video' );
 
+// Third party dependencies.
+$vendor_file = __DIR__ . '/vendor/autoload.php';
+
+if ( is_readable( $vendor_file ) ) {
+	require_once $vendor_file;
+}
+
 if ( ! function_exists( 'rsfv_fs' ) ) {
 	/**
 	 * Create a helper function for easy SDK access.
@@ -32,10 +39,11 @@ if ( ! function_exists( 'rsfv_fs' ) ) {
 	function rsfv_fs() {
 		global $rsfv_fs;
 
-		if ( ! isset( $rsfv_fs ) ) {
-			// Include Freemius SDK.
-			require_once __DIR__ . '/freemius/start.php';
+		if ( ! function_exists( 'fs_dynamic_init' ) && file_exists( __DIR__ . '/vendor/freemius/wordpress-sdk/start.php' ) ) {
+			require_once __DIR__ . '/vendor/freemius/wordpress-sdk/start.php';
+		}
 
+		if ( ! isset( $rsfv_fs ) && function_exists( 'fs_dynamic_init' ) ) {
 			$rsfv_fs = fs_dynamic_init(
 				array(
 					'id'             => '7560',
