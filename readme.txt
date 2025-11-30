@@ -120,6 +120,8 @@ And if you're a Pro user, you can send a support ticket via the [account](https:
 == Changelog ==
 
 = 0.54.0 =
+- New: Brand update
+- Improvement: Load Freemius SDK via Composer
 - Improvement: Other minor changes
 
 = 0.53.0 =
