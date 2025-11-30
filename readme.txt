@@ -121,6 +121,8 @@ And if you're a Pro user, you can send a support ticket via the [account](https:
 
 = 0.54.0 =
 - New: Brand update
+- Fix: Keep old Freemius files to avoid fatal errors on update
+- Improvement: Update Freemius SDK
 - Improvement: Load Freemius SDK via Composer
 - Improvement: Other minor changes
 

@@ -22,6 +22,7 @@
     "@wordpress/scripts": "^30.13.0"
   },
   "files": [
+		"freemius",
     "assets",
     "includes",
     "vendor",
