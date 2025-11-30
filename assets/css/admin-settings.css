@@ -1,6 +1,6 @@
 :root {
-	--jwp-wtc__color-background: #edede9;
-	--jwp-wtc__color-brand: #588157;
+	--jwp-wtc__color-background: #c6eaca;
+	--jwp-wtc__color-brand: #008710;
 	--jwp-wtc__color-brand-light: #f1faee;
 }
 
@@ -14,10 +14,14 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 
 .wrap.rsfv .plugin-header {
 	padding: 20px 0;
-	background-color: #f1faee;
+	background-color: #f0f2eb;
 	border-bottom: 1px solid rgba(0,0,0, 0.1);
 	-webkit-box-shadow: 0px 2px 6px rgba(35, 40, 45, .07);
 	box-shadow: 0px 2px 6px rgba(35, 40, 45, .07);
+}
+
+.wrap.rsfv .plugin-header [class^="notice"] {
+	display: none;
 }
 
 .plugin-header .plugin-header-wrap {
@@ -57,6 +61,11 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 	background: #fff;
 	border-bottom: 1px solid #d6d6d6;
 	margin-bottom: 2rem;
+}
+
+.rsfv-wrapper .nav-tab:hover, 
+.rsfv-wrapper .nav-tab:focus {
+	color: var(--jwp-wtc__color-brand);
 }
 
 .rsfv .plugin-header .plugin-header-wrap,
