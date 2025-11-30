@@ -31,7 +31,7 @@ if ( ! $tab_exists ) {
 			</div>
 
 			<div class="brand-info">
-				<a href="https://jetixwp.com?utm_campaign=settings-header&utm_source=rsfv-plugin" target="_blank"><img class="brand-logo" src="<?php echo esc_url( RSFV_PLUGIN_URL . 'assets/images/icon-dark.svg' ); ?>" alt="RSFV"></a>
+				<a href="https://jetixwp.com?utm_campaign=settings-header&utm_source=rsfv-plugin" target="_blank"><img class="brand-logo" src="<?php echo esc_url( RSFV_PLUGIN_URL . 'assets/images/jwp-icon-dark.svg' ); ?>" alt="RSFV"></a>
 			</div>
 		</div>
 	</div>

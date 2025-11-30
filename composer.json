@@ -1,0 +1,16 @@
+{
+    "name": "jetixwp/really-simple-featured-video",
+    "authors": [
+        {
+            "name": "JetixWP",
+            "email": "hello@jetixwp.com"
+        },
+        {
+            "name": "Krishna Kant Chourasiya",
+            "email": "lushkant@gmail.com"
+        }
+    ],
+    "require": {
+        "freemius/wordpress-sdk": "^2.13"
+    }
+}
