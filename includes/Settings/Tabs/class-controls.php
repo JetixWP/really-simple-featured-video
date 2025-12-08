@@ -34,7 +34,7 @@ class Controls extends Settings_Page {
 	public function get_sections() {
 		$sections = array(
 			''               => __( 'Standard', 'rsfv' ),
-			'hover-autoplay' => __( 'Autoplay on Hover [BETA]', 'rsfv' ),
+			'hover-autoplay' => __( 'Autoplay on Hover', 'rsfv' ),
 		);
 		return apply_filters( 'rsfv_get_sections_' . $this->id, $sections );
 	}
@@ -115,7 +115,7 @@ class Controls extends Settings_Page {
 					),
 				)
 			);
-		} else if ( 'hover-autoplay' === $current_section ) {
+		} elseif ( 'hover-autoplay' === $current_section ) {
 
 			$settings = array(
 				array(
@@ -132,7 +132,7 @@ class Controls extends Settings_Page {
 					'id'   => 'rsfv_pro_hover_autoplay',
 				),
 				array(
-					'title'   => __( 'Enable BETA Feature', 'rsfv' ),
+					'title'   => __( 'Enable Feature', 'rsfv' ),
 					'id'      => 'enable_hover_autoplay',
 					'default' => false,
 					'type'    => 'checkbox',
@@ -156,16 +156,16 @@ class Controls extends Settings_Page {
 					'title'   => '',
 					'id'      => 'hover_autoplay_video_types',
 					'default' => array(
-						'html5' => true,
-						'youtube'  => true,
-						'vimeo'  => true,
-						'dailymotion'  => true,
+						'html5'       => true,
+						'youtube'     => true,
+						'vimeo'       => true,
+						'dailymotion' => true,
 					),
 					'type'    => 'multi-checkbox',
 					'options' => array(
-						'html5'      => __( 'Self Hosted', 'rsfv' ),
-						'youtube'    => __( 'YouTube', 'rsfv' ),
-						'vimeo'      => __( 'Vimeo', 'rsfv' ),
+						'html5'       => __( 'Self Hosted', 'rsfv' ),
+						'youtube'     => __( 'YouTube', 'rsfv' ),
+						'vimeo'       => __( 'Vimeo', 'rsfv' ),
 						'dailymotion' => __( 'Dailymotion', 'rsfv' ),
 					),
 				),
@@ -220,7 +220,7 @@ class Controls extends Settings_Page {
 						),
 						array(
 							'title'   => __( 'Set Hover Delay (ms)', 'rsfv' ),
-							'desc'      => __( 'Delay before video starts playing on hover. Default: 100ms', 'rsfv' ),
+							'desc'    => __( 'Delay before video starts playing on hover. Default: 100ms', 'rsfv' ),
 							'id'      => 'promo-hover-autoplay-delay',
 							'default' => 100,
 							'type'    => 'promo-number',
