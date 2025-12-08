@@ -1,5 +1,5 @@
 :root {
-	--jwp-wtc__color-background: #c6eaca;
+	--jwp-wtc__color-background: #f0f2eb;
 	--jwp-wtc__color-brand: #008710;
 	--jwp-wtc__color-brand-light: #f1faee;
 }
@@ -14,7 +14,7 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 
 .wrap.rsfv .plugin-header {
 	padding: 20px 0;
-	background-color: #f0f2eb;
+	background-color: var(--jwp-wtc__color-background);
 	border-bottom: 1px solid rgba(0,0,0, 0.1);
 	-webkit-box-shadow: 0px 2px 6px rgba(35, 40, 45, .07);
 	box-shadow: 0px 2px 6px rgba(35, 40, 45, .07);
@@ -70,7 +70,7 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 
 .rsfv .plugin-header .plugin-header-wrap,
 .rsfv-wrapper .rsfv-nav-tab-wrapper,
-.rsfv-wrapper form#mainform > .tab-content {
+.rsfv-wrapper > .tab-content {
 	margin-left: 30px;
 	max-width: 1360px;
 	min-width: 920px;
@@ -78,7 +78,7 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 }
 
 @media screen and (min-width: 768px) {
-	.rsfv-wrapper form#mainform > .tab-content {
+	.rsfv-wrapper > .tab-content {
 		display: grid;
 		grid-template-columns: 8fr 4fr;
 		column-gap: 40px;
@@ -550,7 +550,6 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 	font-size: 15px;
 }
 
-.rsfv .sidebar .upgrade-box .button.button-primary,
 .rsfv .notice-box .button.button-primary {
 	font-size: 16px;
 	width: 100%;
@@ -609,6 +608,70 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
 	background-color: var(--jwp-wtc__color-brand);
+}
+
+/**
+ * Get Pro Tab.
+ */
+.rsfv .sidebar .upgrade-box {
+	border-color: var(--jwp-wtc__color-brand);
+	background-color: var(--jwp-wtc__color-background);
+	padding-top: 15px;
+
+	form {
+		margin-top: 20px;
+	}
+
+	.regular-text {
+		width: 100%;
+		margin-bottom: 8px;
+	}
+
+	input[type="email"]:focus,
+	input[type="text"]:focus {
+		border-color: var(--jwp-wtc__color-brand);
+		box-shadow: 0 0 0 1px var(--jwp-wtc__color-brand);
+	}
+
+	.separator {
+		display: block;
+		text-align: center;
+		margin: 10px 0;
+		position: relative;
+	}
+
+	.peekaboo-section {
+		text-align: center;
+	}
+
+	.button-primary {
+		font-size: 14px;
+		color: #fff;
+	}
+
+	.button-secondary {
+		background: transparent;
+		color: var(--jwp-wtc__color-brand);
+		box-shadow: none;
+		outline: none;
+		border: 2px solid var(--jwp-wtc__color-brand);
+		transition: all .1s ease-in-out;
+		width: 100%;
+		text-align: center;
+		font-size: 14px;
+
+		&:active,
+		&:focus,
+		&:hover {
+			background: var(--jwp-wtc__color-brand);
+			border-color: var(--jwp-wtc__color-brand);
+			color: #fff !important;
+			box-shadow: none;
+			outline: none;
+		}
+	}
+
+	
 }
 
 @media screen and ( min-width: 1920px ) {
