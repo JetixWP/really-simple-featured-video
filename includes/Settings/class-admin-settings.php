@@ -56,7 +56,6 @@ class Admin_Settings {
 
 			// To make sure Promotional and Help tabs shows up at the very last.
 			$settings[] = include 'Tabs/class-help.php';
-			$settings[] = include 'Tabs/class-getpro.php';
 
 			self::$settings = $settings;
 		}
@@ -453,7 +452,7 @@ class Admin_Settings {
 				case 'promo-url':
 				case 'promo-tel':
 					$option_value = $value['value'];
-					$input_type = str_replace( 'promo-', '', $value['type'] );
+					$input_type   = str_replace( 'promo-', '', $value['type'] );
 
 					?>
 					<tr valign="top">
