@@ -287,7 +287,7 @@ class Shortcode {
 			$attributes['controls'] = true;
 
 			if ( empty( $video_controls['download'] ) ) {
-				$attributes['controlsList'] = 'nodownload';
+				$attributes['controlslist'] = 'nodownload';
 			}
 		}
 

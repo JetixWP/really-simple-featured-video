@@ -285,6 +285,7 @@ class Metabox {
 				'autopictureinpicture' => array(),
 				'autoplay'             => array(),
 				'controls'             => array(),
+				'controlslist'         => array(),
 			),
 			'input' => array(
 				'type'        => array(),

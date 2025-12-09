@@ -315,7 +315,7 @@ class FrontEnd {
 					'loop'                    => array(),
 					'muted'                   => array(),
 					'controls'                => array(),
-					'controlsList'            => array(),
+					'controlslist'            => array(),
 					'autopictureinpicture'    => array(),
 					'disablepictureinpicture' => array(),
 					'autoplay'                => array(),

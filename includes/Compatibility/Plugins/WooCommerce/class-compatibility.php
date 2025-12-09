@@ -660,41 +660,10 @@ class Compatibility extends Base_Compatibility {
 	 * Get enhanced video attributes with hover support
 	 *
 	 * @param array $video_controls Video controls.
-	 * @param array $video_data Video data.
 	 * @return array
 	 */
-	private static function get_enhanced_video_attributes( $video_controls, $video_data ) {
-		$attributes = array(
-			'style' => 'max-width:100%;display:block;',
-		);
-
-		// Standard video controls.
-		if ( ! empty( $video_controls['controls'] ) ) {
-			$attributes['controls'] = true;
-
-			if ( empty( $video_controls['download'] ) ) {
-				$attributes['controlsList'] = 'nodownload';
-			}
-		}
-
-		if ( ! empty( $video_controls['autoplay'] ) ) {
-			$attributes['autoplay']    = true;
-			$attributes['playsinline'] = true;
-		}
-
-		if ( ! empty( $video_controls['loop'] ) ) {
-			$attributes['loop'] = true;
-		}
-
-		if ( ! empty( $video_controls['mute'] ) ) {
-			$attributes['muted'] = true;
-		}
-
-		if ( ! empty( $video_controls['pip'] ) ) {
-			$attributes['autopictureinpicture'] = true;
-		} else {
-			$attributes['disablepictureinpicture'] = true;
-		}
+	private static function get_enhanced_video_attributes( $video_controls ) {
+		$attributes = Shortcode::get_html5_video_attributes( $video_controls );
 
 		// Hover enhancements.
 		if ( class_exists( '\\RSFV\\Featuresets\\Hover_Autoplay\\Utils' ) ) {
