@@ -56,9 +56,9 @@ if ( ! function_exists( 'rsfv_fs' ) ) {
 					'menu'           => array(
 						'slug'       => 'rsfv-settings',
 						'first-path' => 'admin.php?page=rsfv-settings',
-						'support' => false,
-						'contact' => false,
-						'account' => false,
+						'support'    => false,
+						'contact'    => false,
+						'account'    => false,
 						'parent'     => array(
 							'slug' => 'jetixwp',
 						),
