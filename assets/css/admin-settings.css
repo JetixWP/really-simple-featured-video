@@ -378,6 +378,27 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 	padding: 6px 14px;
 }
 
+.rsfv .forminp-status #theme-engine-status.loading::before {
+	content: ' ';
+	display: inline-block;
+	border: 2px solid var(--jwp-wtc__color-brand);
+	border-top: 2px solid transparent;
+	border-radius: 100%;
+	width: 8px;
+	height: 8px;
+	margin-right: 4px;
+	animation: rsfv-spin 1s linear infinite;
+}
+
+@keyframes rsfv-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
 .rsfv .forminp-status .engine-active::before {
 	content: ' ';
 	display: inline-block;
