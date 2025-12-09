@@ -60,8 +60,8 @@ class Settings extends Settings_Page {
 					'id'   => 'rsfv_woocommerce_title',
 				),
 				array(
-					'title'   => __( 'Show videos at Product archives', 'rsfv' ),
-					'desc'    => __( 'When toggled on, it shows set videos at product archives such as Shop and Product category etc.', 'rsfv' ),
+					'title'   => __( 'Show videos at Shop/Category pages', 'rsfv' ),
+					'desc'    => __( 'When toggled on, it shows set videos at product archives such as Shop and Category pages etc.', 'rsfv' ),
 					'id'      => 'product_archives_visibility',
 					'default' => true,
 					'type'    => 'checkbox',
