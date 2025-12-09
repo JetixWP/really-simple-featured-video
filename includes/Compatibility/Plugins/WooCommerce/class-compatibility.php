@@ -671,10 +671,14 @@ class Compatibility extends Base_Compatibility {
 		// Standard video controls.
 		if ( ! empty( $video_controls['controls'] ) ) {
 			$attributes['controls'] = true;
+
+			if ( empty( $video_controls['download'] ) ) {
+				$attributes['controlsList'] = 'nodownload';
+			}
 		}
 
 		if ( ! empty( $video_controls['autoplay'] ) ) {
-			$attributes['autoplay'] = true;
+			$attributes['autoplay']    = true;
 			$attributes['playsinline'] = true;
 		}
 
@@ -688,6 +692,8 @@ class Compatibility extends Base_Compatibility {
 
 		if ( ! empty( $video_controls['pip'] ) ) {
 			$attributes['autopictureinpicture'] = true;
+		} else {
+			$attributes['disablepictureinpicture'] = true;
 		}
 
 		// Hover enhancements.

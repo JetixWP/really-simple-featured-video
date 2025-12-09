@@ -62,6 +62,9 @@ class Controls extends Settings_Page {
 				'mute'     => __( 'Mute sound', 'rsfv' ),
 			);
 
+			$self_control_options             = $control_options;
+			$self_control_options['download'] = __( 'Download', 'rsfv' );
+
 			$default_controls = get_default_video_controls();
 
 			$settings = apply_filters(
@@ -84,7 +87,7 @@ class Controls extends Settings_Page {
 						'id'      => 'self_video_controls',
 						'default' => $default_controls,
 						'type'    => 'multi-checkbox',
-						'options' => $control_options,
+						'options' => $self_control_options,
 					),
 					array(
 						'type' => 'sectionend',

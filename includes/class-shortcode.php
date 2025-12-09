@@ -52,6 +52,7 @@ class Shortcode {
 	/**
 	 * Show video on posts & pages.
 	 *
+	 * @param array $atts Shortcode attributes.
 	 * @return string
 	 */
 	public function show_video( $atts = array() ) {
@@ -284,6 +285,10 @@ class Shortcode {
 		// Add control attributes based on settings.
 		if ( ! empty( $video_controls['controls'] ) ) {
 			$attributes['controls'] = true;
+
+			if ( empty( $video_controls['download'] ) ) {
+				$attributes['controlsList'] = 'nodownload';
+			}
 		}
 
 		if ( ! empty( $video_controls['autoplay'] ) ) {
@@ -301,6 +306,8 @@ class Shortcode {
 
 		if ( ! empty( $video_controls['pip'] ) ) {
 			$attributes['autopictureinpicture'] = true;
+		} else {
+			$attributes['disablepictureinpicture'] = true;
 		}
 
 		return $attributes;

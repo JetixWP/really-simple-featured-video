@@ -137,7 +137,7 @@ class Metabox {
 
 		// Get PictureInPicture option.
 		$is_pip = ( is_array( $video_controls ) && isset( $video_controls['pip'] ) ) && $video_controls['pip'];
-		$is_pip = $is_pip ? 'autopictureinpicture' : '';
+		$is_pip = $is_pip ? 'autopictureinpicture' : 'disablepictureinpicture';
 
 		// Get video controls option.
 		$has_controls = ( is_array( $video_controls ) && isset( $video_controls['controls'] ) ) && $video_controls['controls'];
