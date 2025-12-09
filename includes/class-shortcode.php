@@ -62,9 +62,9 @@ class Shortcode {
 		// Apply hover enhancements if enabled.
 		if ( class_exists( 'RSFV\\Featuresets\\Hover_Autoplay\\Init' ) ) {
 			$video_data = array(
-				'post_id' => $post->ID,
-				'post_type' => $post->post_type,
-				'source' => get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) ? get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) : 'self',
+				'post_id'        => $post->ID,
+				'post_type'      => $post->post_type,
+				'source'         => get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) ? get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) : 'self',
 				'shortcode_atts' => $atts,
 			);
 
@@ -97,9 +97,9 @@ class Shortcode {
 		// Apply hover enhancements if enabled.
 		if ( class_exists( 'RSFV\\Featuresets\\Hover_Autoplay\\Init' ) ) {
 			$video_data = array(
-				'post_id' => $post->ID,
-				'post_type' => $post->post_type,
-				'source' => get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) ? get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) : 'self',
+				'post_id'        => $post->ID,
+				'post_type'      => $post->post_type,
+				'source'         => get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) ? get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) : 'self',
 				'shortcode_atts' => $atts,
 			);
 
@@ -146,10 +146,10 @@ class Shortcode {
 
 		// Prepare video data for hover functionality.
 		$video_data = array(
-			'post_id' => $post_id,
+			'post_id'   => $post_id,
 			'post_type' => $post_type,
-			'source' => $video_source,
-			'controls' => $video_controls,
+			'source'    => $video_source,
+			'controls'  => $video_controls,
 		);
 
 		if ( 'self' === $video_source ) {
@@ -181,7 +181,7 @@ class Shortcode {
 		}
 
 		// Get poster image.
-		$poster_id = get_post_meta( $post_id, RSFV_POSTER_META_KEY, true );
+		$poster_id  = get_post_meta( $post_id, RSFV_POSTER_META_KEY, true );
 		$poster_url = $poster_id ? wp_get_attachment_url( $poster_id ) : '';
 
 		// Prepare video attributes.
@@ -200,7 +200,7 @@ class Shortcode {
 		);
 
 		// Wrap in container with hover support.
-		$container_class = apply_filters( 'rsfv_video_container_class', 'rsfv-video-wrapper', $video_data );
+		$container_class      = apply_filters( 'rsfv_video_container_class', 'rsfv-video-wrapper', $video_data );
 		$container_attributes = apply_filters( 'rsfv_video_container_attributes', array(), $video_data );
 
 		$container_attrs_string = $this->build_attributes_string( $container_attributes );
@@ -229,7 +229,7 @@ class Shortcode {
 		}
 
 		// Parse embed data to get video type.
-		$frontend = Plugin::get_instance()->frontend_provider;
+		$frontend   = Plugin::get_instance()->frontend_provider;
 		$embed_data = $frontend->parse_embed_url( $input_url );
 		$video_type = is_array( $embed_data ) ? $embed_data['host'] : 'unknown';
 
@@ -256,7 +256,7 @@ class Shortcode {
 		$iframe_html = $this->wrap_in_responsive_container( $iframe_html, $video_data );
 
 		// Wrap in container with hover support.
-		$container_class = apply_filters( 'rsfv_video_container_class', 'rsfv-video-wrapper', $video_data );
+		$container_class      = apply_filters( 'rsfv_video_container_class', 'rsfv-video-wrapper', $video_data );
 		$container_attributes = apply_filters( 'rsfv_video_container_attributes', array(), $video_data );
 
 		$container_attrs_string = $this->build_attributes_string( $container_attributes );
@@ -287,7 +287,7 @@ class Shortcode {
 		}
 
 		if ( ! empty( $video_controls['autoplay'] ) ) {
-			$attributes['autoplay'] = true;
+			$attributes['autoplay']    = true;
 			$attributes['playsinline'] = true;
 		}
 
@@ -393,7 +393,7 @@ class Shortcode {
 		}
 
 		// Add hover-specific attributes.
-		$attributes['preload'] = 'metadata';
+		$attributes['preload']     = 'metadata';
 		$attributes['playsinline'] = true;
 
 		// Ensure muted for autoplay compatibility.
@@ -478,7 +478,7 @@ class Shortcode {
 			return $attributes;
 		}
 
-		$attributes['data-rsfv-video'] = 'true';
+		$attributes['data-rsfv-video']         = 'true';
 		$attributes['data-rsfv-hover-enabled'] = 'true';
 
 		if ( isset( $video_data['source'] ) ) {
