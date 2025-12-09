@@ -76,17 +76,17 @@ if ( ! $tab_exists ) {
 						<div class="upgrade-box">
 							<div>
 								<h3>🔥 &nbsp;Grab the PRO version with a Special discount</h3>
-								<p class="desc">Take a look at our RSFV Pro plugin, which is available to support additional features while we continue to keep them maintained and updated.</p>
+								<p class="desc">RSFV PRO is available to support additional features while we continue to keep them maintained and updated. Add your email address and we will send you a special discount code for your PRO purchase.</p>
 							</div>
 							<div>
-								<p class="desc"><strong>Our Pro plugin includes these features -</strong></p>
+								<p class="desc"><strong>A few key features included in the PRO plugin -</strong></p>
 								<ul>
 									<li>✅ <strong>Priority Support</strong></li>
 									<li>✅ <strong>Extended Autoplay on Hover</strong></li>
-									<li>✅ <strong>Change Video Aspect Ratio</strong></li>
-									<li>✅ <strong>Change Video Order at Woo Product CPT</strong></li>
+									<li>✅ <strong>Extended WooCommerce Featured Video</strong></li>
 									<li>✅ <strong>Support for more Premium/Custom Themes</strong></li>
 									<li>✅ <strong>Requests for Theme Compatibility</strong></li>
+									<li><strong>and so much more...</strong></li>
 								</ul>
 							</div>
 							<form id="js-rsfv-pro-request-discount" method="post">
@@ -104,7 +104,7 @@ if ( ! $tab_exists ) {
 								<p><em>If you like our free plugin, you will absolutely love the PRO version. Thank you for using RSFV again, you are not just any supporter but truly the founders of our small business.</em></p>
 								<p><strong>Krishna</strong>, Founder and Lead Developer</p>
 
-								<p><strong>Have questions?</strong> Please mail us at <a href="mailto:hello@jetixwp.com">hello@jetixwp.com</a>, and we will get back to you at the earliest :)</p>
+								<p><strong>Have questions?</strong> Send them at <a href="mailto:krishna@jetixwp.com">krishna@jetixwp.com</a>, and I will personally get back to you at the earliest :)</p>
 
 							</div>
 						</div>
