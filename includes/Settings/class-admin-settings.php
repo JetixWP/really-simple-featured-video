@@ -153,6 +153,8 @@ class Admin_Settings {
 					'i18n_nav_warning'  => __( 'The changes you made will be lost if you navigate away from this page.', 'rsfv' ),
 					'uploader_title'    => __( 'Select Thumbnail Image', 'rsfv' ),
 					'uploader_btn_text' => __( 'Use this image', 'rsfv' ),
+					'ajax_url'          => admin_url( 'admin-ajax.php' ),
+					'nonce'             => wp_create_nonce( 'rsfv_admin_nonce' ),
 				)
 			)
 		);

@@ -25,6 +25,8 @@ class General extends Settings_Page {
 		$this->label = __( 'General', 'rsfv' );
 
 		parent::__construct();
+
+		add_action( 'wp_ajax_rsfv_current_theme_compat', array( $this, 'get_current_theme_compat_ajax' ) );
 	}
 
 	/**
@@ -167,6 +169,27 @@ class General extends Settings_Page {
 		);
 
 		return apply_filters( 'rsfv_get_settings_' . $this->id, $settings );
+	}
+
+	/**
+	 * Sync theme compatibility via ajax.
+	 */
+	public function get_current_theme_compat_ajax() {
+		check_ajax_referer( 'rsfv_admin_nonce', '_wpnonce' );
+
+		$current_engine = $this->get_current_compatibility_engine();
+
+		if ( ! is_array( $current_engine ) ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'Could not get current compatibility engine.', 'rsfv' ),
+				)
+			);
+		}
+
+		wp_send_json_success(
+			$current_engine
+		);
 	}
 
 	/**

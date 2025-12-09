@@ -196,6 +196,36 @@
 
 		$( '#js-rsfv-pro-request-discount' ).on( 'submit', submitDiscountRequest );
 
+		/**
+		 * AJAX getter for Compatibility Engine Status.
+		 */
+		function updateCompatibilityEngineStatus() {
+			const engineStatusEl = $( '#theme-engine-status' );
+
+			engineStatusEl.attr( 'class', 'loading' );
+
+			$.post(
+				data.ajax_url,
+				{
+					action: 'rsfv_current_theme_compat',
+					_wpnonce: data.nonce,
+				}
+			).done( function( res ) {
+				const data = res?.data;
+
+				if ( data?.status && data?.engine ) {
+					engineStatusEl.attr( 'class', data.status );
+					engineStatusEl.text( data.engine );
+				}
+			} ).fail( function(res) {
+				console.log( res );
+
+				engineStatusEl.removeClass( 'loading' );
+			} );
+		}
+
+		updateCompatibilityEngineStatus();
+
 		}
 	);
 }( jQuery, rsfv_settings_data ) );
