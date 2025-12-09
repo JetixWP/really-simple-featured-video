@@ -55,6 +55,24 @@ class General extends Settings_Page {
 	}
 
 	/**
+	 * Get current compatibility engine.
+	 *
+	 * @return array
+	 */
+	public function get_current_compatibility_engine() {
+		$plugin  = Plugin::get_instance();
+		$options = Options::get_instance();
+
+		$compatibility_engines = $plugin->theme_provider->get_selectable_engine_options();
+		$current_engine        = $options->get( 'active-theme-engine' );
+
+		return array(
+			'engine' => $compatibility_engines[ $current_engine ] ?? $current_engine,
+			'status' => 'disabled' !== $current_engine ? 'engine-active' : 'engine-inactive',
+		);
+	}
+
+	/**
 	 * Get settings array.
 	 *
 	 * @param string $current_section Current section ID.
@@ -68,7 +86,7 @@ class General extends Settings_Page {
 		$options    = Options::get_instance();
 
 		$compatibility_engines = $plugin->theme_provider->get_selectable_engine_options();
-		$current_engine        = $options->get( 'active-theme-engine' );
+		$current_engine        = $this->get_current_compatibility_engine();
 
 		$engine_description = '';
 
@@ -102,9 +120,9 @@ class General extends Settings_Page {
 				'desc'    => '',
 				'id'      => 'theme-engine-status',
 				'default' => __( 'Auto', 'rsfv' ),
-				'class'   => 'disabled' !== $current_engine ? 'engine-active' : 'engine-inactive',
+				'class'   => $current_engine['status'],
 				'type'    => 'status',
-				'current' => $compatibility_engines[ $current_engine ] ?? $current_engine,
+				'current' => $current_engine['engine'],
 			),
 			array(
 				'title'   => __( 'Set engine', 'rsfv' ),
