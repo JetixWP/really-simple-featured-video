@@ -574,6 +574,7 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 	border-color: var(--jwp-wtc__color-brand);
 	background-color: var(--jwp-wtc__color-background);
 	padding-top: 15px;
+  border-radius: 4px;
 
 	form {
 		margin-top: 20px;
