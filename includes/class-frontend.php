@@ -131,13 +131,6 @@ class FrontEnd {
 						$embed_data = self::get_instance()->parse_embed_url( $embed_url );
 						$video_type = is_array( $embed_data ) ? $embed_data['host'] : 'unknown';
 
-						$video_data = array(
-							'post_id' => $post_id,
-							'embed_url' => $embed_url,
-							'type' => $video_type,
-							'source' => 'embed',
-						);
-
 						$shortcode_output = do_shortcode( '[rsfv]' );
 						return '<div class="rsfv-shortcode-wrapper" data-rsfv-video="true" data-rsfv-source="embed" data-rsfv-type="' . esc_attr( $video_type ) . '" style="clear:both">' . $shortcode_output . '</div>';
 					}
