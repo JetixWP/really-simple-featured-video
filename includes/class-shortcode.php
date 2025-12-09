@@ -186,7 +186,7 @@ class Shortcode {
 		$poster_url = $poster_id ? wp_get_attachment_url( $poster_id ) : '';
 
 		// Prepare video attributes.
-		$attributes = $this->get_html5_video_attributes( $video_controls, $video_data );
+		$attributes = self::get_html5_video_attributes( $video_controls );
 
 		// Apply hover enhancements to attributes.
 		$attributes = apply_filters( 'rsfv_video_html5_attributes', $attributes, $video_data );
@@ -274,10 +274,9 @@ class Shortcode {
 	 * Get HTML5 video attributes
 	 *
 	 * @param array $video_controls Video control settings.
-	 * @param array $video_data Video data.
 	 * @return array
 	 */
-	private function get_html5_video_attributes( $video_controls, $video_data ) {
+	public static function get_html5_video_attributes( $video_controls ) {
 		$attributes = array(
 			'style' => 'max-width:100%;display:block;',
 		);
