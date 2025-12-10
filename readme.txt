@@ -124,7 +124,7 @@ And if you're a Pro user, you can send a support ticket via the [account](https:
 * Fix: Self-hosted videos Picture-in-Picture control toggle not working as expected
 * Improvement: Theme compatibility engine status auto-refresh at settings
 * Improvement: Use one self-hosted video controls getter for the whole plugin
-* Improvement: Rename WooCommerce option labels for better discovery
+* Improvement: Rename option labels for better discovery at settings
 * Improvement: Autoplay on hover out of beta
 * Improvement: Updated promo form at settings sidebar
 * Improvement: Removed Get Pro tab from settings

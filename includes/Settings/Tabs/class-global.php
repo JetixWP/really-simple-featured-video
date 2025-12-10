@@ -48,7 +48,7 @@ class Global_Settings extends Settings_Page {
 				'id'   => 'rsfv_archives_visibilitiy',
 			),
 			array(
-				'title'   => __( 'Show videos at Blog archives', 'rsfv' ),
+				'title'   => __( 'Show videos at Blog, Category and Tag archives', 'rsfv' ),
 				'desc'    => __( 'When toggled on, it shows set videos at blog home and archives such as category, tag archives etc.', 'rsfv' ),
 				'id'      => 'blog_archives_visibility',
 				'default' => true,
