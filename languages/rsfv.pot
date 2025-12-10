@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.53.0\n"
+"Project-Id-Version: Really Simple Featured Video 0.55.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-11-09T16:13:08+00:00\n"
+"POT-Creation-Date: 2025-12-10T05:19:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: really-simple-featured-video.php
 #: includes/Compatibility/Plugins/Bricks/elements/really-simple-featured-video.php:57
-#: includes/Settings/Views/html-admin-settings.php:26
+#: includes/Settings/Views/html-admin-settings.php:28
 msgid "Really Simple Featured Video"
 msgstr ""
 
@@ -94,11 +94,11 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/class-shortcode.php:86
+#: includes/class-shortcode.php:87
 msgid "Please add a post id!"
 msgstr ""
 
-#: includes/class-shortcode.php:92
+#: includes/class-shortcode.php:93
 msgid "Post not found!"
 msgstr ""
 
@@ -293,20 +293,20 @@ msgstr ""
 msgid "Toggle this on if in Elementor you see the site logo, footer logo or any other part of the site images getting replaced with featured video."
 msgstr ""
 
-#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:124
+#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:125
 msgid "Products"
 msgstr ""
 
-#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:618
+#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:620
 msgid "Product video - tap to play"
 msgstr ""
 
 #: includes/Compatibility/Plugins/WooCommerce/class-settings.php:63
-msgid "Show videos at Product archives"
+msgid "Show videos at Shop/Category pages"
 msgstr ""
 
 #: includes/Compatibility/Plugins/WooCommerce/class-settings.php:64
-msgid "When toggled on, it shows set videos at product archives such as Shop and Product category etc."
+msgid "When toggled on, it shows set videos at product archives such as Shop and Category pages etc."
 msgstr ""
 
 #: includes/Compatibility/Plugins/WooCommerce/class-settings.php:70
@@ -358,43 +358,43 @@ msgstr ""
 msgid "Rollback to Previous Version"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:80
+#: includes/Settings/class-admin-settings.php:79
 msgid "Your settings have been saved."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:154
+#: includes/Settings/class-admin-settings.php:153
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:155
+#: includes/Settings/class-admin-settings.php:154
 msgid "Select Thumbnail Image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:156
+#: includes/Settings/class-admin-settings.php:155
 msgid "Use this image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:332
+#: includes/Settings/class-admin-settings.php:333
 msgid "Pro"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:333
+#: includes/Settings/class-admin-settings.php:334
 msgid "Checkout Pro now"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:505
-#: includes/Settings/class-admin-settings.php:533
+#: includes/Settings/class-admin-settings.php:506
+#: includes/Settings/class-admin-settings.php:534
 msgid "Change Image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:506
+#: includes/Settings/class-admin-settings.php:507
 msgid "Revert to Default"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:713
-#: includes/Settings/class-admin-settings.php:746
-#: includes/Settings/class-admin-settings.php:812
-#: includes/Settings/class-admin-settings.php:883
+#: includes/Settings/class-admin-settings.php:714
+#: includes/Settings/class-admin-settings.php:747
+#: includes/Settings/class-admin-settings.php:813
+#: includes/Settings/class-admin-settings.php:884
 msgid "Toggle"
 msgstr ""
 
@@ -427,7 +427,7 @@ msgid "Standard"
 msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:37
-msgid "Autoplay on Hover [BETA]"
+msgid "Autoplay on Hover"
 msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:55
@@ -450,115 +450,119 @@ msgstr ""
 msgid "Mute sound"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:71
+#: includes/Settings/Tabs/class-controls.php:66
+msgid "Download"
+msgstr ""
+
+#: includes/Settings/Tabs/class-controls.php:74
 msgctxt "settings title"
 msgid "Self-hosted videos"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:72
+#: includes/Settings/Tabs/class-controls.php:75
 msgid "Please select the controls you wish to enable for your self hosted videos."
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:94
+#: includes/Settings/Tabs/class-controls.php:97
 msgctxt "settings title"
 msgid "Embed videos"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:95
+#: includes/Settings/Tabs/class-controls.php:98
 msgid "Please select the controls you wish to enable for your embedded videos."
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:122
+#: includes/Settings/Tabs/class-controls.php:125
 msgid "Autoplay on Hover Controls"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:125
+#: includes/Settings/Tabs/class-controls.php:128
 msgid "Below you can manage the autoplay on hover controls. Any existing values in a disabled Style Kit panel will lose its values."
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:135
-msgid "Enable BETA Feature"
+#: includes/Settings/Tabs/class-controls.php:138
+msgid "Enable Feature"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:145
+#: includes/Settings/Tabs/class-controls.php:148
 msgctxt "settings title"
 msgid "Video Types"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:146
+#: includes/Settings/Tabs/class-controls.php:149
 msgid "Please toggle the video types you wish to enable/disable autoplay on hover support at."
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:166
+#: includes/Settings/Tabs/class-controls.php:169
 msgid "Self Hosted"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:167
+#: includes/Settings/Tabs/class-controls.php:170
 msgid "YouTube"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:168
+#: includes/Settings/Tabs/class-controls.php:171
 msgid "Vimeo"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:169
+#: includes/Settings/Tabs/class-controls.php:172
 msgid "Dailymotion"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:183
+#: includes/Settings/Tabs/class-controls.php:186
 msgctxt "settings title"
 msgid "Screen Sizes"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:184
+#: includes/Settings/Tabs/class-controls.php:187
 msgid "Toggle the screen sizes you wish to enable/disable autoplay on hover support. Available in Pro."
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:202
+#: includes/Settings/Tabs/class-controls.php:205
 msgid "Desktop"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:203
+#: includes/Settings/Tabs/class-controls.php:206
 msgid "Mobile"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:215
+#: includes/Settings/Tabs/class-controls.php:218
 msgid "Set Mobile Breakpoint (px)"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:216
+#: includes/Settings/Tabs/class-controls.php:219
 msgid "Screen width below which device is considered mobile. Default: 768px"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:222
+#: includes/Settings/Tabs/class-controls.php:225
 msgid "Set Hover Delay (ms)"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:223
+#: includes/Settings/Tabs/class-controls.php:226
 msgid "Delay before video starts playing on hover. Default: 100ms"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:233
+#: includes/Settings/Tabs/class-controls.php:236
 msgid "Accessibility"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:234
+#: includes/Settings/Tabs/class-controls.php:237
 msgid "Toggle the accessibility features at autoplay on hover. Available in Pro."
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:244
+#: includes/Settings/Tabs/class-controls.php:247
 msgid "User Preferences"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:245
+#: includes/Settings/Tabs/class-controls.php:248
 msgid "Respect \"reduced motion\" preference."
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:251
+#: includes/Settings/Tabs/class-controls.php:254
 msgid "Focus Events"
 msgstr ""
 
-#: includes/Settings/Tabs/class-controls.php:252
+#: includes/Settings/Tabs/class-controls.php:255
 msgid "Enable focus events for keyboard navigation."
 msgstr ""
 
@@ -566,42 +570,42 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:78
+#: includes/Settings/Tabs/class-general.php:98
 msgid "If you set a PRO compatibility engine in the Free version of the plugin, the compatibility will fall back to the Default engine."
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:90
+#: includes/Settings/Tabs/class-general.php:110
 msgctxt "settings title"
 msgid "Theme Compatibility Engine"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:91
+#: includes/Settings/Tabs/class-general.php:111
 msgid "If featured videos aren't working as expected in your theme, you may need to set this from the list of supported theme engines. (Default engine follows standard WordPress rules, and may not work for all themes)"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:101
+#: includes/Settings/Tabs/class-general.php:121
 msgid "Status"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:104
+#: includes/Settings/Tabs/class-general.php:124
 msgid "Auto"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:110
+#: includes/Settings/Tabs/class-general.php:130
 msgid "Set engine"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:123
+#: includes/Settings/Tabs/class-general.php:143
 msgctxt "settings title"
 msgid "Enable Post Types Support"
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:124
+#: includes/Settings/Tabs/class-general.php:144
 msgid "Please select the post types you wish to enable featured video support at."
 msgstr ""
 
-#: includes/Settings/Tabs/class-getpro.php:26
-msgid "Get PRO"
+#: includes/Settings/Tabs/class-general.php:185
+msgid "Could not get current compatibility engine."
 msgstr ""
 
 #: includes/Settings/Tabs/class-global.php:24
@@ -614,7 +618,7 @@ msgid "Blogs & Archives"
 msgstr ""
 
 #: includes/Settings/Tabs/class-global.php:51
-msgid "Show videos at Blog archives"
+msgid "Show videos at Blog, Category and Tag archives"
 msgstr ""
 
 #: includes/Settings/Tabs/class-global.php:52
@@ -674,50 +678,22 @@ msgstr ""
 msgid "Reinstall this version"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings-getpro.php:14
-msgid "Get Premium Featured Video support with Really Simple Featured Video Pro"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:17
-msgid "Priority Support"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:18
-msgid "Extended Autoplay on Hover [Currently in BETA]"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:19
-msgid "Change Video Aspect Ratio"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:20
-msgid "Change Video Order at WooCommerce Product page"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:21
-msgid "Change Default Gallery Video Thumbnail at Woo Single Product page"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:22
-msgid "Support for more Premium/Custom themes"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:23
-msgid "Requests for Theme Compatibility"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:25
-msgid ".. and more coming soon."
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-getpro.php:27
-msgid "Explore RSFV and PRO"
-msgstr ""
-
 #: includes/Settings/Views/html-admin-settings-help.php:14
 msgid "Help and Support"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings.php:66
+#: includes/Settings/Views/html-admin-settings.php:67
 msgid "Save changes"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings.php:93
+msgid "Your Email"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings.php:94
+msgid "First Name"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings.php:95
+msgid "🚀 Send me the coupon"
 msgstr ""
