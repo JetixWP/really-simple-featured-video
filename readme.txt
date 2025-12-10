@@ -119,6 +119,17 @@ And if you're a Pro user, you can send a support ticket via the [account](https:
 
 == Changelog ==
 
+= 0.55.0 =
+* New: Added Download control toggle for Self-hosted videos
+* Fix: Self-hosted videos Picture-in-Picture control toggle not working as expected
+* Improvement: Theme compatibility engine status auto-refresh at settings
+* Improvement: Use one self-hosted video controls getter for the whole plugin
+* Improvement: Rename WooCommerce option labels for better discovery
+* Improvement: Autoplay on hover out of beta
+* Improvement: Updated promo form at settings sidebar
+* Improvement: Removed Get Pro tab from settings
+* Improvement: Other minor changes
+
 = 0.54.0 =
 - New: Brand update
 - Fix: Keep old Freemius files to avoid fatal errors on update
