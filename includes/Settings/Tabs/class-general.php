@@ -25,6 +25,8 @@ class General extends Settings_Page {
 		$this->label = __( 'General', 'rsfv' );
 
 		parent::__construct();
+
+		add_action( 'wp_ajax_rsfv_current_theme_compat', array( $this, 'get_current_theme_compat_ajax' ) );
 	}
 
 	/**
@@ -55,6 +57,24 @@ class General extends Settings_Page {
 	}
 
 	/**
+	 * Get current compatibility engine.
+	 *
+	 * @return array
+	 */
+	public function get_current_compatibility_engine() {
+		$plugin  = Plugin::get_instance();
+		$options = Options::get_instance();
+
+		$compatibility_engines = $plugin->theme_provider->get_selectable_engine_options();
+		$current_engine        = $options->get( 'active-theme-engine' );
+
+		return array(
+			'engine' => $compatibility_engines[ $current_engine ] ?? $current_engine,
+			'status' => 'disabled' !== $current_engine ? 'engine-active' : 'engine-inactive',
+		);
+	}
+
+	/**
 	 * Get settings array.
 	 *
 	 * @param string $current_section Current section ID.
@@ -68,7 +88,7 @@ class General extends Settings_Page {
 		$options    = Options::get_instance();
 
 		$compatibility_engines = $plugin->theme_provider->get_selectable_engine_options();
-		$current_engine        = $options->get( 'active-theme-engine' );
+		$current_engine        = $this->get_current_compatibility_engine();
 
 		$engine_description = '';
 
@@ -102,9 +122,9 @@ class General extends Settings_Page {
 				'desc'    => '',
 				'id'      => 'theme-engine-status',
 				'default' => __( 'Auto', 'rsfv' ),
-				'class'   => 'disabled' !== $current_engine ? 'engine-active' : 'engine-inactive',
+				'class'   => $current_engine['status'],
 				'type'    => 'status',
-				'current' => $compatibility_engines[ $current_engine ] ?? $current_engine,
+				'current' => $current_engine['engine'],
 			),
 			array(
 				'title'   => __( 'Set engine', 'rsfv' ),
@@ -149,6 +169,27 @@ class General extends Settings_Page {
 		);
 
 		return apply_filters( 'rsfv_get_settings_' . $this->id, $settings );
+	}
+
+	/**
+	 * Sync theme compatibility via ajax.
+	 */
+	public function get_current_theme_compat_ajax() {
+		check_ajax_referer( 'rsfv_admin_nonce', '_wpnonce' );
+
+		$current_engine = $this->get_current_compatibility_engine();
+
+		if ( ! is_array( $current_engine ) ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'Could not get current compatibility engine.', 'rsfv' ),
+				)
+			);
+		}
+
+		wp_send_json_success(
+			$current_engine
+		);
 	}
 
 	/**

@@ -2,8 +2,8 @@
 Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
-Tested up to: 6.8
-Stable tag: 0.54.0
+Tested up to: 6.9
+Stable tag: 0.55.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ Really Simple Featured Video enables featured video support for WordPress posts,
 
 == Description ==
 
-[🚀 **Get the PRO version - Limited Lifetime Deal**](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+[🚀 **Take a better look at Really Simple Featured Video**](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your Posts, Pages & WooCommerce Products. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
@@ -118,6 +118,17 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.55.0 =
+* New: Added Download control toggle for Self-hosted videos
+* Fix: Self-hosted videos Picture-in-Picture control toggle not working as expected
+* Improvement: Theme compatibility engine status auto-refresh at settings
+* Improvement: Use one self-hosted video controls getter for the whole plugin
+* Improvement: Rename WooCommerce option labels for better discovery
+* Improvement: Autoplay on hover out of beta
+* Improvement: Updated promo form at settings sidebar
+* Improvement: Removed Get Pro tab from settings
+* Improvement: Other minor changes
 
 = 0.54.0 =
 - New: Brand update

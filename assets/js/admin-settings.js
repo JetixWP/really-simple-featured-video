@@ -158,6 +158,74 @@
 			return false;
 		}
 		$( '#rsfv_rollback_version_button' ).on( 'click', processPluginRollback );
+
+
+		function submitDiscountRequest( e ) {
+			e.preventDefault();
+
+			const email = $( this ).find( 'input[name="email"]' ).val();
+			const fname = $( this ).find( 'input[name="first_name"]' ).val();
+			const lname = $( this ).find( 'input[name="last_name"]' ).val();
+
+			const elSubmitBtn = $( this ).find( 'input[type=submit]' );
+			const messageEl = $( this ).find( '.rsfv-pro-discount-response span' );
+			const defaultLabel = elSubmitBtn.data( 'default-label' );
+			messageEl.text( '' );
+			elSubmitBtn.val( 'Sending...' );
+
+			$.post(
+				'https://jetixwp.com/?jwp-api=rsfv_pro_discount_code',
+				{
+					email: email,
+					first_name: JSON.stringify( fname ),
+					last_name: JSON.stringify( lname ),
+				}
+			).done( function( res ) {
+				messageEl.text( res?.message );
+				elSubmitBtn.val( defaultLabel );
+				elSubmitBtn.attr( 'disabled', 'disabled' );
+			} ).fail( function(res) {
+				messageEl.text( 'Failed to send, please try again or mail us support@jetixwp.com' );
+				elSubmitBtn.attr( 'disabled', 'disabled' );
+				setTimeout( function() {
+					elSubmitBtn.val( defaultLabel );
+					elSubmitBtn.removeAttr( 'disabled' );
+				}, 2000 );
+			} );
+		}
+
+		$( '#js-rsfv-pro-request-discount' ).on( 'submit', submitDiscountRequest );
+
+		/**
+		 * AJAX getter for Compatibility Engine Status.
+		 */
+		function updateCompatibilityEngineStatus() {
+			const engineStatusEl = $( '#theme-engine-status' );
+
+			engineStatusEl.attr( 'class', 'loading' );
+
+			$.post(
+				data.ajax_url,
+				{
+					action: 'rsfv_current_theme_compat',
+					_wpnonce: data.nonce,
+				}
+			).done( function( res ) {
+				const data = res?.data;
+
+				if ( data?.status && data?.engine ) {
+					engineStatusEl.attr( 'class', data.status );
+					engineStatusEl.text( data.engine );
+				}
+			} ).fail( function(res) {
+				console.log( res );
+
+				engineStatusEl.removeClass( 'loading' );
+			} );
+		}
+
+		updateCompatibilityEngineStatus();
+
 		}
 	);
 }( jQuery, rsfv_settings_data ) );

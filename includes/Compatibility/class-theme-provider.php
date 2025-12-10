@@ -145,7 +145,7 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Ollie/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Ollie\Compatibility',
 				),
-				'electro'             => array(
+				'electro'           => array(
 					'title'       => __( 'Electro', 'rsfv' ),
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Electro/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Electro\Compatibility',

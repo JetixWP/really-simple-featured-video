@@ -52,6 +52,7 @@ class Shortcode {
 	/**
 	 * Show video on posts & pages.
 	 *
+	 * @param array $atts Shortcode attributes.
 	 * @return string
 	 */
 	public function show_video( $atts = array() ) {
@@ -62,9 +63,9 @@ class Shortcode {
 		// Apply hover enhancements if enabled.
 		if ( class_exists( 'RSFV\\Featuresets\\Hover_Autoplay\\Init' ) ) {
 			$video_data = array(
-				'post_id' => $post->ID,
-				'post_type' => $post->post_type,
-				'source' => get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) ? get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) : 'self',
+				'post_id'        => $post->ID,
+				'post_type'      => $post->post_type,
+				'source'         => get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) ? get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) : 'self',
 				'shortcode_atts' => $atts,
 			);
 
@@ -97,9 +98,9 @@ class Shortcode {
 		// Apply hover enhancements if enabled.
 		if ( class_exists( 'RSFV\\Featuresets\\Hover_Autoplay\\Init' ) ) {
 			$video_data = array(
-				'post_id' => $post->ID,
-				'post_type' => $post->post_type,
-				'source' => get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) ? get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) : 'self',
+				'post_id'        => $post->ID,
+				'post_type'      => $post->post_type,
+				'source'         => get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) ? get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) : 'self',
 				'shortcode_atts' => $atts,
 			);
 
@@ -146,10 +147,10 @@ class Shortcode {
 
 		// Prepare video data for hover functionality.
 		$video_data = array(
-			'post_id' => $post_id,
+			'post_id'   => $post_id,
 			'post_type' => $post_type,
-			'source' => $video_source,
-			'controls' => $video_controls,
+			'source'    => $video_source,
+			'controls'  => $video_controls,
 		);
 
 		if ( 'self' === $video_source ) {
@@ -181,11 +182,11 @@ class Shortcode {
 		}
 
 		// Get poster image.
-		$poster_id = get_post_meta( $post_id, RSFV_POSTER_META_KEY, true );
+		$poster_id  = get_post_meta( $post_id, RSFV_POSTER_META_KEY, true );
 		$poster_url = $poster_id ? wp_get_attachment_url( $poster_id ) : '';
 
 		// Prepare video attributes.
-		$attributes = $this->get_html5_video_attributes( $video_controls, $video_data );
+		$attributes = self::get_html5_video_attributes( $video_controls );
 
 		// Apply hover enhancements to attributes.
 		$attributes = apply_filters( 'rsfv_video_html5_attributes', $attributes, $video_data );
@@ -200,7 +201,7 @@ class Shortcode {
 		);
 
 		// Wrap in container with hover support.
-		$container_class = apply_filters( 'rsfv_video_container_class', 'rsfv-video-wrapper', $video_data );
+		$container_class      = apply_filters( 'rsfv_video_container_class', 'rsfv-video-wrapper', $video_data );
 		$container_attributes = apply_filters( 'rsfv_video_container_attributes', array(), $video_data );
 
 		$container_attrs_string = $this->build_attributes_string( $container_attributes );
@@ -229,7 +230,7 @@ class Shortcode {
 		}
 
 		// Parse embed data to get video type.
-		$frontend = Plugin::get_instance()->frontend_provider;
+		$frontend   = Plugin::get_instance()->frontend_provider;
 		$embed_data = $frontend->parse_embed_url( $input_url );
 		$video_type = is_array( $embed_data ) ? $embed_data['host'] : 'unknown';
 
@@ -256,7 +257,7 @@ class Shortcode {
 		$iframe_html = $this->wrap_in_responsive_container( $iframe_html, $video_data );
 
 		// Wrap in container with hover support.
-		$container_class = apply_filters( 'rsfv_video_container_class', 'rsfv-video-wrapper', $video_data );
+		$container_class      = apply_filters( 'rsfv_video_container_class', 'rsfv-video-wrapper', $video_data );
 		$container_attributes = apply_filters( 'rsfv_video_container_attributes', array(), $video_data );
 
 		$container_attrs_string = $this->build_attributes_string( $container_attributes );
@@ -273,10 +274,9 @@ class Shortcode {
 	 * Get HTML5 video attributes
 	 *
 	 * @param array $video_controls Video control settings.
-	 * @param array $video_data Video data.
 	 * @return array
 	 */
-	private function get_html5_video_attributes( $video_controls, $video_data ) {
+	public static function get_html5_video_attributes( $video_controls ) {
 		$attributes = array(
 			'style' => 'max-width:100%;display:block;',
 		);
@@ -284,10 +284,14 @@ class Shortcode {
 		// Add control attributes based on settings.
 		if ( ! empty( $video_controls['controls'] ) ) {
 			$attributes['controls'] = true;
+
+			if ( empty( $video_controls['download'] ) ) {
+				$attributes['controlslist'] = 'nodownload';
+			}
 		}
 
 		if ( ! empty( $video_controls['autoplay'] ) ) {
-			$attributes['autoplay'] = true;
+			$attributes['autoplay']    = true;
 			$attributes['playsinline'] = true;
 		}
 
@@ -301,6 +305,8 @@ class Shortcode {
 
 		if ( ! empty( $video_controls['pip'] ) ) {
 			$attributes['autopictureinpicture'] = true;
+		} else {
+			$attributes['disablepictureinpicture'] = true;
 		}
 
 		return $attributes;
@@ -393,7 +399,7 @@ class Shortcode {
 		}
 
 		// Add hover-specific attributes.
-		$attributes['preload'] = 'metadata';
+		$attributes['preload']     = 'metadata';
 		$attributes['playsinline'] = true;
 
 		// Ensure muted for autoplay compatibility.
@@ -478,7 +484,7 @@ class Shortcode {
 			return $attributes;
 		}
 
-		$attributes['data-rsfv-video'] = 'true';
+		$attributes['data-rsfv-video']         = 'true';
 		$attributes['data-rsfv-hover-enabled'] = 'true';
 
 		if ( isset( $video_data['source'] ) ) {

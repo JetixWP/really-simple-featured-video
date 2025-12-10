@@ -61,7 +61,7 @@ final class Plugin {
 	/**
 	 * Frontend instance.
 	 *
-	 * @var $frontend_provider
+	 * @var FrontEnd $frontend_provider
 	 */
 	public $frontend_provider;
 
@@ -75,7 +75,7 @@ final class Plugin {
 	/**
 	 * Theme Compat Provide
 	 *
-	 * @var $theme_provider
+	 * @var Theme_Provider $theme_provider
 	 */
 	public $theme_provider;
 
