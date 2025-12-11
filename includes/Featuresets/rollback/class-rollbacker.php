@@ -133,32 +133,6 @@ class Rollbacker {
 	}
 
 	/**
-	 * Apply package.
-	 *
-	 * Change the plugin data when WordPress checks for updates. This method
-	 * modifies package data to update the plugin from a specific URL containing
-	 * the version package.
-	 *
-	 * @access protected
-	 */
-	protected function apply_package() {
-		$update_plugins = get_site_transient( 'update_plugins' );
-		if ( ! is_object( $update_plugins ) ) {
-			$update_plugins = new \stdClass();
-		}
-
-		$plugin_info = new \stdClass();
-		$plugin_info->new_version = $this->version;
-		$plugin_info->slug = $this->plugin_slug;
-		$plugin_info->package = $this->package_url;
-		$plugin_info->url = 'https://jetixwp.com/';
-
-		$update_plugins->response[ $this->plugin_name ] = $plugin_info;
-
-		set_site_transient( 'update_plugins', $update_plugins );
-	}
-
-	/**
 	 * Upgrade.
 	 *
 	 * Run WordPress upgrade to rollback plugin to previous version.
@@ -166,19 +140,40 @@ class Rollbacker {
 	 * @access protected
 	 */
 	protected function upgrade() {
-		require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+		if ( ! class_exists( 'WP_Upgrader_Skin' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+		}
 
-		$upgrader_args = array(
-			'url' => 'update.php?action=upgrade-plugin&plugin=' . rawurlencode( $this->plugin_name ),
+		require_once __DIR__ . '/class-rollback-downgrader-skin.php';
+
+		$skin_args = array(
+			'url'    => 'update.php?action=upgrade-plugin&plugin=' . rawurlencode( $this->plugin_name ),
 			'plugin' => $this->plugin_name,
-			'nonce' => 'upgrade-plugin_' . $this->plugin_name,
-			'title' => esc_html__( 'Rollback to Previous Version', 'rsfv' ),
+			'nonce'  => 'upgrade-plugin_' . $this->plugin_name,
+			'title'  => esc_html__( 'Rollback to Previous Version', 'rsfv' ),
 		);
 
 		$this->print_inline_style();
 
-		$upgrader = new \Plugin_Upgrader( new \Plugin_Upgrader_Skin( $upgrader_args ) );
-		$upgrader->upgrade( $this->plugin_name );
+		$skin     = new Rollback_Downgrader_Skin( $skin_args );
+		$upgrader = new \Plugin_Upgrader( $skin );
+
+		// IMPORTANT: initialize + install strings so feedback() can map keys.
+		$upgrader->init();
+		$upgrader->upgrade_strings();
+		$upgrader->run(
+			array(
+				'package'                     => $this->package_url,
+				'destination'                 => WP_PLUGIN_DIR,
+				'abort_if_destination_exists' => false,
+				'clear_working'               => true,
+				'hook_extra'                  => array(
+					'plugin' => $this->plugin_name,
+					'type'   => 'plugin',
+					'action' => 'update',
+				),
+			)
+		);
 	}
 
 	/**
@@ -189,7 +184,6 @@ class Rollbacker {
 	 * @access public
 	 */
 	public function run() {
-		$this->apply_package();
 		$this->upgrade();
 	}
 }
