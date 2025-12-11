@@ -494,6 +494,7 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 	opacity: 0.7;
 }
 
+.rsfv.version_control .submit,
 .rsfv.help .submit {
 	display: none;
 }
