@@ -20,6 +20,7 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 	box-shadow: 0px 2px 6px rgba(35, 40, 45, .07);
 }
 
+body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-meta),
 .wrap.rsfv .plugin-header [class*="notice"] {
 	display: none !important;
 }
