@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.55.0\n"
+"Project-Id-Version: Really Simple Featured Video 0.56.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-10T05:19:45+00:00\n"
+"POT-Creation-Date: 2025-12-13T13:58:59+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -100,41 +100,6 @@ msgstr ""
 
 #: includes/class-shortcode.php:93
 msgid "Post not found!"
-msgstr ""
-
-#: includes/Compatibility/class-plugin-provider.php:45
-#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:30
-msgid "WooCommerce"
-msgstr ""
-
-#: includes/Compatibility/class-plugin-provider.php:51
-msgid "Astra Pro"
-msgstr ""
-
-#: includes/Compatibility/class-plugin-provider.php:57
-msgid "Salient Core"
-msgstr ""
-
-#: includes/Compatibility/class-plugin-provider.php:63
-#: includes/Compatibility/Plugins/Elementor/class-settings.php:25
-msgid "Elementor"
-msgstr ""
-
-#: includes/Compatibility/class-plugin-provider.php:69
-#: includes/Compatibility/Plugins/Divi/class-settings.php:30
-msgid "Divi"
-msgstr ""
-
-#: includes/Compatibility/class-plugin-provider.php:74
-msgid "TP Product Image Flipper"
-msgstr ""
-
-#: includes/Compatibility/class-plugin-provider.php:80
-msgid "Codeixer Product Gallery Slider"
-msgstr ""
-
-#: includes/Compatibility/class-plugin-provider.php:86
-msgid "Bricks"
 msgstr ""
 
 #: includes/Compatibility/class-theme-provider.php:55
@@ -277,12 +242,20 @@ msgstr ""
 msgid "Make sure Really Simple Featured Video element is inside a Query Loop. In case you have done that, you can safely ignore this."
 msgstr ""
 
+#: includes/Compatibility/Plugins/Divi/class-settings.php:30
+msgid "Divi"
+msgstr ""
+
 #: includes/Compatibility/Plugins/Divi/class-settings.php:68
 msgid "Featured Video for Divi Woo Product Images"
 msgstr ""
 
 #: includes/Compatibility/Plugins/Divi/class-settings.php:69
 msgid "When toggled on, it shows Featured Product Videos in Divi Woo Product Images Module/Widget. Turn it off if you're having problem with WooCommerce templates."
+msgstr ""
+
+#: includes/Compatibility/Plugins/Elementor/class-settings.php:25
+msgid "Elementor"
 msgstr ""
 
 #: includes/Compatibility/Plugins/Elementor/class-settings.php:58
@@ -299,6 +272,10 @@ msgstr ""
 
 #: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:620
 msgid "Product video - tap to play"
+msgstr ""
+
+#: includes/Compatibility/Plugins/WooCommerce/class-settings.php:30
+msgid "WooCommerce"
 msgstr ""
 
 #: includes/Compatibility/Plugins/WooCommerce/class-settings.php:63
@@ -345,17 +322,33 @@ msgstr ""
 msgid "Set default product gallery thumb on single product page."
 msgstr ""
 
-#: includes/Featuresets/rollback/class-init.php:67
+#: includes/Featuresets/rollback/class-init.php:66
 msgid "Sorry, you are not allowed to rollback Really Simple Featured Video plugin for this site."
 msgstr ""
 
-#: includes/Featuresets/rollback/class-init.php:75
+#: includes/Featuresets/rollback/class-init.php:74
 msgid "Error occurred, the version selected is invalid. Try selecting different version."
 msgstr ""
 
-#: includes/Featuresets/rollback/class-init.php:94
-#: includes/Featuresets/rollback/class-rollbacker.php:175
+#: includes/Featuresets/rollback/class-init.php:93
+#: includes/Featuresets/rollback/class-rollbacker.php:153
 msgid "Rollback to Previous Version"
+msgstr ""
+
+#: includes/Featuresets/rollback/class-rollback-downgrader-skin.php:32
+msgid "Rolling back plugin…"
+msgstr ""
+
+#: includes/Featuresets/rollback/class-rollback-downgrader-skin.php:74
+msgid "Rollback failed during installation."
+msgstr ""
+
+#: includes/Featuresets/rollback/class-rollback-downgrader-skin.php:85
+msgid "Rollback complete. The plugin files have been restored."
+msgstr ""
+
+#: includes/Featuresets/rollback/class-rollback-downgrader-skin.php:90
+msgid "Go to Plugins page"
 msgstr ""
 
 #: includes/Settings/class-admin-settings.php:79
@@ -409,12 +402,7 @@ msgid "JetixWP"
 msgstr ""
 
 #: includes/Settings/class-register.php:79
-#: includes/Settings/class-register.php:93
 msgid "Really Simple Featured Video Settings"
-msgstr ""
-
-#: includes/Settings/class-register.php:94
-msgid "Really Simple Featured Video (Old)"
 msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:24

@@ -549,7 +549,7 @@ class Admin_Settings {
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"
 								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
-								><?php echo esc_html( $option_value ); ?></a><?php echo esc_html( $value['suffix'] ); ?> <?php echo esc_html( $description ); ?>
+								><?php echo esc_html( $option_value ); ?></a><?php echo esc_html( $value['suffix'] ); ?> <?php echo wp_kses( $description, $allowed_html_tags ); ?>
 						</td>
 					</tr>
 					<?php

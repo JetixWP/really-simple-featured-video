@@ -7,8 +7,6 @@
 
 namespace RSFV\Compatibility;
 
-use RSFV\Options;
-
 /**
  * Class Plugin_Provider
  *
@@ -38,54 +36,55 @@ class Plugin_Provider {
 	public function __construct() {
 
 		// Register plugin engines.
+		// @note - This variable is being called early and hence translation functions will trigger a warning if used here.
 		$this->plugin_engines = apply_filters(
 			'rsfv_plugin_compatibility_engines',
 			array(
 				'woocommerce'              => array(
-					'title'            => __( 'WooCommerce', 'rsfv' ),
+					'title'            => 'WooCommerce',
 					'file_source'      => self::COMPAT_DIR . 'WooCommerce/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\WooCommerce\Compatibility',
 					'has_class_loaded' => 'WooCommerce',
 				),
 				'astra-addon'              => array(
-					'title'            => __( 'Astra Pro', 'rsfv' ),
+					'title'            => 'Astra Pro',
 					'file_source'      => self::COMPAT_DIR . 'AstraPro/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\AstraPro\Compatibility',
 					'has_class_loaded' => 'Astra_Addon_Update',
 				),
 				'salient-core'             => array(
-					'title'            => __( 'Salient Core', 'rsfv' ),
+					'title'            => 'Salient Core',
 					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/SalientCore/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\SalientCore\Compatibility',
 					'has_class_loaded' => 'Salient_Core',
 				),
 				'elementor'                => array(
-					'title'            => __( 'Elementor', 'rsfv' ),
+					'title'            => 'Elementor',
 					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Elementor/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\Elementor\Compatibility',
 					'has_class_loaded' => 'Elementor\Plugin',
 				),
 				'divi'                     => array(
-					'title'       => __( 'Divi', 'rsfv' ),
+					'title'       => 'Divi',
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Divi/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Plugins\Divi\Compatibility',
 				),
 				'tp-product-image-flipper' => array(
-					'title'        => __( 'TP Product Image Flipper', 'rsfv' ),
+					'title'        => 'TP Product Image Flipper',
 					'file_source'  => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/TPProductImageFlipper/class-compatibility.php',
 					'class'        => 'RSFV\Compatibility\Plugins\TPProductImageFlipper\Compatibility',
 					'has_function' => 'tp_remove_action',
 				),
 				'cix-woo-gallery-slider'   => array(
-					'title'            => __( 'Codeixer Product Gallery Slider', 'rsfv' ),
+					'title'            => 'Codeixer Product Gallery Slider',
 					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/CIXWooGallerySlider/class-compatibility.php',
 					'class'            => 'RSFV\Compatibility\Plugins\CIXWooGallerySlider\Compatibility',
 					'has_class_loaded' => 'Product_Gallery_Sldier\Product',
 				),
-				'bricks'                => array(
-					'title'            => __( 'Bricks', 'rsfv' ),
-					'file_source'      => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Bricks/class-compatibility.php',
-					'class'            => 'RSFV\Compatibility\Plugins\Bricks\Compatibility',
+				'bricks'                   => array(
+					'title'       => 'Bricks',
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Plugins/Bricks/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Plugins\Bricks\Compatibility',
 				),
 			)
 		);
@@ -112,9 +111,6 @@ class Plugin_Provider {
 	 * @return void
 	 */
 	public function load_plugin_compat() {
-		$options = Options::get_instance();
-
-		$plugin_compat = null;
 
 		foreach ( $this->plugin_engines as $plugin_engine => $plugin_data ) {
 
@@ -134,7 +130,7 @@ class Plugin_Provider {
 			}
 
 			require_once $plugin_data['file_source'];
-			$plugin_compat = $plugin_data['class']::get_instance();
+			$plugin_data['class']::get_instance();
 		}
 	}
 

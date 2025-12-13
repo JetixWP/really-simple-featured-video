@@ -86,16 +86,6 @@ class Register {
 		// Remove duplicate menu hack.
 		// Note: It needs to go after the above add_submenu_page call.
 		remove_submenu_page( $primary_slug, $primary_slug );
-
-		// To remove later in 1.0.0.
-		add_submenu_page(
-			'options-general.php',
-			__( 'Really Simple Featured Video Settings', 'rsfv' ),
-			__( 'Really Simple Featured Video (Old)', 'rsfv' ),
-			'manage_options',
-			'rsfv-settings-old',
-			array( $this, 'old_settings_menu' )
-		);
 	}
 
 	/**
@@ -109,24 +99,6 @@ class Register {
 
 		$custom_css = '.toplevel_page_jetixwp .wp-submenu li a[href*="-addons"] { display: none !important; }';
 		wp_add_inline_style( 'wp-admin', $custom_css );
-	}
-
-	/**
-	 * Redirect old settings menu to new one.
-	 *
-	 * To remove later in 1.0.0.
-	 *
-	 * @return void
-	 */
-	public function old_settings_menu() {
-		echo "<p>Hello! This page has been moved to the <a href='" . esc_url( admin_url( 'admin.php?page=jetixwp' ) ) . "'>JetixWP menu</a>. You will be redirected there in a second...</p>";
-		?>
-			<script type="text/javascript">
-				setTimeout(function() {
-					window.location.href = "<?php echo esc_url( admin_url( 'admin.php?page=rsfv-settings' ) ); ?>";
-				}, 1000);
-			</script>
-		<?php
 	}
 
 	/**

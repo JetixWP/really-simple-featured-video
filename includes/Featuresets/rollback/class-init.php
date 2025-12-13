@@ -49,8 +49,7 @@ class Init {
 	 * @return array Modified localized data with rollback info.
 	 */
 	public function add_rollback_data( $data ) {
-		$data['rollback_url']      = wp_nonce_url( admin_url( 'admin-post.php?action=rsfv_rollback&version=VERSION' ), 'rsfv_rollback' );
-		$data['rollback_versions'] = self::get_rollback_versions();
+		$data['rollback_url'] = wp_nonce_url( admin_url( 'admin-post.php?action=rsfv_rollback&version=VERSION' ), 'rsfv_rollback' );
 
 		return $data;
 	}
@@ -141,7 +140,7 @@ class Init {
 					continue;
 				}
 
-				$current_index++;
+				++$current_index;
 				$rollback_versions[] = $version;
 			}
 
