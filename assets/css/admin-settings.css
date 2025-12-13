@@ -606,6 +606,7 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	.regular-text {
 		width: 100%;
 		margin-bottom: 8px;
+		font-size: 14px;
 	}
 
 	input[type="email"]:focus,
