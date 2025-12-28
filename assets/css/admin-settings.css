@@ -64,6 +64,8 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	margin-bottom: 2rem;
 }
 
+
+.rsfv-wrapper .nav-tab.nav-tab-upgrade,
 .rsfv-wrapper .nav-tab:hover, 
 .rsfv-wrapper .nav-tab:focus {
 	color: var(--jwp-wtc__color-brand);
@@ -495,6 +497,19 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	opacity: 0.7;
 }
 
+.rsfv.upgrade .tab-heading {
+	font-size: 24px;
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+
+.rsfv.upgrade .tab-content .rsfv-button {
+	display: inline-block;
+	margin-top: 10px;
+}
+
+
+.rsfv.upgrade .submit,
 .rsfv.version_control .submit,
 .rsfv.help .submit {
 	display: none;
@@ -506,9 +521,41 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	font-size: 20px;
 	line-height: 30px;
 }
+.rsfv.upgrade .upgrade-content ul {
+	list-style: disc;
+	list-style-position: inside;
+}
 
+.rsfv.upgrade .upgrade-content li {
+	line-height: 1.5;
+	font-weight: 600;
+}
+
+.rsfv.upgrade .upgrade-content p,
+.rsfv.upgrade .upgrade-content li,
 .rsfv.help .help-content p {
 	font-size: 15px;
+}
+
+.rsfv.upgrade form {
+	position: relative;
+}
+
+.rsfv.upgrade form {
+	height: calc(100% - 10%);
+}
+
+.rsfv.upgrade .upgrade-content .offer-highlight {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.rsfv.upgrade .tab-content .rsfv-button {
+	display: inline-block;
+	margin-top: 10px;
+	font-size: 16px;
+	padding: 4px 20px;
+	border-radius: 4px;
 }
 
 .rsfv .sidebar .upgrade-box,
@@ -651,7 +698,17 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 			box-shadow: none;
 			outline: none;
 		}
-	}
+	}	
+}
 
-	
+@media screen and ( min-width: 1920px ) {
+	.rsfv.upgrade form {
+		height: auto;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.rsfv.upgrade form {
+		padding-bottom: 250px;
+	}
 }

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.56.0\n"
+"Project-Id-Version: Really Simple Featured Video 0.56.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-13T13:58:59+00:00\n"
+"POT-Creation-Date: 2025-12-28T19:07:48+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -351,43 +351,43 @@ msgstr ""
 msgid "Go to Plugins page"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:79
+#: includes/Settings/class-admin-settings.php:80
 msgid "Your settings have been saved."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:153
+#: includes/Settings/class-admin-settings.php:154
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:154
+#: includes/Settings/class-admin-settings.php:155
 msgid "Select Thumbnail Image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:155
+#: includes/Settings/class-admin-settings.php:156
 msgid "Use this image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:333
+#: includes/Settings/class-admin-settings.php:334
 msgid "Pro"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:334
+#: includes/Settings/class-admin-settings.php:335
 msgid "Checkout Pro now"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:506
-#: includes/Settings/class-admin-settings.php:534
+#: includes/Settings/class-admin-settings.php:507
+#: includes/Settings/class-admin-settings.php:535
 msgid "Change Image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:507
+#: includes/Settings/class-admin-settings.php:508
 msgid "Revert to Default"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:714
-#: includes/Settings/class-admin-settings.php:747
-#: includes/Settings/class-admin-settings.php:813
-#: includes/Settings/class-admin-settings.php:884
+#: includes/Settings/class-admin-settings.php:715
+#: includes/Settings/class-admin-settings.php:748
+#: includes/Settings/class-admin-settings.php:814
+#: includes/Settings/class-admin-settings.php:885
 msgid "Toggle"
 msgstr ""
 
@@ -646,6 +646,10 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+#: includes/Settings/Tabs/class-upgrade.php:26
+msgid "Upgrade"
+msgstr ""
+
 #: includes/Settings/Tabs/class-version-control.php:24
 msgid "Version Control"
 msgstr ""
@@ -670,6 +674,50 @@ msgstr ""
 msgid "Help and Support"
 msgstr ""
 
+#: includes/Settings/Views/html-admin-settings-upgrade.php:14
+msgid "Get Premium Featured Video support with RSFV PRO"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:17
+msgid "Priority Support"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:18
+msgid "Extended Autoplay on Hover"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:19
+msgid "Change Video Aspect Ratio"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:20
+msgid "Change Video Order at WooCommerce Product page"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:21
+msgid "Change Default Gallery Video Thumbnail at Woo Single Product page"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:22
+msgid "Support for more Premium/Custom themes"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:23
+msgid "Requests for Feature Enhancements"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:24
+msgid "Requests for Theme Compatibility"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:26
+msgid ".. and more coming soon."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:28
+msgid "Explore RSFV and PRO"
+msgstr ""
+
 #: includes/Settings/Views/html-admin-settings.php:67
 msgid "Save changes"
 msgstr ""
@@ -683,5 +731,5 @@ msgid "First Name"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings.php:95
-msgid "🚀 Send me the coupon"
+msgid "🚀 Send me the discount"
 msgstr ""

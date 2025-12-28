@@ -56,6 +56,7 @@ class Admin_Settings {
 
 			// To make sure Promotional and Help tabs shows up at the very last.
 			$settings[] = include 'Tabs/class-help.php';
+			$settings[] = include 'Tabs/class-upgrade.php';
 
 			self::$settings = $settings;
 		}
