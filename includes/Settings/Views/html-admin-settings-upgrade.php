@@ -3,7 +3,7 @@
  * Admin View: Upgrade Tab Settings
  *
  * @package RSFV
- * @since 0.57.0
+ * @since 0.56.2
  */
 
 namespace RSFV\Settings\views;
