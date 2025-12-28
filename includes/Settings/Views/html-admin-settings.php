@@ -43,7 +43,7 @@ if ( ! $tab_exists ) {
 					<?php
 
 					foreach ( $tabs as $slug => $label ) {
-						echo '<a href="' . esc_html( admin_url( 'admin.php?page=rsfv-settings&tab=' . esc_attr( $slug ) ) ) . '" class="nav-tab ' . ( $current_tab === $slug ? 'nav-tab-active' : '' ) . '">' . esc_html( $label ) . '</a>';
+						echo '<a href="' . esc_html( admin_url( 'admin.php?page=rsfv-settings&tab=' . esc_attr( $slug ) ) ) . '" class="nav-tab nav-tab-' . esc_attr( $slug ) . ' ' . ( $current_tab === $slug ? 'nav-tab-active' : '' ) . '">' . esc_html( $label ) . '</a>';
 					}
 
 					do_action( 'rsfv_settings_tabs' );
@@ -92,7 +92,7 @@ if ( ! $tab_exists ) {
 							<form id="js-rsfv-pro-request-discount" method="post">
 								<input required type="email" class="regular-text" name="email" value="<?php echo esc_attr( $current_user->user_email ); ?>" placeholder="<?php esc_attr_e( 'Your Email', 'rsfv' ); ?>">
 								<input required type="text" class="regular-text" name="first_name" value="<?php echo esc_attr( $current_user->first_name ); ?>" placeholder="<?php esc_attr_e( 'First Name', 'rsfv' ); ?>">
-								<input type="submit" class="button button-primary" style="width:100%" value="<?php esc_attr_e( '🚀 Send me the coupon', 'rsfv' ); ?>" data-default-label="<?php esc_attr_e( '🚀 Send me the coupon', 'rsfv' ); ?>">
+								<input type="submit" class="button button-primary" style="width:100%" value="<?php esc_attr_e( '🚀 Send me the discount', 'rsfv' ); ?>" data-default-label="<?php esc_attr_e( '🚀 Send me the discount', 'rsfv' ); ?>">
 								<p class="rsfv-pro-discount-response"><span></span></p>
 							</form>
 							<span class="separator">-- OR --</span>
