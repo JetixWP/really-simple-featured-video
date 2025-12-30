@@ -85,7 +85,8 @@ class Compatibility extends Base_Compatibility {
 			);
 		}
 
-		add_filter( 'woocommerce_locate_template', array( $this, 'override_woocommerce_template_part' ), 10, 3 );
+		add_filter( 'wc_get_template', array( $this, 'override_woocommerce_template' ), 10, 2 );
+		add_filter( 'wc_get_template_part', array( $this, 'override_woocommerce_template_part' ), 10, 3 );
 	}
 
 	/**
@@ -93,12 +94,27 @@ class Compatibility extends Base_Compatibility {
 	 *
 	 * @param string $template Template path absolute url.
 	 * @param string $template_name Template name.
-	 * @param string $template_path Template path.
 	 * @return string
 	 */
-	public function override_woocommerce_template_part( $template, $template_name, $template_path ) {
+	public function override_woocommerce_template( $template, $template_name ) {
 		$template_directory = untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/templates/';
 		$path               = $template_directory . $template_name;
+
+		return file_exists( $path ) ? $path : $template;
+	}
+
+	/**
+	 * Overrides Woo template parts with available ones.
+	 *
+	 * @param string $template Template path absolute url.
+	 * @param string $slug Template slug.
+	 * @param string $name Template name.
+	 * @return string
+	 */
+	public function override_woocommerce_template_part( $template, $slug, $name ) {
+		$template_directory = untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/templates/woocommerce/';
+		$path               = $template_directory . $slug . '-' . $name . '.php';
+
 		return file_exists( $path ) ? $path : $template;
 	}
 }

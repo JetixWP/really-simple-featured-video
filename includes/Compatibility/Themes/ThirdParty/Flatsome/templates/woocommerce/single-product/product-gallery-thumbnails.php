@@ -71,8 +71,8 @@ if ( $attachment_ids || $render_without_attachments ) {
 		}'>
 		<?php
 
-		$product_id = $product->get_id();
-		$post_type  = get_post_type( $product_id ) ?? '';
+		$product_id     = $product->get_id();
+		$prod_post_type = get_post_type( $product_id ) ?? '';
 
 		// Get enabled post types.
 		$post_types = get_post_types();
@@ -82,9 +82,9 @@ if ( $attachment_ids || $render_without_attachments ) {
 		$video_html    = '';
 
 		if ( ! empty( $post_types ) ) {
-			if ( in_array( $post_type, $post_types, true ) ) {
-				$video_html    = WooCommerceCompatibility::woo_video_markup( $product->get_id(), 'woocommerce-product-gallery__image', '', true );
-                $video_html    = '<div class="col is-nav-selected">' . $video_html . '</div>';
+			if ( in_array( $prod_post_type, $post_types, true ) ) {
+				$video_html = WooCommerceCompatibility::woo_video_markup( $product->get_id(), 'woocommerce-product-gallery__image', '', true );
+				$video_html = '<div class="col is-nav-selected">' . $video_html . '</div>';
 			}
 		}
 
