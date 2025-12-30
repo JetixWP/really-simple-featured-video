@@ -23,6 +23,20 @@ if ( $post_thumbnail ) {
 }
 $render_without_attachments = apply_filters( 'flatsome_single_product_thumbnails_render_without_attachments', false, $product, array( 'thumb_count' => $thumb_count ) );
 
+$product_id     = $product->get_id();
+$prod_post_type = get_post_type( $product_id ) ?? '';
+
+// Get enabled post types.
+$post_types = get_post_types();
+
+$options             = Options::get_instance();
+$has_video_thumbnail = RSFV_FrontEnd::has_featured_video( $product_id );
+
+// If there is a video thumbnail and thumbnail count is 1, we need to increase the thumb count by 1.
+if ( $has_video_thumbnail && 1 === $thumb_count ) {
+	++$thumb_count;
+}
+
 // Disable thumbnails if there is only one extra image.
 if ( $post_thumbnail && $thumb_count == 1 && ! $render_without_attachments ) {
 	return;
@@ -36,7 +50,7 @@ if ( is_rtl() ) {
 	$thumb_cell_align = 'right';
 }
 
-if ( $attachment_ids || $render_without_attachments ) {
+if ( $attachment_ids || $render_without_attachments || $has_video_thumbnail ) {
 	$loop          = 0;
 	$image_size    = 'thumbnail';
 	$gallery_class = array( 'product-thumbnails', 'thumbnails' );
@@ -71,15 +85,7 @@ if ( $attachment_ids || $render_without_attachments ) {
 		}'>
 		<?php
 
-		$product_id     = $product->get_id();
-		$prod_post_type = get_post_type( $product_id ) ?? '';
-
-		// Get enabled post types.
-		$post_types = get_post_types();
-
-		$options       = Options::get_instance();
-		$has_thumbnail = RSFV_FrontEnd::has_featured_video( $product_id );
-		$video_html    = '';
+		$video_html = '';
 
 		if ( ! empty( $post_types ) ) {
 			if ( in_array( $prod_post_type, $post_types, true ) ) {
@@ -91,8 +97,8 @@ if ( $attachment_ids || $render_without_attachments ) {
 		$total_product_thumbnails = count( $product->get_gallery_image_ids() );
 		$display_html             = '';
 
-		if ( $has_thumbnail ) {
-            echo $video_html; // phpcs:ignore;
+		if ( $has_video_thumbnail ) {
+			echo $video_html; // phpcs:ignore;
 		}
 
 		if ( $post_thumbnail ) :
