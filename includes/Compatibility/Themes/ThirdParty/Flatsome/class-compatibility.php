@@ -113,7 +113,13 @@ class Compatibility extends Base_Compatibility {
 	 */
 	public function override_woocommerce_template_part( $template, $slug, $name ) {
 		$template_directory = untrailingslashit( plugin_dir_path( __FILE__ ) ) . '/templates/woocommerce/';
-		$path               = $template_directory . $slug . '-' . $name . '.php';
+		$path               = $template_directory . $slug;
+
+		if ( $name ) {
+			$path = $path . '-' . $name;
+		}
+
+		$path = $path . '.php';
 
 		return file_exists( $path ) ? $path : $template;
 	}
