@@ -1,1 +1,1416 @@
-(()=>{"use strict";var e,s={112:(e,s,a)=>{const t=window.wp.element,r=window.wp.i18n,i=window.wp.apiFetch;var l=a.n(i);const n=window.ReactJSXRuntime,o=({post:e,onUpdate:s})=>{const[a,i]=(0,t.useState)(!1);return(0,n.jsxs)("div",{className:"rsfv-video-type-select",children:[(0,n.jsxs)("select",{value:e.video_source||"",onChange:a=>(async a=>{i(!0);try{await l()({path:"/rsfv/v1/posts/update-source",method:"POST",data:{post_id:e.id,video_source:a}}),s&&s(e.id,{video_source:a})}catch(e){console.error("Error updating video source:",e)}finally{i(!1)}})(a.target.value),disabled:a,className:"rsfv-video-source-select",children:[(0,n.jsx)("option",{value:"",children:(0,r.__)("Select Type","rsfv")}),(0,n.jsx)("option",{value:"self",children:(0,r.__)("Self Hosted","rsfv")}),(0,n.jsx)("option",{value:"embed",children:(0,r.__)("Embed","rsfv")})]}),a&&(0,n.jsx)("span",{className:"spinner is-active rsfv-inline-spinner"})]})},d=({post:e,onUpdate:s})=>{const[a,i]=(0,t.useState)(e.embed_url||""),[o,d]=(0,t.useState)(!1),[c,v]=(0,t.useState)(!1),p=e.video_source||"";if(!p)return(0,n.jsx)("span",{className:"rsfv-no-action",children:"—"});const u=()=>{const a=wp.media({title:(0,r.__)("Select or Upload Video","rsfv"),button:{text:(0,r.__)("Use this video","rsfv")},library:{type:"video"},multiple:!1});a.on("select",(async()=>{const t=a.state().get("selection").first().toJSON();d(!0);try{await l()({path:"/rsfv/v1/posts/update-video",method:"POST",data:{post_id:e.id,video_source:"self",video_id:t.id}}),s&&s(e.id,{video_source:"self",video_id:t.id,video_url:t.url,has_video:!0})}catch(e){console.error("Error saving video:",e)}finally{d(!1)}})),a.open()},h=()=>{const a=wp.media({title:(0,r.__)("Select Poster Image","rsfv"),button:{text:(0,r.__)("Use this image","rsfv")},library:{type:"image"},multiple:!1});a.on("select",(async()=>{const t=a.state().get("selection").first().toJSON();v(!0);try{await l()({path:"/rsfv/v1/posts/update-poster",method:"POST",data:{post_id:e.id,poster_id:t.id}}),s&&s(e.id,{poster_id:t.id,poster_url:t.url})}catch(e){console.error("Error saving poster:",e)}finally{v(!1)}})),a.open()},m=e=>{if(!e)return!1;try{const s=new URL(e);return["http:","https:"].includes(s.protocol)}catch(e){return!1}},f=async()=>{if(!a||m(a)){d(!0);try{await l()({path:"/rsfv/v1/posts/update-video",method:"POST",data:{post_id:e.id,video_source:"embed",embed_url:a}}),s&&s(e.id,{video_source:"embed",embed_url:a,has_video:!!a})}catch(e){console.error("Error saving embed URL:",e),alert(e.message||(0,r.__)("Error saving embed URL.","rsfv"))}finally{d(!1)}}else alert((0,r.__)("Please enter a valid URL.","rsfv"))},_=async()=>{if(confirm((0,r.__)("Are you sure you want to remove the video?","rsfv"))){d(!0);try{await l()({path:"/rsfv/v1/posts/update-video",method:"POST",data:{post_id:e.id,video_source:"self",video_id:0}}),s&&s(e.id,{video_id:0,video_url:"",has_video:!1})}catch(e){console.error("Error removing video:",e)}finally{d(!1)}}},b=async()=>{if(confirm((0,r.__)("Are you sure you want to remove the poster?","rsfv"))){v(!0);try{await l()({path:"/rsfv/v1/posts/update-poster",method:"POST",data:{post_id:e.id,poster_id:0}}),s&&s(e.id,{poster_id:0,poster_url:""})}catch(e){console.error("Error removing poster:",e)}finally{v(!1)}}};if("self"===p){const s=!!e.video_id,a=!!e.poster_id,t=s?(0,r.__)("Edit Video","rsfv"):(0,r.__)("Upload Video","rsfv"),i=s?"button button-small":"button button-small button-primary",l=a?(0,r.__)("Edit Poster","rsfv"):(0,r.__)("Set Poster","rsfv");return(0,n.jsxs)("div",{className:"rsfv-video-action rsfv-self-action",children:[(0,n.jsxs)("div",{className:"rsfv-action-row",children:[(0,n.jsx)("button",{className:i,onClick:u,disabled:o||c,children:o?(0,r.__)("Saving...","rsfv"):t}),s&&(0,n.jsx)("button",{className:"button button-small button-link-delete button-warning",onClick:_,disabled:o||c,children:(0,r.__)("Remove","rsfv")})]}),s&&(0,n.jsxs)("div",{className:"rsfv-action-row",children:[(0,n.jsx)("button",{className:"button button-small",onClick:h,disabled:o||c,children:c?(0,r.__)("Saving...","rsfv"):l}),a&&(0,n.jsx)("button",{className:"button button-small button-link-delete",onClick:b,disabled:o||c,children:(0,r.__)("Remove","rsfv")})]})]})}if("embed"===p){const s=!a||m(a),t=a!==(e.embed_url||"");return(0,n.jsxs)("div",{className:"rsfv-video-action rsfv-embed-action",children:[(0,n.jsx)("input",{type:"url",className:"rsfv-embed-input"+(s?"":" rsfv-invalid-url"),value:a,onChange:e=>i(e.target.value),placeholder:(0,r.__)("Enter video URL...","rsfv"),disabled:o}),(0,n.jsx)("button",{className:"button button-small button-primary",onClick:f,disabled:o||!t||a&&!s,children:o?(0,r.__)("Saving...","rsfv"):(0,r.__)("Save","rsfv")})]})}return null},c=({post:e})=>{const s=e.video_source||"";if(!s)return(0,n.jsx)("span",{className:"rsfv-no-video",children:"—"});if("self"===s&&e.video_id){const s=e.video_url||"",a=e.poster_url||"";return s?(0,n.jsx)("div",{className:"rsfv-video-preview",children:(0,n.jsx)("video",{src:s,poster:a||void 0,controls:!0,muted:!0,preload:"metadata"})}):(0,n.jsx)("span",{className:"rsfv-no-video",children:"—"})}return"embed"===s&&e.embed_url?(0,n.jsx)("div",{className:"rsfv-video-preview rsfv-embed-preview",children:(0,n.jsxs)("a",{href:e.embed_url,target:"_blank",rel:"noopener noreferrer",className:"rsfv-embed-link",children:[(0,n.jsx)("span",{className:"dashicons dashicons-video-alt3"}),(0,r.__)("View Video","rsfv")]})}):(0,n.jsx)("span",{className:"rsfv-no-video",children:"—"})},v=({post:e,onUpdate:s})=>{const[a,i]=(0,t.useState)(!1),o=!!e.thumbnail,d=()=>{const a=wp.media({title:(0,r.__)("Select Featured Image","rsfv"),button:{text:(0,r.__)("Set featured image","rsfv")},library:{type:"image"},multiple:!1});a.on("select",(async()=>{const t=a.state().get("selection").first().toJSON();i(!0);try{await l()({path:"/rsfv/v1/posts/update-thumbnail",method:"POST",data:{post_id:e.id,thumbnail_id:t.id}}),s&&s(e.id,{thumbnail:t.sizes?.thumbnail?.url||t.url})}catch(e){console.error("Error setting thumbnail:",e)}finally{i(!1)}})),a.open()};return a?(0,n.jsx)("div",{className:"rsfv-thumbnail-cell rsfv-thumbnail-saving",children:(0,n.jsx)("span",{className:"spinner is-active"})}):o?(0,n.jsxs)("div",{className:"rsfv-thumbnail-cell rsfv-has-thumbnail",onClick:d,children:[(0,n.jsx)("img",{src:e.thumbnail,alt:e.title,className:"rsfv-thumbnail"}),(0,n.jsx)("div",{className:"rsfv-thumbnail-overlay rsfv-thumbnail-remove",children:(0,n.jsx)("button",{className:"rsfv-thumbnail-action",onClick:async a=>{a.stopPropagation(),i(!0);try{await l()({path:"/rsfv/v1/posts/update-thumbnail",method:"POST",data:{post_id:e.id,thumbnail_id:0}}),s&&s(e.id,{thumbnail:""})}catch(e){console.error("Error removing thumbnail:",e)}finally{i(!1)}},title:(0,r.__)("Remove featured image","rsfv"),children:(0,n.jsx)("span",{className:"dashicons dashicons-trash"})})})]}):(0,n.jsxs)("div",{className:"rsfv-thumbnail-cell rsfv-no-thumbnail",onClick:d,children:[(0,n.jsx)("span",{className:"dashicons dashicons-format-image"}),(0,n.jsx)("div",{className:"rsfv-thumbnail-overlay rsfv-thumbnail-add",children:(0,n.jsx)("button",{className:"rsfv-thumbnail-action",title:(0,r.__)("Set featured image","rsfv"),children:(0,n.jsx)("span",{className:"dashicons dashicons-plus-alt2"})})})]})},p=({posts:e,onRefresh:s})=>{const[a,i]=(0,t.useState)(e);if(e!==a&&e.length!==a.length&&i(e),!a||0===a.length)return(0,n.jsx)("div",{className:"rsfv-no-posts",children:(0,n.jsx)("p",{children:(0,r.__)("No posts found for this post type.","rsfv")})});const l=e=>e.has_video?(0,n.jsx)("span",{className:"rsfv-badge rsfv-badge-success",children:(0,r.__)("Has Video","rsfv")}):(0,n.jsx)("span",{className:"rsfv-badge rsfv-badge-default",children:(0,r.__)("No Video","rsfv")}),p=(e,s)=>{i((a=>a.map((a=>a.id===e?{...a,...s}:a))))};return(0,n.jsxs)("table",{className:"rsfv-posts-table wp-list-table widefat fixed striped",children:[(0,n.jsx)("thead",{children:(0,n.jsxs)("tr",{children:[(0,n.jsx)("th",{className:"column-thumbnail",children:(0,r.__)("Thumbnail","rsfv")}),(0,n.jsx)("th",{className:"column-title",children:(0,r.__)("Title","rsfv")}),(0,n.jsx)("th",{className:"column-status",children:(0,r.__)("Video Status","rsfv")}),(0,n.jsx)("th",{className:"column-video-type",children:(0,r.__)("Video Type","rsfv")}),(0,n.jsx)("th",{className:"column-video-action",children:(0,r.__)("Action","rsfv")}),(0,n.jsx)("th",{className:"column-video-preview",children:(0,r.__)("Video","rsfv")})]})}),(0,n.jsx)("tbody",{children:a.map((e=>(0,n.jsxs)("tr",{children:[(0,n.jsx)("td",{className:"column-thumbnail",children:(0,n.jsx)(v,{post:e,onUpdate:p})}),(0,n.jsxs)("td",{className:"column-title",children:[(0,n.jsx)("strong",{children:(0,n.jsx)("a",{href:e.edit_link,target:"_blank",rel:"noopener noreferrer",children:e.title||(0,r.__)("(No title)","rsfv")})}),(0,n.jsxs)("div",{className:"row-actions",children:[(0,n.jsx)("span",{className:"edit",children:(0,n.jsx)("a",{href:e.edit_link,target:"_blank",rel:"noopener noreferrer",children:(0,r.__)("Edit","rsfv")})})," | ",(0,n.jsx)("span",{className:"view",children:(0,n.jsx)("a",{href:e.permalink,target:"_blank",rel:"noopener noreferrer",children:(0,r.__)("View","rsfv")})})]})]}),(0,n.jsx)("td",{className:"column-status",children:l(e)}),(0,n.jsx)("td",{className:"column-video-type",children:(0,n.jsx)(o,{post:e,onUpdate:p})}),(0,n.jsx)("td",{className:"column-video-action",children:(0,n.jsx)(d,{post:e,onUpdate:p})}),(0,n.jsx)("td",{className:"column-video-preview",children:(0,n.jsx)(c,{post:e})})]},e.id)))})]})},u=({currentPage:e,totalPages:s,totalItems:a,onPageChange:t})=>(0,n.jsx)("div",{className:"rsfv-pagination tablenav bottom",children:(0,n.jsxs)("div",{className:"tablenav-pages",children:[(0,n.jsxs)("span",{className:"displaying-num",children:[a," ",(0,r.__)("items","rsfv")]}),(0,n.jsxs)("span",{className:"pagination-links",children:[(0,n.jsx)("button",{className:"first-page button",onClick:()=>{t(1)},disabled:1===e,"aria-label":(0,r.__)("First page","rsfv"),children:"«"}),(0,n.jsx)("button",{className:"prev-page button",onClick:()=>{e>1&&t(e-1)},disabled:1===e,"aria-label":(0,r.__)("Previous page","rsfv"),children:"‹"}),(0,n.jsx)("span",{className:"paging-input",children:(0,n.jsxs)("span",{className:"tablenav-paging-text",children:[e," ",(0,r.__)("of","rsfv")," ",(0,n.jsx)("span",{className:"total-pages",children:s})]})}),(0,n.jsx)("button",{className:"next-page button",onClick:()=>{e<s&&t(e+1)},disabled:e===s,"aria-label":(0,r.__)("Next page","rsfv"),children:"›"}),(0,n.jsx)("button",{className:"last-page button",onClick:()=>{t(s)},disabled:e===s,"aria-label":(0,r.__)("Last page","rsfv"),children:"»"})]})]})}),h=({postTypes:e,selectedPostType:s,onChange:a})=>e&&0!==e.length?(0,n.jsxs)("div",{className:"rsfv-post-type-filter",children:[(0,n.jsx)("label",{htmlFor:"rsfv-post-type-select",children:(0,r.__)("Post Type:","rsfv")}),(0,n.jsx)("select",{id:"rsfv-post-type-select",value:s,onChange:e=>a(e.target.value),children:e.map((e=>(0,n.jsx)("option",{value:e.value,children:e.label},e.value)))})]}):null,m=()=>{const[e,s]=(0,t.useState)(""),[a,i]=(0,t.useState)([]),[o,d]=(0,t.useState)(!1),[c,v]=(0,t.useState)(1),[m,f]=(0,t.useState)(1),[_,b]=(0,t.useState)(0),[x,j]=(0,t.useState)(window.rsfvTools?.perPage||20),g=window.rsfvTools?.postTypes||[];(0,t.useEffect)((()=>{g.length>0&&!e&&s(g[0].value)}),[g,e]);const N=(0,t.useCallback)((async()=>{if(e){d(!0);try{const s=await l()({path:`/rsfv/v1/posts?post_type=${e}&page=${c}&per_page=${x}`,parse:!1}),a=await s.json(),t=parseInt(s.headers.get("X-WP-Total"),10),r=parseInt(s.headers.get("X-WP-TotalPages"),10);i(a),b(t),f(r)}catch(e){console.error("Error fetching posts:",e),i([])}finally{d(!1)}}}),[e,c,x]);return(0,t.useEffect)((()=>{N()}),[N]),(0,n.jsxs)("div",{className:"rsfv-manage-videos",children:[(0,n.jsxs)("div",{className:"rsfv-toolbar",children:[(0,n.jsx)(h,{postTypes:g,selectedPostType:e,onChange:e=>{s(e),v(1)}}),(0,n.jsxs)("div",{className:"rsfv-per-page",children:[(0,n.jsx)("label",{htmlFor:"rsfv-per-page",children:(0,r.__)("Posts per page:","rsfv")}),(0,n.jsxs)("select",{id:"rsfv-per-page",value:x,onChange:e=>{return s=parseInt(e.target.value,10),j(s),void v(1);var s},children:[(0,n.jsx)("option",{value:"10",children:"10"}),(0,n.jsx)("option",{value:"20",children:"20"}),(0,n.jsx)("option",{value:"50",children:"50"}),(0,n.jsx)("option",{value:"100",children:"100"})]})]})]}),o?(0,n.jsxs)("div",{className:"rsfv-loading",children:[(0,n.jsx)("span",{className:"spinner is-active"}),(0,n.jsx)("span",{children:(0,r.__)("Loading posts...","rsfv")})]}):(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(p,{posts:a,onRefresh:N}),m>1&&(0,n.jsx)(u,{currentPage:c,totalPages:m,totalItems:_,onPageChange:e=>{v(e)}})]})]})},f=()=>{const[e,s]=(0,t.useState)("manage"),a=[{id:"manage",label:(0,r.__)("Manage Featured Videos","rsfv")}];return(0,n.jsxs)("div",{className:"rsfv-tools-app",children:[(0,n.jsx)("div",{className:"rsfv-tabs",children:(0,n.jsx)("nav",{className:"rsfv-tabs-nav",children:a.map((a=>(0,n.jsx)("button",{className:"rsfv-tab-button "+(e===a.id?"active":""),onClick:()=>s(a.id),children:a.label},a.id)))})}),(0,n.jsx)("div",{className:"rsfv-tab-content",children:"manage"===e&&(0,n.jsx)(m,{})})]})},_=document.getElementById("rsfv-tools-app");_&&(0,t.createRoot)(_).render((0,n.jsx)(f,{}))}},a={};function t(e){var r=a[e];if(void 0!==r)return r.exports;var i=a[e]={exports:{}};return s[e](i,i.exports,t),i.exports}t.m=s,e=[],t.O=(s,a,r,i)=>{if(!a){var l=1/0;for(c=0;c<e.length;c++){for(var[a,r,i]=e[c],n=!0,o=0;o<a.length;o++)(!1&i||l>=i)&&Object.keys(t.O).every((e=>t.O[e](a[o])))?a.splice(o--,1):(n=!1,i<l&&(l=i));if(n){e.splice(c--,1);var d=r();void 0!==d&&(s=d)}}return s}i=i||0;for(var c=e.length;c>0&&e[c-1][2]>i;c--)e[c]=e[c-1];e[c]=[a,r,i]},t.n=e=>{var s=e&&e.__esModule?()=>e.default:()=>e;return t.d(s,{a:s}),s},t.d=(e,s)=>{for(var a in s)t.o(s,a)&&!t.o(e,a)&&Object.defineProperty(e,a,{enumerable:!0,get:s[a]})},t.o=(e,s)=>Object.prototype.hasOwnProperty.call(e,s),(()=>{var e={57:0,350:0};t.O.j=s=>0===e[s];var s=(s,a)=>{var r,i,[l,n,o]=a,d=0;if(l.some((s=>0!==e[s]))){for(r in n)t.o(n,r)&&(t.m[r]=n[r]);if(o)var c=o(t)}for(s&&s(a);d<l.length;d++)i=l[d],t.o(e,i)&&e[i]&&e[i][0](),e[i]=0;return t.O(c)},a=globalThis.webpackChunkreally_simple_featured_video=globalThis.webpackChunkreally_simple_featured_video||[];a.forEach(s.bind(null,0)),a.push=s.bind(null,a.push.bind(a))})();var r=t.O(void 0,[350],(()=>t(112)));r=t.O(r)})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/tools/App.js":
+/*!**************************!*\
+  !*** ./src/tools/App.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_ManageFeaturedVideos__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/ManageFeaturedVideos */ "./src/tools/components/ManageFeaturedVideos.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/**
+ * Main Bulk Actions App Component
+ *
+ * @package RSFV
+ */
+
+
+
+
+
+const App = () => {
+  const [activeTab, setActiveTab] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('manage');
+  const tabs = [{
+    id: 'manage',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Manage Featured Videos', 'rsfv')
+  }];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "rsfv-tools-app",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "rsfv-tabs",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
+        className: "rsfv-tabs-nav",
+        children: tabs.map(tab => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: `rsfv-tab-button ${activeTab === tab.id ? 'active' : ''}`,
+          onClick: () => setActiveTab(tab.id),
+          children: tab.label
+        }, tab.id))
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "rsfv-tab-content",
+      children: activeTab === 'manage' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_ManageFeaturedVideos__WEBPACK_IMPORTED_MODULE_2__["default"], {})
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./src/tools/components/ManageFeaturedVideos.js":
+/*!******************************************************!*\
+  !*** ./src/tools/components/ManageFeaturedVideos.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _PostsTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PostsTable */ "./src/tools/components/PostsTable.js");
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Pagination */ "./src/tools/components/Pagination.js");
+/* harmony import */ var _PostTypeFilter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./PostTypeFilter */ "./src/tools/components/PostTypeFilter.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+/**
+ * Manage Featured Videos Component
+ *
+ * @package RSFV
+ */
+
+
+
+
+
+
+
+
+const ManageFeaturedVideos = () => {
+  const [postType, setPostType] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [posts, setPosts] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [loading, setLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [page, setPage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [totalPages, setTotalPages] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [totalPosts, setTotalPosts] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+  const [perPage, setPerPage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(window.rsfvTools?.perPage || 20);
+  const [search, setSearch] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [searchInput, setSearchInput] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [searchTimeout, setSearchTimeout] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const postTypes = window.rsfvTools?.postTypes || [];
+
+  // Get current post type label.
+  const currentPostTypeLabel = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => {
+    const found = postTypes.find(pt => pt.value === postType);
+    return found ? found.label : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('posts', 'rsfv');
+  }, [postTypes, postType]);
+
+  // Set initial post type.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (postTypes.length > 0 && !postType) {
+      setPostType(postTypes[0].value);
+    }
+  }, [postTypes, postType]);
+  const fetchPosts = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useCallback)(async () => {
+    if (!postType) {
+      return;
+    }
+    setLoading(true);
+    try {
+      let path = `/rsfv/v1/posts?post_type=${postType}&page=${page}&per_page=${perPage}`;
+      if (search) {
+        path += `&search=${encodeURIComponent(search)}`;
+      }
+      const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path,
+        parse: false
+      });
+      const data = await response.json();
+      const total = parseInt(response.headers.get('X-WP-Total'), 10);
+      const pages = parseInt(response.headers.get('X-WP-TotalPages'), 10);
+      setPosts(data);
+      setTotalPosts(total);
+      setTotalPages(pages);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      setPosts([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [postType, page, perPage, search]);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    fetchPosts();
+  }, [fetchPosts]);
+  const handlePostTypeChange = newPostType => {
+    setPostType(newPostType);
+    setPage(1);
+    setSearch('');
+    setSearchInput('');
+  };
+  const handlePageChange = newPage => {
+    setPage(newPage);
+  };
+  const handlePerPageChange = newPerPage => {
+    setPerPage(newPerPage);
+    setPage(1);
+  };
+  const handleSearchInputChange = value => {
+    setSearchInput(value);
+
+    // Clear any existing timeout.
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
+    }
+
+    // If cleared or 3+ characters, trigger search with debounce.
+    if (value === '') {
+      setSearch('');
+      setPage(1);
+    } else if (value.length >= 3) {
+      const timeout = setTimeout(() => {
+        setSearch(value);
+        setPage(1);
+      }, 300);
+      setSearchTimeout(timeout);
+    }
+  };
+  const handleSearchSubmit = e => {
+    e.preventDefault();
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
+    }
+    setSearch(searchInput);
+    setPage(1);
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    className: "rsfv-manage-videos",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "rsfv-toolbar",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_PostTypeFilter__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        postTypes: postTypes,
+        selectedPostType: postType,
+        onChange: handlePostTypeChange
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "rsfv-per-page",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+          htmlFor: "rsfv-per-page",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Per page:', 'rsfv')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
+          id: "rsfv-per-page",
+          value: perPage,
+          onChange: e => handlePerPageChange(parseInt(e.target.value, 10)),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+            value: "10",
+            children: "10"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+            value: "20",
+            children: "20"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+            value: "50",
+            children: "50"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+            value: "100",
+            children: "100"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+        className: "rsfv-search",
+        onSubmit: handleSearchSubmit,
+        children: [loading && search && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          className: "rsfv-search-spinner spinner is-active"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+          type: "search",
+          className: "rsfv-search-input",
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.sprintf)(/* translators: %s: post type name */
+          (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Search %s...', 'rsfv'), currentPostTypeLabel),
+          value: searchInput,
+          onChange: e => handleSearchInputChange(e.target.value)
+        })]
+      })]
+    }), loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "rsfv-loading",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        className: "spinner is-active"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Loading posts...', 'rsfv')
+      })]
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_PostsTable__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        posts: posts,
+        onRefresh: fetchPosts
+      }), totalPages > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        currentPage: page,
+        totalPages: totalPages,
+        totalItems: totalPosts,
+        onPageChange: handlePageChange
+      })]
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ManageFeaturedVideos);
+
+/***/ }),
+
+/***/ "./src/tools/components/Pagination.js":
+/*!********************************************!*\
+  !*** ./src/tools/components/Pagination.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * Pagination Component
+ *
+ * @package RSFV
+ */
+
+
+
+const Pagination = ({
+  currentPage,
+  totalPages,
+  totalItems,
+  onPageChange
+}) => {
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+    }
+  };
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
+    }
+  };
+  const handleFirst = () => {
+    onPageChange(1);
+  };
+  const handleLast = () => {
+    onPageChange(totalPages);
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "rsfv-pagination tablenav bottom",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "tablenav-pages",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+        className: "displaying-num",
+        children: [totalItems, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('items', 'rsfv')]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+        className: "pagination-links",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "first-page button",
+          onClick: handleFirst,
+          disabled: currentPage === 1,
+          "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('First page', 'rsfv'),
+          children: "\xAB"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "prev-page button",
+          onClick: handlePrevious,
+          disabled: currentPage === 1,
+          "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Previous page', 'rsfv'),
+          children: "\u2039"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "paging-input",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+            className: "tablenav-paging-text",
+            children: [currentPage, " ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('of', 'rsfv'), ' ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              className: "total-pages",
+              children: totalPages
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "next-page button",
+          onClick: handleNext,
+          disabled: currentPage === totalPages,
+          "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Next page', 'rsfv'),
+          children: "\u203A"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "last-page button",
+          onClick: handleLast,
+          disabled: currentPage === totalPages,
+          "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Last page', 'rsfv'),
+          children: "\xBB"
+        })]
+      })]
+    })
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Pagination);
+
+/***/ }),
+
+/***/ "./src/tools/components/PostTypeFilter.js":
+/*!************************************************!*\
+  !*** ./src/tools/components/PostTypeFilter.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * Post Type Filter Component
+ *
+ * @package RSFV
+ */
+
+
+
+const PostTypeFilter = ({
+  postTypes,
+  selectedPostType,
+  onChange
+}) => {
+  if (!postTypes || postTypes.length === 0) {
+    return null;
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "rsfv-post-type-filter",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+      htmlFor: "rsfv-post-type-select",
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Post Type:', 'rsfv')
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("select", {
+      id: "rsfv-post-type-select",
+      value: selectedPostType,
+      onChange: e => onChange(e.target.value),
+      children: postTypes.map(type => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        value: type.value,
+        children: type.label
+      }, type.value))
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostTypeFilter);
+
+/***/ }),
+
+/***/ "./src/tools/components/PostsTable.js":
+/*!********************************************!*\
+  !*** ./src/tools/components/PostsTable.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _VideoTypeSelect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VideoTypeSelect */ "./src/tools/components/VideoTypeSelect.js");
+/* harmony import */ var _VideoAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VideoAction */ "./src/tools/components/VideoAction.js");
+/* harmony import */ var _VideoPreview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VideoPreview */ "./src/tools/components/VideoPreview.js");
+/* harmony import */ var _ThumbnailCell__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ThumbnailCell */ "./src/tools/components/ThumbnailCell.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+/**
+ * Posts Table Component
+ *
+ * @package RSFV
+ */
+
+
+
+
+
+
+
+
+const PostsTable = ({
+  posts: initialPosts,
+  onRefresh
+}) => {
+  const [posts, setPosts] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(initialPosts);
+
+  // Update posts when initialPosts changes.
+  if (initialPosts !== posts && initialPosts.length !== posts.length) {
+    setPosts(initialPosts);
+  }
+  if (!posts || posts.length === 0) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "rsfv-no-posts",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('No posts found for this post type.', 'rsfv')
+      })
+    });
+  }
+  const getVideoStatusBadge = post => {
+    if (post.has_video) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        className: "rsfv-badge rsfv-badge-success",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Has Video', 'rsfv')
+      });
+    }
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+      className: "rsfv-badge rsfv-badge-default",
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('No Video', 'rsfv')
+    });
+  };
+  const handlePostUpdate = (postId, updates) => {
+    setPosts(currentPosts => currentPosts.map(post => post.id === postId ? {
+      ...post,
+      ...updates
+    } : post));
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("table", {
+    className: "rsfv-posts-table wp-list-table widefat fixed striped",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("thead", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+          className: "column-thumbnail",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Thumbnail', 'rsfv')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+          className: "column-title",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Title', 'rsfv')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+          className: "column-status",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Video Status', 'rsfv')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+          className: "column-video-type",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Video Type', 'rsfv')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+          className: "column-video-action",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Action', 'rsfv')
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+          className: "column-video-preview",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Video', 'rsfv')
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
+      children: posts.map(post => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+          className: "column-thumbnail",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ThumbnailCell__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            post: post,
+            onUpdate: handlePostUpdate
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("td", {
+          className: "column-title",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("strong", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+              href: post.edit_link,
+              target: "_blank",
+              rel: "noopener noreferrer",
+              children: post.title || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('(No title)', 'rsfv')
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "row-actions",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+              className: "edit",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+                href: post.edit_link,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Edit', 'rsfv')
+              })
+            }), ' | ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+              className: "view",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+                href: post.permalink,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('View', 'rsfv')
+              })
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+          className: "column-status",
+          children: getVideoStatusBadge(post)
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+          className: "column-video-type",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_VideoTypeSelect__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            post: post,
+            onUpdate: handlePostUpdate
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+          className: "column-video-action",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_VideoAction__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            post: post,
+            onUpdate: handlePostUpdate
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+          className: "column-video-preview",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_VideoPreview__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            post: post
+          })
+        })]
+      }, post.id))
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostsTable);
+
+/***/ }),
+
+/***/ "./src/tools/components/ThumbnailCell.js":
+/*!***********************************************!*\
+  !*** ./src/tools/components/ThumbnailCell.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/**
+ * Thumbnail Cell Component
+ *
+ * Handles thumbnail display and set/remove actions on hover.
+ *
+ * @package RSFV
+ */
+
+
+
+
+
+const ThumbnailCell = ({
+  post,
+  onUpdate
+}) => {
+  const [saving, setSaving] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const hasThumbnail = !!post.thumbnail;
+  const openMediaUploader = () => {
+    const frame = wp.media({
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Featured Image', 'rsfv'),
+      button: {
+        text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set featured image', 'rsfv')
+      },
+      library: {
+        type: 'image'
+      },
+      multiple: false
+    });
+    frame.on('select', async () => {
+      const attachment = frame.state().get('selection').first().toJSON();
+      setSaving(true);
+      try {
+        await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+          path: '/rsfv/v1/posts/update-thumbnail',
+          method: 'POST',
+          data: {
+            post_id: post.id,
+            thumbnail_id: attachment.id
+          }
+        });
+        if (onUpdate) {
+          onUpdate(post.id, {
+            thumbnail: attachment.sizes?.thumbnail?.url || attachment.url
+          });
+        }
+      } catch (error) {
+        console.error('Error setting thumbnail:', error);
+      } finally {
+        setSaving(false);
+      }
+    });
+    frame.open();
+  };
+  const handleRemoveThumbnail = async e => {
+    e.stopPropagation();
+    setSaving(true);
+    try {
+      await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path: '/rsfv/v1/posts/update-thumbnail',
+        method: 'POST',
+        data: {
+          post_id: post.id,
+          thumbnail_id: 0
+        }
+      });
+      if (onUpdate) {
+        onUpdate(post.id, {
+          thumbnail: ''
+        });
+      }
+    } catch (error) {
+      console.error('Error removing thumbnail:', error);
+    } finally {
+      setSaving(false);
+    }
+  };
+  if (saving) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "rsfv-thumbnail-cell rsfv-thumbnail-saving",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+        className: "spinner is-active"
+      })
+    });
+  }
+  if (hasThumbnail) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "rsfv-thumbnail-cell rsfv-has-thumbnail",
+      onClick: openMediaUploader,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+        src: post.thumbnail,
+        alt: post.title,
+        className: "rsfv-thumbnail"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "rsfv-thumbnail-overlay rsfv-thumbnail-remove",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "rsfv-thumbnail-action",
+          onClick: handleRemoveThumbnail,
+          title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove featured image', 'rsfv'),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            className: "dashicons dashicons-trash"
+          })
+        })
+      })]
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "rsfv-thumbnail-cell rsfv-no-thumbnail",
+    onClick: openMediaUploader,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      className: "dashicons dashicons-format-image"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "rsfv-thumbnail-overlay rsfv-thumbnail-add",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        className: "rsfv-thumbnail-action",
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set featured image', 'rsfv'),
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          className: "dashicons dashicons-plus-alt2"
+        })
+      })
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThumbnailCell);
+
+/***/ }),
+
+/***/ "./src/tools/components/VideoAction.js":
+/*!*********************************************!*\
+  !*** ./src/tools/components/VideoAction.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/**
+ * Video Action Component
+ *
+ * Handles video upload/embed action for each post.
+ *
+ * @package RSFV
+ */
+
+
+
+
+
+const VideoAction = ({
+  post,
+  onUpdate
+}) => {
+  const [embedUrl, setEmbedUrl] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(post.embed_url || '');
+  const [saving, setSaving] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [savingPoster, setSavingPoster] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const videoSource = post.video_source || '';
+
+  // No video type selected.
+  if (!videoSource) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      className: "rsfv-no-action",
+      children: "\u2014"
+    });
+  }
+  const openMediaUploader = () => {
+    const frame = wp.media({
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select or Upload Video', 'rsfv'),
+      button: {
+        text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Use this video', 'rsfv')
+      },
+      library: {
+        type: 'video'
+      },
+      multiple: false
+    });
+    frame.on('select', async () => {
+      const attachment = frame.state().get('selection').first().toJSON();
+      setSaving(true);
+      try {
+        await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+          path: '/rsfv/v1/posts/update-video',
+          method: 'POST',
+          data: {
+            post_id: post.id,
+            video_source: 'self',
+            video_id: attachment.id
+          }
+        });
+        if (onUpdate) {
+          onUpdate(post.id, {
+            video_source: 'self',
+            video_id: attachment.id,
+            video_url: attachment.url,
+            has_video: true
+          });
+        }
+      } catch (error) {
+        console.error('Error saving video:', error);
+      } finally {
+        setSaving(false);
+      }
+    });
+    frame.open();
+  };
+  const openPosterUploader = () => {
+    const frame = wp.media({
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Poster Image', 'rsfv'),
+      button: {
+        text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Use this image', 'rsfv')
+      },
+      library: {
+        type: 'image'
+      },
+      multiple: false
+    });
+    frame.on('select', async () => {
+      const attachment = frame.state().get('selection').first().toJSON();
+      setSavingPoster(true);
+      try {
+        await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+          path: '/rsfv/v1/posts/update-poster',
+          method: 'POST',
+          data: {
+            post_id: post.id,
+            poster_id: attachment.id
+          }
+        });
+        if (onUpdate) {
+          onUpdate(post.id, {
+            poster_id: attachment.id,
+            poster_url: attachment.url
+          });
+        }
+      } catch (error) {
+        console.error('Error saving poster:', error);
+      } finally {
+        setSavingPoster(false);
+      }
+    });
+    frame.open();
+  };
+
+  /**
+   * Validate URL format.
+   *
+   * @param {string} url URL to validate.
+   * @return {boolean} True if valid URL.
+   */
+  const isValidUrl = url => {
+    if (!url) {
+      return false;
+    }
+    try {
+      const parsedUrl = new URL(url);
+      return ['http:', 'https:'].includes(parsedUrl.protocol);
+    } catch (e) {
+      return false;
+    }
+  };
+  const handleEmbedSave = async () => {
+    // Client-side URL validation.
+    if (embedUrl && !isValidUrl(embedUrl)) {
+      alert((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Please enter a valid URL.', 'rsfv'));
+      return;
+    }
+    setSaving(true);
+    try {
+      await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path: '/rsfv/v1/posts/update-video',
+        method: 'POST',
+        data: {
+          post_id: post.id,
+          video_source: 'embed',
+          embed_url: embedUrl
+        }
+      });
+      if (onUpdate) {
+        onUpdate(post.id, {
+          video_source: 'embed',
+          embed_url: embedUrl,
+          has_video: !!embedUrl
+        });
+      }
+    } catch (error) {
+      console.error('Error saving embed URL:', error);
+      alert(error.message || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Error saving embed URL.', 'rsfv'));
+    } finally {
+      setSaving(false);
+    }
+  };
+  const handleRemoveVideo = async () => {
+    if (!confirm((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Are you sure you want to remove the video?', 'rsfv'))) {
+      return;
+    }
+    setSaving(true);
+    try {
+      await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path: '/rsfv/v1/posts/update-video',
+        method: 'POST',
+        data: {
+          post_id: post.id,
+          video_source: 'self',
+          video_id: 0
+        }
+      });
+      if (onUpdate) {
+        onUpdate(post.id, {
+          video_id: 0,
+          video_url: '',
+          has_video: false
+        });
+      }
+    } catch (error) {
+      console.error('Error removing video:', error);
+    } finally {
+      setSaving(false);
+    }
+  };
+  const handleRemovePoster = async () => {
+    if (!confirm((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Are you sure you want to remove the poster?', 'rsfv'))) {
+      return;
+    }
+    setSavingPoster(true);
+    try {
+      await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path: '/rsfv/v1/posts/update-poster',
+        method: 'POST',
+        data: {
+          post_id: post.id,
+          poster_id: 0
+        }
+      });
+      if (onUpdate) {
+        onUpdate(post.id, {
+          poster_id: 0,
+          poster_url: ''
+        });
+      }
+    } catch (error) {
+      console.error('Error removing poster:', error);
+    } finally {
+      setSavingPoster(false);
+    }
+  };
+
+  // Self-hosted video action.
+  if (videoSource === 'self') {
+    const hasVideo = !!post.video_id;
+    const hasPoster = !!post.poster_id;
+    const videoButtonText = hasVideo ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Edit Video', 'rsfv') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Upload Video', 'rsfv');
+    const videoButtonClass = hasVideo ? 'button button-small' : 'button button-small button-primary';
+    const posterButtonText = hasPoster ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Edit Poster', 'rsfv') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set Poster', 'rsfv');
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "rsfv-video-action rsfv-self-action",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "rsfv-action-row",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: videoButtonClass,
+          onClick: openMediaUploader,
+          disabled: saving || savingPoster,
+          children: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Saving...', 'rsfv') : videoButtonText
+        }), hasVideo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "button button-small button-link-delete button-warning",
+          onClick: handleRemoveVideo,
+          disabled: saving || savingPoster,
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'rsfv')
+        })]
+      }), hasVideo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "rsfv-action-row",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "button button-small",
+          onClick: openPosterUploader,
+          disabled: saving || savingPoster,
+          children: savingPoster ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Saving...', 'rsfv') : posterButtonText
+        }), hasPoster && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          className: "button button-small button-link-delete",
+          onClick: handleRemovePoster,
+          disabled: saving || savingPoster,
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'rsfv')
+        })]
+      })]
+    });
+  }
+
+  // Embed video action.
+  if (videoSource === 'embed') {
+    const urlIsValid = !embedUrl || isValidUrl(embedUrl);
+    const hasChanged = embedUrl !== (post.embed_url || '');
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "rsfv-video-action rsfv-embed-action",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+        type: "url",
+        className: `rsfv-embed-input${!urlIsValid ? ' rsfv-invalid-url' : ''}`,
+        value: embedUrl,
+        onChange: e => setEmbedUrl(e.target.value),
+        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter video URL...', 'rsfv'),
+        disabled: saving
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        className: "button button-small button-primary",
+        onClick: handleEmbedSave,
+        disabled: saving || !hasChanged || embedUrl && !urlIsValid,
+        children: saving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Saving...', 'rsfv') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Save', 'rsfv')
+      })]
+    });
+  }
+  return null;
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VideoAction);
+
+/***/ }),
+
+/***/ "./src/tools/components/VideoPreview.js":
+/*!**********************************************!*\
+  !*** ./src/tools/components/VideoPreview.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * Video Preview Component
+ *
+ * Displays video preview for posts with featured videos.
+ *
+ * @package RSFV
+ */
+
+
+
+const VideoPreview = ({
+  post
+}) => {
+  const videoSource = post.video_source || '';
+
+  // No video type selected.
+  if (!videoSource) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+      className: "rsfv-no-video",
+      children: "\u2014"
+    });
+  }
+
+  // Self-hosted video preview.
+  if (videoSource === 'self' && post.video_id) {
+    const videoUrl = post.video_url || '';
+    const posterUrl = post.poster_url || '';
+    if (videoUrl) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "rsfv-video-preview",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("video", {
+          src: videoUrl,
+          poster: posterUrl || undefined,
+          controls: true,
+          muted: true,
+          preload: "metadata"
+        })
+      });
+    }
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+      className: "rsfv-no-video",
+      children: "\u2014"
+    });
+  }
+
+  // Embed video preview.
+  if (videoSource === 'embed' && post.embed_url) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "rsfv-video-preview rsfv-embed-preview",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+        href: post.embed_url,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        className: "rsfv-embed-link",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "dashicons dashicons-video-alt3"
+        }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('View Video', 'rsfv')]
+      })
+    });
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+    className: "rsfv-no-video",
+    children: "\u2014"
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VideoPreview);
+
+/***/ }),
+
+/***/ "./src/tools/components/VideoTypeSelect.js":
+/*!*************************************************!*\
+  !*** ./src/tools/components/VideoTypeSelect.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/**
+ * Video Type Select Component
+ *
+ * Handles video type selection for each post.
+ *
+ * @package RSFV
+ */
+
+
+
+
+
+const VideoTypeSelect = ({
+  post,
+  onUpdate
+}) => {
+  const [saving, setSaving] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const handleSourceChange = async newSource => {
+    setSaving(true);
+    try {
+      await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+        path: '/rsfv/v1/posts/update-source',
+        method: 'POST',
+        data: {
+          post_id: post.id,
+          video_source: newSource
+        }
+      });
+      if (onUpdate) {
+        onUpdate(post.id, {
+          video_source: newSource
+        });
+      }
+    } catch (error) {
+      console.error('Error updating video source:', error);
+    } finally {
+      setSaving(false);
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "rsfv-video-type-select",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+      value: post.video_source || '',
+      onChange: e => handleSourceChange(e.target.value),
+      disabled: saving,
+      className: "rsfv-video-source-select",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+        value: "",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Type', 'rsfv')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+        value: "self",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Self Hosted', 'rsfv')
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+        value: "embed",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Embed', 'rsfv')
+      })]
+    }), saving && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      className: "spinner is-active rsfv-inline-spinner"
+    })]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VideoTypeSelect);
+
+/***/ }),
+
+/***/ "./src/tools/index.js":
+/*!****************************!*\
+  !*** ./src/tools/index.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App */ "./src/tools/App.js");
+/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ "./src/tools/style.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/**
+ * Bulk Actions React App Entry Point
+ *
+ * @package RSFV
+ */
+
+
+
+
+
+const container = document.getElementById('rsfv-tools-app');
+if (container) {
+  const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createRoot)(container);
+  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_App__WEBPACK_IMPORTED_MODULE_1__["default"], {}));
+}
+
+/***/ }),
+
+/***/ "./src/tools/style.css":
+/*!*****************************!*\
+  !*** ./src/tools/style.css ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "@wordpress/api-fetch":
+/*!**********************************!*\
+  !*** external ["wp","apiFetch"] ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["apiFetch"];
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!**********************************!*\
+  !*** external "ReactJSXRuntime" ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = window["ReactJSXRuntime"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"index": 0,
+/******/ 			"./style-index": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkreally_simple_featured_video"] = globalThis["webpackChunkreally_simple_featured_video"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["./style-index"], () => (__webpack_require__("./src/tools/index.js")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

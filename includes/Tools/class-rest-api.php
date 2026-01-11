@@ -81,6 +81,12 @@ class REST_API {
 						'default'           => 20,
 						'sanitize_callback' => 'absint',
 					),
+					'search'    => array(
+						'required'          => false,
+						'type'              => 'string',
+						'default'           => '',
+						'sanitize_callback' => 'sanitize_text_field',
+					),
 				),
 			)
 		);
@@ -242,6 +248,12 @@ class REST_API {
 			'orderby'        => 'date',
 			'order'          => 'DESC',
 		);
+
+		// Add search if provided.
+		$search = $request->get_param( 'search' );
+		if ( ! empty( $search ) ) {
+			$args['s'] = $search;
+		}
 
 		$query = new \WP_Query( $args );
 		$posts = array();

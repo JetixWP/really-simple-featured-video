@@ -43,11 +43,11 @@
 }
 
 /* Tab Content */
-.rsfv-tab-content {
+.rsfv-tab-content .rsfv-manage-videos > * {
 	background: #fff;
 	border: 1px solid #c3c4c7;
 	border-radius: 4px;
-	padding: 20px;
+	padding: 15px;
 }
 
 /* Toolbar */
@@ -77,6 +77,30 @@
 	min-width: 150px;
 }
 
+/* Search */
+.rsfv-search {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-left: auto;
+}
+
+.rsfv-search-spinner {
+	float: none;
+	margin: 0;
+}
+
+.rsfv-search-input {
+	min-width: 200px;
+	padding: 6px 10px;
+}
+
+.rsfv-search-input:focus {
+	border-color: #2271b1;
+	box-shadow: 0 0 0 1px #2271b1;
+	outline: none;
+}
+
 /* Loading */
 .rsfv-loading {
 	display: flex;
@@ -102,6 +126,7 @@
 /* Posts Table */
 .rsfv-posts-table {
 	margin-top: 0;
+	padding: 0 !important;
 }
 
 .rsfv-posts-table td,
@@ -423,6 +448,16 @@
 	.rsfv-toolbar {
 		flex-direction: column;
 		align-items: flex-start;
+	}
+
+	.rsfv-search {
+		margin-left: 0;
+		width: 100%;
+	}
+
+	.rsfv-search-input {
+		min-width: 0;
+		flex: 1;
 	}
 
 	.rsfv-posts-table .column-thumbnail {
