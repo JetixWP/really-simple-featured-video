@@ -10,6 +10,7 @@
 /bin
 /phpunit.xml
 /build
+/src
 .nvmrc
 .wp-env.json
 phpcs.xml.dist
