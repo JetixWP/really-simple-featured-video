@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<div class="wrap rsfv rsfv-tools">
+<div class="wrap rsfv rsfv-tools rsfv-tools-page">
 	<h2><?php esc_html_e( 'RS Featured Video → Tools', 'rsfv' ); ?></h2>
 	<p><?php esc_html_e( 'Manage your featured videos using the powerful tools below.', 'rsfv' ); ?></p>
 	<div id="rsfv-tools-app"></div>

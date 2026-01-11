@@ -19,10 +19,42 @@ class Admin_Tools {
 	 * Handles the output of the Tools page.
 	 */
 	public static function output() {
+		// Hide admin notices on Tools page.
+		self::hide_admin_notices();
+
 		// Enqueue necessary assets.
 		self::enqueue_assets();
 
 		include RSFV_PLUGIN_DIR . 'includes/Tools/Views/html-admin-tools.php';
+	}
+
+	/**
+	 * Hide admin notices on the Tools page.
+	 */
+	public static function hide_admin_notices() {
+		// Remove standard notice hooks.
+		remove_all_actions( 'admin_notices' );
+		remove_all_actions( 'all_admin_notices' );
+		remove_all_actions( 'user_admin_notices' );
+		remove_all_actions( 'network_admin_notices' );
+	}
+
+	/**
+	 * Get inline CSS to hide any notices that still appear.
+	 *
+	 * @return string
+	 */
+	public static function get_hide_notices_css() {
+		return '
+			.rsfv-tools-page .notice,
+			.rsfv-tools-page .updated,
+			.rsfv-tools-page .update-nag,
+			.rsfv-tools-page .error,
+			.rsfv-tools-page #tgmpa-notice,
+			.rsfv-tools-page .tgmpa-notice {
+				display: none !important;
+			}
+		';
 	}
 
 	/**
@@ -54,6 +86,9 @@ class Admin_Tools {
 			array( 'wp-components' ),
 			$asset['version']
 		);
+
+		// Add inline CSS to hide notices.
+		wp_add_inline_style( 'rsfv-tools', self::get_hide_notices_css() );
 
 		wp_localize_script(
 			'rsfv-tools',
