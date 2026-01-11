@@ -4,15 +4,22 @@
  * @package RSFV
  */
 
-import { useState } from '@wordpress/element';
+import { useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import VideoTypeSelect from './VideoTypeSelect';
 import VideoAction from './VideoAction';
 import VideoPreview from './VideoPreview';
 import ThumbnailCell from './ThumbnailCell';
+import { applyFilters, doAction } from '../hooks';
 
 const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 	const [ posts, setPosts ] = useState( initialPosts );
+
+	// Get columns from config, allowing extensions to add more.
+	const columns = useMemo( () => {
+		const baseColumns = window.rsfvTools?.columns || {};
+		return applyFilters( 'rsfv_tools_columns', baseColumns );
+	}, [] );
 
 	// Update posts when initialPosts changes.
 	if ( initialPosts !== posts && initialPosts.length !== posts.length ) {
@@ -48,89 +55,119 @@ const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 				post.id === postId ? { ...post, ...updates } : post
 			)
 		);
+
+		// Trigger action for extensions to listen to.
+		doAction( 'rsfv_tools_post_updated', postId, updates );
+	};
+
+	/**
+	 * Render cell content based on column key.
+	 *
+	 * @param {string} columnKey Column key.
+	 * @param {Object} post      Post data.
+	 * @return {JSX.Element|string} Cell content.
+	 */
+	const renderCellContent = ( columnKey, post ) => {
+		// Allow extensions to override cell content.
+		const customContent = applyFilters(
+			'rsfv_tools_cell_content',
+			null,
+			columnKey,
+			post,
+			handlePostUpdate
+		);
+
+		if ( customContent !== null ) {
+			return customContent;
+		}
+
+		// Default cell renderers.
+		switch ( columnKey ) {
+			case 'thumbnail':
+				return (
+					<ThumbnailCell post={ post } onUpdate={ handlePostUpdate } />
+				);
+
+			case 'title':
+				return (
+					<>
+						<strong>
+							<a
+								href={ post.edit_link }
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{ post.title || __( '(No title)', 'rsfv' ) }
+							</a>
+						</strong>
+						<div className="row-actions">
+							<span className="edit">
+								<a
+									href={ post.edit_link }
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{ __( 'Edit', 'rsfv' ) }
+								</a>
+							</span>
+							{ ' | ' }
+							<span className="view">
+								<a
+									href={ post.permalink }
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{ __( 'View', 'rsfv' ) }
+								</a>
+							</span>
+						</div>
+					</>
+				);
+
+			case 'status':
+				return getVideoStatusBadge( post );
+
+			case 'video_type':
+				return (
+					<VideoTypeSelect
+						post={ post }
+						onUpdate={ handlePostUpdate }
+					/>
+				);
+
+			case 'video_action':
+				return (
+					<VideoAction post={ post } onUpdate={ handlePostUpdate } />
+				);
+
+			case 'video_preview':
+				return <VideoPreview post={ post } />;
+
+			default:
+				// For unknown columns, check if post has data for it.
+				return post[ columnKey ] || '';
+		}
 	};
 
 	return (
 		<table className="rsfv-posts-table wp-list-table widefat fixed striped">
 			<thead>
 				<tr>
-					<th className="column-thumbnail">
-						{ __( 'Thumbnail', 'rsfv' ) }
-					</th>
-					<th className="column-title">{ __( 'Title', 'rsfv' ) }</th>
-					<th className="column-status">
-						{ __( 'Video Status', 'rsfv' ) }
-					</th>
-					<th className="column-video-type">
-						{ __( 'Video Type', 'rsfv' ) }
-					</th>
-					<th className="column-video-action">
-						{ __( 'Action', 'rsfv' ) }
-					</th>
-					<th className="column-video-preview">
-						{ __( 'Video', 'rsfv' ) }
-					</th>
+					{ Object.entries( columns ).map( ( [ key, column ] ) => (
+						<th key={ key } className={ column.class || '' }>
+							{ column.label }
+						</th>
+					) ) }
 				</tr>
 			</thead>
 			<tbody>
 				{ posts.map( ( post ) => (
 					<tr key={ post.id }>
-						<td className="column-thumbnail">
-							<ThumbnailCell
-								post={ post }
-								onUpdate={ handlePostUpdate }
-							/>
-						</td>
-						<td className="column-title">
-							<strong>
-								<a
-									href={ post.edit_link }
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									{ post.title || __( '(No title)', 'rsfv' ) }
-								</a>
-							</strong>
-							<div className="row-actions">
-								<span className="edit">
-									<a
-										href={ post.edit_link }
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										{ __( 'Edit', 'rsfv' ) }
-									</a>
-								</span>
-								{ ' | ' }
-								<span className="view">
-									<a
-										href={ post.permalink }
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										{ __( 'View', 'rsfv' ) }
-									</a>
-								</span>
-							</div>
-						</td>
-						<td className="column-status">
-							{ getVideoStatusBadge( post ) }
-						</td>
-						<td className="column-video-type">
-							<VideoTypeSelect
-								post={ post }
-								onUpdate={ handlePostUpdate }
-							/>
-						</td>
-						<td className="column-video-action">
-							<VideoAction
-								post={ post }
-								onUpdate={ handlePostUpdate }
-							/>
-						</td>
-						<td className="column-video-preview">
-							<VideoPreview post={ post } />
-						</td>
+						{ Object.entries( columns ).map( ( [ key, column ] ) => (
+							<td key={ key } className={ column.class || '' }>
+								{ renderCellContent( key, post ) }
+							</td>
+						) ) }
 					</tr>
 				) ) }
 			</tbody>

@@ -188,6 +188,17 @@ class REST_API {
 				),
 			)
 		);
+
+		/**
+		 * Fires after RSFV Tools REST routes are registered.
+		 *
+		 * Use this hook to register additional REST routes for the Tools page.
+		 *
+		 * @since 0.60.0
+		 *
+		 * @param REST_API $this REST_API instance.
+		 */
+		do_action( 'rsfv_tools_register_routes', $this );
 	}
 
 	/**
@@ -300,7 +311,7 @@ class REST_API {
 		// Build edit link manually to avoid context issues.
 		$edit_link = admin_url( 'post.php?post=' . $post->ID . '&action=edit' );
 
-		return array(
+		$data = array(
 			'id'           => absint( $post->ID ),
 			'title'        => html_entity_decode( get_the_title( $post ), ENT_QUOTES, 'UTF-8' ),
 			'permalink'    => esc_url_raw( get_permalink( $post ) ),
@@ -314,6 +325,16 @@ class REST_API {
 			'poster_id'    => $poster_id ? absint( $poster_id ) : 0,
 			'poster_url'   => $poster_url ? esc_url_raw( $poster_url ) : '',
 		);
+
+		/**
+		 * Filter post data returned by the Tools REST API.
+		 *
+		 * @since 0.60.0
+		 *
+		 * @param array    $data Post data array.
+		 * @param \WP_Post $post Post object.
+		 */
+		return apply_filters( 'rsfv_tools_post_data', $data, $post );
 	}
 
 	/**
