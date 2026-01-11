@@ -127,6 +127,93 @@
 	width: 120px;
 }
 
+/* Thumbnail Cell */
+.rsfv-thumbnail-cell {
+	position: relative;
+	width: 60px;
+	height: 60px;
+	border-radius: 4px;
+	cursor: pointer;
+	margin: 0 auto;
+}
+
+.rsfv-thumbnail-cell .rsfv-thumbnail {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+	border-radius: 4px;
+	display: block;
+}
+
+.rsfv-thumbnail-cell.rsfv-no-thumbnail {
+	background: #f0f0f1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #c3c4c7;
+}
+
+.rsfv-thumbnail-cell.rsfv-no-thumbnail > .dashicons {
+	font-size: 24px;
+	width: 24px;
+	height: 24px;
+}
+
+.rsfv-thumbnail-cell.rsfv-thumbnail-saving {
+	background: #f0f0f1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.rsfv-thumbnail-cell.rsfv-thumbnail-saving .spinner {
+	float: none;
+	margin: 0;
+}
+
+/* Thumbnail Overlay */
+.rsfv-thumbnail-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+
+.rsfv-thumbnail-cell:hover .rsfv-thumbnail-overlay {
+	opacity: 1;
+}
+
+.rsfv-thumbnail-overlay.rsfv-thumbnail-add {
+	background: rgba(34, 113, 177, 0.85);
+}
+
+.rsfv-thumbnail-overlay.rsfv-thumbnail-remove {
+	background: rgba(179, 45, 46, 0.85);
+}
+
+.rsfv-thumbnail-action {
+	background: transparent;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	padding: 0;
+	line-height: 1;
+}
+
+.rsfv-thumbnail-action .dashicons {
+	font-size: 24px;
+	width: 24px;
+	height: 24px;
+}
+
+/* Legacy thumbnail styles - keep for compatibility */
 .rsfv-thumbnail {
 	width: 60px;
 	height: 60px;

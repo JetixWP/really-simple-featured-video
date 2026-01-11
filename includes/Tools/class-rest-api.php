@@ -160,6 +160,28 @@ class REST_API {
 				),
 			)
 		);
+
+		register_rest_route(
+			self::NAMESPACE,
+			'/posts/update-thumbnail',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'update_thumbnail' ),
+				'permission_callback' => array( $this, 'check_permission' ),
+				'args'                => array(
+					'post_id'      => array(
+						'required'          => true,
+						'type'              => 'integer',
+						'sanitize_callback' => 'absint',
+					),
+					'thumbnail_id' => array(
+						'required'          => false,
+						'type'              => 'integer',
+						'sanitize_callback' => 'absint',
+					),
+				),
+			)
+		);
 	}
 
 	/**
@@ -479,6 +501,66 @@ class REST_API {
 				'post_id'    => absint( $post_id ),
 				'poster_id'  => absint( $poster_id ),
 				'poster_url' => $poster_url ? esc_url_raw( $poster_url ) : '',
+			),
+			200
+		);
+	}
+
+	/**
+	 * Update thumbnail (featured image) for a post.
+	 *
+	 * @param WP_REST_Request $request Request object.
+	 *
+	 * @return WP_REST_Response|WP_Error
+	 */
+	public function update_thumbnail( WP_REST_Request $request ) {
+		$post_id      = $request->get_param( 'post_id' );
+		$thumbnail_id = $request->get_param( 'thumbnail_id' );
+
+		$post = get_post( $post_id );
+
+		if ( ! $post ) {
+			return new WP_Error(
+				'invalid_post',
+				__( 'Post not found.', 'rsfv' ),
+				array( 'status' => 404 )
+			);
+		}
+
+		// Validate thumbnail_id is a valid image attachment.
+		if ( $thumbnail_id ) {
+			$attachment = get_post( $thumbnail_id );
+			if ( ! $attachment || 'attachment' !== $attachment->post_type ) {
+				return new WP_Error(
+					'invalid_thumbnail',
+					__( 'Invalid thumbnail image.', 'rsfv' ),
+					array( 'status' => 400 )
+				);
+			}
+
+			// Verify it's an image mime type.
+			$mime_type = get_post_mime_type( $thumbnail_id );
+			if ( strpos( $mime_type, 'image/' ) !== 0 ) {
+				return new WP_Error(
+					'invalid_mime_type',
+					__( 'Selected file is not an image.', 'rsfv' ),
+					array( 'status' => 400 )
+				);
+			}
+
+			set_post_thumbnail( $post_id, $thumbnail_id );
+			$thumbnail_url = get_the_post_thumbnail_url( $post_id, 'thumbnail' );
+		} else {
+			delete_post_thumbnail( $post_id );
+			$thumbnail_url = '';
+		}
+
+		return new WP_REST_Response(
+			array(
+				'success'       => true,
+				'post_id'       => absint( $post_id ),
+				'thumbnail_id'  => absint( $thumbnail_id ),
+				'thumbnail_url' => $thumbnail_url ? esc_url_raw( $thumbnail_url ) : '',
 			),
 			200
 		);

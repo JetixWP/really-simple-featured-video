@@ -9,6 +9,7 @@ import { __ } from '@wordpress/i18n';
 import VideoTypeSelect from './VideoTypeSelect';
 import VideoAction from './VideoAction';
 import VideoPreview from './VideoPreview';
+import ThumbnailCell from './ThumbnailCell';
 
 const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 	const [ posts, setPosts ] = useState( initialPosts );
@@ -75,17 +76,10 @@ const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 				{ posts.map( ( post ) => (
 					<tr key={ post.id }>
 						<td className="column-thumbnail">
-							{ post.thumbnail ? (
-								<img
-									src={ post.thumbnail }
-									alt={ post.title }
-									className="rsfv-thumbnail"
-								/>
-							) : (
-								<div className="rsfv-no-thumbnail">
-									<span className="dashicons dashicons-format-image"></span>
-								</div>
-							) }
+							<ThumbnailCell
+								post={ post }
+								onUpdate={ handlePostUpdate }
+							/>
 						</td>
 						<td className="column-title">
 							<strong>
