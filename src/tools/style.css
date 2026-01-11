@@ -4,8 +4,75 @@
  * @package RSFV
  */
 
+:root {
+--jwp-rsfv__color-background: #f0f2eb;
+--jwp-rsfv__color-brand: #008710;
+--jwp-rsfv__color-brand-light: #f1faee;
+}
+
 .rsfv-tools-app {
 	max-width: 100%;
+}
+
+body.jetixwp_page_rsfv-tools #wpcontent {
+    padding-left: 0px;
+}
+
+.wrap.rsfv.rsfv-tools {
+    margin: 0;
+}
+
+.wrap.rsfv.rsfv-tools .plugin-header {
+	padding: 20px 0;
+	background-color: var(--jwp-rsfv__color-background);
+	border-bottom: 1px solid rgba(0,0,0, 0.1);
+	-webkit-box-shadow: 0px 2px 6px rgba(35, 40, 45, .07);
+	box-shadow: 0px 2px 6px rgba(35, 40, 45, .07);
+}
+
+.plugin-header .plugin-header-wrap {
+	display: flex;
+	gap: 2rem;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.plugin-header .plugin-version > span {
+	font-weight: 700;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	border-radius: 0.375rem;
+	border: 1px solid rgba(0,0,0, 0.1);
+}
+
+.wrap.rsfv .plugin-header .plugin-info,
+.plugin-header .brand-info {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.wrap.rsfv .plugin-header .menu-title {
+	padding: 0;
+}
+
+.plugin-header .brand-info .brand-logo {
+	width: auto;
+	height: 2.75rem;
+}
+
+.plugin-header .plugin-header-wrap,
+.rsfv-tools-app > .rsfv-tab-content {
+	margin-left: 30px;
+	max-width: 1600px;
+	min-width: 920px;
+	padding-right: 40px;
+}
+
+.menu-title {
+  font-weight: bold !important;
 }
 
 /* Tabs */
