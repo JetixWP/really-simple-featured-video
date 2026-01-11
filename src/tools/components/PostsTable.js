@@ -6,7 +6,8 @@
 
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import VideoActionCell from './VideoActionCell';
+import VideoTypeSelect from './VideoTypeSelect';
+import VideoAction from './VideoAction';
 
 const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 	const [ posts, setPosts ] = useState( initialPosts );
@@ -58,8 +59,11 @@ const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 					<th className="column-status">
 						{ __( 'Video Status', 'rsfv' ) }
 					</th>
+					<th className="column-video-type">
+						{ __( 'Video Type', 'rsfv' ) }
+					</th>
 					<th className="column-video-action">
-						{ __( 'Video Type & Action', 'rsfv' ) }
+						{ __( 'Action', 'rsfv' ) }
 					</th>
 				</tr>
 			</thead>
@@ -114,8 +118,14 @@ const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 						<td className="column-status">
 							{ getVideoStatusBadge( post ) }
 						</td>
+						<td className="column-video-type">
+							<VideoTypeSelect
+								post={ post }
+								onUpdate={ handlePostUpdate }
+							/>
+						</td>
 						<td className="column-video-action">
-							<VideoActionCell
+							<VideoAction
 								post={ post }
 								onUpdate={ handlePostUpdate }
 							/>
