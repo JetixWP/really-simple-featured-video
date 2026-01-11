@@ -124,15 +124,15 @@ const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 					</>
 				);
 
-			case 'status':
-				return getVideoStatusBadge( post );
-
-			case 'video_type':
+			case 'status_type':
 				return (
-					<VideoTypeSelect
-						post={ post }
-						onUpdate={ handlePostUpdate }
-					/>
+					<div className="rsfv-status-type">
+						{ getVideoStatusBadge( post ) }
+						<VideoTypeSelect
+							post={ post }
+							onUpdate={ handlePostUpdate }
+						/>
+					</div>
 				);
 
 			case 'video_action':

@@ -137,14 +137,9 @@ class Admin_Tools {
 				'class'    => 'column-title',
 				'sortable' => false,
 			),
-			'status'        => array(
-				'label'    => __( 'Video Status', 'rsfv' ),
-				'class'    => 'column-status',
-				'sortable' => false,
-			),
-			'video_type'    => array(
-				'label'    => __( 'Video Type', 'rsfv' ),
-				'class'    => 'column-video-type',
+			'status_type'   => array(
+				'label'    => __( 'Video Status & Type', 'rsfv' ),
+				'class'    => 'column-status-type',
 				'sortable' => false,
 			),
 			'video_action'  => array(

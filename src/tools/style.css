@@ -284,6 +284,11 @@ body.jetixwp_page_rsfv-tools #wpcontent {
 .rsfv-posts-table th {
 	vertical-align: middle;
 	text-align: center;
+	padding: 20px 10px;
+}
+
+.rsfv-posts-table tbody tr {
+	min-height: 80px;
 }
 
 .rsfv-posts-table .column-title {
@@ -294,9 +299,16 @@ body.jetixwp_page_rsfv-tools #wpcontent {
 	width: 80px;
 }
 
-.rsfv-posts-table .column-status,
-.rsfv-posts-table .column-type {
-	width: 120px;
+.rsfv-posts-table .column-status-type {
+	width: 160px;
+}
+
+/* Status & Type Combined Cell */
+.rsfv-status-type {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
 }
 
 .rsfv-posts-table .column-actions {
