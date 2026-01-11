@@ -37,6 +37,9 @@ class Admin_Tools {
 
 		$asset = require $asset_file;
 
+		// Enqueue media scripts for video upload.
+		wp_enqueue_media();
+
 		wp_enqueue_script(
 			'rsfv-tools',
 			RSFV_PLUGIN_URL . 'assets/js/tools/index.js',

@@ -4,9 +4,18 @@
  * @package RSFV
  */
 
+import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import VideoActionCell from './VideoActionCell';
 
-const PostsTable = ( { posts, onRefresh } ) => {
+const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
+	const [ posts, setPosts ] = useState( initialPosts );
+
+	// Update posts when initialPosts changes.
+	if ( initialPosts !== posts && initialPosts.length !== posts.length ) {
+		setPosts( initialPosts );
+	}
+
 	if ( ! posts || posts.length === 0 ) {
 		return (
 			<div className="rsfv-no-posts">
@@ -30,13 +39,12 @@ const PostsTable = ( { posts, onRefresh } ) => {
 		);
 	};
 
-	const getVideoType = ( post ) => {
-		if ( ! post.has_video ) {
-			return '—';
-		}
-		return post.video_source === 'self'
-			? __( 'Self Hosted', 'rsfv' )
-			: __( 'Embed', 'rsfv' );
+	const handlePostUpdate = ( postId, updates ) => {
+		setPosts( ( currentPosts ) =>
+			currentPosts.map( ( post ) =>
+				post.id === postId ? { ...post, ...updates } : post
+			)
+		);
 	};
 
 	return (
@@ -50,11 +58,8 @@ const PostsTable = ( { posts, onRefresh } ) => {
 					<th className="column-status">
 						{ __( 'Video Status', 'rsfv' ) }
 					</th>
-					<th className="column-type">
-						{ __( 'Video Type', 'rsfv' ) }
-					</th>
-					<th className="column-actions">
-						{ __( 'Actions', 'rsfv' ) }
+					<th className="column-video-action">
+						{ __( 'Video Type & Action', 'rsfv' ) }
 					</th>
 				</tr>
 			</thead>
@@ -109,18 +114,11 @@ const PostsTable = ( { posts, onRefresh } ) => {
 						<td className="column-status">
 							{ getVideoStatusBadge( post ) }
 						</td>
-						<td className="column-type">{ getVideoType( post ) }</td>
-						<td className="column-actions">
-							<a
-								href={ post.edit_link }
-								className="button button-small"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								{ post.has_video
-									? __( 'Edit Video', 'rsfv' )
-									: __( 'Add Video', 'rsfv' ) }
-							</a>
+						<td className="column-video-action">
+							<VideoActionCell
+								post={ post }
+								onUpdate={ handlePostUpdate }
+							/>
 						</td>
 					</tr>
 				) ) }
