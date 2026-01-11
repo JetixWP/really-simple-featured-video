@@ -1,11 +1,11 @@
 <?php
 /**
- * Bulk Actions handler.
+ * Tools handler.
  *
  * @package RSFV
  */
 
-namespace RSFV\BulkActions;
+namespace RSFV\Tools;
 
 use RSFV\Options;
 
@@ -19,6 +19,13 @@ class Register {
 	 * @var $instance
 	 */
 	protected static $instance;
+
+	/**
+	 * REST API instance.
+	 *
+	 * @var REST_API
+	 */
+	public $rest_api;
 
 	/**
 	 * Get a class instance.
@@ -40,6 +47,9 @@ class Register {
 		// Include required files.
 		$this->includes();
 
+		// Initialize REST API.
+		$this->rest_api = REST_API::get_instance();
+
 		add_action( 'rsfv_register_admin_menus', array( $this, 'register_menu_page' ) );
 	}
 
@@ -47,7 +57,8 @@ class Register {
 	 * Include required files.
 	 */
 	protected function includes() {
-		require_once RSFV_PLUGIN_DIR . 'includes/BulkActions/class-admin-bulk-actions.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Tools/class-admin-tools.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Tools/class-rest-api.php';
 	}
 
 	/**
@@ -60,11 +71,11 @@ class Register {
 	public function register_menu_page( $primary_slug ) {
 		add_submenu_page(
 			$primary_slug,
-			__( 'RSFV Bulk Actions', 'rsfv' ),
-			__( '&nbsp;↳ Bulk Actions', 'rsfv' ),
+			__( 'RSFV Tools', 'rsfv' ),
+			__( '&nbsp;↳ Video Tools', 'rsfv' ),
 			'manage_options',
-			'rsfv-bulk-actions',
-			array( $this, 'render_bulk_actions_page' ),
+			'rsfv-tools',
+			array( $this, 'render_tools_page' ),
 			RSFV_PLUGIN_DEFAULT_PRIORITY
 		);
 	}
@@ -72,7 +83,7 @@ class Register {
 	/**
 	 * Render Bulk Actions page.
 	 */
-	public function render_bulk_actions_page() {
-		Admin_Bulk_Actions::output();
+	public function render_tools_page() {
+		Admin_Tools::output();
 	}
 }

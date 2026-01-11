@@ -8,7 +8,7 @@
 namespace RSFV;
 
 use RSFV\Settings\Register;
-use RSFV\BulkActions\Register as BulkActions;
+use RSFV\Tools\Register as Tools;
 use RSFV\Compatibility\Plugin_Provider;
 use RSFV\Compatibility\Theme_Provider;
 use RSFV\Featuresets\Register_Featuresets as Featuresets;
@@ -41,9 +41,9 @@ final class Plugin {
 	/**
 	 * Bulk Actions instance.
 	 *
-	 * @var $bulk_actions_provider
+	 * @var $tools_provider
 	 */
-	public $bulk_actions_provider;
+	public $tools_provider;
 
 	/**
 	 * Metabox instance.
@@ -141,7 +141,7 @@ final class Plugin {
 		// Load classes.
 		// Let's call these providers.
 		$this->registration_provider = Register::get_instance();
-		$this->bulk_actions_provider = BulkActions::get_instance();
+		$this->tools_provider        = Tools::get_instance();
 		$this->metabox_provider      = Metabox::get_instance();
 		$this->featuresets_provider  = Featuresets::get_instance();
 		$this->shortcode_provider    = Shortcode::get_instance();
@@ -182,7 +182,7 @@ final class Plugin {
 		// Core.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-options.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Settings/class-register.php';
-		require_once RSFV_PLUGIN_DIR . 'includes/BulkActions/class-register.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Tools/class-register.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-metabox.php';
 
 		// Core overrides.
