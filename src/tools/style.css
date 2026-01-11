@@ -43,11 +43,95 @@
 }
 
 /* Tab Content */
-.rsfv-tab-content .rsfv-manage-videos > * {
+.rsfv-content-wrapper {
+	display: flex;
+	gap: 20px;
+	align-items: flex-start;
+}
+
+.rsfv-main-content {
+	flex: 1;
+	min-width: 0;
+}
+
+.rsfv-main-content .rsfv-manage-videos > * {
 	background: #fff;
 	border: 1px solid #c3c4c7;
 	border-radius: 4px;
 	padding: 15px;
+}
+
+/* Sidebar */
+.rsfv-sidebar {
+	width: 280px;
+	flex-shrink: 0;
+}
+
+.rsfv-sidebar-panel {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 15px;
+	margin-bottom: 15px;
+}
+
+.rsfv-sidebar-panel:last-child {
+	margin-bottom: 0;
+}
+
+.rsfv-sidebar-title {
+	margin: 0 0 12px;
+	padding: 0 0 10px;
+	border-bottom: 1px solid #e0e0e0;
+	font-size: 14px;
+	font-weight: 600;
+	color: #1e1e1e;
+}
+
+.rsfv-sidebar-tips {
+	margin: 0;
+	padding: 0 0 0 18px;
+	list-style: disc;
+}
+
+.rsfv-sidebar-tips li {
+	margin-bottom: 8px;
+	font-size: 13px;
+	line-height: 1.5;
+	color: #50575e;
+}
+
+.rsfv-sidebar-tips li:last-child {
+	margin-bottom: 0;
+}
+
+.rsfv-sidebar-shortcuts {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rsfv-sidebar-shortcuts li {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 8px;
+	font-size: 13px;
+	color: #50575e;
+}
+
+.rsfv-sidebar-shortcuts li:last-child {
+	margin-bottom: 0;
+}
+
+.rsfv-sidebar-shortcuts kbd {
+	background: #f0f0f1;
+	border: 1px solid #c3c4c7;
+	border-radius: 3px;
+	padding: 2px 6px;
+	font-size: 12px;
+	font-family: inherit;
+	color: #1e1e1e;
 }
 
 /* Toolbar */
@@ -444,6 +528,27 @@
 }
 
 /* Responsive */
+@media screen and (max-width: 1200px) {
+	.rsfv-sidebar {
+		width: 240px;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.rsfv-content-wrapper {
+		flex-direction: column;
+	}
+
+	.rsfv-sidebar {
+		width: 100%;
+		order: -1;
+	}
+
+	.rsfv-sidebar-panel {
+		padding: 12px;
+	}
+}
+
 @media screen and (max-width: 782px) {
 	.rsfv-toolbar {
 		flex-direction: column;

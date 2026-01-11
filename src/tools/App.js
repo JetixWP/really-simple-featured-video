@@ -7,6 +7,7 @@
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ManageFeaturedVideos from './components/ManageFeaturedVideos';
+import Sidebar from './components/Sidebar';
 
 const App = () => {
 	const [ activeTab, setActiveTab ] = useState( 'manage' );
@@ -35,7 +36,12 @@ const App = () => {
 			</div>
 
 			<div className="rsfv-tab-content">
-				{ activeTab === 'manage' && <ManageFeaturedVideos /> }
+				<div className="rsfv-content-wrapper">
+					<div className="rsfv-main-content">
+						{ activeTab === 'manage' && <ManageFeaturedVideos /> }
+					</div>
+					<Sidebar />
+				</div>
 			</div>
 		</div>
 	);
