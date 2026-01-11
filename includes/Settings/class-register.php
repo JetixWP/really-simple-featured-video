@@ -80,12 +80,15 @@ class Register {
 			__( 'Featured Video', 'rsfv' ),
 			'manage_options',
 			'rsfv-settings',
-			array( $this, 'settings_page' )
+			array( $this, 'settings_page' ),
+			RSFV_PLUGIN_DEFAULT_PRIORITY
 		);
 
 		// Remove duplicate menu hack.
 		// Note: It needs to go after the above add_submenu_page call.
 		remove_submenu_page( $primary_slug, $primary_slug );
+
+		do_action( 'rsfv_register_admin_menus', $primary_slug );
 	}
 
 	/**

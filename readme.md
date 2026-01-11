@@ -30,6 +30,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Support for Core themes** - We support all the newer core themes such as TwentyTwenty Four to Classic themes.
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
+* **Manage Featured Videos** - Manage featured videos from one single place for all your post types and skip the repetitive steps of going to the edit screen to edit each post/page/product individually.
 
 
 == 👉️ Video Autoplay on Hover Support ==
