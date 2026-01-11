@@ -8,6 +8,7 @@ import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import VideoTypeSelect from './VideoTypeSelect';
 import VideoAction from './VideoAction';
+import VideoPreview from './VideoPreview';
 
 const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 	const [ posts, setPosts ] = useState( initialPosts );
@@ -64,6 +65,9 @@ const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 					</th>
 					<th className="column-video-action">
 						{ __( 'Action', 'rsfv' ) }
+					</th>
+					<th className="column-video-preview">
+						{ __( 'Video', 'rsfv' ) }
 					</th>
 				</tr>
 			</thead>
@@ -129,6 +133,9 @@ const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 								post={ post }
 								onUpdate={ handlePostUpdate }
 							/>
+						</td>
+						<td className="column-video-preview">
+							<VideoPreview post={ post } />
 						</td>
 					</tr>
 				) ) }

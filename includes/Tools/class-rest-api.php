@@ -138,6 +138,28 @@ class REST_API {
 				),
 			)
 		);
+
+		register_rest_route(
+			self::NAMESPACE,
+			'/posts/update-poster',
+			array(
+				'methods'             => WP_REST_Server::CREATABLE,
+				'callback'            => array( $this, 'update_poster' ),
+				'permission_callback' => array( $this, 'check_permission' ),
+				'args'                => array(
+					'post_id'   => array(
+						'required'          => true,
+						'type'              => 'integer',
+						'sanitize_callback' => 'absint',
+					),
+					'poster_id' => array(
+						'required'          => false,
+						'type'              => 'integer',
+						'sanitize_callback' => 'absint',
+					),
+				),
+			)
+		);
 	}
 
 	/**
@@ -224,20 +246,39 @@ class REST_API {
 		$video_source = get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true );
 		$video_id     = get_post_meta( $post->ID, RSFV_META_KEY, true );
 		$embed_url    = get_post_meta( $post->ID, RSFV_EMBED_META_KEY, true );
+		$poster_id    = get_post_meta( $post->ID, RSFV_POSTER_META_KEY, true );
 		$has_video    = ! empty( $video_id ) || ! empty( $embed_url );
 
 		$thumbnail = get_the_post_thumbnail_url( $post->ID, 'thumbnail' );
 
+		// Get video URL for self-hosted videos.
+		$video_url = '';
+		if ( $video_id ) {
+			$video_url = wp_get_attachment_url( $video_id );
+		}
+
+		// Get poster URL.
+		$poster_url = '';
+		if ( $poster_id ) {
+			$poster_url = wp_get_attachment_url( $poster_id );
+		}
+
+		// Build edit link manually to avoid context issues.
+		$edit_link = admin_url( 'post.php?post=' . $post->ID . '&action=edit' );
+
 		return array(
 			'id'           => absint( $post->ID ),
 			'title'        => esc_html( get_the_title( $post ) ),
-			'permalink'    => esc_url( get_permalink( $post ) ),
-			'edit_link'    => esc_url( get_edit_post_link( $post->ID, 'raw' ) ),
-			'thumbnail'    => $thumbnail ? esc_url( $thumbnail ) : '',
+			'permalink'    => esc_url_raw( get_permalink( $post ) ),
+			'edit_link'    => esc_url_raw( $edit_link ),
+			'thumbnail'    => $thumbnail ? esc_url_raw( $thumbnail ) : '',
 			'has_video'    => (bool) $has_video,
 			'video_source' => sanitize_key( $video_source ),
 			'video_id'     => $video_id ? absint( $video_id ) : 0,
-			'embed_url'    => $embed_url ? esc_url( $embed_url ) : '',
+			'video_url'    => $video_url ? esc_url_raw( $video_url ) : '',
+			'embed_url'    => $embed_url ? esc_url_raw( $embed_url ) : '',
+			'poster_id'    => $poster_id ? absint( $poster_id ) : 0,
+			'poster_url'   => $poster_url ? esc_url_raw( $poster_url ) : '',
 		);
 	}
 
@@ -356,8 +397,13 @@ class REST_API {
 		// Update video source.
 		update_post_meta( $post_id, RSFV_SOURCE_META_KEY, sanitize_key( $video_source ) );
 
-		if ( 'self' === $video_source && $video_id ) {
-			update_post_meta( $post_id, RSFV_META_KEY, absint( $video_id ) );
+		if ( 'self' === $video_source ) {
+			if ( $video_id ) {
+				update_post_meta( $post_id, RSFV_META_KEY, absint( $video_id ) );
+			} else {
+				// Remove video if video_id is 0.
+				delete_post_meta( $post_id, RSFV_META_KEY );
+			}
 			// Clear embed URL when switching to self-hosted.
 			delete_post_meta( $post_id, RSFV_EMBED_META_KEY );
 		} elseif ( 'embed' === $video_source ) {
@@ -373,6 +419,66 @@ class REST_API {
 				'video_source' => sanitize_key( $video_source ),
 				'video_id'     => absint( $video_id ),
 				'embed_url'    => esc_url( $embed_url ),
+			),
+			200
+		);
+	}
+
+	/**
+	 * Update poster image for a post.
+	 *
+	 * @param WP_REST_Request $request Request object.
+	 *
+	 * @return WP_REST_Response|WP_Error
+	 */
+	public function update_poster( WP_REST_Request $request ) {
+		$post_id   = $request->get_param( 'post_id' );
+		$poster_id = $request->get_param( 'poster_id' );
+
+		$post = get_post( $post_id );
+
+		if ( ! $post ) {
+			return new WP_Error(
+				'invalid_post',
+				__( 'Post not found.', 'rsfv' ),
+				array( 'status' => 404 )
+			);
+		}
+
+		// Validate poster_id is a valid image attachment.
+		if ( $poster_id ) {
+			$attachment = get_post( $poster_id );
+			if ( ! $attachment || 'attachment' !== $attachment->post_type ) {
+				return new WP_Error(
+					'invalid_poster',
+					__( 'Invalid poster image.', 'rsfv' ),
+					array( 'status' => 400 )
+				);
+			}
+
+			// Verify it's an image mime type.
+			$mime_type = get_post_mime_type( $poster_id );
+			if ( strpos( $mime_type, 'image/' ) !== 0 ) {
+				return new WP_Error(
+					'invalid_mime_type',
+					__( 'Selected file is not an image.', 'rsfv' ),
+					array( 'status' => 400 )
+				);
+			}
+
+			update_post_meta( $post_id, RSFV_POSTER_META_KEY, absint( $poster_id ) );
+			$poster_url = wp_get_attachment_url( $poster_id );
+		} else {
+			delete_post_meta( $post_id, RSFV_POSTER_META_KEY );
+			$poster_url = '';
+		}
+
+		return new WP_REST_Response(
+			array(
+				'success'    => true,
+				'post_id'    => absint( $post_id ),
+				'poster_id'  => absint( $poster_id ),
+				'poster_url' => $poster_url ? esc_url_raw( $poster_url ) : '',
 			),
 			200
 		);
