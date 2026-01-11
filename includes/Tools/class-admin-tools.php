@@ -80,8 +80,8 @@ class Admin_Tools {
 
 			if ( $post_type_obj ) {
 				$options[] = array(
-					'value' => $post_type,
-					'label' => $post_type_obj->labels->name,
+					'value' => sanitize_key( $post_type ),
+					'label' => esc_html( $post_type_obj->labels->name ),
 				);
 			}
 		}

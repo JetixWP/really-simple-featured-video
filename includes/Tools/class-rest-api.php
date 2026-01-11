@@ -169,7 +169,7 @@ class REST_API {
 		$page      = $request->get_param( 'page' );
 		$per_page  = $request->get_param( 'per_page' );
 
-		// Validate post type is enabled.
+		// Validate post type is enabled in plugin settings.
 		$enabled_types = get_post_types();
 
 		if ( ! in_array( $post_type, $enabled_types, true ) ) {
@@ -180,12 +180,21 @@ class REST_API {
 			);
 		}
 
+		// Double-check post type exists in WordPress.
+		if ( ! post_type_exists( $post_type ) ) {
+			return new WP_Error(
+				'invalid_post_type',
+				__( 'Invalid post type.', 'rsfv' ),
+				array( 'status' => 400 )
+			);
+		}
+
 		// Query posts.
 		$args = array(
-			'post_type'      => $post_type,
+			'post_type'      => sanitize_key( $post_type ),
 			'post_status'    => 'any',
-			'posts_per_page' => $per_page,
-			'paged'          => $page,
+			'posts_per_page' => min( absint( $per_page ), 100 ), // Limit max per page to 100.
+			'paged'          => absint( $page ),
 			'orderby'        => 'date',
 			'order'          => 'DESC',
 		);
@@ -220,15 +229,15 @@ class REST_API {
 		$thumbnail = get_the_post_thumbnail_url( $post->ID, 'thumbnail' );
 
 		return array(
-			'id'           => $post->ID,
-			'title'        => get_the_title( $post ),
-			'permalink'    => get_permalink( $post ),
-			'edit_link'    => get_edit_post_link( $post->ID, 'raw' ),
-			'thumbnail'    => $thumbnail ? $thumbnail : '',
-			'has_video'    => $has_video,
-			'video_source' => $video_source ? $video_source : '',
-			'video_id'     => $video_id ? (int) $video_id : 0,
-			'embed_url'    => $embed_url ? $embed_url : '',
+			'id'           => absint( $post->ID ),
+			'title'        => esc_html( get_the_title( $post ) ),
+			'permalink'    => esc_url( get_permalink( $post ) ),
+			'edit_link'    => esc_url( get_edit_post_link( $post->ID, 'raw' ) ),
+			'thumbnail'    => $thumbnail ? esc_url( $thumbnail ) : '',
+			'has_video'    => (bool) $has_video,
+			'video_source' => sanitize_key( $video_source ),
+			'video_id'     => $video_id ? absint( $video_id ) : 0,
+			'embed_url'    => $embed_url ? esc_url( $embed_url ) : '',
 		);
 	}
 
@@ -265,14 +274,14 @@ class REST_API {
 		if ( empty( $video_source ) ) {
 			delete_post_meta( $post_id, RSFV_SOURCE_META_KEY );
 		} else {
-			update_post_meta( $post_id, RSFV_SOURCE_META_KEY, $video_source );
+			update_post_meta( $post_id, RSFV_SOURCE_META_KEY, sanitize_key( $video_source ) );
 		}
 
 		return new WP_REST_Response(
 			array(
 				'success'      => true,
-				'post_id'      => $post_id,
-				'video_source' => $video_source,
+				'post_id'      => absint( $post_id ),
+				'video_source' => sanitize_key( $video_source ),
 			),
 			200
 		);
@@ -301,15 +310,58 @@ class REST_API {
 			);
 		}
 
+		// Validate video source.
+		if ( ! in_array( $video_source, array( 'self', 'embed' ), true ) ) {
+			return new WP_Error(
+				'invalid_source',
+				__( 'Invalid video source type.', 'rsfv' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		// Validate video_id is a valid attachment.
+		if ( 'self' === $video_source && $video_id ) {
+			$attachment = get_post( $video_id );
+			if ( ! $attachment || 'attachment' !== $attachment->post_type ) {
+				return new WP_Error(
+					'invalid_video',
+					__( 'Invalid video attachment.', 'rsfv' ),
+					array( 'status' => 400 )
+				);
+			}
+
+			// Verify it's a video mime type.
+			$mime_type = get_post_mime_type( $video_id );
+			if ( strpos( $mime_type, 'video/' ) !== 0 ) {
+				return new WP_Error(
+					'invalid_mime_type',
+					__( 'Selected file is not a video.', 'rsfv' ),
+					array( 'status' => 400 )
+				);
+			}
+		}
+
+		// Validate embed URL.
+		if ( 'embed' === $video_source && ! empty( $embed_url ) ) {
+			// Use wp_http_validate_url for additional URL validation.
+			if ( ! wp_http_validate_url( $embed_url ) ) {
+				return new WP_Error(
+					'invalid_url',
+					__( 'Invalid embed URL.', 'rsfv' ),
+					array( 'status' => 400 )
+				);
+			}
+		}
+
 		// Update video source.
-		update_post_meta( $post_id, RSFV_SOURCE_META_KEY, $video_source );
+		update_post_meta( $post_id, RSFV_SOURCE_META_KEY, sanitize_key( $video_source ) );
 
 		if ( 'self' === $video_source && $video_id ) {
-			update_post_meta( $post_id, RSFV_META_KEY, $video_id );
+			update_post_meta( $post_id, RSFV_META_KEY, absint( $video_id ) );
 			// Clear embed URL when switching to self-hosted.
 			delete_post_meta( $post_id, RSFV_EMBED_META_KEY );
 		} elseif ( 'embed' === $video_source ) {
-			update_post_meta( $post_id, RSFV_EMBED_META_KEY, $embed_url );
+			update_post_meta( $post_id, RSFV_EMBED_META_KEY, esc_url_raw( $embed_url ) );
 			// Clear self-hosted video when switching to embed.
 			delete_post_meta( $post_id, RSFV_META_KEY );
 		}
@@ -317,10 +369,10 @@ class REST_API {
 		return new WP_REST_Response(
 			array(
 				'success'      => true,
-				'post_id'      => $post_id,
-				'video_source' => $video_source,
-				'video_id'     => $video_id,
-				'embed_url'    => $embed_url,
+				'post_id'      => absint( $post_id ),
+				'video_source' => sanitize_key( $video_source ),
+				'video_id'     => absint( $video_id ),
+				'embed_url'    => esc_url( $embed_url ),
 			),
 			200
 		);

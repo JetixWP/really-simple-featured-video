@@ -70,7 +70,31 @@ const VideoAction = ( { post, onUpdate } ) => {
 		frame.open();
 	};
 
+	/**
+	 * Validate URL format.
+	 *
+	 * @param {string} url URL to validate.
+	 * @return {boolean} True if valid URL.
+	 */
+	const isValidUrl = ( url ) => {
+		if ( ! url ) {
+			return false;
+		}
+		try {
+			const parsedUrl = new URL( url );
+			return [ 'http:', 'https:' ].includes( parsedUrl.protocol );
+		} catch ( e ) {
+			return false;
+		}
+	};
+
 	const handleEmbedSave = async () => {
+		// Client-side URL validation.
+		if ( embedUrl && ! isValidUrl( embedUrl ) ) {
+			alert( __( 'Please enter a valid URL.', 'rsfv' ) );
+			return;
+		}
+
 		setSaving( true );
 
 		try {
@@ -93,6 +117,7 @@ const VideoAction = ( { post, onUpdate } ) => {
 			}
 		} catch ( error ) {
 			console.error( 'Error saving embed URL:', error );
+			alert( error.message || __( 'Error saving embed URL.', 'rsfv' ) );
 		} finally {
 			setSaving( false );
 		}
@@ -123,11 +148,14 @@ const VideoAction = ( { post, onUpdate } ) => {
 
 	// Embed video action.
 	if ( videoSource === 'embed' ) {
+		const urlIsValid = ! embedUrl || isValidUrl( embedUrl );
+		const hasChanged = embedUrl !== ( post.embed_url || '' );
+
 		return (
 			<div className="rsfv-video-action rsfv-embed-action">
 				<input
 					type="url"
-					className="rsfv-embed-input"
+					className={ `rsfv-embed-input${ ! urlIsValid ? ' rsfv-invalid-url' : '' }` }
 					value={ embedUrl }
 					onChange={ ( e ) => setEmbedUrl( e.target.value ) }
 					placeholder={ __( 'Enter video URL...', 'rsfv' ) }
@@ -136,7 +164,7 @@ const VideoAction = ( { post, onUpdate } ) => {
 				<button
 					className="button button-small button-primary"
 					onClick={ handleEmbedSave }
-					disabled={ saving || embedUrl === ( post.embed_url || '' ) }
+					disabled={ saving || ! hasChanged || ( embedUrl && ! urlIsValid ) }
 				>
 					{ saving ? __( 'Saving...', 'rsfv' ) : __( 'Save', 'rsfv' ) }
 				</button>

@@ -238,6 +238,16 @@
 	max-width: 250px;
 }
 
+.rsfv-embed-input.rsfv-invalid-url {
+	border-color: #d63638;
+	box-shadow: 0 0 0 1px #d63638;
+}
+
+.rsfv-embed-input.rsfv-invalid-url:focus {
+	border-color: #d63638;
+	box-shadow: 0 0 0 1px #d63638;
+}
+
 .rsfv-no-action {
 	color: #999;
 }
