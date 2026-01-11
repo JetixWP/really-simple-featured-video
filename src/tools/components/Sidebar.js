@@ -12,6 +12,17 @@ const Sidebar = () => {
 
 	return (
 		<div className="rsfv-sidebar">
+			<div className="rsfv-sidebar-panel">
+				<h3 className="rsfv-sidebar-title">
+					{ __( '🙋‍♂️ Important Note', 'rsfv' ) }
+				</h3>
+				<p>{ __( "If Featured Videos are not working with your theme, try selecting a supported", 'rsfv' ) } <a href={ `${ window.rsfvTools?.settingsUrl || '#' }` }>{ __( "Theme Compatibility Engine", "rsfv" ) }</a> { __( "in Settings.", "rsfv" ) }</p>
+
+				<p>{ __( "If your theme is not listed and the issue persists, submit a request on our GitHub repository. Please note that PRO subscribers receive priority support over GitHub requests, which supports the continuous development of the plugin.", "rsfv" ) }</p>
+
+				<p><a className='button button-primary' href={ `${ window.rsfvTools?.settingsUrl || '#' }` }>{ __( 'Go to Settings', 'rsfv' ) }</a>&nbsp;&nbsp;<a className='button button-secondary' href="https://github.com/JetixWP/really-simple-featured-video/issues" target='_blank'>{ __( 'File a Request', 'rsfv' ) }</a></p>
+			</div>
+
 			{ ! isPro && (
 				<div className="rsfv-sidebar-panel rsfv-upgrade-banner">
 					<h3 className="rsfv-upgrade-title">
