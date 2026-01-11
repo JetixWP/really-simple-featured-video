@@ -194,7 +194,7 @@ class REST_API {
 		 *
 		 * Use this hook to register additional REST routes for the Tools page.
 		 *
-		 * @since 0.60.0
+		 * @since 0.70.0
 		 *
 		 * @param REST_API $this REST_API instance.
 		 */
@@ -329,7 +329,7 @@ class REST_API {
 		/**
 		 * Filter post data returned by the Tools REST API.
 		 *
-		 * @since 0.60.0
+		 * @since 0.70.0
 		 *
 		 * @param array    $data Post data array.
 		 * @param \WP_Post $post Post object.

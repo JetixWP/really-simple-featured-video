@@ -7,10 +7,8 @@
 
 namespace RSFV\Tools;
 
-use RSFV\Options;
-
 /**
- * Register Bulk Actions.
+ * Register Tools.
  */
 class Register {
 	/**
