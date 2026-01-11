@@ -24,6 +24,7 @@ define( 'RSFV_PLUGIN_URL', plugin_dir_url( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_DIR', plugin_dir_path( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_BASE', plugin_basename( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_PRO_URL', 'https://jetixwp.com/plugins/really-simple-featured-video' );
+define( 'RSFV_PLUGIN_DEFAULT_PRIORITY', 10 );
 
 // Third party dependencies.
 $vendor_file = __DIR__ . '/vendor/autoload.php';
