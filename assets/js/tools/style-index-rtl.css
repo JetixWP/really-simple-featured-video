@@ -209,6 +209,86 @@ body.jetixwp_page_rsfv-tools #wpcontent {
 	color: #1e1e1e;
 }
 
+/* Upgrade Banner */
+.rsfv-upgrade-banner {
+	border-color: var(--jwp-rsfv__color-brand);
+	background-color: var(--jwp-rsfv__color-background);
+	padding-top: 15px;
+	border-radius: 4px;
+}
+
+.rsfv-upgrade-icon {
+	margin-bottom: 10px;
+}
+
+.rsfv-upgrade-icon .dashicons {
+	font-size: 32px;
+	width: 32px;
+	height: 32px;
+	color: #ffd700;
+}
+
+.rsfv-upgrade-title {
+	border-bottom: none;
+	padding-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 15px;
+	font-size: 17px;
+}
+
+.rsfv-upgrade-description {
+	font-size: 14px;
+	line-height: 1.5;
+	margin: 0 0 15px;
+	opacity: 0.95;
+}
+
+.rsfv-upgrade-features {
+	margin: 0 0 15px;
+	padding: 0;
+	list-style: none;
+	text-align: right;
+}
+
+.rsfv-upgrade-features li {
+	font-size: 14px;
+	font-weight: 600;
+	padding: 4px 0;
+	padding-right: 0;
+	position: relative;
+	margin-bottom: 0;
+}
+
+.rsfv-upgrade-button {
+	display: block;
+	width: 100%;
+	padding: 10px 24px;
+	font-size: 14px;
+	font-weight: 600;
+	border-radius: 4px;
+	text-decoration: none;
+	text-align: center;
+	background: var(--jwp-rsfv__color-brand) !important;
+	color: #fff !important;
+	box-shadow: none;
+	outline: none;
+	border: 2px solid transparent !important;
+	transition: all .1s 
+ease-in-out;
+}
+
+.rsfv-upgrade-button:hover {
+	background: transparent !important;
+	border-color: var(--jwp-rsfv__color-brand) !important;
+	color: var(--jwp-rsfv__color-brand) !important;
+	box-shadow: none;
+	outline: none;
+}
+
+.rsfv-upgrade-button:focus {
+	box-shadow: none !important;
+}
+
 /* Toolbar */
 .rsfv-toolbar {
 	display: flex;
