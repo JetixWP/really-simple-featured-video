@@ -290,7 +290,7 @@ class REST_API {
 
 		return array(
 			'id'           => absint( $post->ID ),
-			'title'        => esc_html( get_the_title( $post ) ),
+			'title'        => html_entity_decode( get_the_title( $post ), ENT_QUOTES, 'UTF-8' ),
 			'permalink'    => esc_url_raw( get_permalink( $post ) ),
 			'edit_link'    => esc_url_raw( $edit_link ),
 			'thumbnail'    => $thumbnail ? esc_url_raw( $thumbnail ) : '',
