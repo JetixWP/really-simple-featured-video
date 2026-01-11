@@ -64,6 +64,7 @@ body.jetixwp_page_rsfv-tools #wpcontent {
 }
 
 .plugin-header .plugin-header-wrap,
+.rsfv-tools-app .rsfv-tabs-nav,
 .rsfv-tools-app > .rsfv-tab-content {
 	margin-left: 30px;
 	max-width: 1600px;
@@ -77,26 +78,31 @@ body.jetixwp_page_rsfv-tools #wpcontent {
 
 /* Tabs */
 .rsfv-tabs {
+	background: #fff;
 	margin-bottom: 20px;
+	border-bottom: 1px solid #c3c4c7;
 }
 
 .rsfv-tabs-nav {
 	display: flex;
-	border-bottom: 1px solid #c3c4c7;
 	margin: 0;
 	padding: 0;
+	padding-top: 9px;
 }
 
 .rsfv-tab-button {
 	background: none;
 	border: none;
-	border-bottom: 3px solid transparent;
+	border-bottom: 4px solid transparent;
 	color: #50575e;
 	cursor: pointer;
 	font-size: 14px;
-	font-weight: 500;
-	margin: 0;
-	padding: 12px 16px;
+	font-weight: 600;
+	line-height: 1.71428571;
+	padding: 0 4px;
+	margin-right: 15px;
+	padding-top: 15px;
+	padding-bottom: 8px;
 	transition: all 0.15s ease;
 }
 
@@ -105,8 +111,8 @@ body.jetixwp_page_rsfv-tools #wpcontent {
 }
 
 .rsfv-tab-button.active {
-	border-bottom-color: #2271b1;
-	color: #2271b1;
+	border-bottom-color: var(--jwp-rsfv__color-brand);
+	color: var(--jwp-rsfv__color-brand);
 }
 
 /* Tab Content */
@@ -121,7 +127,7 @@ body.jetixwp_page_rsfv-tools #wpcontent {
 	min-width: 0;
 }
 
-.rsfv-main-content .rsfv-manage-videos > * {
+.rsfv-main-content .rsfv-manage-videos > .rsfv-posts-table {
 	background: #fff;
 	border: 1px solid #c3c4c7;
 	border-radius: 4px;
