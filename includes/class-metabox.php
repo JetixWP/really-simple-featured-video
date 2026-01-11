@@ -213,10 +213,12 @@ class Metabox {
 		);
 
 		$select_source = sprintf(
-			'<div><p>%1$s</p>%2$s%3$s</div>',
+			'<div><p>%1$s</p>%2$s%3$s<p><a href="%4$s">%5$s</a></p></div>',
 			__( 'Please select a video source', 'rsfv' ),
 			$self_input,
-			$embed_input
+			$embed_input,
+			get_admin_url() . 'admin.php?page=rsfv-tools#manage',
+			__( '(NEW) Set & Manage Videos from One Place', 'rsfv' ),
 		);
 
 		$styles = '<style>.rsfv-self, .rsfv-embed { padding: 10px 0; } .remove-video { margin-top: 6px; } .rsfv-poster { margin: 8px 0 !important; } .rsfv-set-poster { margin: 4px 0 !important; }</style>';

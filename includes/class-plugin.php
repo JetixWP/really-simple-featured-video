@@ -215,9 +215,12 @@ final class Plugin {
 	public function filter_plugin_action_links( array $actions ) {
 		$settings_url = admin_url( 'admin.php?page=rsfv-settings' );
 
+		$manage_videos_url = admin_url( 'admin.php?page=rsfv-tools#manage' );
+
 		return array_merge(
 			array(
-				'settings' => "<a href='{$settings_url}'>" . esc_html__( 'Settings', 'rsfv' ) . '</a>',
+				'manage_videos' => "<a href='{$manage_videos_url}'>" . esc_html__( 'Manage Featured Videos', 'rsfv' ) . '</a>',
+				'settings'      => "<a href='{$settings_url}'>" . esc_html__( 'Settings', 'rsfv' ) . '</a>',
 			),
 			$actions
 		);
