@@ -13,6 +13,22 @@ import apiFetch from '@wordpress/api-fetch';
 const VideoTypeSelect = ( { post, onUpdate } ) => {
 	const [ saving, setSaving ] = useState( false );
 
+	/**
+	 * Calculate has_video based on source type and available data.
+	 *
+	 * @param {string} source Video source type.
+	 * @return {boolean} Whether video exists for the source.
+	 */
+	const calculateHasVideo = ( source ) => {
+		if ( source === 'self' && post.video_id ) {
+			return true;
+		}
+		if ( source === 'embed' && post.embed_url ) {
+			return true;
+		}
+		return false;
+	};
+
 	const handleSourceChange = async ( newSource ) => {
 		setSaving( true );
 
@@ -27,7 +43,10 @@ const VideoTypeSelect = ( { post, onUpdate } ) => {
 			} );
 
 			if ( onUpdate ) {
-				onUpdate( post.id, { video_source: newSource } );
+				onUpdate( post.id, {
+					video_source: newSource,
+					has_video: calculateHasVideo( newSource ),
+				} );
 			}
 		} catch ( error ) {
 			console.error( 'Error updating video source:', error );

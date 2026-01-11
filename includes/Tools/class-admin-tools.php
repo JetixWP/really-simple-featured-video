@@ -104,12 +104,13 @@ class Admin_Tools {
 	 */
 	public static function get_localized_data() {
 		$data = array(
-			'postTypes'  => self::get_enabled_post_types_options(),
-			'perPage'    => 20,
-			'nonce'      => wp_create_nonce( 'wp_rest' ),
-			'columns'    => self::get_table_columns(),
-			'isPro'      => defined( 'RSFV_PRO_VERSION' ),
-			'upgradeUrl' => RSFV_PLUGIN_PRO_URL . '/#pricing',
+			'postTypes'   => self::get_enabled_post_types_options(),
+			'perPage'     => 20,
+			'nonce'       => wp_create_nonce( 'wp_rest' ),
+			'columns'     => self::get_table_columns(),
+			'isPro'       => defined( 'RSFV_PRO_VERSION' ),
+			'upgradeUrl'  => RSFV_PLUGIN_PRO_URL . '/#pricing',
+			'settingsUrl' => admin_url( 'admin.php?page=rsfv-settings' ),
 		);
 
 		/**

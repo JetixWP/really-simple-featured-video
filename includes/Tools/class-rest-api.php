@@ -292,7 +292,14 @@ class REST_API {
 		$video_id     = get_post_meta( $post->ID, RSFV_META_KEY, true );
 		$embed_url    = get_post_meta( $post->ID, RSFV_EMBED_META_KEY, true );
 		$poster_id    = get_post_meta( $post->ID, RSFV_POSTER_META_KEY, true );
-		$has_video    = ! empty( $video_id ) || ! empty( $embed_url );
+
+		// Determine has_video based on the selected video source.
+		$has_video = false;
+		if ( 'self' === $video_source && ! empty( $video_id ) ) {
+			$has_video = true;
+		} elseif ( 'embed' === $video_source && ! empty( $embed_url ) ) {
+			$has_video = true;
+		}
 
 		$thumbnail = get_the_post_thumbnail_url( $post->ID, 'thumbnail' );
 
@@ -391,10 +398,10 @@ class REST_API {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	public function update_video( WP_REST_Request $request ) {
-		$post_id      = $request->get_param( 'post_id' );
-		$video_source = $request->get_param( 'video_source' );
-		$video_id     = $request->get_param( 'video_id' );
-		$embed_url    = $request->get_param( 'embed_url' );
+		$post_id      = absint( $request->get_param( 'post_id' ) );
+		$video_source = sanitize_key( $request->get_param( 'video_source' ) );
+		$video_id     = absint( $request->get_param( 'video_id' ) );
+		$embed_url    = esc_url_raw( $request->get_param( 'embed_url' ) );
 
 		$post = get_post( $post_id );
 
@@ -470,10 +477,10 @@ class REST_API {
 		return new WP_REST_Response(
 			array(
 				'success'      => true,
-				'post_id'      => absint( $post_id ),
-				'video_source' => sanitize_key( $video_source ),
-				'video_id'     => absint( $video_id ),
-				'embed_url'    => esc_url( $embed_url ),
+				'post_id'      => $post_id,
+				'video_source' => $video_source,
+				'video_id'     => $video_id,
+				'embed_url'    => $embed_url,
 			),
 			200
 		);
@@ -487,8 +494,8 @@ class REST_API {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	public function update_poster( WP_REST_Request $request ) {
-		$post_id   = $request->get_param( 'post_id' );
-		$poster_id = $request->get_param( 'poster_id' );
+		$post_id   = absint( $request->get_param( 'post_id' ) );
+		$poster_id = absint( $request->get_param( 'poster_id' ) );
 
 		$post = get_post( $post_id );
 
@@ -531,8 +538,8 @@ class REST_API {
 		return new WP_REST_Response(
 			array(
 				'success'    => true,
-				'post_id'    => absint( $post_id ),
-				'poster_id'  => absint( $poster_id ),
+				'post_id'    => $post_id,
+				'poster_id'  => $poster_id,
 				'poster_url' => $poster_url ? esc_url_raw( $poster_url ) : '',
 			),
 			200
@@ -547,8 +554,8 @@ class REST_API {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	public function update_thumbnail( WP_REST_Request $request ) {
-		$post_id      = $request->get_param( 'post_id' );
-		$thumbnail_id = $request->get_param( 'thumbnail_id' );
+		$post_id      = absint( $request->get_param( 'post_id' ) );
+		$thumbnail_id = absint( $request->get_param( 'thumbnail_id' ) );
 
 		$post = get_post( $post_id );
 
@@ -591,8 +598,8 @@ class REST_API {
 		return new WP_REST_Response(
 			array(
 				'success'       => true,
-				'post_id'       => absint( $post_id ),
-				'thumbnail_id'  => absint( $thumbnail_id ),
+				'post_id'       => $post_id,
+				'thumbnail_id'  => $thumbnail_id,
 				'thumbnail_url' => $thumbnail_url ? esc_url_raw( $thumbnail_url ) : '',
 			),
 			200
