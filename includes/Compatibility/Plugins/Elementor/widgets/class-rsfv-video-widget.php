@@ -241,29 +241,43 @@ class RSFV_Video_Widget extends Widget_Base {
 
 		$video_type = $settings['video_type'] ?? 'self';
 
-		// Source: self | embed.
-		update_post_meta( $post_id, RSFV_SOURCE_META_KEY, sanitize_text_field( $video_type ) );
+		// ── Build what we would write.
+		$new_source   = sanitize_text_field( $video_type );
+		$new_video_id = '';
+		$new_poster   = '';
+		$new_embed    = '';
 
 		if ( 'self' === $video_type ) {
-			// Self-hosted video attachment ID.
-			$video_id = $settings['self_video']['id'] ?? '';
-			update_post_meta( $post_id, RSFV_META_KEY, sanitize_text_field( $video_id ) );
-
-			// Poster image attachment ID.
-			$poster_id = $settings['poster_image']['id'] ?? '';
-			update_post_meta( $post_id, RSFV_POSTER_META_KEY, sanitize_text_field( $poster_id ) );
-
-			// Clear the embed field when switching to self-hosted.
-			update_post_meta( $post_id, RSFV_EMBED_META_KEY, '' );
+			$new_video_id = sanitize_text_field( $settings['self_video']['id'] ?? '' );
+			$new_poster   = sanitize_text_field( $settings['poster_image']['id'] ?? '' );
 		} else {
-			// Embed URL.
-			$embed_url = $settings['embed_url']['url'] ?? '';
-			update_post_meta( $post_id, RSFV_EMBED_META_KEY, esc_url_raw( $embed_url ) );
-
-			// Clear self-hosted fields when switching to embed.
-			update_post_meta( $post_id, RSFV_META_KEY, '' );
-			update_post_meta( $post_id, RSFV_POSTER_META_KEY, '' );
+			$new_embed = esc_url_raw( $settings['embed_url']['url'] ?? '' );
 		}
+
+		// ── Read current meta.
+		$cur_source   = (string) get_post_meta( $post_id, RSFV_SOURCE_META_KEY, true );
+		$cur_video_id = (string) get_post_meta( $post_id, RSFV_META_KEY, true );
+		$cur_poster   = (string) get_post_meta( $post_id, RSFV_POSTER_META_KEY, true );
+		$cur_embed    = (string) get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
+
+		// Nothing changed – skip the write.  This prevents two widgets
+		// on the same page from fighting: the one the user actually
+		// edited will have new values while the untouched one will
+		// still match the current meta and be silently skipped.
+		if (
+			$new_source === $cur_source &&
+			(string) $new_video_id === $cur_video_id &&
+			(string) $new_poster === $cur_poster &&
+			$new_embed === $cur_embed
+		) {
+			return $settings;
+		}
+
+		// ── Write only when values differ.
+		update_post_meta( $post_id, RSFV_SOURCE_META_KEY, $new_source );
+		update_post_meta( $post_id, RSFV_META_KEY, $new_video_id );
+		update_post_meta( $post_id, RSFV_POSTER_META_KEY, $new_poster );
+		update_post_meta( $post_id, RSFV_EMBED_META_KEY, $new_embed );
 
 		return $settings;
 	}

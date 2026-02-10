@@ -71,6 +71,7 @@ class Compatibility extends Base_Compatibility {
 
 		add_action( 'elementor/widgets/register', array( $this, 'register_widgets' ) );
 		add_filter( 'get_post_metadata', array( $this, 'prefill_widget_meta' ), 10, 4 );
+		add_action( 'elementor/editor/after_enqueue_scripts', array( $this, 'enqueue_editor_scripts' ) );
 	}
 
 	/**
@@ -86,6 +87,48 @@ class Compatibility extends Base_Compatibility {
 		require_once __DIR__ . '/widgets/class-rsfv-video-widget.php';
 
 		$widgets_manager->register( new RSFV_Video_Widget() );
+	}
+
+	/**
+	 * Enqueue editor-only JS that populates the RSFV Video widget
+	 * controls from existing post meta when the widget is freshly added
+	 * (before it has been saved into `_elementor_data`).
+	 *
+	 * @since 0.73.0
+	 *
+	 * @return void
+	 */
+	public function enqueue_editor_scripts() {
+		$post_id = get_the_ID();
+
+		if ( ! $post_id ) {
+			return;
+		}
+
+		// Only for RSFV-enabled post types.
+		$post_type     = get_post_type( $post_id );
+		$enabled_types = get_post_types();
+
+		if ( ! $post_type || ! in_array( $post_type, $enabled_types, true ) ) {
+			return;
+		}
+
+		$rsfv_meta = $this->get_rsfv_meta( $post_id );
+
+		// Nothing to localize if no featured video exists.
+		if ( empty( $rsfv_meta ) ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'rsfv-elementor-editor',
+			RSFV_PLUGIN_URL . 'assets/js/rsfv-elementor-editor.js',
+			array( 'elementor-editor' ),
+			RSFV_VERSION,
+			true
+		);
+
+		wp_localize_script( 'rsfv-elementor-editor', 'rsfvElementorMeta', $rsfv_meta );
 	}
 
 	/**
