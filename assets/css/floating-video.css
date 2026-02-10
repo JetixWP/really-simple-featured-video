@@ -1,0 +1,311 @@
+/**
+ * Floating Video – Frontend Styles
+ *
+ * A round circle play button at bottom-left that opens a popup video player.
+ *
+ * @package RSFV
+ */
+
+/* ==========================================================================
+   Floating Play Button
+   ========================================================================== */
+
+.rsfv-floating-btn {
+	position: fixed;
+	bottom: 30px;
+	left: 30px;
+	z-index: 999990;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background: #008710;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+	transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.rsfv-floating-btn:hover {
+	transform: scale(1.1);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+	background: #006d0e;
+}
+
+.rsfv-floating-btn:focus {
+	outline: 2px solid #fff;
+	outline-offset: 2px;
+}
+
+.rsfv-floating-btn:active {
+	transform: scale(0.95);
+}
+
+/* Play icon (CSS triangle) */
+.rsfv-floating-btn__icon {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 0 10px 18px;
+	border-color: transparent transparent transparent #fff;
+	margin-left: 3px;
+}
+
+/* Pulse ring animation */
+.rsfv-floating-btn::before {
+	content: '';
+	position: absolute;
+	top: -4px;
+	left: -4px;
+	right: -4px;
+	bottom: -4px;
+	border-radius: 50%;
+	border: 2px solid #008710;
+	animation: rsfv-pulse 2s ease-out infinite;
+	opacity: 0;
+}
+
+@keyframes rsfv-pulse {
+	0% {
+		transform: scale(1);
+		opacity: 0.6;
+	}
+	100% {
+		transform: scale(1.4);
+		opacity: 0;
+	}
+}
+
+/* Tooltip */
+.rsfv-floating-btn__tooltip {
+	position: absolute;
+	bottom: calc(100% + 10px);
+	left: 50%;
+	transform: translateX(-50%);
+	background: #1e1e1e;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 500;
+	padding: 5px 10px;
+	border-radius: 4px;
+	white-space: nowrap;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+
+.rsfv-floating-btn__tooltip::after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-width: 4px;
+	border-style: solid;
+	border-color: #1e1e1e transparent transparent transparent;
+}
+
+.rsfv-floating-btn:hover .rsfv-floating-btn__tooltip {
+	opacity: 1;
+}
+
+
+/* ==========================================================================
+   Popup Overlay
+   ========================================================================== */
+
+.rsfv-floating-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 999995;
+	background: transparent;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.rsfv-floating-overlay.rsfv-floating-overlay--visible {
+	opacity: 1;
+	visibility: visible;
+}
+
+
+/* ==========================================================================
+   Popup Container
+   ========================================================================== */
+
+.rsfv-floating-popup {
+	position: fixed;
+	bottom: 100px;
+	left: 30px;
+	width: 540px;
+	max-width: calc(100vw - 60px);
+	background: #000;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+	transform: scale(0.85) translateY(10px);
+	transform-origin: bottom left;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	opacity: 0;
+	z-index: 999996;
+}
+
+.rsfv-floating-overlay--visible .rsfv-floating-popup {
+	transform: scale(1) translateY(0);
+	opacity: 1;
+}
+
+/* Close button */
+.rsfv-floating-popup__close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 10;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.6);
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.15s ease;
+}
+
+.rsfv-floating-popup__close:hover {
+	background: rgba(0, 0, 0, 0.85);
+}
+
+.rsfv-floating-popup__close svg {
+	width: 16px;
+	height: 16px;
+	fill: none;
+	stroke: #fff;
+	stroke-width: 2;
+	stroke-linecap: round;
+}
+
+/* Video wrapper – aspect ratio set dynamically via JS (default 16:9 fallback) */
+.rsfv-floating-popup__video {
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%;
+	background: #000;
+}
+
+.rsfv-floating-popup__video video,
+.rsfv-floating-popup__video iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+
+/* ==========================================================================
+   Navigation Bar (multi-video)
+   ========================================================================== */
+
+.rsfv-floating-popup__nav {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 12px;
+	background: #111;
+	border-top: 1px solid #222;
+}
+
+.rsfv-floating-popup__nav-btn {
+	flex-shrink: 0;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: #222;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.rsfv-floating-popup__nav-btn svg {
+	fill: none;
+	stroke: #fff;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.rsfv-floating-popup__nav-btn:hover:not(:disabled) {
+	background: #333;
+}
+
+.rsfv-floating-popup__nav-btn:disabled {
+	opacity: 0.3;
+	cursor: default;
+}
+
+.rsfv-floating-popup__nav-info {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1px;
+}
+
+.rsfv-floating-popup__nav-title {
+	font-size: 12px;
+	font-weight: 600;
+	color: #fff;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+	line-height: 1.3;
+}
+
+.rsfv-floating-popup__nav-counter {
+	font-size: 10px;
+	color: #888;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 600px) {
+	.rsfv-floating-btn {
+		bottom: 20px;
+		left: 20px;
+		width: 50px;
+		height: 50px;
+	}
+
+	.rsfv-floating-btn__icon {
+		border-width: 8px 0 8px 14px;
+		margin-left: 2px;
+	}
+
+	.rsfv-floating-popup {
+		bottom: 80px;
+		left: 15px;
+		width: calc(100vw - 30px);
+		max-width: none;
+		border-radius: 8px;
+	}
+}

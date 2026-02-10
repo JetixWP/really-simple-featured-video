@@ -3,7 +3,7 @@ Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 6.9
-Stable tag: 0.72.0
+Stable tag: 0.80.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -29,6 +29,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
+* **Floating Videos** - Create engaging, responsive floating video buttons that open a popup player with multi-video support and customizable controls.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme WPBakery Builder Support** - Support for Post Loop Builder element with Salient theme.
 * **Elementor Pro Support** - Support for Posts/Archive, WooCommerce Product widgets with Elementor Pro builder.
@@ -37,6 +38,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
 * **Manage Featured Videos** - Manage featured videos from one single place for all your post types and skip the repetitive steps of going to the edit screen to edit each post/page/product individually.
+* **Elementor Widget** - A dedicated Featured Video widget for Elementor that seamlessly integrates with your page designs, allowing easy video embedding and customization.
 
 
 == 👉️ Video Autoplay on Hover Support ==
@@ -120,6 +122,11 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.80.0 =
+* New: Floating Video Elements - Display floating videos conditionally on any page or sitewide
+* New: Elementor widget for Really Simple Featured Video
+* Improvement: Other minor changes
 
 = 0.72.0 =
 * Fix: Video Status now correctly reflects selected source type

@@ -24,6 +24,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
+* **Floating Videos** - Create engaging, responsive floating video buttons that open a popup player with multi-video support and customizable controls.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme Builder (WPBakery) Support** - Support for Post Loop Builder element within Salient theme.
 * **Elementor Pro Support** - Support for Posts/archive widgets with Elementor Pro builder.
@@ -31,6 +32,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
 * **Manage Featured Videos** - Manage featured videos from one single place for all your post types and skip the repetitive steps of going to the edit screen to edit each post/page/product individually.
+* **Elementor Widget** - A dedicated Featured Video widget for Elementor that seamlessly integrates with your page designs, allowing easy video embedding and customization.
 
 
 == 👉️ Video Autoplay on Hover Support ==
@@ -53,6 +55,24 @@ RSFV supports Salient Theme WPBakery builder with its Post Loop Builder element,
 == 👉️ Elementor Pro Builder Support ==
 
 RSFV supports Elementor Pro builder with its Posts/archive widgets, you can use them to display Featured Videos for posts, pages and CPTs (with Featured Images). You can also display Featured Video on single pages via the shortcode - [rsfv]
+
+== 👉️ Floating Videos Feature ==
+
+The Floating Videos feature adds a dynamic and engaging way to display videos on your website. With this innovative addition:
+* Create a floating play button at the bottom-left of your page
+* Support multiple videos on the same page
+* Responsive popup player that works seamlessly on mobile and desktop
+* Customize video controls including autoplay, mute, and more
+* Maintain existing plugin settings and control mechanisms
+
+== 👉️ Elementor Widget for Featured Video ==
+
+Our dedicated Elementor widget provides:
+* Seamless integration with Elementor page builder
+* Easy drag-and-drop Featured Video embedding
+* Full customization options for video display
+* Compatible with various post types and custom post types
+* Responsive design that adapts to different screen sizes
 
 == 👉️ How to use Shortcodes ==
 
