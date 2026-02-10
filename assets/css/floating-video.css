@@ -193,7 +193,7 @@
 	stroke-linecap: round;
 }
 
-/* Video wrapper – 16:9 aspect ratio */
+/* Video wrapper – aspect ratio set dynamically via JS (default 16:9 fallback) */
 .rsfv-floating-popup__video {
 	position: relative;
 	width: 100%;

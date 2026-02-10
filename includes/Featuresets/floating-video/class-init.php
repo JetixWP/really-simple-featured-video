@@ -245,6 +245,15 @@ class Init {
 		$self_controls  = function_exists( '\RSFV\Settings\get_video_controls' ) ? get_video_controls( 'self' ) : array( 'controls' => true );
 		$embed_controls = function_exists( '\RSFV\Settings\get_video_controls' ) ? get_video_controls( 'embed' ) : array( 'controls' => true );
 
+		/**
+		 * Filter the aspect ratio used by the floating video popup.
+		 *
+		 * Default is '16/9'. PRO can override this via the global aspect ratio setting.
+		 *
+		 * @param string $aspect_ratio Aspect ratio in 'W/H' format (e.g. '16/9', '4/3', '1/1').
+		 */
+		$aspect_ratio = apply_filters( 'rsfv_floating_video_aspect_ratio', '16/9' );
+
 		wp_localize_script(
 			'rsfv-floating-video',
 			'RSFVFloatingVideo',
@@ -252,6 +261,7 @@ class Init {
 				'videos'        => $videos,
 				'selfControls'  => $self_controls,
 				'embedControls' => $embed_controls,
+				'aspectRatio'   => $aspect_ratio,
 			)
 		);
 	}

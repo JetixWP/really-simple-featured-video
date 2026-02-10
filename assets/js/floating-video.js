@@ -21,6 +21,7 @@
 	var currentIndex  = 0;
 	var selfControls  = RSFVFloatingVideo.selfControls || { controls: true };
 	var embedControls = RSFVFloatingVideo.embedControls || { controls: true };
+	var aspectRatio   = RSFVFloatingVideo.aspectRatio || '16/9';
 
 	/**
 	 * Convert a standard YouTube/Vimeo URL into an embed URL with
@@ -123,6 +124,16 @@
 		// Video wrapper.
 		var videoWrap = document.createElement( 'div' );
 		videoWrap.className = 'rsfv-floating-popup__video';
+
+		// Apply dynamic aspect ratio (e.g. '16/9' → padding-bottom: 56.25%).
+		var ratioParts = aspectRatio.split( '/' );
+		if ( ratioParts.length === 2 ) {
+			var w = parseFloat( ratioParts[ 0 ] );
+			var h = parseFloat( ratioParts[ 1 ] );
+			if ( w > 0 && h > 0 ) {
+				videoWrap.style.paddingBottom = ( ( h / w ) * 100 ).toFixed( 4 ) + '%';
+			}
+		}
 
 		popup.appendChild( close );
 		popup.appendChild( videoWrap );
