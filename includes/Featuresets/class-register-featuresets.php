@@ -8,6 +8,7 @@
 namespace RSFV\Featuresets;
 
 use RSFV\Featuresets\Hover_Autoplay\Init as Hover_Autoplay_Init;
+use RSFV\Featuresets\Floating_Video;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -52,6 +53,11 @@ class Register_Featuresets {
 		// Rollback.
 		require_once __DIR__ . '/rollback/class-rollbacker.php';
 		require_once __DIR__ . '/rollback/class-init.php';
+
+		// Floating Video.
+		require_once __DIR__ . '/floating-video/class-rest-api.php';
+		require_once __DIR__ . '/floating-video/class-init.php';
+		Floating_Video\Init::get_instance();
 
 		do_action( 'rsfv_after_featuresets_initialize' );
 	}
