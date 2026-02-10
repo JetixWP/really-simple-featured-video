@@ -107,7 +107,7 @@ body.jetixwp_page_rsfv-tools #wpcontent {
 }
 
 .rsfv-tab-button:hover {
-	color: #135e96;
+	color: var(--jwp-rsfv__color-brand);
 }
 
 .rsfv-tab-button.active {
