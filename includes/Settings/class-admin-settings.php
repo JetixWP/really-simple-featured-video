@@ -565,7 +565,6 @@ class Admin_Settings {
 							<label for="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_html( $value['title'] ); ?> <?php echo wp_kses( $tooltip_html, $allowed_html_tags ); ?></label>
 						</th>
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
-							<?php echo esc_html( $description ); ?>
 
 							<textarea
 								name="<?php echo esc_attr( $value['id'] ); ?>"
@@ -575,6 +574,7 @@ class Admin_Settings {
 								placeholder="<?php echo esc_attr( $value['placeholder'] ); ?>"
 								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
 								><?php echo esc_textarea( $option_value ); ?></textarea>
+								<p><?php echo wp_kses( $description, $allowed_html_tags ); ?></p>
 						</td>
 					</tr>
 					<?php

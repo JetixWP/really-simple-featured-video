@@ -151,9 +151,19 @@ class RSFVHoverAutoplay {
     }
     
     initializeVideos() {
-        const videoContainers = document.querySelectorAll(
-					'.rsfv-video-container, .rsfv-featured-video, [data-rsfv-video]'
-				);
+        const baseSelectors = '.rsfv-video-container, .rsfv-featured-video, [data-rsfv-video]';
+
+        // Merge any extra selectors added via settings (one per line).
+        const extraRaw = ( window.RSFVHoverAutoplaySettings || {} ).extraSelectors || '';
+        const extraSelectors = extraRaw
+            .split( '\n' )
+            .map( s => s.trim() )
+            .filter( s => s.length > 0 )
+            .join( ', ' );
+
+        const selectorString = extraSelectors ? baseSelectors + ', ' + extraSelectors : baseSelectors;
+
+        const videoContainers = document.querySelectorAll( selectorString );
 
         videoContainers.forEach((container, index) => {
             this.setupVideoContainer(container, index);
