@@ -50,32 +50,32 @@ class Init {
 	 */
 	public static function get_settings() {
 		$default_settings = array(
-			'enable_hover_autoplay' => false,
-			'video_types' => array(
-				'html5' => true,
-				'youtube' => true,
-				'vimeo' => false,
+			'enable_hover_autoplay'    => false,
+			'video_types'              => array(
+				'html5'       => true,
+				'youtube'     => true,
+				'vimeo'       => false,
 				'dailymotion' => false,
 			),
-			'enable_on_desktop' => true,
-			'enable_on_mobile' => true,
-			'mobile_breakpoint' => 768,
-			'hover_delay' => 100,
+			'enable_on_desktop'        => true,
+			'enable_on_mobile'         => true,
+			'mobile_breakpoint'        => 768,
+			'hover_delay'              => 100,
 			'respect_user_preferences' => true,
-			'enable_focus_events' => true,
-			'debug_mode' => false,
+			'enable_focus_events'      => true,
+			'debug_mode'               => false,
 		);
 
 		$options = Options::get_instance();
 
 		// Get video types settings.
 		$has_hover_autoplay_video_types = $options->has( 'hover_autoplay_video_types' );
-		$hover_autoplay_video_types = $options->get(
+		$hover_autoplay_video_types     = $options->get(
 			'hover_autoplay_video_types',
 			array(
-				'html5' => true,
-				'youtube' => true,
-				'vimeo' => false,
+				'html5'       => true,
+				'youtube'     => true,
+				'vimeo'       => false,
 				'dailymotion' => false,
 			)
 		);
@@ -85,13 +85,13 @@ class Init {
 			'rsfv_hover_autoplay_options',
 			array(
 				'enable_hover_autoplay' => $options->get( 'enable_hover_autoplay', false ),
-				'video_types' => array(
-					'html5' => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['html5'] ?? false : true,
-					'youtube' => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['youtube'] ?? false : true,
-					'vimeo' => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['vimeo'] ?? false : false,
+				'video_types'           => array(
+					'html5'       => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['html5'] ?? false : true,
+					'youtube'     => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['youtube'] ?? false : true,
+					'vimeo'       => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['vimeo'] ?? false : false,
 					'dailymotion' => $has_hover_autoplay_video_types ? $hover_autoplay_video_types['dailymotion'] ?? false : false,
 				),
-				'debug_mode' => false, // Not implemented yet.
+				'debug_mode'            => false, // Not implemented yet.
 			)
 		);
 
@@ -127,14 +127,15 @@ class Init {
 
 		// Localize script with settings.
 		$script_data = array(
-			'enableOnDesktop' => $settings['enable_on_desktop'],
-			'enableOnMobile' => $settings['enable_on_mobile'],
-			'mobileBreakpoint' => $settings['mobile_breakpoint'],
-			'hoverDelay' => $settings['hover_delay'],
+			'enableOnDesktop'        => $settings['enable_on_desktop'],
+			'enableOnMobile'         => $settings['enable_on_mobile'],
+			'mobileBreakpoint'       => $settings['mobile_breakpoint'],
+			'hoverDelay'             => $settings['hover_delay'],
 			'respectUserPreferences' => $settings['respect_user_preferences'],
-			'enableFocusEvents' => $settings['enable_focus_events'],
-			'debugMode' => $settings['debug_mode'],
-			'videoTypes' => $settings['video_types'],
+			'enableFocusEvents'      => $settings['enable_focus_events'],
+			'debugMode'              => $settings['debug_mode'],
+			'videoTypes'             => $settings['video_types'],
+			'extraSelectors'         => ! empty( $settings['extra_selectors'] ) ? $settings['extra_selectors'] : '',
 		);
 
 		wp_localize_script( 'rsfv-hover-autoplay', 'RSFVHoverAutoplaySettings', $script_data );
