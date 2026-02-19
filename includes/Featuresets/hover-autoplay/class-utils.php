@@ -121,23 +121,23 @@ class Utils {
 		switch ( $video_type ) {
 			case 'youtube':
 				$api_params = array(
-					'enablejsapi' => '1',
-					'mute' => '1',
+					'enablejsapi'    => '1',
+					'mute'           => '1',
 					'modestbranding' => '1',
 				);
 				break;
 
 			case 'vimeo':
 				$api_params = array(
-					'api' => '1',
-					'muted' => '1',
+					'api'        => '1',
+					'muted'      => '1',
 					'background' => '1',
 				);
 				break;
 
 			case 'dailymotion':
 				$api_params = array(
-					'api' => 'postMessage',
+					'api'  => 'postMessage',
 					'mute' => '1',
 				);
 				break;
@@ -166,55 +166,55 @@ class Utils {
 			return $src;
 		}
 
-		$is_mobile = wp_is_mobile();
+		$is_mobile  = wp_is_mobile();
 		$api_params = array();
 
 		switch ( $video_type ) {
 			case 'youtube':
 				$api_params = array(
-					'enablejsapi' => '1',
-					'origin' => urlencode( home_url() ),
+					'enablejsapi'    => '1',
+					'origin'         => urlencode( home_url() ),
 					'modestbranding' => '1',
-					'rel' => '0',
-					'showinfo' => '0',
+					'rel'            => '0',
+					'showinfo'       => '0',
 					'iv_load_policy' => '3', // Hide annotations.
-					'playsinline' => '1', // Important for mobile.
+					'playsinline'    => '1', // Important for mobile.
 				);
 
 				// Mobile-specific parameters.
 				if ( $is_mobile ) {
-					$api_params['fs'] = '1'; // Allow fullscreen.
+					$api_params['fs']       = '1'; // Allow fullscreen.
 					$api_params['autoplay'] = '0'; // Disable autoplay on mobile initially.
-					$api_params['mute'] = '1'; // Ensure muted for mobile autoplay.
+					$api_params['mute']     = '1'; // Ensure muted for mobile autoplay.
 				}
 				break;
 
 			case 'vimeo':
 				$api_params = array(
-					'api' => '1',
-					'player_id' => 'rsfv_vimeo_' . wp_rand( 1000, 9999 ),
-					'autopause' => '0',
+					'api'        => '1',
+					'player_id'  => 'rsfv_vimeo_' . wp_rand( 1000, 9999 ),
+					'autopause'  => '0',
 					'background' => '0', // Don't use background mode on mobile.
 				);
 
 				if ( $is_mobile ) {
-					$api_params['muted'] = '1';
+					$api_params['muted']       = '1';
 					$api_params['playsinline'] = '1';
-					$api_params['responsive'] = '1';
+					$api_params['responsive']  = '1';
 				}
 				break;
 
 			case 'dailymotion':
 				$api_params = array(
-					'api' => 'postMessage',
-					'id' => 'rsfv_dm_' . wp_rand( 1000, 9999 ),
-					'ui-highlight' => 'ffffff',
-					'ui-logo' => '0',
+					'api'            => 'postMessage',
+					'id'             => 'rsfv_dm_' . wp_rand( 1000, 9999 ),
+					'ui-highlight'   => 'ffffff',
+					'ui-logo'        => '0',
 					'sharing-enable' => '0',
 				);
 
 				if ( $is_mobile ) {
-					$api_params['mute'] = '1';
+					$api_params['mute']               = '1';
 					$api_params['webkit-playsinline'] = '1';
 				}
 				break;
@@ -262,7 +262,7 @@ class Utils {
 		$html = preg_replace_callback(
 			'/<video([^>]*)>/i',
 			function ( $matches ) {
-				$attrs = $matches[1] ?? false;
+				$attrs               = $matches[1] ?? false;
 				$accessibility_attrs = '';
 
 				if ( strpos( $attrs, 'role=' ) === false ) {
@@ -286,7 +286,7 @@ class Utils {
 		$html = preg_replace_callback(
 			'/<iframe([^>]*)>/i',
 			function ( $matches ) {
-				$attrs = $matches[1] ?? false;
+				$attrs               = $matches[1] ?? false;
 				$accessibility_attrs = '';
 
 				if ( strpos( $attrs, 'role=' ) === false ) {

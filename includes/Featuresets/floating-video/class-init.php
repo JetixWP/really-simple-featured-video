@@ -7,9 +7,10 @@
 
 namespace RSFV\Featuresets\Floating_Video;
 
-use function RSFV\Settings\get_video_controls;
-
 defined( 'ABSPATH' ) || exit;
+
+use RSFV\Options;
+use function RSFV\Settings\get_video_controls;
 
 /**
  * Class Init
@@ -262,8 +263,20 @@ class Init {
 				'selfControls'  => $self_controls,
 				'embedControls' => $embed_controls,
 				'aspectRatio'   => $aspect_ratio,
+				'layout'        => Options::get_instance()->get( 'floating_video_layout', 'standard' ),
 			)
 		);
+
+		/**
+		 * Fires after the floating video assets are enqueued.
+		 *
+		 * PRO and other extensions hook here to enqueue their own layout assets
+		 * (JS / CSS) that extend the base floating video player.
+		 *
+		 * @param array  $videos       Videos data array passed to the frontend.
+		 * @param string $aspect_ratio Aspect ratio string, e.g. '16/9'.
+		 */
+		do_action( 'rsfv_floating_video_after_enqueue', $videos, $aspect_ratio );
 	}
 
 	/**
@@ -387,10 +400,14 @@ class Init {
 	 * @return array
 	 */
 	public function get_floating_video_meta( $post_id ) {
+		$video_source = get_post_meta( $post_id, '_rsfv_fv_video_source', true );
+		$video_id     = get_post_meta( $post_id, '_rsfv_fv_video_id', true );
+		$embed_url    = get_post_meta( $post_id, '_rsfv_fv_embed_url', true );
+
 		return array(
-			'video_source' => get_post_meta( $post_id, '_rsfv_fv_video_source', true ) ?: 'self',
-			'video_id'     => get_post_meta( $post_id, '_rsfv_fv_video_id', true ) ?: 0,
-			'embed_url'    => get_post_meta( $post_id, '_rsfv_fv_embed_url', true ) ?: '',
+			'video_source' => ! empty( $video_source ) ? $video_source : 'self',
+			'video_id'     => ! empty( $video_id ) ? $video_id : 0,
+			'embed_url'    => ! empty( $embed_url ) ? $embed_url : '',
 		);
 	}
 }

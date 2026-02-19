@@ -594,12 +594,19 @@ class Compatibility extends Base_Compatibility {
 		// Get URL parameters.
 		$url_params = self::get_woo_embed_url_parameters( $video_controls, $video_data );
 
+		// Determine the correct URL concatenation method.
+		$final_embed_url_with_params = false !== strpos( $embed_url, '?' )
+		? $embed_url . '&' . $url_params
+		: $embed_url . '?' . $url_params;
+
+		$final_embed_url_with_params = apply_filters( 'rsfv_final_embed_url_with_params', $final_embed_url_with_params );
+
 		// Build iframe with mobile enhancements.
 		$iframe_attrs = array(
 			'class'           => 'rsfv-video',
 			'width'           => '100%',
 			'height'          => '540',
-			'src'             => $embed_url . ( ! empty( $url_params ) ? '?' . $url_params : '' ),
+			'src'             => esc_url( $final_embed_url_with_params ),
 			'frameborder'     => '0',
 			'allowfullscreen' => true,
 			'allow'           => 'autoplay; fullscreen; picture-in-picture',

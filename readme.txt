@@ -3,7 +3,7 @@ Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 6.9
-Stable tag: 0.80.0
+Stable tag: 0.81.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -82,6 +82,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 <strong>RSFV PRO plugin includes these features -</strong>
 
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
+* ✅ **Extended Floating Videos** - More layouts to display floating videos sitewide.
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.
 * ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes.
@@ -122,6 +123,13 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.81.0 =
+* Fix: Autoplay on hover issue with embedded videos and url params
+* Improvement: Make autoplay on hover css selectors extensible
+* Improvement: Make floating video layouts extensible
+* Improvement: Update languages file
+* Improvement: Other minor changes
 
 = 0.80.0 =
 * New: Floating Video Elements - Display floating videos conditionally on any page or sitewide

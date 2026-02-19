@@ -247,10 +247,18 @@ class Shortcode {
 		// Apply hover enhancements to iframe src.
 		$final_embed_url = apply_filters( 'rsfv_video_iframe_src', $embed_url, $url_params, $video_data );
 
+		// Determine the correct URL concatenation method.
+		$final_embed_url_with_params = false !== strpos( $final_embed_url, '?' )
+		? $final_embed_url . '&' . $url_params
+		: $final_embed_url . '?' . $url_params;
+
+		// Apply filter to final embed URL with parameters.
+		$final_embed_url_with_params = apply_filters( 'rsfv_final_embed_url_with_params', $final_embed_url_with_params );
+
 		// Build iframe.
 		$iframe_html = sprintf(
 			'<iframe class="rsfv-video" width="100%%" height="540" src="%s" frameborder="0" allowfullscreen></iframe>',
-			esc_url( $final_embed_url . '?' . $url_params )
+			esc_url( $final_embed_url_with_params )
 		);
 
 		// Wrap in responsive container.

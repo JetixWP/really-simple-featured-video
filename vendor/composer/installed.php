@@ -3,7 +3,7 @@
         'name' => 'jetixwp/really-simple-featured-video',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => '62d49287715f8dab8dbdff9f8ad6c49f004271a5',
+        'reference' => '4d550c2c780d92e7c3ab8fe3a04f57ce8faeeaf1',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'jetixwp/really-simple-featured-video' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => '62d49287715f8dab8dbdff9f8ad6c49f004271a5',
+            'reference' => '4d550c2c780d92e7c3ab8fe3a04f57ce8faeeaf1',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
