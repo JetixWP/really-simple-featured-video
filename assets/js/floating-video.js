@@ -22,6 +22,19 @@
 	var selfControls  = RSFVFloatingVideo.selfControls || { controls: true };
 	var embedControls = RSFVFloatingVideo.embedControls || { controls: true };
 	var aspectRatio   = RSFVFloatingVideo.aspectRatio || '16/9';
+	var layout        = RSFVFloatingVideo.layout || 'standard';
+
+	/**
+	 * Layout registry.
+	 *
+	 * (Any extension) Registers a handler object under its layout key:
+	 *   window.RSFVFloatingVideoLayouts['story'] = {
+	 *     buildOverlay : function( overlay, popup, videoWrap, close, videos, totalVideos ) { … return overlay; },
+	 *     updateNav    : function( popup, currentIndex, videos, totalVideos ) { … },
+	 *     initEvents   : function( overlay, popup, videoContainer, loadVideo ) { … },
+	 *   };
+	 */
+	var layouts = window.RSFVFloatingVideoLayouts = window.RSFVFloatingVideoLayouts || {};
 
 	/**
 	 * Convert a standard YouTube/Vimeo URL into an embed URL with
@@ -135,6 +148,12 @@
 			}
 		}
 
+		// If a layout handler is registered, delegate the full overlay build to it.
+		if ( layouts[ layout ] && typeof layouts[ layout ].buildOverlay === 'function' ) {
+			return layouts[ layout ].buildOverlay( overlay, popup, videoWrap, close, videos, totalVideos );
+		}
+
+		// Standard layout: close button top-right, optional prev/next nav below video.
 		popup.appendChild( close );
 		popup.appendChild( videoWrap );
 
@@ -258,6 +277,13 @@
 	 * @param {HTMLElement} popup The .rsfv-floating-popup element.
 	 */
 	function updateNav( popup ) {
+		// Delegate to the layout handler if one is registered.
+		if ( layouts[ layout ] && typeof layouts[ layout ].updateNav === 'function' ) {
+			layouts[ layout ].updateNav( popup, currentIndex, videos, totalVideos );
+			return;
+		}
+
+		// Standard layout nav.
 		var titleEl   = popup.querySelector( '.rsfv-floating-popup__nav-title' );
 		var counterEl = popup.querySelector( '.rsfv-floating-popup__nav-counter' );
 		var prevBtn   = popup.querySelector( '.rsfv-floating-popup__nav-prev' );
@@ -356,6 +382,26 @@
 				}
 			} );
 		}
+
+		// Allow layouts to attach their own event handlers.
+		if ( layouts[ layout ] && typeof layouts[ layout ].initEvents === 'function' ) {
+			layouts[ layout ].initEvents( overlay, popup, videoContainer, loadVideo );
+		}
+
+		/**
+		 * Public API for layout extensions to set the active video index
+		 * and trigger a video load.
+		 *
+		 * Usage: window.RSFVFloatingVideoSetIndex( idx );
+		 *        // then call loadVideo via the initEvents loadVideo argument.
+		 *
+		 * @param {number} idx Zero-based video index to activate.
+		 */
+		window.RSFVFloatingVideoSetIndex = function ( idx ) {
+			if ( idx >= 0 && idx < totalVideos ) {
+				currentIndex = idx;
+			}
+		};
 
 		// Close on overlay click (outside the popup).
 		overlay.addEventListener( 'click', function ( e ) {
