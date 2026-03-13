@@ -3,7 +3,7 @@ Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 6.9
-Stable tag: 0.81.0
+Stable tag: 0.82.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -123,6 +123,12 @@ For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
 == Changelog ==
+
+= 0.82.0 =
+* New: Added Divi (Free) Theme compatibility engine
+* Fix: Divi Compatibility settings missing in some cases
+* Improvement: Show PROMO theme engines conditionally
+* Improvement: Other minor changes
 
 = 0.81.0 =
 * Fix: Autoplay on hover issue with embedded videos and url params
