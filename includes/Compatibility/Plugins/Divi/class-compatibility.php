@@ -48,7 +48,7 @@ class Compatibility extends Base_Compatibility {
 	 * @return void
 	 */
 	public function setup() {
-		add_action( 'et_core_data_loaded', array( $this, 'run_extension' ) );
+		add_action( 'after_setup_theme', array( $this, 'run_extension' ), 9999999 );
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Compatibility extends Base_Compatibility {
 	 * @return void
 	 */
 	public function run_extension() {
-		if ( class_exists( 'WooCommerce' ) ) {
+		if ( defined( 'ET_CORE' ) && class_exists( 'WooCommerce' ) ) {
 			// Registers related settings tab.
 			add_filter( 'rsfv_get_settings_pages', array( $this, 'register_settings' ) );
 		}
