@@ -1,0 +1,11 @@
+
+.rsfv-has-video.product  .fluid-width-video-wrapper {
+	padding-top: 0% !important;
+}
+
+.rsfv-has-video.product  .fluid-width-video-wrapper video,
+.rsfv-has-video.product  .fluid-width-video-wrapper iframe, 
+.rsfv-has-video.product  .fluid-width-video-wrapper object, 
+.rsfv-has-video.product  .fluid-width-video-wrapper embed {
+	position: relative !important;
+}
