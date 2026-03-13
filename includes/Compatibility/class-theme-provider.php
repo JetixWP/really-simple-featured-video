@@ -240,13 +240,16 @@ class Theme_Provider {
 			$selectable_engines[ $engine_id ] = $engine_data['title'];
 		}
 
-		// Pro theme Engines for promo.
-		$pro_selectable_engines = $this->get_selectable_pro_engine_options_promo();
+		if ( ! Plugin::get_instance()->has_pro_active() ) {
 
-		// Include promo engines.
-		foreach ( $pro_selectable_engines as $engine_id => $engine_label ) {
-			if ( ! array_key_exists( $engine_id, $selectable_engines ) ) {
-				$selectable_engines[ $engine_id ] = $engine_label;
+			// Pro theme Engines for promo.
+			$pro_selectable_engines = $this->get_selectable_pro_engine_options_promo();
+
+			// Include promo engines.
+			foreach ( $pro_selectable_engines as $engine_id => $engine_label ) {
+				if ( ! array_key_exists( $engine_id, $selectable_engines ) ) {
+					$selectable_engines[ $engine_id ] = $engine_label;
+				}
 			}
 		}
 
