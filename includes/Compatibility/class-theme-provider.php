@@ -7,6 +7,7 @@
 
 namespace RSFV\Compatibility;
 
+use RSFV\Plugin;
 use RSFV\Compatibility\Themes\Base_Compatibility;
 use RSFV\Options;
 
@@ -95,6 +96,11 @@ class Theme_Provider {
 				),
 
 				// Third-Party.
+				'divi'              => array(
+					'title'       => __( 'Divi (Free)', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Divi/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Divi\Compatibility',
+				),
 				'neve'              => array(
 					'title'       => __( 'Neve', 'rsfv' ),
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Neve/class-compatibility.php',
@@ -268,7 +274,7 @@ class Theme_Provider {
 			'flatsome' => __( 'Flatsome (PRO)', 'rsfv' ),
 			'wellco'   => __( 'Wellco (PRO)', 'rsfv' ),
 			'avanam'   => __( 'Avanam (PRO)', 'rsfv' ),
-			'divi'     => __( 'Divi Builder (PRO)', 'rsfv' ),
+			'divi-pro' => __( 'Divi Builder (PRO)', 'rsfv' ),
 			'avada'    => __( 'Avada (PRO)', 'rsfv' ),
 			'konte'    => __( 'Konte (PRO)', 'rsfv' ),
 			'lay'      => __( 'Lay (PRO)', 'rsfv' ),
