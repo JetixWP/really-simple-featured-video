@@ -156,6 +156,11 @@ class Theme_Provider {
 					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Electro/class-compatibility.php',
 					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Electro\Compatibility',
 				),
+				'woostify'          => array(
+					'title'       => __( 'Woostify', 'rsfv' ),
+					'file_source' => RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/ThirdParty/Woostify/class-compatibility.php',
+					'class'       => 'RSFV\Compatibility\Themes\ThirdParty\Woostify\Compatibility',
+				),
 			)
 		);
 	}

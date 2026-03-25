@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.81.0\n"
+"Project-Id-Version: Really Simple Featured Video 0.83.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-02-19T15:23:05+00:00\n"
+"POT-Creation-Date: 2026-03-25T19:59:35+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -124,139 +124,147 @@ msgstr ""
 msgid "Post not found!"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:55
+#: includes/Compatibility/class-theme-provider.php:56
 msgid "Default"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:62
+#: includes/Compatibility/class-theme-provider.php:63
 msgid "Twenty Twenty"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:67
+#: includes/Compatibility/class-theme-provider.php:68
 msgid "Twenty Twenty-One"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:72
+#: includes/Compatibility/class-theme-provider.php:73
 msgid "Twenty Twenty-Two"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:77
+#: includes/Compatibility/class-theme-provider.php:78
 msgid "Twenty Twenty-Three"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:82
+#: includes/Compatibility/class-theme-provider.php:83
 msgid "Twenty Twenty-Four"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:87
+#: includes/Compatibility/class-theme-provider.php:88
 msgid "Twenty Twenty-Five"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:92
+#: includes/Compatibility/class-theme-provider.php:93
 msgid "Storefront"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:99
+#: includes/Compatibility/class-theme-provider.php:100
+msgid "Divi (Free)"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:105
 msgid "Neve"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:104
+#: includes/Compatibility/class-theme-provider.php:110
 msgid "GeneratePress"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:109
+#: includes/Compatibility/class-theme-provider.php:115
 msgid "Astra"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:114
+#: includes/Compatibility/class-theme-provider.php:120
 msgid "Go"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:119
+#: includes/Compatibility/class-theme-provider.php:125
 msgid "Kadence"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:124
+#: includes/Compatibility/class-theme-provider.php:130
 msgid "Hestia"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:129
+#: includes/Compatibility/class-theme-provider.php:135
 msgid "Flatsome"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:134
+#: includes/Compatibility/class-theme-provider.php:140
 msgid "The7"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:139
+#: includes/Compatibility/class-theme-provider.php:145
 msgid "Savoy"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:144
+#: includes/Compatibility/class-theme-provider.php:150
 msgid "Ollie"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:149
+#: includes/Compatibility/class-theme-provider.php:155
 msgid "Electro"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:196
+#: includes/Compatibility/class-theme-provider.php:160
+msgid "Woostify"
+msgstr ""
+
+#: includes/Compatibility/class-theme-provider.php:207
 msgid "Failed at registration"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:197
+#: includes/Compatibility/class-theme-provider.php:208
 msgid "Unregistered"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:233
+#: includes/Compatibility/class-theme-provider.php:244
 msgid "Disabled (Legacy)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:234
+#: includes/Compatibility/class-theme-provider.php:245
 msgid "Auto (Do it for me)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:263
+#: includes/Compatibility/class-theme-provider.php:277
 msgid "OceanWP (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:264
+#: includes/Compatibility/class-theme-provider.php:278
 msgid "Jupiter X (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:265
+#: includes/Compatibility/class-theme-provider.php:279
 msgid "Flatsome (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:266
+#: includes/Compatibility/class-theme-provider.php:280
 msgid "Wellco (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:267
+#: includes/Compatibility/class-theme-provider.php:281
 msgid "Avanam (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:268
+#: includes/Compatibility/class-theme-provider.php:282
 msgid "Divi Builder (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:269
+#: includes/Compatibility/class-theme-provider.php:283
 msgid "Avada (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:270
+#: includes/Compatibility/class-theme-provider.php:284
 msgid "Konte (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:271
+#: includes/Compatibility/class-theme-provider.php:285
 msgid "Lay (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:272
+#: includes/Compatibility/class-theme-provider.php:286
 msgid "Uncode (PRO)"
 msgstr ""
 
-#: includes/Compatibility/class-theme-provider.php:273
+#: includes/Compatibility/class-theme-provider.php:287
 msgid "Bravada (PRO)"
 msgstr ""
 
