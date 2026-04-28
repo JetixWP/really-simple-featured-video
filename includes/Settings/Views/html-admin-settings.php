@@ -72,6 +72,30 @@ if ( ! $tab_exists ) {
 				</form>
 
 				<div class="sidebar">
+
+					<?php if ( ! defined( 'JWP_STK_VERSION' ) ) : ?>
+						<div class="plugin-banner-box">
+							<div class="plugin-banner-header">
+								<span class="plugin-banner-badge"><?php esc_html_e( 'Our Super Launch', 'rsfv' ); ?></span>
+							</div>
+							<h3><?php esc_html_e( 'Jetix Store Toolkit - Free Plugin', 'rsfv' ); ?></h3>
+							<p class="plugin-banner-tagline"><?php esc_html_e( 'Superpowers for your WooCommerce Store', 'rsfv' ); ?></p>
+							<p class="desc"><?php esc_html_e( 'A lightweight, modular toolkit bundling the most essential WooCommerce enhancements into one plugin. Activate only the modules you need — zero bloat.', 'rsfv' ); ?></p>
+							<ul>
+								<li>&#9889; <strong><?php esc_html_e( 'Product Quick View', 'rsfv' ); ?></strong> &mdash; <?php esc_html_e( 'Lightbox product previews', 'rsfv' ); ?></li>
+								<li>&#128230; <strong><?php esc_html_e( 'Stock Manager', 'rsfv' ); ?></strong> &mdash; <?php esc_html_e( 'Inline bulk stock editing', 'rsfv' ); ?></li>
+								<li>&#128202; <strong><?php esc_html_e( 'Store Reports', 'rsfv' ); ?></strong> &mdash; <?php esc_html_e( 'Export orders, customers & products', 'rsfv' ); ?></li>
+								<li>&#128196; <strong><?php esc_html_e( 'Product Tab Manager', 'rsfv' ); ?></strong> &mdash; <?php esc_html_e( 'Custom tabs, no code needed', 'rsfv' ); ?></li>
+								<li>&#10084; <strong><?php esc_html_e( 'Wishlist & Social Sharing', 'rsfv' ); ?></strong> &mdash; <?php esc_html_e( 'Drive return visits', 'rsfv' ); ?></li>
+								<li>&#128230; <strong><?php esc_html_e( 'And much more...', 'rsfv' ); ?></strong></li>
+							</ul>
+							<div class="plugin-banner-actions">
+								<a class="button button-primary" href="https://getStoreToolkit.com?utm_campaign=rsfv-settings-sidebar&utm_source=rsfv-plugin" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Learn More', 'rsfv' ); ?></a>
+								<a class="button button-secondary" href="https://wordpress.org/plugins/jetix-store-toolkit/?utm_campaign=rsfv-settings-sidebar&utm_source=rsfv-plugin" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Free on WP.org', 'rsfv' ); ?></a>
+							</div>
+						</div>
+					<?php endif; ?>
+
 					<?php if ( ! class_exists( '\RSFV_Pro\Plugin' ) ) : ?>
 						<div class="upgrade-box">
 							<div>
@@ -110,7 +134,6 @@ if ( ! $tab_exists ) {
 						</div>
 					<?php endif; ?>
 					<?php do_action( 'rsfv_extend_settings_sidebar' ); ?>
-				</div>
 			</div>
 
 	</div>
