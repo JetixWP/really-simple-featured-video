@@ -150,7 +150,7 @@ do_action( 'wpgs_before_image_gallery' );
 		}
 	}
 
-	$display_html             = '';
+	$display_html = '';
 
 	if ( $attachment_ids ) {
 		echo '<div class="wpgs-nav">';
@@ -180,7 +180,7 @@ do_action( 'wpgs_before_image_gallery' );
 		}
 
 		if ( $has_video_thumbnail ) {
-            echo $video_html; // phpcs:ignore;
+			echo $video_html; // phpcs:ignore;
 		}
 
 		if ( apply_filters( 'wpgs_show_featured_image_in_gallery', true ) ) {

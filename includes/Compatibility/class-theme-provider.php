@@ -285,6 +285,7 @@ class Theme_Provider {
 			'lay'      => __( 'Lay (PRO)', 'rsfv' ),
 			'uncode'   => __( 'Uncode (PRO)', 'rsfv' ),
 			'bravada'  => __( 'Bravada (PRO)', 'rsfv' ),
+			'lodestar' => __( 'Lodestar (PRO)', 'rsfv' ),
 		);
 	}
 }
