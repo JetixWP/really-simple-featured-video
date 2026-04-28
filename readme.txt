@@ -126,6 +126,7 @@ And if you're a Pro user, you can send a support ticket via the [account](https:
 
 = 0.84.0 =
 * Improvement: Add Lodestar theme engine promo
+* Improvement: Update Freemius SDK
 * Improvement: Other minor changes
 
 = 0.83.0 =
