@@ -129,6 +129,7 @@ And if you're a Pro user, you can send a support ticket via the [account](https:
 * Fix: Escaping and sanitization in video metabox and settings admin views
 * Fix: Embed URL validation and restrict to Youtube, Vimeo and Dailymotion across metabox, shortcode, WooCommerce, and floating video
 * Fix: Permission checks at settings save, theme compatibility AJAX, and Tools REST API
+* Fix: Tools page Important Note card button layout and spacing
 * Improvement: Remove Jetix Store Toolkit sidebar promo card
 * Improvement: Update Freemius SDK
 * Improvement: Other minor changes
