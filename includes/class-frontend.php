@@ -174,7 +174,7 @@ class FrontEnd {
 
 				if ( 'self' === $video_source ) {
 					// Get the meta value of video attachment.
-					$video_id = esc_url( get_post_meta( $post->ID, RSFV_META_KEY, true ) );
+					$video_id = absint( get_post_meta( $post->ID, RSFV_META_KEY, true ) );
 
 					if ( $video_id ) {
 						return true;
@@ -203,15 +203,24 @@ class FrontEnd {
 	public function parse_embed_url( $url ) {
 
 		if ( empty( $url ) ) {
-			return $url;
+			return false;
 		}
 
-		$parsed = wp_parse_url( esc_url( $url ) );
+		$parsed = wp_parse_url( esc_url_raw( $url ) );
 
-		switch ( $parsed['host'] ) {
+		if ( empty( $parsed['host'] ) ) {
+			return false;
+		}
+
+		$host = strtolower( $parsed['host'] );
+
+		switch ( $host ) {
 			case 'www.youtube.com':
 			case 'youtube.com':
+			case 'm.youtube.com':
 			case 'youtu.be':
+			case 'www.youtube-nocookie.com':
+			case 'youtube-nocookie.com':
 				$pattern = '/(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|vi|e(?:mbed)?|shorts)\/|\S*?[?&]v=|\S*?[?&]vi=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/';
 
 				$result = preg_match( $pattern, $url, $matches );
@@ -222,12 +231,14 @@ class FrontEnd {
 					$id = false;
 				}
 
-				return array(
+				$embed_data = array(
 					'host' => 'youtube',
 					'id'   => $id,
 				);
+				break;
 
 			case 'vimeo.com':
+			case 'www.vimeo.com':
 			case 'player.vimeo.com':
 				$pattern = '/\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/i';
 
@@ -243,10 +254,11 @@ class FrontEnd {
 					$id = false;
 				}
 
-				return array(
+				$embed_data = array(
 					'host' => 'vimeo',
 					'id'   => $id,
 				);
+				break;
 
 			case 'dailymotion.com':
 			case 'www.dailymotion.com':
@@ -265,14 +277,24 @@ class FrontEnd {
 					$id = false;
 				}
 
-				return array(
+				$embed_data = array(
 					'host' => 'dailymotion',
 					'id'   => $id,
 				);
+				break;
 
 			default:
-				return $url;
+				$embed_data = false;
+				break;
 		}
+
+		/**
+		 * Filter parsed embed data. Return false to reject the URL.
+		 *
+		 * @param array|false $embed_data Parsed data or false.
+		 * @param string      $url        Original URL.
+		 */
+		return apply_filters( 'rsfv_parse_embed_url', $embed_data, $url );
 	}
 
 	/**
@@ -284,18 +306,26 @@ class FrontEnd {
 	 */
 	public function generate_embed_url( $url ) {
 		$embed_data = $this->parse_embed_url( $url );
+		$embed_url  = '';
 
-		if ( is_array( $embed_data ) && isset( $embed_data['host'] ) && 'youtube' === $embed_data['host'] ) {
-			$embed_url = 'https://www.youtube.com/embed/' . $embed_data['id'];
-		} elseif ( is_array( $embed_data ) && isset( $embed_data['host'] ) && 'vimeo' === $embed_data['host'] ) {
-			$embed_url = 'https://player.vimeo.com/video/' . $embed_data['id'];
-		} elseif ( is_array( $embed_data ) && isset( $embed_data['host'] ) && 'dailymotion' === $embed_data['host'] ) {
-			$embed_url = 'https://www.dailymotion.com/embed/video/' . $embed_data['id'];
-		} else {
-			$embed_url = $url;
+		if ( is_array( $embed_data ) && ! empty( $embed_data['id'] ) && isset( $embed_data['host'] ) ) {
+			if ( 'youtube' === $embed_data['host'] ) {
+				$embed_url = 'https://www.youtube.com/embed/' . $embed_data['id'];
+			} elseif ( 'vimeo' === $embed_data['host'] ) {
+				$embed_url = 'https://player.vimeo.com/video/' . $embed_data['id'];
+			} elseif ( 'dailymotion' === $embed_data['host'] ) {
+				$embed_url = 'https://www.dailymotion.com/embed/video/' . $embed_data['id'];
+			}
 		}
 
-		return $embed_url;
+		/**
+		 * Filter the generated embed URL. Empty string skips iframe output.
+		 *
+		 * @param string      $embed_url  Generated embed URL.
+		 * @param string      $url        Original URL.
+		 * @param array|false $embed_data Parsed embed data.
+		 */
+		return apply_filters( 'rsfv_generate_embed_url', $embed_url, $url, $embed_data );
 	}
 
 	/**
