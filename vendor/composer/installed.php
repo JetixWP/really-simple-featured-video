@@ -3,7 +3,7 @@
         'name' => 'jetixwp/really-simple-featured-video',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => 'fa814652a73270ab81b13fb898a28dd303437a43',
+        'reference' => '113d622f0852c73d84a5f32434d689847bf14725',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'freemius/wordpress-sdk' => array(
-            'pretty_version' => '2.13.1',
-            'version' => '2.13.1.0',
-            'reference' => '7376c0eca1ae7f92aaba9d3b550bd10affe797ff',
+            'pretty_version' => '2.13.4',
+            'version' => '2.13.4.0',
+            'reference' => 'fa43eb92ae9dffa0d9f5ae11b5a1739bd7222308',
             'type' => 'library',
             'install_path' => __DIR__ . '/../freemius/wordpress-sdk',
             'aliases' => array(),
@@ -22,7 +22,7 @@
         'jetixwp/really-simple-featured-video' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => 'fa814652a73270ab81b13fb898a28dd303437a43',
+            'reference' => '113d622f0852c73d84a5f32434d689847bf14725',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
