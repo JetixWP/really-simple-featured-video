@@ -546,7 +546,7 @@ class Admin_Settings {
 					?>
 					<tr valign="top">
 						<td class="forminp forminp-<?php echo esc_attr( sanitize_title( $value['type'] ) ); ?>">
-							<a  href="<?php echo esc_attr( $value['to'] ); ?>"
+							<a  href="<?php echo esc_url( $value['to'] ); ?>"
 								id="<?php echo esc_attr( $value['id'] ); ?>"
 								style="<?php echo esc_attr( $value['css'] ); ?>"
 								class="<?php echo esc_attr( $value['class'] ); ?>"

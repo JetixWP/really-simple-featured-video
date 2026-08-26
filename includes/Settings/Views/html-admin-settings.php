@@ -43,7 +43,7 @@ if ( ! $tab_exists ) {
 					<?php
 
 					foreach ( $tabs as $slug => $label ) {
-						echo '<a href="' . esc_html( admin_url( 'admin.php?page=rsfv-settings&tab=' . esc_attr( $slug ) ) ) . '" class="nav-tab nav-tab-' . esc_attr( $slug ) . ' ' . ( $current_tab === $slug ? 'nav-tab-active' : '' ) . '">' . esc_html( $label ) . '</a>';
+						echo '<a href="' . esc_url( admin_url( 'admin.php?page=rsfv-settings&tab=' . $slug ) ) . '" class="nav-tab nav-tab-' . esc_attr( $slug ) . ' ' . ( $current_tab === $slug ? 'nav-tab-active' : '' ) . '">' . esc_html( $label ) . '</a>';
 					}
 
 					do_action( 'rsfv_settings_tabs' );
