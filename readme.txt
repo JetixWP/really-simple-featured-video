@@ -1,4 +1,4 @@
-=== Really Simple Featured Video - Featured Video Support for Posts, Pages & WooCommerce Products ===
+=== Really Simple Featured Video for Posts, Pages & WooCommerce Products ===
 Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
@@ -8,7 +8,7 @@ Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Really Simple Featured Video enables featured video support for WordPress posts, pages, CPTs (with featured images) & WooCommerce Products.
+Really Simple Featured Video lets you add product video & featured video to WooCommerce Products & Posts, Pages, CPTs (with featured images).
 
 == Description ==
 
