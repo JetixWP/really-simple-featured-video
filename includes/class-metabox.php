@@ -182,8 +182,8 @@ class Metabox {
 			'<div class="rsfv-self"><a href="#" class="rsfv-upload-video-btn%1$s</a><input type="hidden" name="%2$s" id="%2$s" value="%3$s" /><a href="#" class="remove-video" style="display:%4$s;">%5$s</a>%6$s</div>',
 			$image,
 			RSFV_META_KEY,
-			$video_id,
-			$display,
+			esc_attr( $video_id ),
+			esc_attr( $display ),
 			__( 'Remove Video', 'rsfv' ),
 			$poster_html
 		);
@@ -191,7 +191,7 @@ class Metabox {
 		$embed_markup = sprintf(
 			'<div class="rsfv-embed"><input type="url" name="%1$s" id="%1$s" value="%2$s" placeholder="%3$s" /><span><br><br>%4$s</span></div>',
 			RSFV_EMBED_META_KEY,
-			$embed_url,
+			esc_attr( $embed_url ),
 			__( 'Video url goes here', 'rsfv' ),
 			__( 'Directly copy &amp; paste video urls from Youtube, Vimeo &amp; Dailymotion.', 'rsfv' )
 		);
@@ -234,8 +234,8 @@ class Metabox {
 	 * @return string
 	 */
 	public function save_video( $post_id ) {
-		if ( ! current_user_can( 'edit_posts' ) ) {
-			return;
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return $post_id;
 		}
 
 		$nonce = isset( $_POST['rsfv_inner_custom_box_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['rsfv_inner_custom_box_nonce'] ) ) : '';
@@ -254,19 +254,22 @@ class Metabox {
 			return $post_id;
 		}
 
-		$keys = array(
-			RSFV_SOURCE_META_KEY,
-			RSFV_META_KEY,
-			RSFV_EMBED_META_KEY,
-			RSFV_POSTER_META_KEY,
-		);
+		if ( isset( $_POST[ RSFV_SOURCE_META_KEY ] ) ) {
+			$source = sanitize_key( wp_unslash( $_POST[ RSFV_SOURCE_META_KEY ] ) );
+			$source = in_array( $source, array( 'self', 'embed' ), true ) ? $source : 'self';
+			update_post_meta( $post_id, RSFV_SOURCE_META_KEY, $source );
+		}
 
-		foreach ( $keys as $key ) {
-			// Get updated value.
-			$key_value = isset( $_POST[ $key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $key ] ) ) : '';
+		if ( isset( $_POST[ RSFV_META_KEY ] ) ) {
+			update_post_meta( $post_id, RSFV_META_KEY, absint( wp_unslash( $_POST[ RSFV_META_KEY ] ) ) );
+		}
 
-			// Save key value in meta key.
-			update_post_meta( $post_id, $key, $key_value );
+		if ( isset( $_POST[ RSFV_EMBED_META_KEY ] ) ) {
+			update_post_meta( $post_id, RSFV_EMBED_META_KEY, esc_url_raw( wp_unslash( $_POST[ RSFV_EMBED_META_KEY ] ) ) );
+		}
+
+		if ( isset( $_POST[ RSFV_POSTER_META_KEY ] ) ) {
+			update_post_meta( $post_id, RSFV_POSTER_META_KEY, absint( wp_unslash( $_POST[ RSFV_POSTER_META_KEY ] ) ) );
 		}
 
 		return $post_id;
