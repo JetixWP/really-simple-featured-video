@@ -20,7 +20,10 @@ const Sidebar = () => {
 
 				<p>{ __( "If your theme is not listed and the issue persists, submit a request on our GitHub repository. Please note that PRO subscribers receive priority support over GitHub requests, which supports the continuous development of the plugin.", "rsfv" ) }</p>
 
-				<p><a className='button button-primary' href={ `${ window.rsfvTools?.settingsUrl || '#' }` }>{ __( 'Go to Settings', 'rsfv' ) }</a>&nbsp;&nbsp;<a className='button button-secondary' href="https://github.com/JetixWP/really-simple-featured-video/issues" target='_blank'>{ __( 'File a Request', 'rsfv' ) }</a></p>
+				<div className="rsfv-sidebar-actions">
+					<a className="button button-primary" href={ `${ window.rsfvTools?.settingsUrl || '#' }` }>{ __( 'Go to Settings', 'rsfv' ) }</a>
+					<a className="button button-secondary" href="https://github.com/JetixWP/really-simple-featured-video/issues" target="_blank" rel="noopener noreferrer">{ __( 'File a Request', 'rsfv' ) }</a>
+				</div>
 			</div>
 
 			{ ! isPro && (

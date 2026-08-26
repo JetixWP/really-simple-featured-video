@@ -252,11 +252,13 @@ class REST_API {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	public function create_item( WP_REST_Request $request ) {
+		$status = $this->sanitize_status( $request->get_param( 'status' ) );
+
 		$post_id = wp_insert_post(
 			array(
 				'post_type'   => Init::POST_TYPE,
 				'post_title'  => $request->get_param( 'title' ),
-				'post_status' => $request->get_param( 'status' ) ?: 'publish',
+				'post_status' => $status,
 			),
 			true
 		);
@@ -269,7 +271,12 @@ class REST_API {
 			);
 		}
 
-		$this->save_meta( $post_id, $request );
+		$saved = $this->save_meta( $post_id, $request );
+
+		if ( is_wp_error( $saved ) ) {
+			wp_delete_post( $post_id, true );
+			return $saved;
+		}
 
 		$post = get_post( $post_id );
 
@@ -298,11 +305,15 @@ class REST_API {
 			array(
 				'ID'          => $post_id,
 				'post_title'  => $request->get_param( 'title' ),
-				'post_status' => $request->get_param( 'status' ) ?: $post->post_status,
+				'post_status' => $this->sanitize_status( $request->get_param( 'status' ), $post->post_status ),
 			)
 		);
 
-		$this->save_meta( $post_id, $request );
+		$saved = $this->save_meta( $post_id, $request );
+
+		if ( is_wp_error( $saved ) ) {
+			return $saved;
+		}
 
 		$post = get_post( $post_id );
 
@@ -419,10 +430,32 @@ class REST_API {
 	}
 
 	/**
+	 * Sanitize floating video post status.
+	 *
+	 * @param string $status          Requested status.
+	 * @param string $default_status  Fallback status.
+	 *
+	 * @return string
+	 */
+	private function sanitize_status( $status, $default_status = 'publish' ) {
+		$status          = sanitize_key( $status );
+		$default_status  = in_array( $default_status, array( 'publish', 'draft' ), true ) ? $default_status : 'publish';
+		$allowed_statuses = array( 'publish', 'draft' );
+
+		if ( ! in_array( $status, $allowed_statuses, true ) ) {
+			return $default_status;
+		}
+
+		return $status;
+	}
+
+	/**
 	 * Save floating video metadata.
 	 *
 	 * @param int             $post_id Post ID.
 	 * @param WP_REST_Request $request Request object.
+	 *
+	 * @return true|WP_Error
 	 */
 	private function save_meta( $post_id, WP_REST_Request $request ) {
 		$video_source = sanitize_key( $request->get_param( 'video_source' ) );
@@ -432,7 +465,19 @@ class REST_API {
 			update_post_meta( $post_id, '_rsfv_fv_video_id', absint( $request->get_param( 'video_id' ) ) );
 			delete_post_meta( $post_id, '_rsfv_fv_embed_url' );
 		} elseif ( 'embed' === $video_source ) {
-			update_post_meta( $post_id, '_rsfv_fv_embed_url', esc_url_raw( $request->get_param( 'embed_url' ) ) );
+			$embed_url  = esc_url_raw( $request->get_param( 'embed_url' ) );
+			$frontend   = \RSFV\Plugin::get_instance()->frontend_provider;
+			$embed_data = $frontend->parse_embed_url( $embed_url );
+
+			if ( ! empty( $embed_url ) && ( ! is_array( $embed_data ) || empty( $embed_data['id'] ) ) ) {
+				return new WP_Error(
+					'unsupported_embed',
+					__( 'Embed URL must be from Youtube, Vimeo or Dailymotion.', 'rsfv' ),
+					array( 'status' => 400 )
+				);
+			}
+
+			update_post_meta( $post_id, '_rsfv_fv_embed_url', $embed_url );
 			delete_post_meta( $post_id, '_rsfv_fv_video_id' );
 		}
 
@@ -469,6 +514,8 @@ class REST_API {
 				}
 				break;
 		}
+
+		return true;
 	}
 
 	/**

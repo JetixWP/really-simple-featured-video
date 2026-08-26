@@ -238,7 +238,7 @@ class Init {
 				'videoSource' => $meta['video_source'],
 				'videoUrl'    => $video_url ? esc_url( $video_url ) : '',
 				'embedUrl'    => ! empty( $meta['embed_url'] ) ? esc_url( $meta['embed_url'] ) : '',
-				'title'       => esc_attr( $floating_video->post_title ),
+				'title'       => $floating_video->post_title,
 			);
 		}
 

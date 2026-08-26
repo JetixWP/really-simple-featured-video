@@ -97,7 +97,7 @@ class REST_API {
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
 				'callback'            => array( $this, 'update_video_source' ),
-				'permission_callback' => array( $this, 'check_permission' ),
+				'permission_callback' => array( $this, 'check_edit_post_permission' ),
 				'args'                => array(
 					'post_id'      => array(
 						'required'          => true,
@@ -119,7 +119,7 @@ class REST_API {
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
 				'callback'            => array( $this, 'update_video' ),
-				'permission_callback' => array( $this, 'check_permission' ),
+				'permission_callback' => array( $this, 'check_edit_post_permission' ),
 				'args'                => array(
 					'post_id'      => array(
 						'required'          => true,
@@ -151,7 +151,7 @@ class REST_API {
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
 				'callback'            => array( $this, 'update_poster' ),
-				'permission_callback' => array( $this, 'check_permission' ),
+				'permission_callback' => array( $this, 'check_edit_post_permission' ),
 				'args'                => array(
 					'post_id'   => array(
 						'required'          => true,
@@ -173,7 +173,7 @@ class REST_API {
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
 				'callback'            => array( $this, 'update_thumbnail' ),
-				'permission_callback' => array( $this, 'check_permission' ),
+				'permission_callback' => array( $this, 'check_edit_post_permission' ),
 				'args'                => array(
 					'post_id'      => array(
 						'required'          => true,
@@ -211,6 +211,33 @@ class REST_API {
 			return new WP_Error(
 				'rest_forbidden',
 				__( 'You do not have permission to access this endpoint.', 'rsfv' ),
+				array( 'status' => 403 )
+			);
+		}
+
+		return true;
+	}
+
+	/**
+	 * Check if user can edit the target post.
+	 *
+	 * @param WP_REST_Request $request Request object.
+	 *
+	 * @return bool|WP_Error
+	 */
+	public function check_edit_post_permission( $request ) {
+		$permission = $this->check_permission();
+
+		if ( is_wp_error( $permission ) ) {
+			return $permission;
+		}
+
+		$post_id = absint( $request->get_param( 'post_id' ) );
+
+		if ( ! $post_id || ! current_user_can( 'edit_post', $post_id ) ) {
+			return new WP_Error(
+				'rest_forbidden',
+				__( 'You do not have permission to edit this post.', 'rsfv' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -451,6 +478,17 @@ class REST_API {
 				return new WP_Error(
 					'invalid_url',
 					__( 'Invalid embed URL.', 'rsfv' ),
+					array( 'status' => 400 )
+				);
+			}
+
+			$frontend   = \RSFV\Plugin::get_instance()->frontend_provider;
+			$embed_data = $frontend->parse_embed_url( $embed_url );
+
+			if ( ! is_array( $embed_data ) || empty( $embed_data['id'] ) ) {
+				return new WP_Error(
+					'unsupported_embed',
+					__( 'Embed URL must be from Youtube, Vimeo or Dailymotion.', 'rsfv' ),
 					array( 'status' => 400 )
 				);
 			}

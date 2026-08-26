@@ -58,6 +58,10 @@ class Shortcode {
 	public function show_video( $atts = array() ) {
 		global $post;
 
+		if ( ! $post || empty( $post->ID ) ) {
+			return '';
+		}
+
 		$video_markup = $this->get_video_markup( $post->ID, $post->post_type );
 
 		// Apply hover enhancements if enabled.
@@ -87,7 +91,7 @@ class Shortcode {
 			return esc_html__( 'Please add a post id!', 'rsfv' );
 		}
 
-		$post = get_post( $atts['post_id'] );
+		$post = get_post( absint( $atts['post_id'] ) );
 
 		if ( ! $post ) {
 			return esc_html__( 'Post not found!', 'rsfv' );
@@ -240,6 +244,10 @@ class Shortcode {
 
 		// Generate base embed URL.
 		$embed_url = $frontend->generate_embed_url( $input_url );
+
+		if ( empty( $embed_url ) ) {
+			return '';
+		}
 
 		// Build URL parameters.
 		$url_params = $this->get_embed_url_parameters( $video_controls );
