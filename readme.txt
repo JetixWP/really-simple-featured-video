@@ -94,7 +94,7 @@ More features to come in the future, to name a few -
 * ✨ **Featured Video Blocks for Full Site Editing**
 * ✨ And more from your requests
 
-If you wish to grab the PRO version with a lifetime deal please do [checkout Pro at our website](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+If you wish to grab the PRO version with a lifetime deal please do [checkout PRO at our website](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
 == Screenshots ==
 
