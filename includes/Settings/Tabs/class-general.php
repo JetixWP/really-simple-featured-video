@@ -177,6 +177,15 @@ class General extends Settings_Page {
 	public function get_current_theme_compat_ajax() {
 		check_ajax_referer( 'rsfv_admin_nonce', '_wpnonce' );
 
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'You do not have permission to perform this action.', 'rsfv' ),
+				),
+				403
+			);
+		}
+
 		$current_engine = $this->get_current_compatibility_engine();
 
 		if ( ! is_array( $current_engine ) ) {
