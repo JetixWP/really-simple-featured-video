@@ -68,7 +68,7 @@ class Init {
 
 		$rollback_versions = self::get_rollback_versions();
 
-		$version = filter_input( INPUT_GET, 'version', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$version = isset( $_GET['version'] ) ? sanitize_text_field( wp_unslash( $_GET['version'] ) ) : '';
 
 		if ( ! $version || ! in_array( $version, $rollback_versions, true ) ) {
 			wp_die( esc_html__( 'Error occurred, the version selected is invalid. Try selecting different version.', 'rsfv' ) );
