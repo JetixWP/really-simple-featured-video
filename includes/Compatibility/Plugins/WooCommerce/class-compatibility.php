@@ -586,6 +586,10 @@ class Compatibility extends Base_Compatibility {
 		// Enhanced embed URL with mobile support.
 		$embed_url = $frontend->generate_embed_url( $input_url );
 
+		if ( empty( $embed_url ) ) {
+			return '';
+		}
+
 		// Use enhanced mobile iframe src method.
 		if ( method_exists( '\\RSFV\\Featuresets\\Hover_Autoplay\\Utils', 'enhance_iframe_src' ) ) {
 			$embed_url = Hover_Utils::enhance_iframe_src( $embed_url, $video_type );
