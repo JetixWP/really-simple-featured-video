@@ -47,8 +47,8 @@
 		var match;
 		var baseUrl = '';
 
-		// YouTube: standard, short, and embed URLs.
-		match = url.match( /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/ );
+		// YouTube: standard, short, nocookie, and embed URLs.
+		match = url.match( /(?:youtube(?:-nocookie)?\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/ );
 		if ( match ) {
 			baseUrl = 'https://www.youtube.com/embed/' + match[ 1 ];
 		}
@@ -63,15 +63,15 @@
 
 		// Dailymotion.
 		if ( ! baseUrl ) {
-			match = url.match( /dailymotion\.com\/video\/([\w]+)/ );
+			match = url.match( /(?:dailymotion\.com\/(?:embed\/)?video\/|dai\.ly\/)([\w]+)/ );
 			if ( match ) {
 				baseUrl = 'https://www.dailymotion.com/embed/video/' + match[ 1 ];
 			}
 		}
 
-		// Already an embed URL or unknown – use as-is.
+		// Unknown providers are not embedded.
 		if ( ! baseUrl ) {
-			return url;
+			return '';
 		}
 
 		// Build URL parameters from embed controls.
@@ -105,11 +105,19 @@
 	function createButton() {
 		var label = videos[ 0 ] ? videos[ 0 ].title : 'Play Video';
 		var btn   = document.createElement( 'button' );
+		var icon  = document.createElement( 'span' );
+		var tip   = document.createElement( 'span' );
+
 		btn.className = 'rsfv-floating-btn';
 		btn.setAttribute( 'aria-label', label );
-		btn.innerHTML =
-			'<span class="rsfv-floating-btn__icon"></span>' +
-			'<span class="rsfv-floating-btn__tooltip">' + label + '</span>';
+
+		icon.className = 'rsfv-floating-btn__icon';
+		tip.className = 'rsfv-floating-btn__tooltip';
+		tip.textContent = label;
+
+		btn.appendChild( icon );
+		btn.appendChild( tip );
+
 		return btn;
 	}
 
@@ -244,8 +252,14 @@
 
 			container.appendChild( video );
 		} else if ( videoData.videoSource === 'embed' && ( videoData.embedUrl || videoData.videoUrl ) ) {
+			var embedSrc = getEmbedUrl( videoData.embedUrl || videoData.videoUrl );
+
+			if ( ! embedSrc ) {
+				return;
+			}
+
 			var iframe = document.createElement( 'iframe' );
-			iframe.src = getEmbedUrl( videoData.embedUrl || videoData.videoUrl );
+			iframe.src = embedSrc;
 
 			// Build allow attribute from embed controls.
 			var allowParts = [ 'fullscreen' ];
