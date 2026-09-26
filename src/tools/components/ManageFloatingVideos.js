@@ -63,21 +63,21 @@ const ManageFloatingVideos = () => {
 					method: 'POST',
 					data: formData,
 				} );
-				showNotice( __( 'Floating video created successfully.', 'rsfv' ) );
+				showNotice( __( 'Sticky video created successfully.', 'rsfv' ) );
 			} else {
 				await apiFetch( {
 					path: `/rsfv/v1/floating-videos/${ editing.id }`,
 					method: 'PUT',
 					data: formData,
 				} );
-				showNotice( __( 'Floating video updated successfully.', 'rsfv' ) );
+				showNotice( __( 'Sticky video updated successfully.', 'rsfv' ) );
 			}
 
 			setEditing( null );
 			fetchVideos();
 		} catch ( error ) {
 			console.error( 'Save error:', error );
-			showNotice( __( 'Error saving floating video.', 'rsfv' ), 'error' );
+			showNotice( __( 'Error saving sticky video.', 'rsfv' ), 'error' );
 		} finally {
 			setSaving( false );
 		}
@@ -89,7 +89,7 @@ const ManageFloatingVideos = () => {
 	 * @param {number} id The floating video ID.
 	 */
 	const handleDelete = async ( id ) => {
-		if ( ! window.confirm( __( 'Are you sure you want to delete this floating video?', 'rsfv' ) ) ) {
+		if ( ! window.confirm( __( 'Are you sure you want to delete this sticky video?', 'rsfv' ) ) ) {
 			return;
 		}
 
@@ -98,11 +98,11 @@ const ManageFloatingVideos = () => {
 				path: `/rsfv/v1/floating-videos/${ id }`,
 				method: 'DELETE',
 			} );
-			showNotice( __( 'Floating video deleted.', 'rsfv' ) );
+			showNotice( __( 'Sticky video deleted.', 'rsfv' ) );
 			fetchVideos();
 		} catch ( error ) {
 			console.error( 'Delete error:', error );
-			showNotice( __( 'Error deleting floating video.', 'rsfv' ), 'error' );
+			showNotice( __( 'Error deleting sticky video.', 'rsfv' ), 'error' );
 		}
 	};
 
@@ -124,8 +124,8 @@ const ManageFloatingVideos = () => {
 			} );
 			showNotice(
 				newStatus === 'publish'
-					? __( 'Floating video activated.', 'rsfv' )
-					: __( 'Floating video deactivated.', 'rsfv' )
+					? __( 'Sticky video activated.', 'rsfv' )
+					: __( 'Sticky video deactivated.', 'rsfv' )
 			);
 			fetchVideos();
 		} catch ( error ) {
@@ -198,30 +198,30 @@ const ManageFloatingVideos = () => {
 			) }
 
 			<div className="rsfv-fv-header">
-				<h2>{ __( 'Floating Videos', 'rsfv' ) }</h2>
+				<h2>{ __( 'Sticky Videos', 'rsfv' ) }</h2>
 				<button
 					className="button button-primary"
 					onClick={ () => setEditing( 'new' ) }
 				>
-					{ __( '+ Add New Floating Video', 'rsfv' ) }
+					{ __( '+ Add New Sticky Video', 'rsfv' ) }
 				</button>
 			</div>
 
 			{ loading ? (
 				<div className="rsfv-loading">
 					<span className="spinner is-active"></span>
-					<span>{ __( 'Loading floating videos...', 'rsfv' ) }</span>
+					<span>{ __( 'Loading sticky videos...', 'rsfv' ) }</span>
 				</div>
 			) : videos.length === 0 ? (
 				<div className="rsfv-fv-empty">
 					<div className="rsfv-fv-empty-icon">🎬</div>
-					<h3>{ __( 'No floating videos yet', 'rsfv' ) }</h3>
-					<p>{ __( 'Add a floating video to display a play button on your site that opens a video popup when clicked.', 'rsfv' ) }</p>
+					<h3>{ __( 'No sticky videos yet', 'rsfv' ) }</h3>
+					<p>{ __( 'Add a sticky video to display a play button on your site that opens a video popup when clicked.', 'rsfv' ) }</p>
 					<button
 						className="button button-primary"
 						onClick={ () => setEditing( 'new' ) }
 					>
-						{ __( 'Create Your First Floating Video', 'rsfv' ) }
+						{ __( 'Create Your First Sticky Video', 'rsfv' ) }
 					</button>
 				</div>
 			) : (

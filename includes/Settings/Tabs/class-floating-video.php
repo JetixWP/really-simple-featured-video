@@ -21,7 +21,7 @@ class Floating_Video_Settings extends Settings_Page {
 	 */
 	public function __construct() {
 		$this->id    = 'floating-video';
-		$this->label = __( 'Floating Video', 'rsfv' );
+		$this->label = __( 'Sticky Video', 'rsfv' );
 
 		parent::__construct();
 	}
@@ -36,8 +36,8 @@ class Floating_Video_Settings extends Settings_Page {
 
 		$settings = array(
 			array(
-				'title' => esc_html_x( 'Floating Video Layout', 'settings title', 'rsfv' ),
-				'desc'  => __( 'Manage the layout and presentation style for the floating video player.', 'rsfv' ),
+				'title' => esc_html_x( 'Sticky Video Layout', 'settings title', 'rsfv' ),
+				'desc'  => __( 'Manage the layout and presentation style for the sticky video player.', 'rsfv' ),
 				'type'  => 'content',
 				'class' => 'rsfv-floating-video-layout',
 				'id'    => 'rsfv-floating-video-layout',
