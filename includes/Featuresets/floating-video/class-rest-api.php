@@ -192,7 +192,7 @@ class REST_API {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
-				__( 'You do not have permission to manage floating videos.', 'rsfv' ),
+				__( 'You do not have permission to manage sticky videos.', 'rsfv' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -237,7 +237,7 @@ class REST_API {
 		if ( ! $post || Init::POST_TYPE !== $post->post_type ) {
 			return new WP_Error(
 				'not_found',
-				__( 'Floating video not found.', 'rsfv' ),
+				__( 'Sticky video not found.', 'rsfv' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -296,7 +296,7 @@ class REST_API {
 		if ( ! $post || Init::POST_TYPE !== $post->post_type ) {
 			return new WP_Error(
 				'not_found',
-				__( 'Floating video not found.', 'rsfv' ),
+				__( 'Sticky video not found.', 'rsfv' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -333,7 +333,7 @@ class REST_API {
 		if ( ! $post || Init::POST_TYPE !== $post->post_type ) {
 			return new WP_Error(
 				'not_found',
-				__( 'Floating video not found.', 'rsfv' ),
+				__( 'Sticky video not found.', 'rsfv' ),
 				array( 'status' => 404 )
 			);
 		}

@@ -88,11 +88,12 @@ class FrontEnd {
 	 * Get featured video markup.
 	 *
 	 * @param int    $post_id Post ID.
-	 * @param string $markup Holds markup data.
+	 * @param string $markup  Holds markup data.
+	 * @param string $surface Analytics surface. Thumbnail, Bricks, or another known place.
 	 *
 	 * @return string
 	 */
-	public static function get_featured_video_markup( $post_id, $markup = '' ) {
+	public static function get_featured_video_markup( $post_id, $markup = '', $surface = 'thumbnail' ) {
 
 		// Exit early if no post id is provided.
 		if ( ! $post_id ) {
@@ -119,7 +120,12 @@ class FrontEnd {
 					$video_id = get_post_meta( $post->ID, RSFV_META_KEY, true );
 
 					if ( $video_id ) {
+						$previous_surface = class_exists( '\RSFV\Analytics\Stamp' ) ? \RSFV\Analytics\Stamp::swap_surface( $surface ) : '';
 						$shortcode_output = do_shortcode( '[rsfv]' );
+
+						if ( class_exists( '\RSFV\Analytics\Stamp' ) ) {
+							\RSFV\Analytics\Stamp::swap_surface( $previous_surface );
+						}
 
 						return '<div class="rsfv-shortcode-wrapper" data-rsfv-video="true" data-rsfv-source="self" style="clear:both">' . $shortcode_output . '</div>';
 					}
@@ -131,7 +137,13 @@ class FrontEnd {
 						$embed_data = self::get_instance()->parse_embed_url( $embed_url );
 						$video_type = is_array( $embed_data ) ? $embed_data['host'] : 'unknown';
 
+						$previous_surface = class_exists( '\RSFV\Analytics\Stamp' ) ? \RSFV\Analytics\Stamp::swap_surface( $surface ) : '';
 						$shortcode_output = do_shortcode( '[rsfv]' );
+
+						if ( class_exists( '\RSFV\Analytics\Stamp' ) ) {
+							\RSFV\Analytics\Stamp::swap_surface( $previous_surface );
+						}
+
 						return '<div class="rsfv-shortcode-wrapper" data-rsfv-video="true" data-rsfv-source="embed" data-rsfv-type="' . esc_attr( $video_type ) . '" style="clear:both">' . $shortcode_output . '</div>';
 					}
 				}
@@ -406,6 +418,9 @@ class FrontEnd {
 					// WooCommerce specific.
 					'data-rsfv-woo-product-id' => array(),
 					'data-rsfv-embed-type'     => array(),
+					'data-rsfv-analytics'      => array(),
+					'data-rsfv-video-id'       => array(),
+					'data-rsfv-surface'        => array(),
 				),
 				'img'    => array(
 					'src'         => array(),
