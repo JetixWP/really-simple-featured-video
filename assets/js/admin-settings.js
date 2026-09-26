@@ -196,6 +196,28 @@
 
 		$( '#js-rsfv-pro-request-discount' ).on( 'submit', submitDiscountRequest );
 
+		$( '.rsfv-dismiss-review' ).on(
+			'click',
+			function( e ) {
+				e.preventDefault();
+
+				const href = this.href;
+				const $box = $( this ).closest( '.notice-box' );
+
+				$box.slideUp( 200 );
+
+				$.post(
+					data.ajax_url,
+					{
+						action: 'rsfv_dismiss_review_card',
+						_wpnonce: data.nonce,
+					}
+				).fail( function() {
+					window.location = href;
+				} );
+			}
+		);
+
 		/**
 		 * AJAX getter for Compatibility Engine Status.
 		 */

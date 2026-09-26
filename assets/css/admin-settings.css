@@ -577,12 +577,24 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	font-size: 15px;
 }
 
+.rsfv .sidebar .notice-box {
+	position: relative;
+	margin-bottom: 20px;
+	border-radius: 4px;
+}
+
+.rsfv .sidebar .notice-box .notice-dismiss {
+	text-decoration: none;
+}
+
 .rsfv .notice-box .button.button-primary {
 	font-size: 16px;
 	width: 100%;
 	padding: 6px 0;
 	text-align: center;
 	color: #fff;
+	display: inline-block;
+	box-sizing: border-box;
 }
 
 .rsfv .upgrade-btn {

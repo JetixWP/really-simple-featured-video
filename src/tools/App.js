@@ -8,6 +8,7 @@ import { useState, useEffect, useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ManageFeaturedVideos from './components/ManageFeaturedVideos';
 import ManageFloatingVideos from './components/ManageFloatingVideos';
+import AnalyticsReport from './components/AnalyticsReport';
 import Sidebar from './components/Sidebar';
 
 const App = () => {
@@ -18,7 +19,11 @@ const App = () => {
 		},
 		{
 			id: 'floating-videos',
-			label: __( 'Manage Floating Videos', 'rsfv' ),
+			label: __( 'Manage Sticky Videos', 'rsfv' ),
+		},
+		{
+			id: 'analytics',
+			label: __( 'Analytics', 'rsfv' ),
 		},
 	];
 
@@ -76,6 +81,7 @@ const App = () => {
 					<div className="rsfv-main-content">
 						{ activeTab === 'manage' && <ManageFeaturedVideos /> }
 						{ activeTab === 'floating-videos' && <ManageFloatingVideos /> }
+						{ activeTab === 'analytics' && <AnalyticsReport /> }
 					</div>
 					<Sidebar />
 				</div>

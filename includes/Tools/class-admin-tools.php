@@ -76,7 +76,7 @@ class Admin_Tools {
 			'rsfv-tools',
 			RSFV_PLUGIN_URL . 'assets/js/tools/index.js',
 			$asset['dependencies'],
-			$asset['version'],
+			filemtime( RSFV_PLUGIN_DIR . 'assets/js/tools/index.js' ),
 			true
 		);
 
@@ -84,7 +84,7 @@ class Admin_Tools {
 			'rsfv-tools',
 			RSFV_PLUGIN_URL . 'assets/js/tools/style-index.css',
 			array( 'wp-components' ),
-			$asset['version']
+			filemtime( RSFV_PLUGIN_DIR . 'assets/js/tools/style-index.css' )
 		);
 
 		// Add inline CSS to hide notices.

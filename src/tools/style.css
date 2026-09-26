@@ -1053,3 +1053,360 @@ ease-in-out;
 	padding-top: 15px;
 	border-top: 1px solid #e0e0e0;
 }
+
+/* Analytics report */
+.rsfv-analytics {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.rsfv-analytics-heading-row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 12px 24px;
+	align-items: flex-start;
+}
+
+.rsfv-analytics-header h2 {
+	margin: 0 0 6px;
+	font-size: 22px;
+}
+
+.rsfv-analytics-range {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	align-items: center;
+}
+
+.rsfv-analytics-range.is-promo,
+.rsfv-analytics .is-promo {
+	opacity: 0.72;
+}
+
+.rsfv-analytics-range.is-promo {
+	pointer-events: none;
+}
+
+.rsfv-analytics-range.is-promo .rsfv-analytics-pro-tag,
+.rsfv-analytics .is-promo .rsfv-analytics-pro-tag {
+	pointer-events: auto;
+}
+
+.rsfv-analytics-pro-tag {
+	display: inline-block;
+	margin-right: 6px;
+	padding: 2px 6px;
+	background: var( --jwp-rsfv__color-brand );
+	color: #fff;
+	border-radius: 4px;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 1.4;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.rsfv-analytics-card-label .rsfv-analytics-pro-tag,
+.rsfv-analytics-funnel h3 .rsfv-analytics-pro-tag,
+.rsfv-analytics-breakdown h3 .rsfv-analytics-pro-tag,
+.rsfv-analytics-table th .rsfv-analytics-pro-tag {
+	margin-left: 6px;
+	margin-right: 0;
+}
+
+.rsfv-analytics-table td.is-promo {
+	color: #787c82;
+}
+
+.rsfv-analytics-header p {
+	margin: 0 0 8px;
+	max-width: 62ch;
+	color: #3c434a;
+}
+
+.rsfv-analytics-header p.rsfv-analytics-muted,
+.rsfv-analytics-muted {
+	color: #787c82;
+}
+
+.rsfv-analytics-notice {
+	margin-top: 8px;
+	padding: 10px 12px;
+	background: #fcf9e8;
+	border: 1px solid #dba617;
+	border-radius: 6px;
+}
+
+.rsfv-analytics-cards {
+	display: grid;
+	grid-template-columns: repeat( auto-fit, minmax( 160px, 1fr ) );
+	gap: 12px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rsfv-analytics-cards li {
+	margin: 0;
+	padding: 16px 18px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+	box-shadow: 0 1px 2px rgba( 0, 0, 0, 0.04 );
+}
+
+.rsfv-analytics-card-value {
+	display: block;
+	font-size: 28px;
+	font-weight: 650;
+	line-height: 1.1;
+	color: #1d2327;
+}
+
+.rsfv-analytics-card-label {
+	display: block;
+	margin-top: 6px;
+	color: #646970;
+}
+
+.rsfv-analytics-chart {
+	margin: 0;
+	padding: 16px 16px 8px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+}
+
+.rsfv-analytics-chart svg {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.rsfv-analytics-axis {
+	stroke: #dcdcde;
+	stroke-width: 1;
+}
+
+.rsfv-analytics-line {
+	fill: none;
+	stroke-width: 2.5;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+}
+
+.rsfv-analytics-line-views {
+	stroke: var( --jwp-rsfv__color-brand );
+}
+
+.rsfv-analytics-line-plays {
+	stroke: #3858e9;
+}
+
+.rsfv-analytics-ticks {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 6px;
+	color: #646970;
+	font-size: 12px;
+}
+
+.rsfv-analytics-legend {
+	display: flex;
+	gap: 16px;
+	margin: 10px 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rsfv-analytics-legend li {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+}
+
+.rsfv-analytics-swatch {
+	width: 12px;
+	height: 12px;
+	border-radius: 99px;
+}
+
+.rsfv-analytics-swatch-views {
+	background: var( --jwp-rsfv__color-brand );
+}
+
+.rsfv-analytics-swatch-plays {
+	background: #3858e9;
+}
+
+.rsfv-analytics-splits {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+}
+
+.rsfv-analytics-promo-splits {
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.rsfv-analytics-breakdown,
+.rsfv-analytics-table-wrap {
+	padding: 16px 18px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+}
+
+.rsfv-analytics-breakdown h3,
+.rsfv-analytics-table-wrap h3 {
+	margin: 0 0 12px;
+	font-size: 14px;
+}
+
+.rsfv-analytics-breakdown ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rsfv-analytics-breakdown li {
+	display: grid;
+	grid-template-columns: 140px 1fr auto;
+	gap: 10px;
+	align-items: center;
+	margin: 0 0 8px;
+}
+
+.rsfv-analytics-bar-track {
+	display: block;
+	height: 8px;
+	background: #f0f0f1;
+	border-radius: 99px;
+	overflow: hidden;
+}
+
+.rsfv-analytics-bar-fill {
+	display: block;
+	height: 100%;
+	background: var( --jwp-rsfv__color-brand );
+	border-radius: 99px;
+}
+
+.rsfv-analytics-bar-value {
+	font-variant-numeric: tabular-nums;
+	color: #1d2327;
+}
+
+.rsfv-analytics-funnel {
+	padding: 16px 18px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+}
+
+.rsfv-analytics-funnel h3 {
+	margin: 0 0 4px;
+	font-size: 14px;
+}
+
+.rsfv-analytics-funnel > p {
+	margin: 0 0 14px;
+}
+
+.rsfv-analytics-funnel ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rsfv-analytics-funnel li {
+	display: grid;
+	grid-template-columns: 120px 1fr 88px;
+	gap: 12px;
+	align-items: center;
+	margin: 0 0 10px;
+}
+
+.rsfv-analytics-funnel-track {
+	display: block;
+	height: 14px;
+	background: #f0f0f1;
+	border-radius: 99px;
+	overflow: hidden;
+}
+
+.rsfv-analytics-funnel-track span {
+	display: block;
+	height: 100%;
+	background: var( --jwp-rsfv__color-brand );
+	border-radius: 99px;
+}
+
+.rsfv-analytics-funnel-stat {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	font-variant-numeric: tabular-nums;
+}
+
+.rsfv-analytics-funnel-stat span {
+	color: #787c82;
+}
+
+@media ( max-width: 720px ) {
+	.rsfv-analytics-funnel li {
+		grid-template-columns: 1fr auto;
+	}
+
+	.rsfv-analytics-funnel-track {
+		grid-column: 1 / -1;
+		order: 3;
+	}
+}
+
+.rsfv-analytics-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.rsfv-analytics-table th,
+.rsfv-analytics-table td {
+	padding: 10px 8px;
+	text-align: left;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.rsfv-analytics-table th {
+	font-size: 12px;
+	color: #646970;
+	font-weight: 600;
+}
+
+.rsfv-analytics-table tr.is-inactive td {
+	color: #787c82;
+}
+
+.rsfv-analytics-pill {
+	display: inline-block;
+	margin-left: 8px;
+	padding: 1px 6px;
+	border-radius: 99px;
+	background: #f0f0f1;
+	font-size: 11px;
+}
+
+.rsfv-analytics-error {
+	color: #8a2424;
+}
+
+@media ( max-width: 960px ) {
+	.rsfv-analytics-cards,
+	.rsfv-analytics-splits,
+	.rsfv-analytics-promo-splits {
+		grid-template-columns: 1fr;
+	}
+}

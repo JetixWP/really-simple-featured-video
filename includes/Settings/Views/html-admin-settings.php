@@ -7,6 +7,8 @@
 
 namespace RSFV\Settings\Views;
 
+use RSFV\Settings\Register;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -72,6 +74,27 @@ if ( ! $tab_exists ) {
 				</form>
 
 				<div class="sidebar">
+
+					<?php if ( ! Register::is_review_card_dismissed() ) : ?>
+						<?php
+						$rsfv_dismiss_review_url = wp_nonce_url(
+							add_query_arg( 'rsfv_dismiss_review', '1' ),
+							'rsfv_dismiss_review_card'
+						);
+						?>
+						<div class="notice-box is-dismissible" data-rsfv-dismiss="review-card">
+							<a class="notice-dismiss rsfv-dismiss-review" href="<?php echo esc_url( $rsfv_dismiss_review_url ); ?>">
+								<span class="screen-reader-text"><?php esc_html_e( 'Dismiss this notice.', 'rsfv' ); ?></span>
+							</a>
+							<div>
+								<h3><?php esc_html_e( 'Help keep this plugin free & updated', 'rsfv' ); ?></h3>
+								<p class="desc"><?php esc_html_e( 'Your review means a lot. It helps others discover that Really Simple Featured Video is free and actively maintained. If the plugin has helped you, please consider leaving your honest review/feedback on WordPress.org. Thank you!', 'rsfv' ); ?></p>
+							</div>
+							<div>
+								<a class="button button-primary" href="https://wordpress.org/support/plugin/really-simple-featured-video/reviews/#new-post" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Leave a Review', 'rsfv' ); ?></a>
+							</div>
+						</div>
+					<?php endif; ?>
 
 					<?php if ( ! class_exists( '\RSFV_Pro\Plugin' ) ) : ?>
 						<div class="upgrade-box">

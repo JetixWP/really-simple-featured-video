@@ -50,6 +50,7 @@ class Admin_Settings {
 			$settings[] = include 'Tabs/class-global.php';
 			$settings[] = include 'Tabs/class-controls.php';
 			$settings[] = include 'Tabs/class-floating-video.php';
+			$settings[] = include 'Tabs/class-analytics.php';
 
 			$settings = apply_filters( 'rsfv_get_settings_pages', $settings );
 
@@ -642,6 +643,7 @@ class Admin_Settings {
 							style="<?php echo esc_attr( $value['css'] ); ?>"
 							class="<?php echo esc_attr( $value['class'] ); ?>"
 							<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
+							<?php echo ! empty( $value['disabled'] ) ? 'disabled="disabled"' : ''; ?>
 							<?php echo 'multiselect' === $value['type'] ? 'multiple="multiple"' : ''; ?>
 							>
 							<?php
@@ -880,6 +882,7 @@ class Admin_Settings {
 								type="checkbox"
 								class="<?php echo esc_attr( isset( $value['class'] ) ? $value['class'] : '' ); ?>"
 								value="1"
+								<?php echo ! empty( $value['disabled'] ) ? 'disabled="disabled"' : ''; ?>
 								<?php echo esc_attr( implode( ' ', $custom_attributes ) ); ?>
 							/> <?php echo $description; // phpcs:ignore. ?>
 							<?php if ( $value['switch'] ) { ?>
