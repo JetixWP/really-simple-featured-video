@@ -3,7 +3,7 @@ Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.85.0
+Stable tag: 0.90.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -39,6 +39,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
 * **Manage Featured Videos** - Manage featured videos from one single place for all your post types and skip the repetitive steps of going to the edit screen to edit each post/page/product individually.
 * **Elementor Widget** - A dedicated Featured Video widget for Elementor that seamlessly integrates with your page designs, allowing easy video embedding and customization.
+* **Analytics** - See video views and playback analytics. Counts stay on your site, with no cookie.
 
 
 == 👉️ Video Autoplay on Hover Support ==
@@ -122,7 +123,16 @@ Yes, as long as the theme you use follows standard WordPress/WooCommerce way of 
 For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
+== Privacy ==
+
+Analytics stores anonymous view and play totals in your own database. It does not set a cookie, does not store IP addresses or user ids, and does not send counts to JetixWP. Free keeps 14 days of those totals. A browser tab may remember, in sessionStorage, which video was already counted during that visit.
+
 == Changelog ==
+
+= 0.90.0 =
+* New: Analytics report in Video Tools, with views and plays for the last 14 days
+* New: Analytics settings tab. Longer retention is a Pro option
+* Improvement: Existing videos, settings, and player URLs are left unchanged on update
 
 = 0.85.0 =
 * Fix: Rollback version GET parameter sanitization
