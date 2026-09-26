@@ -37,6 +37,7 @@ class Updater {
 		$routines = array(
 			'0.5.0' => 'upgrade_0_5',
 			'0.5.1' => 'upgrade_0_5',
+			'0.90.0' => 'upgrade_0_90',
 		);
 
 		$version = get_option( self::OPTION, '0.0.3' );
@@ -97,5 +98,19 @@ class Updater {
 		}
 
 		Options::get_instance()->set( 'self_video_controls', $updated_values );
+	}
+
+	/**
+	 * Upgrade to 0.90.0.
+	 *
+	 * Creates the analytics tables and queues a backfill of videos already saved.
+	 * Does not rewrite video meta or existing options.
+	 *
+	 * @return void
+	 */
+	protected function upgrade_0_90() {
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-install.php';
+
+		\RSFV\Analytics\Install::activate();
 	}
 }

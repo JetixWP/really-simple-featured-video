@@ -140,6 +140,8 @@ final class Plugin {
 
 		// Load classes.
 		// Let's call these providers.
+		\RSFV\Analytics\Load::get_instance();
+
 		$this->registration_provider = Register::get_instance();
 		$this->tools_provider        = Tools::get_instance();
 		$this->metabox_provider      = Metabox::get_instance();
@@ -200,6 +202,16 @@ final class Plugin {
 		// Theme compatibility.
 		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/Themes/class-base-compatibility.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Compatibility/class-theme-provider.php';
+
+		// Analytics. Loaded before the updater so 0.90.0 can create its tables.
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-install.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-registry.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-stats.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-sync.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-stamp.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-rest-api.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-tracker.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-load.php';
 
 		// Database upgraders.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-updater.php';

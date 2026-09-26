@@ -3,7 +3,7 @@
  * Plugin Name: Really Simple Featured Video
  * Plugin URI:  https://jetixwp.com/plugins/really-simple-featured-video
  * Description: Adds support for Featured Video to WordPress posts, pages & WooCommerce products.
- * Version:     0.85.0
+ * Version:     0.90.0
  * Author:      JetixWP Plugins
  * Author URI:  https://jetixwp.com
  * License:     GPL2
@@ -18,7 +18,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'RSFV_VERSION', '0.85.0' );
+define( 'RSFV_VERSION', '0.90.0' );
 define( 'RSFV_PLUGIN_FILE', __FILE__ );
 define( 'RSFV_PLUGIN_URL', plugin_dir_url( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_DIR', plugin_dir_path( RSFV_PLUGIN_FILE ) );
@@ -76,6 +76,28 @@ if ( ! function_exists( 'rsfv_fs' ) ) {
 	// Signal that SDK was initiated.
 	do_action( 'rsfv_fs_loaded' );
 }
+
+/**
+ * Create analytics tables on activation. Updates run from the DB routine instead.
+ */
+register_activation_hook(
+	RSFV_PLUGIN_FILE,
+	static function () {
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-install.php';
+		\RSFV\Analytics\Install::activate();
+	}
+);
+
+/**
+ * Stop the analytics cleanup cron. Stored counts stay until uninstall.
+ */
+register_deactivation_hook(
+	RSFV_PLUGIN_FILE,
+	static function () {
+		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-install.php';
+		\RSFV\Analytics\Install::deactivate();
+	}
+);
 
 /**
  * Fire up plugin instance.
