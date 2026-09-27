@@ -21,7 +21,10 @@ body.jetixwp_page_rsfv-settings #wpcontent {
 }
 
 body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-meta),
-.wrap.rsfv .plugin-header [class*="notice"] {
+.wrap.rsfv .plugin-header .notice,
+.wrap.rsfv .plugin-header .updated,
+.wrap.rsfv .plugin-header .error,
+.wrap.rsfv .plugin-header .update-nag {
 	display: none !important;
 }
 
@@ -521,41 +524,224 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	font-size: 20px;
 	line-height: 30px;
 }
-.rsfv.upgrade .upgrade-content ul {
-	list-style: disc;
-	list-style-position: inside;
-}
-
-.rsfv.upgrade .upgrade-content li {
-	line-height: 1.5;
-	font-weight: 600;
-}
-
 .rsfv.upgrade .upgrade-content p,
-.rsfv.upgrade .upgrade-content li,
 .rsfv.help .help-content p {
 	font-size: 15px;
 }
 
 .rsfv.upgrade form {
 	position: relative;
-}
-
-.rsfv.upgrade form {
 	height: calc(100% - 10%);
-}
-
-.rsfv.upgrade .upgrade-content .offer-highlight {
-	font-size: 18px;
-	font-weight: 600;
 }
 
 .rsfv.upgrade .tab-content .rsfv-button {
 	display: inline-block;
 	margin-top: 10px;
 	font-size: 16px;
-	padding: 4px 20px;
+	padding: 6px 22px;
+	line-height: 1.6;
 	border-radius: 4px;
+	text-decoration: none;
+}
+
+/* Upgrade tab: hero */
+.rsfv.upgrade .rsfv-pro-hero {
+	padding: 28px 32px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.rsfv.upgrade .rsfv-pro-eyebrow {
+	display: inline-block;
+	margin: 0 0 12px;
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: var(--jwp-wtc__color-brand-light);
+	color: var(--jwp-wtc__color-brand);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.rsfv.upgrade .rsfv-pro-hero .tab-heading {
+	font-size: 28px;
+	line-height: 1.25;
+	margin: 0 0 12px;
+	max-width: 640px;
+}
+
+.rsfv.upgrade .rsfv-pro-lead {
+	margin: 0 0 20px;
+	font-size: 16px;
+	line-height: 1.6;
+	color: #3c434a;
+	max-width: 640px;
+}
+
+.rsfv.upgrade .rsfv-pro-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.rsfv.upgrade .rsfv-pro-actions .rsfv-button {
+	margin-top: 0;
+}
+
+.rsfv.upgrade .rsfv-pro-trust {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 20px;
+	margin: 16px 0 0;
+	font-size: 13px;
+	color: #50575e;
+}
+
+/* Upgrade tab: sections */
+.rsfv.upgrade .rsfv-pro-section {
+	margin-top: 32px;
+}
+
+.rsfv.upgrade .rsfv-pro-section-title {
+	margin: 0 0 16px;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+/* Upgrade tab: feature grid */
+.rsfv.upgrade .rsfv-pro-features {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 16px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rsfv.upgrade .rsfv-pro-feature {
+	display: flex;
+	gap: 14px;
+	margin: 0;
+	padding: 18px 20px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.rsfv.upgrade .rsfv-pro-feature__icon {
+	flex: 0 0 auto;
+	width: 36px;
+	height: 36px;
+	font-size: 20px;
+	line-height: 36px;
+	text-align: center;
+	border-radius: 4px;
+	background: var(--jwp-wtc__color-brand-light);
+	color: var(--jwp-wtc__color-brand);
+}
+
+.rsfv.upgrade .rsfv-pro-feature h3 {
+	margin: 0 0 4px;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.rsfv.upgrade .rsfv-pro-feature p {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.55;
+	color: #50575e;
+}
+
+/* Upgrade tab: FAQ */
+.rsfv.upgrade .rsfv-pro-faq details {
+	padding: 14px 16px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 6px;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.rsfv.upgrade .rsfv-pro-faq details[open] {
+	border-color: #c3c4c7;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.rsfv.upgrade .rsfv-pro-faq details + details {
+	margin-top: 10px;
+}
+
+.rsfv.upgrade .rsfv-pro-faq summary {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	cursor: pointer;
+	list-style: none;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.rsfv.upgrade .rsfv-pro-faq summary::-webkit-details-marker {
+	display: none;
+}
+
+.rsfv.upgrade .rsfv-pro-faq summary::marker {
+	content: "";
+}
+
+.rsfv.upgrade .rsfv-pro-faq summary::before {
+	content: "";
+	flex: 0 0 24px;
+	width: 24px;
+	height: 24px;
+	margin-top: 1px;
+	border-radius: 6px;
+	background-color: var(--jwp-wtc__color-brand-light);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23008710' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 14px 14px;
+	transition: transform 0.2s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.rsfv.upgrade .rsfv-pro-faq details[open] summary::before {
+	transform: rotate(180deg);
+	background-color: #e6f4e8;
+}
+
+.rsfv.upgrade .rsfv-pro-faq summary:hover::before {
+	background-color: #e6f4e8;
+}
+
+.rsfv.upgrade .rsfv-pro-faq summary:focus-visible {
+	outline: 2px solid var(--jwp-wtc__color-brand);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+.rsfv.upgrade .rsfv-pro-faq details p {
+	margin: 12px 0 0;
+	padding-left: 36px;
+	font-size: 14px;
+	line-height: 1.55;
+	color: #3c434a;
+}
+
+.rsfv.upgrade .rsfv-pro-contact {
+	margin: 16px 0 0;
+	font-size: 14px;
+	color: #50575e;
+}
+
+@media (max-width: 1100px) {
+	.rsfv.upgrade .rsfv-pro-features {
+		grid-template-columns: 1fr;
+	}
 }
 
 .rsfv .sidebar .upgrade-box,
@@ -577,12 +763,29 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	font-size: 15px;
 }
 
+.rsfv .sidebar .notice-box {
+	position: relative;
+	margin-bottom: 24px;
+	padding-right: 40px;
+	border-radius: 4px;
+}
+
+.rsfv .sidebar .notice-box .notice-dismiss {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	text-decoration: none;
+}
+
 .rsfv .notice-box .button.button-primary {
 	font-size: 16px;
 	width: 100%;
 	padding: 6px 0;
 	text-align: center;
 	color: #fff;
+	display: inline-block;
+	box-sizing: border-box;
 }
 
 .rsfv .upgrade-btn {
@@ -638,67 +841,161 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 }
 
 /**
- * Get Pro Tab.
+ * Settings sidebar PRO box.
  */
 .rsfv .sidebar .upgrade-box {
 	border-color: var(--jwp-wtc__color-brand);
 	background-color: var(--jwp-wtc__color-background);
 	padding-top: 15px;
-  border-radius: 4px;
+	border-radius: 4px;
+}
 
-	form {
-		margin-top: 20px;
-	}
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal {
+	margin-top: 8px;
+	padding: 16px;
+	background: #fff;
+	border: 1px solid var(--jwp-wtc__color-brand);
+	border-radius: 4px;
+	text-align: center;
+}
 
-	.regular-text {
-		width: 100%;
-		margin-bottom: 8px;
-		font-size: 14px;
-	}
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__label {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+	margin: 0 0 10px;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	text-align: left;
+	color: var(--jwp-wtc__color-brand);
+}
 
-	input[type="email"]:focus,
-	input[type="text"]:focus {
-		border-color: var(--jwp-wtc__color-brand);
-		box-shadow: 0 0 0 1px var(--jwp-wtc__color-brand);
-	}
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: var(--jwp-wtc__color-brand);
+	color: #fff;
+	font-size: 11px;
+	letter-spacing: 0;
+	white-space: nowrap;
+}
 
-	.separator {
-		display: block;
-		text-align: center;
-		margin: 10px 0;
-		position: relative;
-	}
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__plans {
+	list-style: none;
+	margin: 0 0 10px;
+	padding: 0;
+	text-align: left;
+}
 
-	.peekaboo-section {
-		text-align: center;
-	}
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__plans li {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 8px;
+	margin: 0;
+	padding: 8px 0;
+	border-top: 1px solid #dcdcde;
+	font-size: 14px;
+}
 
-	.button-primary {
-		font-size: 14px;
-		color: #fff;
-	}
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__plans li:first-child {
+	border-top: 0;
+}
 
-	.button-secondary {
-		background: transparent;
-		color: var(--jwp-wtc__color-brand);
-		box-shadow: none;
-		outline: none;
-		border: 2px solid var(--jwp-wtc__color-brand);
-		transition: all .1s ease-in-out;
-		width: 100%;
-		text-align: center;
-		font-size: 14px;
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__plan em {
+	display: block;
+	font-size: 12px;
+	font-style: normal;
+	color: var(--jwp-wtc__color-brand);
+}
 
-		&:active,
-		&:focus,
-		&:hover {
-			background: var(--jwp-wtc__color-brand);
-			border-color: var(--jwp-wtc__color-brand);
-			color: #fff !important;
-			box-shadow: none;
-			outline: none;
-		}
-	}	
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__amounts {
+	white-space: nowrap;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__amounts s {
+	color: #787c82;
+	font-size: 13px;
+	margin-right: 4px;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__amounts strong {
+	font-size: 20px;
+	line-height: 1;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__note,
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__secure {
+	margin: 0 0 10px;
+	font-size: 12px;
+	color: #50575e;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__secure {
+	margin: 8px 0 0;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal .button-primary {
+	width: 100%;
+	padding: 8px 0;
+	font-size: 15px;
+	font-weight: 600;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-upgrade-features {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-upgrade-features li {
+	margin: 0 0 8px;
+	font-size: 14px;
+	line-height: 1.45;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-upgrade-compare {
+	margin: 4px 0 0;
+	font-size: 13px;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-upgrade-founder {
+	padding-top: 12px;
+	border-top: 1px solid #dcdcde;
+	font-size: 13px;
+}
+
+.rsfv .sidebar .upgrade-box .button-primary {
+	font-size: 14px;
+	color: #fff;
+}
+
+.rsfv .sidebar .upgrade-box .button-secondary {
+	background: transparent;
+	color: var(--jwp-wtc__color-brand);
+	box-shadow: none;
+	outline: none;
+	border: 2px solid var(--jwp-wtc__color-brand);
+	transition: all .1s ease-in-out;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+}
+
+.rsfv .sidebar .upgrade-box .button-secondary:active,
+.rsfv .sidebar .upgrade-box .button-secondary:focus,
+.rsfv .sidebar .upgrade-box .button-secondary:hover {
+	background: var(--jwp-wtc__color-brand);
+	border-color: var(--jwp-wtc__color-brand);
+	color: #fff !important;
+	box-shadow: none;
+	outline: none;
 }
 
 @media screen and ( min-width: 1920px ) {

@@ -21,7 +21,7 @@ class Version_Control_Settings extends Settings_Page {
 	 */
 	public function __construct() {
 		$this->id    = 'version_control';
-		$this->label = __( 'Version Control', 'rsfv' );
+		$this->label = __( 'Rollbacks', 'rsfv' );
 
 		parent::__construct();
 	}

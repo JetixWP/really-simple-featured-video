@@ -86,7 +86,7 @@ class Bricks_Really_Simple_Featured_Video extends \Bricks\Element {
 		// Add 'class' attribute to element root tag.
 		$this->set_attribute( '_root', 'class', $root_classes );
 
-		$video_markup = FrontEnd::get_featured_video_markup( $post_id );
+		$video_markup = FrontEnd::get_featured_video_markup( $post_id, '', 'bricks' );
 
 		if ( $video_markup ) {
 			echo '<div ' . $this->render_attributes( '_root' ) . '>';

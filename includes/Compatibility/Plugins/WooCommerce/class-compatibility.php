@@ -444,6 +444,11 @@ class Compatibility extends Base_Compatibility {
 			if ( ! empty( $video_html ) ) {
 				$video_html = apply_filters( 'rsfv_woo_video_html', $video_html, $video_data, $id );
 			}
+
+			if ( ! empty( $video_html ) && class_exists( '\RSFV\Analytics\Stamp' ) ) {
+				$surface    = $is_archives ? 'woo_archive' : 'woo_gallery';
+				$video_html = \RSFV\Analytics\Stamp::decorate( $video_html, $id, $surface );
+			}
 		}
 
 		return $video_html;

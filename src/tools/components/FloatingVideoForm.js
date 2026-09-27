@@ -304,8 +304,8 @@ const FloatingVideoForm = ( { video, onSave, onCancel, saving } ) => {
 			<div className="rsfv-fv-form-header">
 				<h2>
 					{ isEditing
-						? __( 'Edit Floating Video', 'rsfv' )
-						: __( 'Add New Floating Video', 'rsfv' ) }
+						? __( 'Edit Sticky Video', 'rsfv' )
+						: __( 'Add New Sticky Video', 'rsfv' ) }
 				</h2>
 				<button className="button" onClick={ onCancel }>
 					{ __( '← Back to List', 'rsfv' ) }
@@ -322,7 +322,7 @@ const FloatingVideoForm = ( { video, onSave, onCancel, saving } ) => {
 						className="regular-text"
 						value={ title }
 						onChange={ ( e ) => setTitle( e.target.value ) }
-						placeholder={ __( 'Enter a name for this floating video', 'rsfv' ) }
+						placeholder={ __( 'Enter a name for this sticky video', 'rsfv' ) }
 						required
 					/>
 				</div>
@@ -484,7 +484,7 @@ const FloatingVideoForm = ( { video, onSave, onCancel, saving } ) => {
 								) ) }
 							</div>
 							<p className="description">
-								{ __( 'The floating video will appear on single and archive pages of selected post types.', 'rsfv' ) }
+								{ __( 'The sticky video will appear on single and archive pages of selected post types.', 'rsfv' ) }
 							</p>
 						</div>
 					) }
@@ -540,7 +540,7 @@ const FloatingVideoForm = ( { video, onSave, onCancel, saving } ) => {
 							</div>
 
 							<p className="description">
-								{ __( 'The floating video will appear on archive pages and single posts belonging to the selected terms.', 'rsfv' ) }
+								{ __( 'The sticky video will appear on archive pages and single posts belonging to the selected terms.', 'rsfv' ) }
 							</p>
 						</div>
 					) }
@@ -556,8 +556,8 @@ const FloatingVideoForm = ( { video, onSave, onCancel, saving } ) => {
 						{ saving
 							? __( 'Saving...', 'rsfv' )
 							: isEditing
-								? __( 'Update Floating Video', 'rsfv' )
-								: __( 'Create Floating Video', 'rsfv' ) }
+								? __( 'Update Sticky Video', 'rsfv' )
+								: __( 'Create Sticky Video', 'rsfv' ) }
 					</button>
 					<button type="button" className="button button-large" onClick={ onCancel }>
 						{ __( 'Cancel', 'rsfv' ) }

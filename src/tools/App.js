@@ -7,7 +7,9 @@
 import { useState, useEffect, useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import ManageFeaturedVideos from './components/ManageFeaturedVideos';
+import BulkUpload from './components/BulkUpload';
 import ManageFloatingVideos from './components/ManageFloatingVideos';
+import AnalyticsReport from './components/AnalyticsReport';
 import Sidebar from './components/Sidebar';
 
 const App = () => {
@@ -17,8 +19,16 @@ const App = () => {
 			label: __( 'Manage Featured Videos', 'rsfv' ),
 		},
 		{
+			id: 'bulk-upload',
+			label: __( 'Bulk upload', 'rsfv' ),
+		},
+		{
 			id: 'floating-videos',
-			label: __( 'Manage Floating Videos', 'rsfv' ),
+			label: __( 'Manage Sticky Videos', 'rsfv' ),
+		},
+		{
+			id: 'analytics',
+			label: __( 'Analytics', 'rsfv' ),
 		},
 	];
 
@@ -52,7 +62,8 @@ const App = () => {
 		};
 
 		window.addEventListener( 'hashchange', handleHashChange );
-		return () => window.removeEventListener( 'hashchange', handleHashChange );
+		return () =>
+			window.removeEventListener( 'hashchange', handleHashChange );
 	}, [ getTabFromHash ] );
 
 	return (
@@ -62,7 +73,9 @@ const App = () => {
 					{ tabs.map( ( tab ) => (
 						<button
 							key={ tab.id }
-							className={ `rsfv-tab-button ${ activeTab === tab.id ? 'active' : '' }` }
+							className={ `rsfv-tab-button ${
+								activeTab === tab.id ? 'active' : ''
+							}` }
 							onClick={ () => handleTabChange( tab.id ) }
 						>
 							{ tab.label }
@@ -75,7 +88,11 @@ const App = () => {
 				<div className="rsfv-content-wrapper">
 					<div className="rsfv-main-content">
 						{ activeTab === 'manage' && <ManageFeaturedVideos /> }
-						{ activeTab === 'floating-videos' && <ManageFloatingVideos /> }
+						{ activeTab === 'bulk-upload' && <BulkUpload /> }
+						{ activeTab === 'floating-videos' && (
+							<ManageFloatingVideos />
+						) }
+						{ activeTab === 'analytics' && <AnalyticsReport /> }
 					</div>
 					<Sidebar />
 				</div>

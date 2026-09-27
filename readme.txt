@@ -3,7 +3,7 @@ Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.85.0
+Stable tag: 0.90.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -20,7 +20,7 @@ https://www.youtube.com/watch?v=KWi-xuEgy-o
 
 With Really Simple Featured Video you get a metabox at posts, pages, CPTs & Woo products edit screen at the very bottom and a very similar interface as you're used to with featured image.
 
-You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Explore it yourself for a better look or take a look at screenshots below.
+You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Video Tools is where you manage those videos, upload many at once, and see views and plays. Explore it yourself for a better look or take a look at screenshots below.
 
 
 == 👉️ Features ==
@@ -39,6 +39,8 @@ You get a really simple settings page which has all the controls you need for ma
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
 * **Manage Featured Videos** - Manage featured videos from one single place for all your post types and skip the repetitive steps of going to the edit screen to edit each post/page/product individually.
 * **Elementor Widget** - A dedicated Featured Video widget for Elementor that seamlessly integrates with your page designs, allowing easy video embedding and customization.
+* **Bulk Video Uploader** - Assign video files or Youtube, Vimeo, and Dailymotion links to posts from Video Tools. Add rows by hand, or import a CSV or TXT file.
+* **Video Analytics** - See views and plays for featured videos in Video Tools. Counts stay on your site. No cookie is set. Records the last 14 days of history.
 
 
 == 👉️ Video Autoplay on Hover Support ==
@@ -81,6 +83,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
+* ✅ **Extended Video Analytics** - Longer history recordings, watch time, completion, and CSV export.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Extended Floating Videos** - More layouts to display floating videos sitewide.
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
@@ -122,7 +125,28 @@ Yes, as long as the theme you use follows standard WordPress/WooCommerce way of 
 For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
+= Can I upload many videos at once? =
+Yes. Open Video Tools and use the Bulk upload tab. You can add files or embed links by hand, or import a CSV or TXT file. Each row needs a post. A row without a post is discarded, and its file is not uploaded.
+
+= What does Video Analytics count? =
+A view is a player actually on screen. A play is someone starting the video. Hover preview does not count. Counts stay in your own database. See the Privacy section.
+
+== Privacy ==
+
+Analytics stores anonymous view and play totals in your own database. It does not set a cookie, does not store IP addresses or user ids, and does not send counts to JetixWP. Free keeps 14 days of those totals. A browser tab may remember, in sessionStorage, which video was already counted during that visit.
+
 == Changelog ==
+
+= 0.90.0 =
+* New: Bulk upload tab in Video Tools for video files, embed links, and CSV or TXT import
+* New: Analytics report in Video Tools, with views and plays for the last 14 days
+* New: Analytics settings tab. Longer retention is a Pro option
+* Improvement: Existing videos, settings, and player URLs are left unchanged on update
+* Improvement: Admin labels now say Sticky Video instead of Floating Video
+* Improvement: Settings Version Control tab renamed to Rollbacks
+* Improvement: Help tab and PRO upgrade copy in admin
+* Improvement: Refresh WordPress.org banners and icons
+* Improvement: Uninstall removes analytics tables and scheduled cleanup
 
 = 0.85.0 =
 * Fix: Rollback version GET parameter sanitization

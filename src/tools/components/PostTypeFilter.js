@@ -6,7 +6,12 @@
 
 import { __ } from '@wordpress/i18n';
 
-const PostTypeFilter = ( { postTypes, selectedPostType, onChange } ) => {
+const PostTypeFilter = ( {
+	postTypes,
+	selectedPostType,
+	onChange,
+	disabled = false,
+} ) => {
 	if ( ! postTypes || postTypes.length === 0 ) {
 		return null;
 	}
@@ -19,6 +24,7 @@ const PostTypeFilter = ( { postTypes, selectedPostType, onChange } ) => {
 			<select
 				id="rsfv-post-type-select"
 				value={ selectedPostType }
+				disabled={ disabled }
 				onChange={ ( e ) => onChange( e.target.value ) }
 			>
 				{ postTypes.map( ( type ) => (

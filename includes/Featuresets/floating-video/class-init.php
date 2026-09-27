@@ -66,8 +66,8 @@ class Init {
 			self::POST_TYPE,
 			array(
 				'labels'          => array(
-					'name'          => __( 'Floating Videos', 'rsfv' ),
-					'singular_name' => __( 'Floating Video', 'rsfv' ),
+					'name'          => __( 'Sticky Videos', 'rsfv' ),
+					'singular_name' => __( 'Sticky Video', 'rsfv' ),
 				),
 				'public'          => false,
 				'show_ui'         => false,
@@ -212,11 +212,19 @@ class Init {
 			filemtime( RSFV_PLUGIN_DIR . 'assets/css/floating-video.css' )
 		);
 
+		$script_deps = array();
+
+		if ( class_exists( '\RSFV\Analytics\Tracker' ) && \RSFV\Analytics\Stats::enabled() && ! isset( $_GET['elementor-preview'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Presence check only. The editor preview must not record counts.
+			\RSFV\Analytics\Tracker::register_script();
+			\RSFV\Analytics\Stamp::mark_needed();
+			$script_deps[] = 'rsfv-analytics';
+		}
+
 		// Register & enqueue JS.
 		wp_enqueue_script(
 			'rsfv-floating-video',
 			RSFV_PLUGIN_URL . 'assets/js/floating-video.js',
-			array(),
+			$script_deps,
 			filemtime( RSFV_PLUGIN_DIR . 'assets/js/floating-video.js' ),
 			true
 		);
@@ -234,11 +242,18 @@ class Init {
 				$video_url = $meta['embed_url'];
 			}
 
+			$analytics_id = 0;
+
+			if ( class_exists( '\RSFV\Analytics\Registry' ) && \RSFV\Analytics\Stats::enabled() ) {
+				$analytics_id = \RSFV\Analytics\Registry::ensure_sticky( $floating_video->ID );
+			}
+
 			$videos[] = array(
 				'videoSource' => $meta['video_source'],
 				'videoUrl'    => $video_url ? esc_url( $video_url ) : '',
 				'embedUrl'    => ! empty( $meta['embed_url'] ) ? esc_url( $meta['embed_url'] ) : '',
 				'title'       => $floating_video->post_title,
+				'analyticsId' => absint( $analytics_id ),
 			);
 		}
 

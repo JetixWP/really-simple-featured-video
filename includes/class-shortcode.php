@@ -158,10 +158,16 @@ class Shortcode {
 		);
 
 		if ( 'self' === $video_source ) {
-			return $this->get_self_hosted_video( $post_id, $video_controls, $video_data );
+			$markup = $this->get_self_hosted_video( $post_id, $video_controls, $video_data );
 		} else {
-			return $this->get_embed_video( $post_id, $video_controls, $video_data );
+			$markup = $this->get_embed_video( $post_id, $video_controls, $video_data );
 		}
+
+		if ( class_exists( '\RSFV\Analytics\Stamp' ) ) {
+			$markup = \RSFV\Analytics\Stamp::decorate( $markup, $post_id, \RSFV\Analytics\Stamp::current_surface() );
+		}
+
+		return $markup;
 	}
 
 	/**

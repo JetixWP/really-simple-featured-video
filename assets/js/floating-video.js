@@ -94,6 +94,19 @@
 
 		params.push( 'rel=0' );
 
+		if ( baseUrl.indexOf( 'youtube.com' ) !== -1 ) {
+			params.push( 'enablejsapi=1' );
+			params.push( 'origin=' + encodeURIComponent( window.location.origin ) );
+		}
+
+		if ( baseUrl.indexOf( 'vimeo.com' ) !== -1 ) {
+			params.push( 'api=1' );
+		}
+
+		if ( baseUrl.indexOf( 'dailymotion.com' ) !== -1 ) {
+			params.push( 'api=postMessage' );
+		}
+
 		return baseUrl + '?' + params.join( '&' );
 	}
 
@@ -251,6 +264,10 @@
 			}
 
 			container.appendChild( video );
+
+			if ( videoData.analyticsId && typeof window.rsfvWatchVideo === 'function' ) {
+				window.rsfvWatchVideo( video, videoData.analyticsId, 'sticky' );
+			}
 		} else if ( videoData.videoSource === 'embed' && ( videoData.embedUrl || videoData.videoUrl ) ) {
 			var embedSrc = getEmbedUrl( videoData.embedUrl || videoData.videoUrl );
 
@@ -273,6 +290,10 @@
 			iframe.allowFullscreen = true;
 
 			container.appendChild( iframe );
+
+			if ( videoData.analyticsId && typeof window.rsfvWatchEmbed === 'function' ) {
+				window.rsfvWatchEmbed( iframe, videoData.analyticsId, 'sticky' );
+			}
 		}
 	}
 
@@ -317,6 +338,21 @@
 	}
 
 	/**
+	 * Count a sticky-video view or play. Hover playback never reaches this.
+	 *
+	 * @param {string} eventName view or play.
+	 */
+	function trackCurrent( eventName ) {
+		var video = videos[ currentIndex ];
+
+		if ( ! video || ! video.analyticsId || typeof window.rsfvTrack !== 'function' ) {
+			return;
+		}
+
+		window.rsfvTrack( video.analyticsId, eventName, 'sticky' );
+	}
+
+	/**
 	 * Load a video by index and update the nav.
 	 *
 	 * @param {HTMLElement} videoContainer The .rsfv-floating-popup__video element.
@@ -325,6 +361,8 @@
 	function loadVideo( videoContainer, popup ) {
 		insertVideo( videoContainer, videos[ currentIndex ] );
 		updateNav( popup );
+		trackCurrent( 'view' );
+		trackCurrent( 'play' );
 	}
 
 	/**
