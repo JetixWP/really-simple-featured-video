@@ -142,6 +142,11 @@ Analytics stores anonymous view and play totals in your own database. It does no
 * New: Analytics report in Video Tools, with views and plays for the last 14 days
 * New: Analytics settings tab. Longer retention is a Pro option
 * Improvement: Existing videos, settings, and player URLs are left unchanged on update
+* Improvement: Admin labels now say Sticky Video instead of Floating Video
+* Improvement: Settings Version Control tab renamed to Rollbacks
+* Improvement: Help tab and PRO upgrade copy in admin
+* Improvement: Refresh WordPress.org banners and icons
+* Improvement: Uninstall removes analytics tables and scheduled cleanup
 
 = 0.85.0 =
 * Fix: Rollback version GET parameter sanitization
