@@ -39,7 +39,9 @@ You get a really simple settings page which has all the controls you need for ma
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
 * **Manage Featured Videos** - Manage featured videos from one single place for all your post types and skip the repetitive steps of going to the edit screen to edit each post/page/product individually.
 * **Elementor Widget** - A dedicated Featured Video widget for Elementor that seamlessly integrates with your page designs, allowing easy video embedding and customization.
-* **Analytics** - See video views and playback analytics. Counts stay on your site, with no cookie.
+* **Bulk Video Uploader** - Assign video files or Youtube, Vimeo, and Dailymotion links to posts from Video Tools. Add rows by hand, or import a CSV or TXT file.
+* **Video Analytics** - See views and plays for featured videos in Video Tools. Counts stay on your site. No cookie is set. Records the last 14 days of history.
+
 
 
 == 👉️ Video Autoplay on Hover Support ==
