@@ -180,9 +180,13 @@ class Admin_Tools {
 			$post_type_obj = get_post_type_object( $post_type );
 
 			if ( $post_type_obj ) {
+				$labels    = $post_type_obj->labels;
 				$options[] = array(
-					'value' => sanitize_key( $post_type ),
-					'label' => esc_html( $post_type_obj->labels->name ),
+					'value'    => sanitize_key( $post_type ),
+					'label'    => esc_html( $labels->name ),
+					'singular' => wp_strip_all_tags( $labels->singular_name ),
+					'search'   => wp_strip_all_tags( $labels->search_items ),
+					'notFound' => wp_strip_all_tags( $labels->not_found ),
 				);
 			}
 		}

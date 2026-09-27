@@ -26,6 +26,13 @@ class Register {
 	public $rest_api;
 
 	/**
+	 * Bulk import instance.
+	 *
+	 * @var Bulk_Import
+	 */
+	public $bulk_import;
+
+	/**
 	 * Get a class instance.
 	 *
 	 * @return Register
@@ -46,7 +53,8 @@ class Register {
 		$this->includes();
 
 		// Initialize REST API.
-		$this->rest_api = REST_API::get_instance();
+		$this->rest_api    = REST_API::get_instance();
+		$this->bulk_import = Bulk_Import::get_instance();
 
 		add_action( 'rsfv_register_admin_menus', array( $this, 'register_menu_page' ) );
 	}
@@ -57,6 +65,7 @@ class Register {
 	protected function includes() {
 		require_once RSFV_PLUGIN_DIR . 'includes/Tools/class-admin-tools.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Tools/class-rest-api.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Tools/class-bulk-import.php';
 	}
 
 	/**

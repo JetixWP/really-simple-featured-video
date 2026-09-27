@@ -130,6 +130,7 @@ Analytics stores anonymous view and play totals in your own database. It does no
 == Changelog ==
 
 = 0.90.0 =
+* New: Bulk upload tab in Video Tools for video files, embed links, and CSV or TXT import
 * New: Analytics report in Video Tools, with views and plays for the last 14 days
 * New: Analytics settings tab. Longer retention is a Pro option
 * Improvement: Existing videos, settings, and player URLs are left unchanged on update
