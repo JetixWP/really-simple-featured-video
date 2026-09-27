@@ -20,7 +20,7 @@ https://www.youtube.com/watch?v=KWi-xuEgy-o
 
 With Really Simple Featured Video you get a metabox at posts, pages, CPTs & Woo products edit screen at the very bottom and a very similar interface as you're used to with featured image.
 
-You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Explore it yourself for a better look or take a look at screenshots below.
+You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Video Tools is where you manage those videos, upload many at once, and see views and plays. Explore it yourself for a better look or take a look at screenshots below.
 
 
 == 👉️ Features ==
