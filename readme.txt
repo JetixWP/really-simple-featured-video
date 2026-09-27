@@ -125,6 +125,12 @@ Yes, as long as the theme you use follows standard WordPress/WooCommerce way of 
 For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
 
+= Can I upload many videos at once? =
+Yes. Open Video Tools and use the Bulk upload tab. You can add files or embed links by hand, or import a CSV or TXT file. Each row needs a post. A row without a post is discarded, and its file is not uploaded.
+
+= What does Video Analytics count? =
+A view is a player actually on screen. A play is someone starting the video. Hover preview does not count. Counts stay in your own database. See the Privacy section.
+
 == Privacy ==
 
 Analytics stores anonymous view and play totals in your own database. It does not set a cookie, does not store IP addresses or user ids, and does not send counts to JetixWP. Free keeps 14 days of those totals. A browser tab may remember, in sessionStorage, which video was already counted during that visit.
