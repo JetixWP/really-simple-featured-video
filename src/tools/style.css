@@ -256,12 +256,44 @@ body.jetixwp_page_rsfv-tools #wpcontent {
 }
 
 .rsfv-upgrade-features li {
-	font-size: 14px;
-	font-weight: 600;
-	padding: 4px 0;
-	padding-left: 0;
 	position: relative;
 	margin-bottom: 0;
+	padding: 5px 0 5px 22px;
+	font-size: 13px;
+	line-height: 1.45;
+}
+
+.rsfv-upgrade-features li::before {
+	content: '✓';
+	position: absolute;
+	left: 0;
+	top: 5px;
+	font-weight: 700;
+	color: var(--jwp-rsfv__color-brand);
+}
+
+.rsfv-upgrade-features li strong {
+	display: block;
+	font-size: 14px;
+	color: #1e1e1e;
+}
+
+.rsfv-upgrade-features li span {
+	color: #50575e;
+}
+
+.rsfv-upgrade-trust {
+	margin: 10px 0 0;
+	font-size: 12px;
+	line-height: 1.5;
+	text-align: center;
+	color: #50575e;
+}
+
+.rsfv-upgrade-compare {
+	margin: 6px 0 0;
+	font-size: 13px;
+	text-align: center;
 }
 
 .rsfv-upgrade-button {

@@ -8,7 +8,8 @@ import { __ } from '@wordpress/i18n';
 
 const Sidebar = () => {
 	const isPro = window.rsfvTools?.isPro || false;
-	const upgradeUrl = window.rsfvTools?.upgradeUrl || 'https://developer.developer.developer/plugins/developer-developer-featured-video/';
+	const upgradeUrl = window.rsfvTools?.upgradeUrl || 'https://jetixwp.com/plugins/really-simple-featured-video/#pricing';
+	const compareUrl = upgradeUrl.replace( /#.*$/, '' ) + '#compare';
 
 	return (
 		<div className="rsfv-sidebar">
@@ -32,15 +33,29 @@ const Sidebar = () => {
 						{ __( '🚀 Ready to go beyond?', 'rsfv' ) }
 					</h3>
 					<p className="rsfv-upgrade-description">
-						{ __( 'Unlock powerful features like advanced video controls, extended WooCommerce integration, and more!', 'rsfv' ) }
+						{ __( 'RSFV PRO adds deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer.', 'rsfv' ) }
 					</p>
 					<ul className="rsfv-upgrade-features">
-						<li>{ __( '✅ Extended Autoplay on Hover', 'rsfv' ) }</li>
-						<li>{ __( '✅ Extended WooCommerce Featured Video', 'rsfv' ) }</li>
-						<li>{ __( '✅ Support for more Premium/Custom Themes', 'rsfv' ) }</li>
-						<li>{ __( '✅ Requests for Theme Compatibility', 'rsfv' ) }</li>
-						<li>{ __( '✅ Priority Support', 'rsfv' ) }</li>
-						<li>{ __( 'And much more...', 'rsfv' ) }</li>
+						<li>
+							<strong>{ __( 'Full video analytics', 'rsfv' ) }</strong>
+							<span>{ __( 'History beyond 14 days, watch time, completion, CSV export', 'rsfv' ) }</span>
+						</li>
+						<li>
+							<strong>{ __( 'WooCommerce controls', 'rsfv' ) }</strong>
+							<span>{ __( 'Gallery order, thumbnails, aspect ratios', 'rsfv' ) }</span>
+						</li>
+						<li>
+							<strong>{ __( 'Autoplay on hover', 'rsfv' ) }</strong>
+							<span>{ __( 'Extended controls for listings and shops', 'rsfv' ) }</span>
+						</li>
+						<li>
+							<strong>{ __( 'Premium and custom themes', 'rsfv' ) }</strong>
+							<span>{ __( 'More supported, compatibility on request', 'rsfv' ) }</span>
+						</li>
+						<li>
+							<strong>{ __( 'Priority support', 'rsfv' ) }</strong>
+							<span>{ __( 'Direct help from the developer', 'rsfv' ) }</span>
+						</li>
 					</ul>
 					<a
 						href={ upgradeUrl }
@@ -48,8 +63,14 @@ const Sidebar = () => {
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						{ __( 'Upgrade Now', 'rsfv' ) }
+						{ __( 'See PRO plans', 'rsfv' ) }
 					</a>
+					<p className="rsfv-upgrade-trust">
+						{ __( 'One-time payment · lifetime updates · 14-day money-back guarantee', 'rsfv' ) }
+					</p>
+					<p className="rsfv-upgrade-compare">
+						<a href={ compareUrl } target="_blank" rel="noopener noreferrer">{ __( 'Compare free vs PRO →', 'rsfv' ) }</a>
+					</p>
 				</div>
 			) }
 
