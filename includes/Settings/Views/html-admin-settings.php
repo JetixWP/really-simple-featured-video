@@ -16,8 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 $tab_exists        = isset( $tabs[ $current_tab ] ) || has_action( 'rsfv_sections_' . $current_tab ) || has_action( 'rsfv_settings_' . $current_tab ) || has_action( 'rsfv_settings_tabs_' . $current_tab );
 $current_tab_label = isset( $tabs[ $current_tab ] ) ? $tabs[ $current_tab ] : '';
 
-global $current_user;
-
 if ( ! $tab_exists ) {
 	wp_safe_redirect( admin_url( 'admin.php?page=rsfv-settings' ) );
 	exit;
@@ -97,34 +95,41 @@ if ( ! $tab_exists ) {
 					<?php endif; ?>
 
 					<?php if ( ! class_exists( '\RSFV_Pro\Plugin' ) ) : ?>
+						<?php $rsfv_pro_url = 'https://jetixwp.com/plugins/really-simple-featured-video/?utm_campaign=settings-sidebar&utm_source=rsfv-plugin'; ?>
 						<div class="upgrade-box">
 							<div>
-								<h3>🔥 &nbsp;Grab the PRO version with a Special discount</h3>
-								<p class="desc">RSFV PRO is available to support additional features while we continue to keep them maintained and updated. Add your email address and we will send you a special discount code for your PRO purchase.</p>
+								<h3>🎉 &nbsp;<?php esc_html_e( 'Anniversary deal: RSFV PRO from $59', 'rsfv' ); ?></h3>
+								<p class="desc"><?php esc_html_e( 'Get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates.', 'rsfv' ); ?></p>
+							</div>
+							<div class="rsfv-anniversary-deal">
+								<p class="rsfv-anniversary-deal__label"><?php esc_html_e( 'Special Anniversary Deal', 'rsfv' ); ?> <span class="rsfv-anniversary-deal__badge"><?php esc_html_e( 'Save up to 50%', 'rsfv' ); ?></span></p>
+								<ul class="rsfv-anniversary-deal__plans">
+									<li>
+										<span class="rsfv-anniversary-deal__plan"><?php esc_html_e( 'Single site', 'rsfv' ); ?> <em><?php esc_html_e( 'Save 34%', 'rsfv' ); ?></em></span>
+										<span class="rsfv-anniversary-deal__amounts"><s>$89</s> <strong>$59</strong></span>
+									</li>
+									<li>
+										<span class="rsfv-anniversary-deal__plan"><?php esc_html_e( 'Unlimited sites', 'rsfv' ); ?> <em><?php esc_html_e( 'Save 50%', 'rsfv' ); ?></em></span>
+										<span class="rsfv-anniversary-deal__amounts"><s>$199</s> <strong>$99</strong></span>
+									</li>
+								</ul>
+								<p class="rsfv-anniversary-deal__note"><?php esc_html_e( 'One-time payment · lifetime updates · no renewals', 'rsfv' ); ?></p>
+								<a class="button button-primary" href="<?php echo esc_url( $rsfv_pro_url . '#pricing' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Get PRO for $59', 'rsfv' ); ?></a>
+								<p class="rsfv-anniversary-deal__secure">🔒 <?php esc_html_e( 'Secure checkout · 14-day money-back guarantee', 'rsfv' ); ?></p>
 							</div>
 							<div>
-								<p class="desc"><strong>A few key features included in the PRO plugin -</strong></p>
-								<ul>
-									<li>✅ <strong>Priority Support</strong></li>
-									<li>✅ <strong>Extended Autoplay on Hover</strong></li>
-									<li>✅ <strong>Extended WooCommerce Featured Video</strong></li>
-									<li>✅ <strong>Support for more Premium/Custom Themes</strong></li>
-									<li>✅ <strong>Requests for Theme Compatibility</strong></li>
-									<li><strong>and so much more...</strong></li>
+								<p class="desc"><strong><?php esc_html_e( 'What PRO adds', 'rsfv' ); ?></strong></p>
+								<ul class="rsfv-upgrade-features">
+									<li>✅ <strong><?php esc_html_e( 'Priority support', 'rsfv' ); ?></strong> — <?php esc_html_e( 'direct help from the developer', 'rsfv' ); ?></li>
+									<li>✅ <strong><?php esc_html_e( 'Full video analytics', 'rsfv' ); ?></strong> — <?php esc_html_e( 'history beyond 14 days, watch time, completion, CSV export', 'rsfv' ); ?></li>
+									<li>✅ <strong><?php esc_html_e( 'WooCommerce controls', 'rsfv' ); ?></strong> — <?php esc_html_e( 'gallery order, thumbnails, aspect ratios', 'rsfv' ); ?></li>
+									<li>✅ <strong><?php esc_html_e( 'Autoplay on hover', 'rsfv' ); ?></strong> — <?php esc_html_e( 'extended controls for listings and shops', 'rsfv' ); ?></li>
+									<li>✅ <strong><?php esc_html_e( 'Premium and custom themes', 'rsfv' ); ?></strong> — <?php esc_html_e( 'more supported, compatibility on request', 'rsfv' ); ?></li>
 								</ul>
-							</div>
-							<form id="js-rsfv-pro-request-discount" method="post">
-								<input required type="email" class="regular-text" name="email" value="<?php echo esc_attr( $current_user->user_email ); ?>" placeholder="<?php esc_attr_e( 'Your Email', 'rsfv' ); ?>">
-								<input required type="text" class="regular-text" name="first_name" value="<?php echo esc_attr( $current_user->first_name ); ?>" placeholder="<?php esc_attr_e( 'First Name', 'rsfv' ); ?>">
-								<input type="submit" class="button button-primary" style="width:100%" value="<?php esc_attr_e( '🚀 Send me the discount', 'rsfv' ); ?>" data-default-label="<?php esc_attr_e( '🚀 Send me the discount', 'rsfv' ); ?>">
-								<p class="rsfv-pro-discount-response"><span></span></p>
-							</form>
-							<span class="separator">-- OR --</span>
-							<div class="peekaboo-section">
-								<a class="button button-primary" href="https://jetixwp.com/plugins/really-simple-featured-video?utm_campaign=settings-sidebar&utm_source=rsfv-plugin" target="_blank">✨ Take a look at PRO</a>
+								<p class="rsfv-upgrade-compare"><a href="<?php echo esc_url( $rsfv_pro_url . '#compare' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Compare free vs PRO →', 'rsfv' ); ?></a></p>
 							</div>
 
-							<div>
+							<div class="rsfv-upgrade-founder">
 								<p><em>If you like our free plugin, you will absolutely love the PRO version. Thank you for using RSFV again, you are not just any supporter but truly the founders of our small business.</em></p>
 								<p><strong>Krishna</strong>, Founder and Lead Developer</p>
 
