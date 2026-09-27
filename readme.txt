@@ -43,7 +43,6 @@ You get a really simple settings page which has all the controls you need for ma
 * **Video Analytics** - See views and plays for featured videos in Video Tools. Counts stay on your site. No cookie is set. Records the last 14 days of history.
 
 
-
 == 👉️ Video Autoplay on Hover Support ==
 
 RSFV supports autoplaying videos on hover, just enable the feature via Settings and the videos will start to autoplay. Autoplay videos when users hover on them not by default, creating a much better experience for the user as well as the site.
@@ -84,6 +83,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
+* ✅ **Extended Video Analytics** - Longer history recordings, watch time, completion, and CSV export.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Extended Floating Videos** - More layouts to display floating videos sitewide.
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
