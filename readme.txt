@@ -178,6 +178,8 @@ Video Studio uses these libraries and fonts:
 * New: Auto Generate Video and Edit in Video Studio in Video Tools > Manage Featured Videos
 * New: The Featured Video box tells you when a post changed after its video was made
 * Improvement: License is now GPLv2 or later
+* Fix: Saving an edit screen that was opened earlier no longer puts back an old video after the video was changed in Video Studio, Video Tools or another tab
+* Fix: Video Tools now shows videos saved before a video source was stored, as the site already plays them
 
 = 0.90.0 =
 * New: Bulk upload tab in Video Tools for video files, embed links, and CSV or TXT import
