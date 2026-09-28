@@ -42,6 +42,8 @@ const TemplateStrip = ( {
 	onChange,
 	disabled,
 	isPro,
+	proNeedsUpdate = false,
+	pluginsUrl = '',
 	upgradeUrl,
 	thumbs = {},
 	ratio = 16 / 9,
@@ -158,6 +160,25 @@ const TemplateStrip = ( {
 						</span>
 					</button>
 				) ) }
+
+				{ proNeedsUpdate && 'all' === filter && (
+					<div className="rsfv-studio-card rsfv-studio-card--pro">
+						<span className="rsfv-studio-card__promo">
+							<strong>{ __( 'Update RSFV PRO', 'rsfv' ) }</strong>
+						</span>
+						<span className="rsfv-studio-card__names">
+							{ __(
+								'Version 1.40.0 or newer adds its templates, sizes, music and brand kit here.',
+								'rsfv'
+							) }
+						</span>
+						{ pluginsUrl && (
+							<a href={ pluginsUrl }>
+								{ __( 'Go to Plugins', 'rsfv' ) }
+							</a>
+						) }
+					</div>
+				) }
 
 				{ promoShown.length > 0 && (
 					<div className="rsfv-studio-card rsfv-studio-card--pro">

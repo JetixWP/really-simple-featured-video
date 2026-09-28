@@ -83,6 +83,9 @@ class Studio {
 			'extensions'    => Registry::get_runtime_extensions(),
 			'maxUploadSize' => wp_max_upload_size(),
 			'isPro'         => defined( 'RSFV_PRO_VERSION' ),
+			// PRO older than 1.40.0 has no Video Studio extras yet.
+			'proNeedsUpdate' => defined( 'RSFV_PRO_VERSION' ) && version_compare( RSFV_PRO_VERSION, '1.40.0', '<' ),
+			'pluginsUrl'    => admin_url( 'plugins.php' ),
 			'upgradeUrl'    => RSFV_PLUGIN_PRO_URL . '/#pricing',
 		);
 	}
