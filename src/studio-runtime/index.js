@@ -564,6 +564,15 @@ const handlers = {
 
 			await output.start();
 
+			for ( const extension of extensions ) {
+				if ( 'function' === typeof extension.afterStart ) {
+					await extension.afterStart( {
+						...extensionContext,
+						config: ( payload.extensions || {} )[ extension.id ],
+					} );
+				}
+			}
+
 			const frames = Math.max( 1, Math.round( duration * fps ) );
 			for ( let i = 0; i < frames; i++ ) {
 				if ( state.cancelled ) {
@@ -681,9 +690,10 @@ const runtimeApi = {
 		}
 	},
 	/**
-	 * Register a render extension (e.g. an audio track).
+	 * Register a render extension (e.g. an audio track). Hooks, in order:
+	 * beforeRender (add tracks), afterStart (add samples), afterFrames.
 	 *
-	 * @param {Object} extension { id, beforeRender, afterFrames }.
+	 * @param {Object} extension { id, beforeRender, afterStart, afterFrames }.
 	 */
 	registerExtension( extension ) {
 		if ( extension && extension.id ) {
