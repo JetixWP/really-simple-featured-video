@@ -47,7 +47,7 @@ export function createOutput( { canvas, fps, codec, bitrate } ) {
 	const output = new Output( { format, target: new BufferTarget() } );
 	const source = new CanvasSource( canvas, {
 		codec,
-		bitrate: bitrate || QUALITY_HIGH,
+		...( bitrate ? { bitrate } : { quality: QUALITY_HIGH } ),
 		keyFrameInterval: 2,
 	} );
 	output.addVideoTrack( source, { frameRate: fps } );
