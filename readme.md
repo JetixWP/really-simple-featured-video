@@ -13,7 +13,7 @@ Really Simple Featured Video plugin provides a really straightforward way of add
 
 https://www.youtube.com/watch?v=xHrj2lcNS5Q
 
-With Really Simple Featured Video you get a metabox at posts, pages, CPTs & Woo products edit screen at the very bottom and a very similar interface as you're used to with featured image.
+With Really Simple Featured Video you get a metabox at posts, pages, CPTs & Woo products edit screen sidebar, with a very similar interface as you're used to with featured image.
 
 You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Explore it yourself for a better look or take a look at screenshots below.
 
@@ -24,7 +24,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
-* **Floating Videos** - Create engaging, responsive floating video buttons that open a popup player with multi-video support and customizable controls.
+* **Sticky Videos** - Add a play button at the bottom-left of your pages that opens a popup player, with display conditions, multi-video support and customizable controls.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme Builder (WPBakery) Support** - Support for Post Loop Builder element within Salient theme.
 * **Elementor Pro Support** - Support for Posts/archive widgets with Elementor Pro builder.
@@ -56,9 +56,9 @@ RSFV supports Salient Theme WPBakery builder with its Post Loop Builder element,
 
 RSFV supports Elementor Pro builder with its Posts/archive widgets, you can use them to display Featured Videos for posts, pages and CPTs (with Featured Images). You can also display Featured Video on single pages via the shortcode - [rsfv]
 
-== 👉️ Floating Videos Feature ==
+== 👉️ Sticky Videos Feature ==
 
-The Floating Videos feature adds a dynamic and engaging way to display videos on your website. With this innovative addition:
+The Sticky Videos feature adds a dynamic and engaging way to display videos on your website. With this innovative addition:
 * Create a floating play button at the bottom-left of your page
 * Support multiple videos on the same page
 * Responsive popup player that works seamlessly on mobile and desktop
@@ -102,7 +102,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 <strong>RSFV PRO plugin includes these features -</strong>
 
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
-* ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
+* ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 4:3, 3:2, 1:1, 9:16 or a custom ratio.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.
 * ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes.
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.

@@ -18,7 +18,7 @@ Really Simple Featured Video plugin provides a really straightforward way of add
 
 https://www.youtube.com/watch?v=KWi-xuEgy-o
 
-With Really Simple Featured Video you get a metabox at posts, pages, CPTs & Woo products edit screen at the very bottom and a very similar interface as you're used to with featured image.
+With Really Simple Featured Video you get a metabox at posts, pages, CPTs & Woo products edit screen sidebar, with a very similar interface as you're used to with featured image.
 
 You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Video Tools is where you manage those videos, upload many at once, and see views and plays. Explore it yourself for a better look or take a look at screenshots below.
 
@@ -29,7 +29,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
-* **Floating Videos** - Create engaging, responsive floating video buttons that open a popup player with multi-video support and customizable controls.
+* **Sticky Videos** - Add a play button at the bottom-left of your pages that opens a popup player, with display conditions, multi-video support and customizable controls.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme WPBakery Builder Support** - Support for Post Loop Builder element with Salient theme.
 * **Elementor Pro Support** - Support for Posts/Archive, WooCommerce Product widgets with Elementor Pro builder.
@@ -85,8 +85,8 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 * ✅ **Extended Video Analytics** - Longer history recordings, watch time, completion, and CSV export.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
-* ✅ **Extended Floating Videos** - More layouts to display floating videos sitewide.
-* ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
+* ✅ **Extended Sticky Videos** - Story layout for the Sticky Video popup, with tab bars to switch between videos.
+* ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 4:3, 3:2, 1:1, 9:16 or a custom ratio.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.
 * ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes.
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
