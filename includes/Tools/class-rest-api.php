@@ -379,6 +379,13 @@ class REST_API {
 		$embed_url    = get_post_meta( $post->ID, RSFV_EMBED_META_KEY, true );
 		$poster_id    = get_post_meta( $post->ID, RSFV_POSTER_META_KEY, true );
 
+		// Posts saved before a source was stored play their video file on
+		// the site (the player falls back to self-hosted), so report them
+		// that way here too.
+		if ( '' === (string) $video_source && ! empty( $video_id ) ) {
+			$video_source = 'self';
+		}
+
 		// Determine has_video based on the selected video source.
 		$has_video = false;
 		if ( 'self' === $video_source && ! empty( $video_id ) ) {
