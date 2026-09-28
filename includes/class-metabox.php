@@ -218,7 +218,7 @@ class Metabox {
 			$self_input,
 			$embed_input,
 			get_admin_url() . 'admin.php?page=rsfv-tools#manage',
-			__( '(NEW) Set & Manage Videos from One Place', 'rsfv' ),
+			__( 'Set & Manage Videos from One Place', 'rsfv' ),
 		);
 
 		$styles = '<style>.rsfv-self, .rsfv-embed { padding: 10px 0; } .remove-video { margin-top: 6px; } .rsfv-poster { margin: 8px 0 !important; } .rsfv-set-poster { margin: 4px 0 !important; }</style>';
