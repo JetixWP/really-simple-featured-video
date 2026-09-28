@@ -261,7 +261,7 @@ const AutoGenerate = ( { post, onClose, onDone } ) => {
 						__next40pxDefaultSize
 					/>
 					<SelectControl
-						label={ __( 'Size', 'rsfv' ) }
+						label={ __( 'Frame size', 'rsfv' ) }
 						value={ presetId }
 						options={ [
 							...Object.keys( presets ).map( ( id ) => ( {

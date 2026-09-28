@@ -602,7 +602,7 @@ const StudioModal = ( {
 				<div className="rsfv-studio__bar-end">
 					<SelectControl
 						className="rsfv-studio__size"
-						label={ __( 'Size', 'rsfv' ) }
+						label={ __( 'Frame size', 'rsfv' ) }
 						labelPosition="side"
 						value={ presetId }
 						options={ [
