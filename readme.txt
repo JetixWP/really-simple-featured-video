@@ -46,7 +46,7 @@ You get a really simple settings page which has all the controls you need for ma
 
 == 👉️ Video Studio ==
 
-Video Studio makes short featured videos from templates, without any outside service. Open it from the Featured Video box on any post, page or product.
+Video Studio makes short featured videos from templates, without any outside service. Open it from the Featured Video box on any post, page or product, or from the Video Studio page (under Video Tools): pick the post type and the entry, then make its video.
 
 * 4 templates: Text reveal, Image slideshow, Product card and Quote
 * Fills itself from the post or WooCommerce product: title, price, sale price, photos and category
