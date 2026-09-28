@@ -183,6 +183,7 @@ Video Studio uses these libraries and fonts:
 * Improvement: 9:16 listed in the aspect ratio setting (PRO)
 * Improvement: The Sticky Video link field lists the supported video sites
 * Improvement: Video Studio turns itself off on WordPress older than 6.2 instead of loading blank screens
+* Fix: A fatal error with the Codeixer product gallery when no product was loaded, and a PHP warning with Woostify
 
 = 0.90.0 =
 * New: Bulk upload tab in Video Tools for video files, embed links, and CSV or TXT import
