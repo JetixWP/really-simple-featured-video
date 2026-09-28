@@ -14,11 +14,6 @@ export const proPresetOptions = () => [
 		disabled: true,
 	},
 	{
-		value: 'pro-square',
-		label: __( '1:1, square (PRO)', 'rsfv' ),
-		disabled: true,
-	},
-	{
 		value: 'pro-feed',
 		label: __( '4:5, feed (PRO)', 'rsfv' ),
 		disabled: true,

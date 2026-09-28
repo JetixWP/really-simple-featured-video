@@ -394,6 +394,12 @@ class Registry {
 				'height' => 720,
 				'fps'    => 30,
 			),
+			'square-1080'    => array(
+				'label'  => __( '1:1, 1080 x 1080 (square)', 'rsfv' ),
+				'width'  => 1080,
+				'height' => 1080,
+				'fps'    => 30,
+			),
 		);
 
 		/**

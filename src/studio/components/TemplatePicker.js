@@ -76,7 +76,7 @@ const TemplatePicker = ( {
 					</div>
 					<p>
 						{ __(
-							'Also vertical, square and 4K sizes, music and a brand kit.',
+							'Also vertical and 4K sizes, music, a brand kit and every Google Font.',
 							'rsfv'
 						) }
 					</p>

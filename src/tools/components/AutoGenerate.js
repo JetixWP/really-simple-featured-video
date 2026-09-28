@@ -25,11 +25,6 @@ const proSizes = [
 		label: __( '9:16, Stories, Reels, Shorts (PRO)', 'rsfv' ),
 		disabled: true,
 	},
-	{
-		value: 'pro-square',
-		label: __( '1:1, square (PRO)', 'rsfv' ),
-		disabled: true,
-	},
 	{ value: 'pro-4k', label: __( '16:9, 4K (PRO)', 'rsfv' ), disabled: true },
 ];
 
