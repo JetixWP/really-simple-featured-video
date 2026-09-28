@@ -4,7 +4,6 @@
  * A big headline that rises in word by word, an accent bar and a short line
  * under it, over soft drifting shapes.
  *
- * @param studio
  * @package RSFV
  */
 

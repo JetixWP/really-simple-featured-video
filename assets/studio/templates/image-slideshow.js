@@ -4,7 +4,6 @@
  * Photos with a slow zoom and pan (Ken Burns), crossfading or sliding into
  * each other, with a title and caption on top.
  *
- * @param studio
  * @package RSFV
  */
 

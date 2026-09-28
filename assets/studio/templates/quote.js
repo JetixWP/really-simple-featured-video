@@ -4,7 +4,6 @@
  * A quote that fades in word by word under a large quotation mark, followed
  * by the author and their role.
  *
- * @param studio
  * @package RSFV
  */
 

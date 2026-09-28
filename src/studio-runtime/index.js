@@ -147,8 +147,6 @@ async function loadFonts( fonts ) {
  *
  * @param {HTMLElement} el          Element with a fixed box.
  * @param {Object}      options     { min, max } in px.
- * @param               options.min
- * @param               options.max
  * @return {number} Chosen font size.
  */
 function fitText( el, { min = 12, max = 200 } = {} ) {

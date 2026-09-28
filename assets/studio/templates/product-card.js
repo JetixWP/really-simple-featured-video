@@ -4,7 +4,6 @@
  * Product photo in a rounded frame with name, price (and old price when on
  * sale), a badge and a call to action. Fills itself from WooCommerce.
  *
- * @param studio
  * @package RSFV
  */
 
