@@ -82,7 +82,7 @@ class Compatibility extends Base_Compatibility {
 		}
 
 		$options = woostify_options( false );
-		$gallery = $options['shop_single_product_gallery_layout_select'];
+		$gallery = isset( $options['shop_single_product_gallery_layout_select'] ) ? $options['shop_single_product_gallery_layout_select'] : '';
 
 		if ( 'theme' === $gallery ) {
 			// PRODUCT PAGE.

@@ -3,12 +3,12 @@ Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.90.0
-Tags: video, featured video, woocommerce, product video, video embed
-License: GPLv2
+Stable tag: 1.0.0
+Tags: video, featured video, woocommerce, product video, video generator
+License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Really Simple Featured Video lets you add product video & featured video to WooCommerce Products & Posts, Pages, CPTs (with featured images).
+Add product & featured videos to WooCommerce, posts, pages and CPTs, or auto generate them from templates with Video Studio.
 
 == Description ==
 
@@ -18,18 +18,19 @@ Really Simple Featured Video plugin provides a really straightforward way of add
 
 https://www.youtube.com/watch?v=KWi-xuEgy-o
 
-With Really Simple Featured Video you get a metabox at posts, pages, CPTs & Woo products edit screen at the very bottom and a very similar interface as you're used to with featured image.
+With Really Simple Featured Video you get a metabox at posts, pages, CPTs & Woo products edit screen sidebar, with a very similar interface as you're used to with featured image.
 
 You get a really simple settings page which has all the controls you need for managing featured videos throughout your site. Video Tools is where you manage those videos, upload many at once, and see views and plays. Explore it yourself for a better look or take a look at screenshots below.
 
 
 == 👉️ Features ==
 
+* **Video Studio** - Auto generate featured videos from templates, right inside WordPress. Pick a template, change the text, colors, font and images (filled from the post or WooCommerce product), preview it and click Make video. The video is made in your browser and saved to your Media Library.
 * **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
-* **Floating Videos** - Create engaging, responsive floating video buttons that open a popup player with multi-video support and customizable controls.
+* **Sticky Videos** - Add a play button at the bottom-left of your pages that opens a popup player, with display conditions, multi-video support and customizable controls.
 * **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
 * **Salient Theme WPBakery Builder Support** - Support for Post Loop Builder element with Salient theme.
 * **Elementor Pro Support** - Support for Posts/Archive, WooCommerce Product widgets with Elementor Pro builder.
@@ -42,6 +43,19 @@ You get a really simple settings page which has all the controls you need for ma
 * **Bulk Video Uploader** - Assign video files or Youtube, Vimeo, and Dailymotion links to posts from Video Tools. Add rows by hand, or import a CSV or TXT file.
 * **Video Analytics** - See views and plays for featured videos in Video Tools. Counts stay on your site. No cookie is set. Records the last 14 days of history.
 
+
+== 👉️ Video Studio ==
+
+Video Studio auto generates short featured videos from templates, without any outside service. Open it from the Featured Video box on any post, page or product, or from the Video Studio page (under Video Tools): pick the post type and the entry, then make its video.
+
+* 7 templates: Text reveal, Image slideshow, Product card, Quote, News headline, Testimonial and Kinetic type
+* Fills itself from the post or WooCommerce product: title, price, sale price, photos and category
+* Live preview, then Make video. The video is made in your browser and saved as the post's featured video with a poster image
+* 16:9 in 720p or 1080p, or 1:1 square. The file is kept under your site's upload limit
+* The box tells you when the post changed after the video was made, so you can make it again
+* In Video Tools > Manage Featured Videos, entries without a video get an Auto Generate Video button: pick a template and it makes the video in one step
+
+Making a video needs Chrome, Edge or Firefox on a secure (HTTPS) connection. Safari can preview templates but can't make the video yet. Keep the tab open while the video is being made.
 
 == 👉️ Video Autoplay on Hover Support ==
 
@@ -83,10 +97,11 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
+* ✅ **Video Studio PRO** - Auto generate videos from 20 more templates for shops, blogs, food, real estate, courses, events, local businesses and portfolios, vertical and 4K sizes, music, a brand kit, every Google Font, big uploads past your host's limit, and videos for many entries at once.
 * ✅ **Extended Video Analytics** - Longer history recordings, watch time, completion, and CSV export.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
-* ✅ **Extended Floating Videos** - More layouts to display floating videos sitewide.
-* ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 3:2, 1:1 and more.
+* ✅ **Extended Sticky Videos** - Story layout for the Sticky Video popup, with tab bars to switch between videos.
+* ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 4:3, 3:2, 1:1, 9:16 or a custom ratio.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.
 * ✅ **Support for more Premium/Custom Themes** - Loads additional compatibility for many supported Premium/Custom themes.
 * ✅ **Requests for Theme Compatibility** - We will take requests for additional theme compatibility.
@@ -128,6 +143,12 @@ And if you're a Pro user, you can send a support ticket via the [account](https:
 = Can I upload many videos at once? =
 Yes. Open Video Tools and use the Bulk upload tab. You can add files or embed links by hand, or import a CSV or TXT file. Each row needs a post. A row without a post is discarded, and its file is not uploaded.
 
+= Does Video Studio send my content to another service? =
+No. Templates are played and recorded into a video file by your own browser, then uploaded to your own Media Library. Nothing is sent anywhere else.
+
+= Why can't I make a video in Safari? =
+Safari doesn't let a web page read back the picture Video Studio draws, so it can't record the video. You can still pick a template and preview it. Use Chrome, Edge or Firefox to make the video.
+
 = What does Video Analytics count? =
 A view is a player actually on screen. A play is someone starting the video. Hover preview does not count. Counts stay in your own database. See the Privacy section.
 
@@ -135,7 +156,34 @@ A view is a player actually on screen. A play is someone starting the video. Hov
 
 Analytics stores anonymous view and play totals in your own database. It does not set a cookie, does not store IP addresses or user ids, and does not send counts to JetixWP. Free keeps 14 days of those totals. A browser tab may remember, in sessionStorage, which video was already counted during that visit.
 
+Video Studio runs entirely in your browser and your site. Templates, fonts and scripts are bundled with the plugin and nothing is loaded from or sent to outside servers.
+
+== Source code and credits ==
+
+Source code and build tools: [github.com/JetixWP/really-simple-featured-video](https://github.com/JetixWP/really-simple-featured-video)
+
+Video Studio uses these libraries and fonts:
+
+* [Anime.js](https://animejs.com/) (MIT) for template animations
+* [Mediabunny](https://mediabunny.dev/) (MPL-2.0) to write MP4 and WebM files
+* Manrope, Ysabeau Office, Roboto Slab and Vollkorn fonts (SIL Open Font License 1.1), see assets/studio/fonts/LICENSE.txt
+
 == Changelog ==
+
+= 1.0.0 =
+* New: Video Studio. Auto generate featured videos from templates inside WordPress. It fills itself from the post or WooCommerce product, is made in your browser and is saved to your Media Library with a poster image
+* New: 7 templates: Text reveal, Image slideshow, Product card, Quote, News headline, Testimonial and Kinetic type, with live thumbnails of your entry in each
+* New: 16:9 in 720p or 1080p, and 1:1 square. Videos are kept under your site's upload limit
+* New: Video Studio page under Video Tools. Pick an entry and Auto Generate Video in one step or Make in Studio, or show only entries without a video
+* New: Auto Generate Video and Edit in Video Studio in Video Tools > Manage Featured Videos
+* New: The Featured Video box tells you when a post changed after its video was made
+* Improvement: License is now GPLv2 or later
+* Fix: Saving an edit screen that was opened earlier no longer puts back an old video after the video was changed in Video Studio, Video Tools or another tab
+* Fix: Video Tools now shows videos saved before a video source was stored, as the site already plays them
+* Improvement: 9:16 listed in the aspect ratio setting
+* Improvement: The Sticky Video link field lists the supported video sites
+* Improvement: Video Studio turns itself off on WordPress older than 6.2 instead of loading blank screens
+* Fix: A fatal error with the Codeixer product gallery when no product was loaded, and a PHP warning with Woostify
 
 = 0.90.0 =
 * New: Bulk upload tab in Video Tools for video files, embed links, and CSV or TXT import

@@ -1,0 +1,987 @@
+/**
+ * Video Studio editor styles.
+ *
+ * @package RSFV
+ */
+
+.rsfv-studio-launcher {
+	margin: 4px 0 8px;
+
+	.components-button {
+		margin-bottom: 6px;
+	}
+}
+
+.rsfv-studio-muted {
+	color: #646970;
+	font-size: 12px;
+	margin: 4px 0;
+}
+
+.rsfv-studio-stale {
+	color: #996800;
+	font-size: 12px;
+	margin: 4px 0;
+}
+
+// Edge to edge, like the block editor's full screen mode.
+.rsfv-studio-modal.components-modal__frame {
+	width: 100vw;
+	height: 100vh;
+	max-width: none;
+	max-height: none;
+	margin: 0;
+	border-radius: 0;
+}
+
+.rsfv-studio-modal {
+	.components-modal__content {
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+
+	.components-modal__children-container {
+		flex: 1;
+		min-height: 0;
+		display: flex;
+	}
+}
+
+// Editor shell: top bar, then preview + inspector.
+.rsfv-studio {
+	--rsfv-studio-line: #e0e0e0;
+	--rsfv-studio-canvas: #eceef1;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 0;
+	min-width: 0;
+	height: 100%;
+	background: #fff;
+	color: #1e1e1e;
+
+	&__bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px 16px;
+		min-height: 60px;
+		padding: 0 16px 0 8px;
+		border-bottom: 1px solid var(--rsfv-studio-line);
+		box-sizing: border-box;
+		flex-shrink: 0;
+	}
+
+	&__bar-start,
+	&__bar-end {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		min-width: 0;
+	}
+
+	&__bar-end {
+		flex-shrink: 0;
+	}
+
+	&__back.components-button {
+		height: 40px;
+		padding-right: 14px;
+		border-right: 1px solid var(--rsfv-studio-line);
+		border-radius: 0;
+		color: #1e1e1e;
+	}
+
+	&__heading {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		line-height: 1.3;
+
+		span {
+			font-size: 11px;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			color: #008710;
+		}
+
+		strong {
+			font-size: 14px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			max-width: 420px;
+		}
+	}
+
+	&__links {
+		display: flex;
+		gap: 14px;
+		padding-left: 12px;
+		font-size: 12px;
+
+		a {
+			color: #50575e;
+			text-decoration: none;
+			white-space: nowrap;
+
+			&:hover,
+			&:focus {
+				color: #008710;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	&__size .components-input-control__container {
+		min-width: 230px;
+	}
+
+	&__options {
+		width: 260px;
+		padding: 12px;
+	}
+
+	&__body {
+		display: flex;
+		flex: 1;
+		min-height: 0;
+	}
+
+	&__main {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		// Very short windows scroll rather than cut off the templates.
+		overflow-y: auto;
+		background: var(--rsfv-studio-canvas);
+	}
+
+	&__canvas {
+		position: relative;
+		flex: 1;
+		min-height: 150px;
+		background-image: radial-gradient(rgba(0, 0, 0, 0.07) 1px, transparent 1px);
+		background-size: 18px 18px;
+	}
+
+	// Sized box for the preview; the frame keeps the video's shape inside.
+	&__fit {
+		position: absolute;
+		inset: 28px 32px;
+		container-type: size;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__frame {
+		position: relative;
+		width: min(100cqw, 100cqh * var(--rsfv-ratio, 1.7778));
+		aspect-ratio: var(--rsfv-ratio, 1.7778);
+		background: #fff;
+		border-radius: 6px;
+		overflow: hidden;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 12px 32px rgba(0, 0, 0, 0.12);
+
+		.rsfv-studio-frame {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			border: 0;
+		}
+	}
+
+	&__loading {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	&__notices {
+		position: absolute;
+		top: 12px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: min(560px, calc(100% - 32px));
+		z-index: 3;
+
+		.components-notice {
+			margin: 0 0 8px;
+			box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+		}
+	}
+
+	&__progress {
+		position: absolute;
+		left: 50%;
+		bottom: 16px;
+		transform: translateX(-50%);
+		width: min(420px, calc(100% - 32px));
+		box-sizing: border-box;
+		padding: 12px 14px;
+		background: #fff;
+		border-radius: 8px;
+		box-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
+		z-index: 3;
+
+		.rsfv-studio-muted {
+			margin: 0;
+		}
+
+		// Two classes, to beat the component's own width.
+		.rsfv-studio__bar-progress {
+			width: 100%;
+			max-width: none;
+			margin: 8px 0;
+		}
+	}
+
+	&__progress-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+		min-height: 24px;
+
+		span {
+			font-variant-numeric: tabular-nums;
+		}
+	}
+
+	&__transport {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 4px 16px;
+		background: #fff;
+		border-top: 1px solid var(--rsfv-studio-line);
+	}
+
+	&__scrub {
+		flex: 1;
+	}
+
+	&__loop.components-button.is-pressed {
+		background: #008710;
+		color: #fff;
+	}
+
+	&__time {
+		font-variant-numeric: tabular-nums;
+		color: #50575e;
+		font-size: 12px;
+		min-width: 36px;
+	}
+
+	&__inspector {
+		width: 340px;
+		flex-shrink: 0;
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+		border-left: 1px solid var(--rsfv-studio-line);
+		background: #fff;
+	}
+
+	&__template {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		padding: 14px 16px 12px;
+
+		strong {
+			font-size: 14px;
+		}
+
+		span {
+			font-size: 12px;
+			line-height: 1.45;
+			color: #646970;
+		}
+	}
+
+	&__tabs {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-height: 0;
+
+		.components-tab-panel__tabs {
+			flex-shrink: 0;
+			padding: 0 8px;
+			border-bottom: 1px solid var(--rsfv-studio-line);
+			overflow-x: auto;
+		}
+
+		.components-tab-panel__tabs-item {
+			padding: 0 10px;
+			white-space: nowrap;
+		}
+
+		.components-tab-panel__tab-content {
+			flex: 1;
+			min-height: 0;
+			overflow-y: auto;
+		}
+	}
+
+	&__panel {
+		padding: 16px;
+
+		.rsfv-studio-promo ul {
+			margin: 6px 0 10px 16px;
+			list-style: disc;
+		}
+	}
+
+	// Thumbnails render here: on screen (browsers pause frames that are
+	// off screen) but invisible, behind the editor.
+	&__offstage {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 320px;
+		height: 180px;
+		overflow: hidden;
+		opacity: 0;
+		pointer-events: none;
+		z-index: -1;
+	}
+}
+
+.rsfv-studio-field {
+	margin-bottom: 16px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.rsfv-studio-confirm {
+	--wp-admin-theme-color: #008710;
+	--wp-admin-theme-color--rgb: 0, 135, 16;
+	--wp-admin-theme-color-darker-10: #007a0e;
+	--wp-admin-theme-color-darker-20: #00650c;
+
+	p {
+		margin-top: 0;
+		max-width: 360px;
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 8px;
+		margin-top: 20px;
+	}
+}
+
+// Template strip under the preview.
+.rsfv-studio-strip {
+	flex-shrink: 0;
+	background: #fff;
+	border-top: 1px solid var(--rsfv-studio-line);
+	padding: 10px 0 12px;
+
+	&__head {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 0 16px 8px;
+
+		h3 {
+			margin: 0;
+			font-size: 11px;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+	}
+
+	&__filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+
+	&__list {
+		display: flex;
+		gap: 10px;
+		// Same height whatever the filter shows, so the preview doesn't jump.
+		min-height: 102px;
+		overflow-x: auto;
+		padding: 2px 16px 6px;
+		scrollbar-width: thin;
+	}
+}
+
+.rsfv-studio-chip {
+	border: 1px solid #dcdcde;
+	border-radius: 12px;
+	background: #fff;
+	color: #50575e;
+	font: inherit;
+	font-size: 12px;
+	line-height: 22px;
+	padding: 0 10px;
+	cursor: pointer;
+
+	&:hover {
+		border-color: #8c8f94;
+		color: #1e1e1e;
+	}
+
+	&[aria-pressed="true"] {
+		border-color: #008710;
+		background: #008710;
+		color: #fff;
+	}
+
+	&:focus-visible {
+		outline: 2px solid #008710;
+		outline-offset: 1px;
+	}
+}
+
+.rsfv-studio-card {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	flex: 0 0 136px;
+	width: 136px;
+	padding: 0;
+	border: 0;
+	background: none;
+	text-align: left;
+	font: inherit;
+	cursor: pointer;
+
+	&__thumb {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 78px;
+		border-radius: 6px;
+		background: #f0f0f1;
+		overflow: hidden;
+		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+		transition: box-shadow 0.15s ease;
+
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: contain;
+			display: block;
+		}
+
+		.dashicon {
+			color: #a7aaad;
+			font-size: 26px;
+			width: 26px;
+			height: 26px;
+		}
+	}
+
+	&__title {
+		font-size: 12px;
+		font-weight: 500;
+		color: #1e1e1e;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	&:hover:not(:disabled) &__thumb {
+		box-shadow: inset 0 0 0 1px #8c8f94;
+	}
+
+	&.is-selected &__thumb {
+		box-shadow: 0 0 0 2px #008710;
+	}
+
+	&.is-selected &__title {
+		color: #008710;
+		font-weight: 600;
+	}
+
+	&:focus-visible {
+		outline: none;
+	}
+
+	&:focus-visible &__thumb {
+		box-shadow: 0 0 0 2px #fff, 0 0 0 4px #008710;
+	}
+
+	&:disabled {
+		cursor: default;
+		opacity: 0.6;
+	}
+
+	// Grows to the row's height, so its text is never cut off.
+	&--pro {
+		flex-basis: 250px;
+		width: 250px;
+		min-height: 78px;
+		align-self: stretch;
+		box-sizing: border-box;
+		gap: 4px;
+		padding: 8px 10px;
+		border: 1px dashed #8cc793;
+		border-radius: 6px;
+		background: #f1faee;
+		cursor: default;
+		font-size: 12px;
+
+		a {
+			color: #008710;
+			font-weight: 600;
+		}
+	}
+
+	&__promo {
+		display: flex;
+		align-items: center;
+	}
+
+	&__names {
+		flex: 1;
+		color: #50575e;
+		font-size: 11px;
+		line-height: 1.4;
+	}
+}
+
+.rsfv-studio-media {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-bottom: 8px;
+
+	&__item {
+		position: relative;
+		width: 64px;
+		height: 64px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 2px;
+			display: block;
+		}
+	}
+
+	&__remove.components-button {
+		position: absolute;
+		top: 2px;
+		right: 2px;
+		min-width: 0;
+		width: 20px;
+		height: 20px;
+		padding: 0;
+		background: rgba(255, 255, 255, 0.9);
+		border-radius: 50%;
+	}
+}
+
+.rsfv-studio-color.components-button {
+	gap: 8px;
+	width: 100%;
+	justify-content: flex-start;
+}
+
+@media (max-width: 1100px) {
+	.rsfv-studio {
+		&__links {
+			display: none;
+		}
+
+		&__size .components-input-control__container {
+			min-width: 160px;
+		}
+
+		&__inspector {
+			width: 300px;
+		}
+	}
+}
+
+@media (max-width: 782px) {
+	.rsfv-studio {
+		overflow-y: auto;
+
+		&__bar {
+			flex-wrap: wrap;
+			padding: 8px 12px 8px 4px;
+		}
+
+		&__bar-end {
+			width: 100%;
+			justify-content: flex-end;
+		}
+
+		&__body {
+			flex-direction: column;
+			flex: none;
+		}
+
+		&__canvas {
+			flex: none;
+			height: 62vw;
+			min-height: 220px;
+		}
+
+		&__fit {
+			inset: 12px;
+		}
+
+		&__inspector {
+			width: auto;
+			border-left: 0;
+			border-top: 1px solid var(--rsfv-studio-line);
+		}
+
+		&__tabs .components-tab-panel__tab-content {
+			overflow: visible;
+		}
+	}
+}
+
+// Video Studio admin page.
+.rsfv-studio-page-subtitle {
+	color: #50575e;
+	font-size: 14px;
+	padding-left: 10px;
+	border-left: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.rsfv-studio-page {
+	margin-top: 20px;
+
+	&__intro {
+		max-width: 760px;
+		color: #50575e;
+	}
+
+	&__filters {
+		display: flex;
+		gap: 12px 20px;
+		align-items: flex-end;
+		flex-wrap: wrap;
+		margin: 16px 0 12px;
+
+		> * {
+			min-width: 200px;
+		}
+	}
+
+	&__table {
+		max-width: 1100px;
+
+		td {
+			vertical-align: middle;
+		}
+
+		.check-column {
+			width: 32px;
+			padding-left: 10px;
+		}
+	}
+
+	&__bulkbar {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+		max-width: 1100px;
+		box-sizing: border-box;
+		background: #fff;
+		border: 1px solid #c3c4c7;
+		border-left: 4px solid var(--jwp-rsfv__color-brand, #008710);
+		padding: 8px 12px;
+		margin-bottom: 12px;
+	}
+
+	&__bulkpanel {
+		max-width: 1100px;
+		margin-bottom: 16px;
+	}
+
+	&__action-col {
+		width: 300px;
+		text-align: right;
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+		gap: 6px;
+	}
+
+	&__title {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		img,
+		.rsfv-studio-page__nothumb {
+			width: 40px;
+			height: 40px;
+			object-fit: cover;
+			border-radius: 2px;
+			background: #f0f0f1;
+			flex-shrink: 0;
+		}
+
+		.button-link {
+			font-weight: 600;
+			text-align: left;
+		}
+	}
+
+	&__pages {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		margin-top: 12px;
+	}
+}
+
+// On the Video Studio page the editor fills the screen below the admin bar.
+.rsfv-studio-inline {
+	position: fixed;
+	top: var(--wp-admin--admin-bar--height, 32px);
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 9995;
+	display: flex;
+	background: #fff;
+}
+
+body.rsfv-studio-editing {
+	overflow: hidden;
+
+	// The page header is behind the editor; on phones it would widen the page.
+	.plugin-header-wrap {
+		display: none;
+	}
+}
+
+// JetixWP brand colors for WordPress components on Video Studio screens.
+.rsfv-studio-page-wrap,
+.rsfv-studio-modal,
+.rsfv-studio-launcher,
+.rsfv-studio-inline,
+.rsfv-autogen {
+	--wp-admin-theme-color: #008710;
+	--wp-admin-theme-color--rgb: 0, 135, 16;
+	--wp-admin-theme-color-darker-10: #007a0e;
+	--wp-admin-theme-color-darker-10--rgb: 0, 122, 14;
+	--wp-admin-theme-color-darker-20: #00650c;
+	--wp-admin-theme-color-darker-20--rgb: 0, 101, 12;
+}
+
+.rsfv-studio-page-wrap .rsfv-studio-page .button-link {
+	color: #008710;
+}
+
+// Page layout: list and sidebar, like Settings.
+.rsfv-studio-layout {
+	margin: 0 40px 0 30px;
+	max-width: 1360px;
+
+	@media screen and (min-width: 1100px) {
+		display: grid;
+		grid-template-columns: minmax(0, 8fr) minmax(280px, 4fr);
+		column-gap: 40px;
+		align-items: start;
+	}
+
+	#rsfv-studio-page > .rsfv-tab-content {
+		margin-left: 0;
+		min-width: 0;
+		max-width: none;
+		padding-right: 0;
+	}
+
+	> .sidebar {
+		margin-top: 20px;
+	}
+}
+
+// PRO promos (free only).
+.rsfv-pro-tag {
+	display: inline-block;
+	margin-left: 4px;
+	padding: 0 6px;
+	border-radius: 3px;
+	background: #008710;
+	color: #fff;
+	font-size: 10px;
+	font-weight: 600;
+	line-height: 17px;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	vertical-align: 1px;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		color: #fff;
+		background: #00650c;
+	}
+}
+
+.rsfv-studio-promo {
+	border: 1px dashed #8cc793;
+	background: #f1faee;
+	border-radius: 4px;
+	padding: 10px 12px;
+	font-size: 12px;
+	line-height: 1.5;
+	color: #3c434a;
+
+	p {
+		margin: 0 0 6px;
+	}
+
+	a {
+		color: #008710;
+		font-weight: 600;
+	}
+}
+
+.rsfv-studio-promo__chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin: 6px 0 8px;
+
+	span {
+		border: 1px solid #c3c4c7;
+		border-radius: 10px;
+		padding: 0 8px;
+		background: #fff;
+		color: #646970;
+		font-size: 11px;
+		line-height: 20px;
+	}
+}
+
+.rsfv-studio-page__prohint {
+	margin: -4px 0 12px;
+	font-size: 12px;
+	color: #50575e;
+}
+
+// Auto Generate Video dialog (Video Tools and the Video Studio page).
+.rsfv-autogen.components-modal__frame {
+	width: 820px;
+	max-width: calc(100vw - 32px);
+}
+
+.rsfv-autogen__layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 260px;
+	gap: 20px;
+	align-items: start;
+}
+
+.rsfv-autogen__preview {
+	position: relative;
+	aspect-ratio: 16 / 9;
+	background: repeating-conic-gradient(#e2e4e7 0% 25%, #f6f7f7 0% 50%) 50% / 20px 20px;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.rsfv-autogen__preview .rsfv-studio-frame {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+.rsfv-autogen__spinner {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1;
+}
+
+.rsfv-autogen__controls .components-base-control,
+.rsfv-autogen__controls .components-toggle-control {
+	margin-bottom: 14px;
+}
+
+.rsfv-autogen__hint {
+	color: #646970;
+	font-size: 12px;
+	margin: 0;
+}
+
+.rsfv-autogen .components-notice {
+	margin: 16px 0 0;
+}
+
+.rsfv-autogen__progress {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 16px;
+}
+
+.rsfv-autogen__bar {
+	flex: 1;
+	width: auto;
+	max-width: none;
+}
+
+.rsfv-autogen__actions {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 8px;
+	margin-top: 20px;
+}
+
+.rsfv-autogen__studio {
+	margin-right: auto;
+}
+
+@media (max-width: 782px) {
+	.rsfv-autogen__layout {
+		grid-template-columns: 1fr;
+	}
+}
+
+// Progress bar for WordPress before 6.6 (see components/Progress.js).
+.rsfv-progress {
+	height: 4px;
+	width: 100%;
+	border-radius: 2px;
+	background: #e0e0e0;
+	overflow: hidden;
+
+	&__fill {
+		height: 100%;
+		background: var(--wp-admin-theme-color, #008710);
+		transition: width 0.2s ease;
+	}
+}

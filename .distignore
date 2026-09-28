@@ -28,6 +28,7 @@ CONTRIBUTING.md
 CREDITS.md
 LICENSE.md
 README.md
+readme.md
 composer.json
 composer.lock
 package-lock.json

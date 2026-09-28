@@ -107,6 +107,17 @@ class Metabox {
 		// Generate nonce field.
 		wp_nonce_field( 'rsfv_inner_custom_box', 'rsfv_inner_custom_box_nonce' );
 
+		// What was saved when this screen opened, so saving it later doesn't
+		// undo a video set meanwhile somewhere else (Video Studio, Video
+		// Tools, another tab).
+		foreach ( self::loaded_keys() as $rsfv_field => $rsfv_key ) {
+			printf(
+				'<input type="hidden" name="rsfv_loaded[%1$s]" value="%2$s" />',
+				esc_attr( $rsfv_field ),
+				esc_attr( (string) get_post_meta( $post->ID, $rsfv_key, true ) )
+			);
+		}
+
 		// Get the meta value of video source.
 		$video_source = get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true );
 		$video_source = $video_source ? $video_source : 'self';
@@ -218,13 +229,22 @@ class Metabox {
 			$self_input,
 			$embed_input,
 			get_admin_url() . 'admin.php?page=rsfv-tools#manage',
-			__( '(NEW) Set & Manage Videos from One Place', 'rsfv' ),
+			__( 'Set & Manage Videos from One Place', 'rsfv' ),
 		);
 
 		$styles = '<style>.rsfv-self, .rsfv-embed { padding: 10px 0; } .remove-video { margin-top: 6px; } .rsfv-poster { margin: 8px 0 !important; } .rsfv-set-poster { margin: 4px 0 !important; }</style>';
 
 		echo wp_kses( $select_source, $this->get_allowed_html() );
 		echo wp_kses( $styles, $this->get_allowed_html() );
+
+		/**
+		 * Fires after the video source fields in the Featured Video box.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param \WP_Post $post Post being edited.
+		 */
+		do_action( 'rsfv_metabox_after_source', $post );
 	}
 
 	/**
@@ -254,25 +274,80 @@ class Metabox {
 			return $post_id;
 		}
 
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized per field below.
+		$loaded = isset( $_POST['rsfv_loaded'] ) && is_array( $_POST['rsfv_loaded'] ) ? wp_unslash( $_POST['rsfv_loaded'] ) : null;
+
 		if ( isset( $_POST[ RSFV_SOURCE_META_KEY ] ) ) {
 			$source = sanitize_key( wp_unslash( $_POST[ RSFV_SOURCE_META_KEY ] ) );
 			$source = in_array( $source, array( 'self', 'embed' ), true ) ? $source : 'self';
-			update_post_meta( $post_id, RSFV_SOURCE_META_KEY, $source );
+			// The box shows Self when no source was saved yet.
+			$shown = isset( $loaded['source'] ) && '' !== $loaded['source'] ? sanitize_key( $loaded['source'] ) : 'self';
+			if ( ! self::changed_elsewhere( $post_id, 'source', $loaded, $source, $shown ) ) {
+				update_post_meta( $post_id, RSFV_SOURCE_META_KEY, $source );
+			}
 		}
 
 		if ( isset( $_POST[ RSFV_META_KEY ] ) ) {
-			update_post_meta( $post_id, RSFV_META_KEY, absint( wp_unslash( $_POST[ RSFV_META_KEY ] ) ) );
+			$video_id = absint( wp_unslash( $_POST[ RSFV_META_KEY ] ) );
+			$shown    = isset( $loaded['video'] ) ? absint( $loaded['video'] ) : 0;
+			if ( ! self::changed_elsewhere( $post_id, 'video', $loaded, $video_id, $shown ) ) {
+				update_post_meta( $post_id, RSFV_META_KEY, $video_id );
+			}
 		}
 
 		if ( isset( $_POST[ RSFV_EMBED_META_KEY ] ) ) {
-			update_post_meta( $post_id, RSFV_EMBED_META_KEY, esc_url_raw( wp_unslash( $_POST[ RSFV_EMBED_META_KEY ] ) ) );
+			$embed = esc_url_raw( wp_unslash( $_POST[ RSFV_EMBED_META_KEY ] ) );
+			$shown = isset( $loaded['embed'] ) ? esc_url_raw( $loaded['embed'] ) : '';
+			if ( ! self::changed_elsewhere( $post_id, 'embed', $loaded, $embed, $shown ) ) {
+				update_post_meta( $post_id, RSFV_EMBED_META_KEY, $embed );
+			}
 		}
 
 		if ( isset( $_POST[ RSFV_POSTER_META_KEY ] ) ) {
-			update_post_meta( $post_id, RSFV_POSTER_META_KEY, absint( wp_unslash( $_POST[ RSFV_POSTER_META_KEY ] ) ) );
+			$poster_id = absint( wp_unslash( $_POST[ RSFV_POSTER_META_KEY ] ) );
+			$shown     = isset( $loaded['poster'] ) ? absint( $loaded['poster'] ) : 0;
+			if ( ! self::changed_elsewhere( $post_id, 'poster', $loaded, $poster_id, $shown ) ) {
+				update_post_meta( $post_id, RSFV_POSTER_META_KEY, $poster_id );
+			}
 		}
 
 		return $post_id;
+	}
+
+	/**
+	 * Featured Video box fields and their meta keys.
+	 *
+	 * @return array Field => meta key.
+	 */
+	protected static function loaded_keys() {
+		return array(
+			'source' => RSFV_SOURCE_META_KEY,
+			'video'  => RSFV_META_KEY,
+			'embed'  => RSFV_EMBED_META_KEY,
+			'poster' => RSFV_POSTER_META_KEY,
+		);
+	}
+
+	/**
+	 * Whether a field was changed somewhere else after this screen opened,
+	 * and left as it was here. Saving it would put the old value back.
+	 *
+	 * @param int        $post_id   Post ID.
+	 * @param string     $field     Field (see loaded_keys()).
+	 * @param array|null $loaded    Values saved when the screen opened.
+	 * @param mixed      $submitted Value sent now.
+	 * @param mixed      $shown     Value the box showed when it opened.
+	 *
+	 * @return bool
+	 */
+	protected static function changed_elsewhere( $post_id, $field, $loaded, $submitted, $shown ) {
+		if ( ! is_array( $loaded ) || ! isset( $loaded[ $field ] ) ) {
+			return false;
+		}
+		$keys    = self::loaded_keys();
+		$current = (string) get_post_meta( $post_id, $keys[ $field ], true );
+
+		return $current !== (string) $loaded[ $field ] && (string) $submitted === (string) $shown;
 	}
 
 	/**

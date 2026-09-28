@@ -248,37 +248,51 @@ body.jetixwp_page_rsfv-tools #wpcontent {
 	opacity: 0.95;
 }
 
-.rsfv-upgrade-features {
+.rsfv-sidebar .rsfv-upgrade-features {
 	margin: 0 0 15px;
 	padding: 0;
 	list-style: none;
 	text-align: left;
 }
 
-.rsfv-upgrade-features li {
+.rsfv-sidebar .rsfv-upgrade-features li {
 	position: relative;
 	margin-bottom: 0;
-	padding: 5px 0 5px 22px;
+	padding: 5px 0 5px 26px;
 	font-size: 13px;
 	line-height: 1.45;
 }
 
-.rsfv-upgrade-features li::before {
-	content: '✓';
+.rsfv-sidebar .rsfv-upgrade-features li::before {
+	content: "\f147";
 	position: absolute;
 	left: 0;
 	top: 5px;
-	font-weight: 700;
+	font-family: dashicons;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1.1;
+	color: var(--jwp-rsfv__color-brand);
+	-webkit-font-smoothing: antialiased;
+}
+
+.rsfv-promo-icon.dashicons {
+	width: 20px;
+	height: 20px;
+	margin-right: 6px;
+	font-size: 20px;
+	line-height: 1;
+	vertical-align: -4px;
 	color: var(--jwp-rsfv__color-brand);
 }
 
-.rsfv-upgrade-features li strong {
+.rsfv-sidebar .rsfv-upgrade-features li strong {
 	display: block;
 	font-size: 14px;
 	color: #1e1e1e;
 }
 
-.rsfv-upgrade-features li span {
+.rsfv-sidebar .rsfv-upgrade-features li span {
 	color: #50575e;
 }
 
@@ -1878,4 +1892,21 @@ ease-in-out;
 	flex-wrap: wrap;
 	gap: 8px;
 	margin-top: 16px;
+}
+
+/* Video Studio: Auto Generate Video. */
+.rsfv-studio-action {
+	justify-content: center;
+	margin-top: 6px;
+}
+
+/* Leave the title room next to the sidebar on medium screens. */
+@media (max-width: 1600px) {
+	.rsfv-posts-table .column-video-action {
+		width: 240px;
+	}
+
+	.rsfv-posts-table .column-video-preview {
+		width: 220px;
+	}
 }

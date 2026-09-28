@@ -81,11 +81,17 @@ class REST_API {
 						'default'           => 20,
 						'sanitize_callback' => 'absint',
 					),
-					'search'    => array(
+					'search'        => array(
 						'required'          => false,
 						'type'              => 'string',
 						'default'           => '',
 						'sanitize_callback' => 'sanitize_text_field',
+					),
+					'without_video' => array(
+						'required'          => false,
+						'type'              => 'boolean',
+						'default'           => false,
+						'sanitize_callback' => 'rest_sanitize_boolean',
 					),
 				),
 			)
@@ -287,6 +293,59 @@ class REST_API {
 			'order'          => 'DESC',
 		);
 
+		// Only entries without a featured video (same rules as has_video).
+		if ( $request->get_param( 'without_video' ) ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$args['meta_query'] = array(
+				'relation' => 'OR',
+				array(
+					'relation' => 'AND',
+					array(
+						'relation' => 'OR',
+						array(
+							'key'     => RSFV_SOURCE_META_KEY,
+							'compare' => 'NOT EXISTS',
+						),
+						array(
+							'key'     => RSFV_SOURCE_META_KEY,
+							'value'   => 'embed',
+							'compare' => '!=',
+						),
+					),
+					array(
+						'relation' => 'OR',
+						array(
+							'key'     => RSFV_META_KEY,
+							'compare' => 'NOT EXISTS',
+						),
+						array(
+							'key'     => RSFV_META_KEY,
+							'value'   => array( '', '0' ),
+							'compare' => 'IN',
+						),
+					),
+				),
+				array(
+					'relation' => 'AND',
+					array(
+						'key'   => RSFV_SOURCE_META_KEY,
+						'value' => 'embed',
+					),
+					array(
+						'relation' => 'OR',
+						array(
+							'key'     => RSFV_EMBED_META_KEY,
+							'compare' => 'NOT EXISTS',
+						),
+						array(
+							'key'   => RSFV_EMBED_META_KEY,
+							'value' => '',
+						),
+					),
+				),
+			);
+		}
+
 		// Add search if provided.
 		$search = $request->get_param( 'search' );
 		if ( ! empty( $search ) ) {
@@ -320,6 +379,13 @@ class REST_API {
 		$embed_url    = get_post_meta( $post->ID, RSFV_EMBED_META_KEY, true );
 		$poster_id    = get_post_meta( $post->ID, RSFV_POSTER_META_KEY, true );
 
+		// Posts saved before a source was stored play their video file on
+		// the site (the player falls back to self-hosted), so report them
+		// that way here too.
+		if ( '' === (string) $video_source && ! empty( $video_id ) ) {
+			$video_source = 'self';
+		}
+
 		// Determine has_video based on the selected video source.
 		$has_video = false;
 		if ( 'self' === $video_source && ! empty( $video_id ) ) {
@@ -352,6 +418,7 @@ class REST_API {
 			'edit_link'    => esc_url_raw( $edit_link ),
 			'thumbnail'    => $thumbnail ? esc_url_raw( $thumbnail ) : '',
 			'has_video'    => (bool) $has_video,
+			'from_studio'  => class_exists( '\\RSFV\\Studio\\Composition' ) && \RSFV\Studio\Composition::is_current( $post->ID ),
 			'video_source' => sanitize_key( $video_source ),
 			'video_id'     => $video_id ? absint( $video_id ) : 0,
 			'video_url'    => $video_url ? esc_url_raw( $video_url ) : '',

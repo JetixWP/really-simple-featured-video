@@ -8,6 +8,7 @@ import { useState, useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import VideoTypeSelect from './VideoTypeSelect';
 import VideoAction from './VideoAction';
+import StudioAction from './StudioAction';
 import VideoPreview from './VideoPreview';
 import ThumbnailCell from './ThumbnailCell';
 import { applyFilters, doAction } from '../hooks';
@@ -85,7 +86,10 @@ const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 		switch ( columnKey ) {
 			case 'thumbnail':
 				return (
-					<ThumbnailCell post={ post } onUpdate={ handlePostUpdate } />
+					<ThumbnailCell
+						post={ post }
+						onUpdate={ handlePostUpdate }
+					/>
 				);
 
 			case 'title':
@@ -137,7 +141,16 @@ const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 
 			case 'video_action':
 				return (
-					<VideoAction post={ post } onUpdate={ handlePostUpdate } />
+					<>
+						<VideoAction
+							post={ post }
+							onUpdate={ handlePostUpdate }
+						/>
+						<StudioAction
+							post={ post }
+							onUpdate={ handlePostUpdate }
+						/>
+					</>
 				);
 
 			case 'video_preview':
@@ -163,11 +176,16 @@ const PostsTable = ( { posts: initialPosts, onRefresh } ) => {
 			<tbody>
 				{ posts.map( ( post ) => (
 					<tr key={ post.id }>
-						{ Object.entries( columns ).map( ( [ key, column ] ) => (
-							<td key={ key } className={ column.class || '' }>
-								{ renderCellContent( key, post ) }
-							</td>
-						) ) }
+						{ Object.entries( columns ).map(
+							( [ key, column ] ) => (
+								<td
+									key={ key }
+									className={ column.class || '' }
+								>
+									{ renderCellContent( key, post ) }
+								</td>
+							)
+						) }
 					</tr>
 				) ) }
 			</tbody>

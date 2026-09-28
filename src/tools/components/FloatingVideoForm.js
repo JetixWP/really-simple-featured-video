@@ -391,7 +391,7 @@ const FloatingVideoForm = ( { video, onSave, onCancel, saving } ) => {
 								placeholder="https://www.youtube.com/watch?v=..."
 							/>
 							<p className="description">
-								{ __( 'Paste a YouTube, Vimeo, or other supported video URL.', 'rsfv' ) }
+								{ __( 'Paste a YouTube, Vimeo, or Dailymotion URL.', 'rsfv' ) }
 							</p>
 						</div>
 					) }

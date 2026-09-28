@@ -94,6 +94,7 @@ class Global_Settings extends Settings_Page {
 							'one-one'      => '1/1',
 							'three-two'    => '3/2',
 							'four-three'   => '4/3',
+							'nine-sixteen' => '9/16',
 						),
 					),
 					array(

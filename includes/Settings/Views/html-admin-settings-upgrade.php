@@ -16,6 +16,21 @@ $rsfv_compare_url = $rsfv_pro_url . '#compare';
 
 $rsfv_pro_features = array(
 	array(
+		'icon'  => 'dashicons-video-alt3',
+		'title' => __( 'Auto generate videos from 20 more templates', 'rsfv' ),
+		'desc'  => __( 'Video Studio PRO auto generates featured videos from 20 more templates for shops, blogs, food, real estate, courses, local businesses and more (Recipe, Property listing, Countdown, Coupon code, Podcast episode and others), plus 9:16, 4:5, 60 fps and 4K videos.', 'rsfv' ),
+	),
+	array(
+		'icon'  => 'dashicons-format-audio',
+		'title' => __( 'Music, brand kit and every Google Font', 'rsfv' ),
+		'desc'  => __( 'Add a soundtrack with fades, save your colors, font and logo once for every new video, pick any Google Font, and upload big videos past your host\'s limit.', 'rsfv' ),
+	),
+	array(
+		'icon'  => 'dashicons-images-alt2',
+		'title' => __( 'Make videos in bulk', 'rsfv' ),
+		'desc'  => __( 'Tick products or posts on the Video Studio page and auto generate all their videos in one go, each filled from its own title, price and photos.', 'rsfv' ),
+	),
+	array(
 		'icon'  => 'dashicons-chart-area',
 		'title' => __( 'Full video analytics', 'rsfv' ),
 		'desc'  => __( 'See plays, watch time and completion for every video, keep history beyond 14 days, and export to CSV.', 'rsfv' ),
@@ -23,7 +38,7 @@ $rsfv_pro_features = array(
 	array(
 		'icon'  => 'dashicons-cart',
 		'title' => __( 'WooCommerce gallery control', 'rsfv' ),
-		'desc'  => __( 'Pick where the video sits in the product gallery, set its thumbnail, and change the aspect ratio per product.', 'rsfv' ),
+		'desc'  => __( 'Pick where the video sits in the product gallery, use your own gallery thumbnail, and set one aspect ratio for every video.', 'rsfv' ),
 	),
 	array(
 		'icon'  => 'dashicons-controls-play',
@@ -38,12 +53,7 @@ $rsfv_pro_features = array(
 	array(
 		'icon'  => 'dashicons-sos',
 		'title' => __( 'Priority support from the developer', 'rsfv' ),
-		'desc'  => __( 'Skip the forum queue. Your questions go straight to the person who builds the plugin.', 'rsfv' ),
-	),
-	array(
-		'icon'  => 'dashicons-lightbulb',
-		'title' => __( 'Shape the roadmap', 'rsfv' ),
-		'desc'  => __( 'Feature and compatibility requests from PRO users go to the front of the line.', 'rsfv' ),
+		'desc'  => __( 'Skip the forum queue. Your questions go straight to the person who builds the plugin, and your feature requests go to the front of the line.', 'rsfv' ),
 	),
 );
 
@@ -66,17 +76,17 @@ $rsfv_pro_faqs = array(
 <div class="upgrade-content">
 
 	<section class="rsfv-pro-hero">
-		<p class="rsfv-pro-eyebrow">🎉 <?php esc_html_e( 'Anniversary deal · up to 50% off for a limited time', 'rsfv' ); ?></p>
+		<p class="rsfv-pro-eyebrow"><span class="dashicons dashicons-tag rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Anniversary deal · up to 50% off for a limited time', 'rsfv' ); ?></p>
 		<h1 class="tab-heading"><?php esc_html_e( 'Get more out of every featured video with RSFV PRO', 'rsfv' ); ?></h1>
-		<p class="rsfv-pro-lead"><?php esc_html_e( 'Know which videos people watch, control exactly how they show up in your WooCommerce store, and get help directly from the developer when you need it.', 'rsfv' ); ?></p>
+		<p class="rsfv-pro-lead"><?php esc_html_e( 'Auto generate richer featured videos from templates with Video Studio PRO, know which videos people watch, control exactly how they show up in your WooCommerce store, and get help directly from the developer when you need it.', 'rsfv' ); ?></p>
 		<div class="rsfv-pro-actions">
 			<a href="<?php echo esc_url( $rsfv_pricing_url ); ?>" target="_blank" rel="noopener noreferrer" class="rsfv-button button-primary"><?php esc_html_e( 'Get PRO from $59', 'rsfv' ); ?></a>
 			<a href="<?php echo esc_url( $rsfv_compare_url ); ?>" target="_blank" rel="noopener noreferrer" class="rsfv-button button-secondary"><?php esc_html_e( 'Compare free vs PRO', 'rsfv' ); ?></a>
 		</div>
 		<p class="rsfv-pro-trust">
-			<span>✔ <?php esc_html_e( 'One-time payment', 'rsfv' ); ?></span>
-			<span>✔ <?php esc_html_e( 'Lifetime updates', 'rsfv' ); ?></span>
-			<span>✔ <?php esc_html_e( '14-day money-back guarantee', 'rsfv' ); ?></span>
+			<span><span class="dashicons dashicons-yes rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'One-time payment', 'rsfv' ); ?></span>
+			<span><span class="dashicons dashicons-yes rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Lifetime updates', 'rsfv' ); ?></span>
+			<span><span class="dashicons dashicons-yes rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( '14-day money-back guarantee', 'rsfv' ); ?></span>
 		</p>
 	</section>
 

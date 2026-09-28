@@ -88,6 +88,13 @@ final class Plugin {
 	public $theme_provider;
 
 	/**
+	 * Video Studio provider.
+	 *
+	 * @var \RSFV\Studio\Studio $studio_provider
+	 */
+	public $studio_provider;
+
+	/**
 	 * Plugin constructor.
 	 */
 	public function __construct() {
@@ -148,6 +155,7 @@ final class Plugin {
 		$this->featuresets_provider  = Featuresets::get_instance();
 		$this->shortcode_provider    = Shortcode::get_instance();
 		$this->frontend_provider     = FrontEnd::get_instance();
+		$this->studio_provider       = \RSFV\Studio\Studio::get_instance();
 
 		// Load compatibility.
 		$this->plugin_provider = Plugin_Provider::get_instance();
@@ -212,6 +220,14 @@ final class Plugin {
 		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-rest-api.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-tracker.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-load.php';
+
+		// Video Studio.
+		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-registry.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-post-fields.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-composition.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-rest-api.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-admin-page.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-studio.php';
 
 		// Database upgraders.
 		require_once RSFV_PLUGIN_DIR . 'includes/class-updater.php';
