@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-28T12:54:27+00:00\n"
+"POT-Creation-Date: 2026-09-28T13:02:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -29,7 +29,7 @@ msgstr ""
 
 #. Description of the plugin
 #: really-simple-featured-video.php
-msgid "Adds support for Featured Video to WordPress posts, pages & WooCommerce products."
+msgid "Adds support for Featured Video to WordPress posts, pages & WooCommerce products, and auto generates featured videos from templates with Video Studio."
 msgstr ""
 
 #. Author of the plugin
@@ -979,11 +979,12 @@ msgid "If you've found a bug, please submit an issue at %1$sGitHub%2$s."
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:20
-msgid "More Video Studio templates and sizes"
+#: assets/js/studio/studio.js:5
+msgid "Auto generate videos from 20 more templates"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:21
-msgid "20 more templates for shops, blogs, food, real estate, courses, local businesses and more (Recipe, Property listing, Countdown, Coupon code, Podcast episode and others), plus 9:16, 4:5, 60 fps and 4K videos."
+msgid "Video Studio PRO auto generates featured videos from 20 more templates for shops, blogs, food, real estate, courses, local businesses and more (Recipe, Property listing, Countdown, Coupon code, Podcast episode and others), plus 9:16, 4:5, 60 fps and 4K videos."
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:25
@@ -999,7 +1000,7 @@ msgid "Make videos in bulk"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:31
-msgid "Tick products or posts on the Video Studio page and make all their videos in one go, each filled from its own title, price and photos."
+msgid "Tick products or posts on the Video Studio page and auto generate all their videos in one go, each filled from its own title, price and photos."
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:35
@@ -1077,7 +1078,7 @@ msgid "Get more out of every featured video with RSFV PRO"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:81
-msgid "Make richer featured videos with Video Studio PRO, know which videos people watch, control exactly how they show up in your WooCommerce store, and get help directly from the developer when you need it."
+msgid "Auto generate richer featured videos from templates with Video Studio PRO, know which videos people watch, control exactly how they show up in your WooCommerce store, and get help directly from the developer when you need it."
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:83
@@ -1137,7 +1138,7 @@ msgid "Anniversary deal: RSFV PRO from $59"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-sidebar-promo.php:44
-msgid "Make more videos with Video Studio PRO, get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates."
+msgid "Auto generate more featured videos from templates with Video Studio PRO, get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates."
 msgstr ""
 
 #: includes/Settings/Views/html-admin-sidebar-promo.php:47
@@ -1187,7 +1188,7 @@ msgid "Video Studio PRO"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-sidebar-promo.php:65
-msgid "20 more templates, vertical and 4K sizes, music, brand kit, every Google Font, and videos for many entries at once"
+msgid "auto generate videos from 20 more templates, in vertical and 4K sizes, with music, a brand kit, every Google Font, and for many entries at once"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-sidebar-promo.php:66
@@ -3239,11 +3240,11 @@ msgid "Ready to go beyond?"
 msgstr ""
 
 #: assets/js/tools/index.js:31
-msgid "RSFV PRO adds more Video Studio templates and tools, deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer."
+msgid "RSFV PRO lets Video Studio auto generate videos from more templates, adds deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer."
 msgstr ""
 
 #: assets/js/tools/index.js:31
-msgid "20 more templates, vertical and 4K sizes, music, brand kit, every Google Font, videos in bulk"
+msgid "Auto generate videos from 20 more templates, vertical and 4K sizes, music, brand kit, every Google Font, videos in bulk"
 msgstr ""
 
 #: assets/js/tools/index.js:31
