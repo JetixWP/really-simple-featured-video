@@ -10,6 +10,7 @@ import {
 	Button,
 	ColorIndicator,
 	ColorPicker,
+	ComboboxControl,
 	Dropdown,
 	RangeControl,
 	SelectControl,
@@ -135,19 +136,37 @@ const FieldControl = ( {
 					__next40pxDefaultSize
 				/>
 			);
-		case 'font':
+		case 'font': {
+			const options = Object.keys( fonts ).map( ( family ) => ( {
+				value: family,
+				label: fonts[ family ].category
+					? `${ fonts[ family ].label || family } (${
+							fonts[ family ].category
+					  })`
+					: fonts[ family ].label || family,
+			} ) );
+			// Long lists (PRO Google Fonts) get a searchable picker.
+			if ( options.length > 20 ) {
+				return (
+					<ComboboxControl
+						{ ...common }
+						value={ value }
+						options={ options }
+						onChange={ ( next ) => next && onChange( next ) }
+						__next40pxDefaultSize
+					/>
+				);
+			}
 			return (
 				<SelectControl
 					{ ...common }
 					value={ value }
-					options={ Object.keys( fonts ).map( ( family ) => ( {
-						value: family,
-						label: fonts[ family ].label || family,
-					} ) ) }
+					options={ options }
 					onChange={ onChange }
 					__next40pxDefaultSize
 				/>
 			);
+		}
 		case 'image':
 		case 'images':
 			return (

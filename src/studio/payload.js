@@ -188,16 +188,43 @@ export async function buildLoadPayload( { template, vars, preset, fonts } ) {
 		} )
 	);
 
-	const fontList = await Promise.all(
-		Array.from( families )
-			.filter( ( family ) => family && fonts[ family ] )
-			.map( async ( family ) => ( {
-				family,
-				blob: await fetchBlob( fonts[ family ].url ),
-				weight: fonts[ family ].weight || '400',
-				style: fonts[ family ].style || 'normal',
-			} ) )
-	);
+	const fontList = [];
+	for ( const family of Array.from( families ) ) {
+		const font = family && fonts[ family ];
+		if ( ! font ) {
+			continue;
+		}
+		const defaults = font.files || [
+			{
+				url: font.url,
+				weight: font.weight || '400',
+				style: font.style || 'normal',
+			},
+		];
+
+		/**
+		 * Filter the files of a font (PRO fetches Google Fonts here). May
+		 * return a promise.
+		 *
+		 * @param {Array}  files  Files: { url, weight, style }.
+		 * @param {string} family Family.
+		 * @param {Object} font   Font entry.
+		 */
+		const files = await Promise.resolve(
+			applyFilters( 'rsfv.studio.fontFiles', defaults, family, font )
+		);
+		for ( const file of files || [] ) {
+			const blob = file && file.url ? await fetchBlob( file.url ) : null;
+			if ( blob ) {
+				fontList.push( {
+					family,
+					blob,
+					weight: file.weight || '400',
+					style: file.style || 'normal',
+				} );
+			}
+		}
+	}
 
 	return {
 		template: template.id,
@@ -206,6 +233,6 @@ export async function buildLoadPayload( { template, vars, preset, fonts } ) {
 		height: preset.height,
 		fps: preset.fps,
 		assets,
-		fonts: fontList.filter( ( font ) => font.blob ),
+		fonts: fontList,
 	};
 }
