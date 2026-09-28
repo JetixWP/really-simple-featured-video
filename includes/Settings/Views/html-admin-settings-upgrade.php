@@ -18,7 +18,7 @@ $rsfv_pro_features = array(
 	array(
 		'icon'  => 'dashicons-video-alt3',
 		'title' => __( 'More Video Studio templates and sizes', 'rsfv' ),
-		'desc'  => __( '8 more templates (Sale, Stats counter, Testimonial, Logo reveal, Lower third, Kinetic type, Event, Product showcase), plus 9:16, 4:5, 60 fps and 4K videos.', 'rsfv' ),
+		'desc'  => __( '23 more templates for shops, blogs, food, real estate, courses, local businesses and more (News headline, Recipe, Property listing, Countdown, Coupon code, Testimonial and others), plus 9:16, 4:5, 60 fps and 4K videos.', 'rsfv' ),
 	),
 	array(
 		'icon'  => 'dashicons-format-audio',

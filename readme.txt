@@ -97,7 +97,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
-* ✅ **Video Studio PRO** - 8 more templates (Sale, Stats counter, Testimonial, Logo reveal, Lower third, Kinetic type, Event, Product showcase), vertical and 4K sizes, music, a brand kit, every Google Font, big uploads past your host's limit, and videos for many entries at once.
+* ✅ **Video Studio PRO** - 23 more templates for shops, blogs, food, real estate, courses, events, local businesses and portfolios, vertical and 4K sizes, music, a brand kit, every Google Font, big uploads past your host's limit, and videos for many entries at once.
 * ✅ **Extended Video Analytics** - Longer history recordings, watch time, completion, and CSV export.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Extended Sticky Videos** - Story layout for the Sticky Video popup, with tab bars to switch between videos.

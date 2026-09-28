@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<div>
 								<p class="desc"><strong><?php esc_html_e( 'What PRO adds', 'rsfv' ); ?></strong></p>
 								<ul class="rsfv-upgrade-features">
-									<li><strong><?php esc_html_e( 'Video Studio PRO', 'rsfv' ); ?></strong> — <?php esc_html_e( '8 more templates, vertical and 4K sizes, music, brand kit, every Google Font, and videos for many entries at once', 'rsfv' ); ?></li>
+									<li><strong><?php esc_html_e( 'Video Studio PRO', 'rsfv' ); ?></strong> — <?php esc_html_e( '23 more templates, vertical and 4K sizes, music, brand kit, every Google Font, and videos for many entries at once', 'rsfv' ); ?></li>
 									<li><strong><?php esc_html_e( 'Priority support', 'rsfv' ); ?></strong> — <?php esc_html_e( 'direct help from the developer', 'rsfv' ); ?></li>
 									<li><strong><?php esc_html_e( 'Full video analytics', 'rsfv' ); ?></strong> — <?php esc_html_e( 'history beyond 14 days, watch time, completion, CSV export', 'rsfv' ); ?></li>
 									<li><strong><?php esc_html_e( 'WooCommerce controls', 'rsfv' ); ?></strong> — <?php esc_html_e( 'gallery order, thumbnails, aspect ratios', 'rsfv' ); ?></li>
