@@ -53,6 +53,7 @@ Video Studio makes short featured videos from templates, without any outside ser
 * Live preview, then Make video. The video is made in your browser and saved as the post's featured video with a poster image
 * 16:9 in 720p or 1080p. The file is kept under your site's upload limit
 * The box tells you when the post changed after the video was made, so you can make it again
+* In Video Tools > Manage Featured Videos, entries without a video get an Auto Generate Video button: pick a template and it makes the video in one step
 
 Making a video needs Chrome, Edge or Firefox on a secure (HTTPS) connection. Safari can preview templates but can't make the video yet. Keep the tab open while the video is being made.
 
