@@ -118,12 +118,16 @@ function geometryOf( el, root ) {
 	}
 
 	let opacity = 1;
+	const filters = [];
 	for ( let n = el; n && n !== root; n = n.parentElement ) {
 		const cs = getComputedStyle( n );
 		if ( 'none' === cs.display || n.hasAttribute( 'data-clip-hidden' ) ) {
 			return null;
 		}
 		opacity *= parseFloat( cs.opacity );
+		if ( cs.filter && 'none' !== cs.filter ) {
+			filters.push( cs.filter );
+		}
 	}
 	if ( opacity <= 0.001 ) {
 		return null;
@@ -158,7 +162,13 @@ function geometryOf( el, root ) {
 		parent = n;
 	}
 
-	return { matrix, opacity, clips, cs: getComputedStyle( el ) };
+	return {
+		matrix,
+		opacity,
+		clips,
+		filter: filters.join( ' ' ),
+		cs: getComputedStyle( el ),
+	};
 }
 
 /**
@@ -235,8 +245,9 @@ function paintMedia( ctx, img, root ) {
 	boxPath( ctx, w, h, radiiOf( geo.cs, w, h ) );
 	ctx.clip();
 	ctx.globalAlpha = geo.opacity;
-	if ( geo.cs.filter && 'none' !== geo.cs.filter ) {
-		ctx.filter = geo.cs.filter;
+	if ( geo.filter ) {
+		// Filters of the image and its parents (e.g. a blur-in).
+		ctx.filter = geo.filter;
 	}
 	const [ dx, dy, dw, dh ] = fitRect( img, w, h, geo.cs );
 	ctx.drawImage( img, dx, dy, dw, dh );
