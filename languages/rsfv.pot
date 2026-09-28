@@ -1,15 +1,15 @@
 # Copyright (C) 2026 JetixWP Plugins
-# This file is distributed under the GPL2.
+# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 0.83.0\n"
+"Project-Id-Version: Really Simple Featured Video 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-25T19:59:35+00:00\n"
+"POT-Creation-Date: 2026-09-28T09:41:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -42,8 +42,92 @@ msgstr ""
 msgid "https://jetixwp.com"
 msgstr ""
 
+#: includes/Analytics/class-rest-api.php:120
+msgid "Analytics is turned off."
+msgstr ""
+
+#: includes/Analytics/class-rest-api.php:137
+#: includes/Tools/class-bulk-import.php:148
+#: includes/Tools/class-rest-api.php:219
+msgid "You do not have permission to access this endpoint."
+msgstr ""
+
+#: includes/Analytics/class-rest-api.php:155
+msgid "This request was blocked."
+msgstr ""
+
+#: includes/Analytics/class-rest-api.php:216
+msgid "Too many analytics requests."
+msgstr ""
+
+#. translators: %d: registry id.
+#: includes/Analytics/class-stats.php:605
+msgid "Video #%d"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:613
+msgid "Sticky"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:613
+msgid "Featured"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:650
+msgid "Featured image"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:651
+msgid "Shortcode"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:652
+#: includes/Compatibility/Plugins/Elementor/class-settings.php:25
+msgid "Elementor"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:653
+msgid "Bricks"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:654
+msgid "Product gallery"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:655
+msgid "Shop"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:656
+msgid "Sticky video"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:670
+#: assets/js/tools/index.js:30
+msgid "Self-hosted"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:671
+#: includes/Settings/Tabs/class-controls.php:170
+msgid "YouTube"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:672
+#: includes/Settings/Tabs/class-controls.php:171
+msgid "Vimeo"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:673
+#: includes/Settings/Tabs/class-controls.php:172
+msgid "Dailymotion"
+msgstr ""
+
+#: includes/Analytics/class-stats.php:674
+msgid "Other"
+msgstr ""
+
 #: includes/class-metabox.php:68
-#: includes/Settings/class-register.php:80
+#: includes/Settings/class-register.php:83
 msgid "Featured Video"
 msgstr ""
 
@@ -53,15 +137,12 @@ msgstr ""
 
 #: includes/class-metabox.php:91
 #: assets/js/tools/index.js:1
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:70
-#: src/tools/components/VideoAction.js:29
+#: assets/js/tools/index.js:30
 msgid "Use this video"
 msgstr ""
 
 #: includes/class-metabox.php:120
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:243
 msgid "Upload Video"
 msgstr ""
 
@@ -92,9 +173,8 @@ msgstr ""
 #: includes/class-metabox.php:211
 #: includes/Compatibility/Plugins/Elementor/widgets/class-rsfv-video-widget.php:140
 #: assets/js/tools/index.js:1
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:169
-#: src/tools/components/VideoTypeSelect.js:68
+#: assets/js/tools/index.js:25
+#: assets/js/tools/index.js:30
 msgid "Embed"
 msgstr ""
 
@@ -103,24 +183,23 @@ msgid "Please select a video source"
 msgstr ""
 
 #: includes/class-metabox.php:221
-msgid "(NEW) Set & Manage Videos from One Place"
+msgid "Set & Manage Videos from One Place"
 msgstr ""
 
-#: includes/class-plugin.php:222
-#: assets/js/tools/index.js:2
-#: src/tools/App.js:17
+#: includes/class-plugin.php:250
+#: assets/js/tools/index.js:31
 msgid "Manage Featured Videos"
 msgstr ""
 
-#: includes/class-plugin.php:223
+#: includes/class-plugin.php:251
 msgid "Settings"
 msgstr ""
 
-#: includes/class-shortcode.php:87
+#: includes/class-shortcode.php:91
 msgid "Please add a post id!"
 msgstr ""
 
-#: includes/class-shortcode.php:93
+#: includes/class-shortcode.php:97
 msgid "Post not found!"
 msgstr ""
 
@@ -268,6 +347,10 @@ msgstr ""
 msgid "Bravada (PRO)"
 msgstr ""
 
+#: includes/Compatibility/class-theme-provider.php:288
+msgid "Lodestar (PRO)"
+msgstr ""
+
 #: includes/Compatibility/Plugins/Bricks/elements/really-simple-featured-video.php:78
 msgid "Make sure Really Simple Featured Video element is inside a Query Loop. In case you have done that, you can safely ignore this."
 msgstr ""
@@ -284,10 +367,6 @@ msgstr ""
 msgid "When toggled on, it shows Featured Product Videos in Divi Woo Product Images Module/Widget. Turn it off if you're having problem with WooCommerce templates."
 msgstr ""
 
-#: includes/Compatibility/Plugins/Elementor/class-settings.php:25
-msgid "Elementor"
-msgstr ""
-
 #: includes/Compatibility/Plugins/Elementor/class-settings.php:58
 msgid "Disable Elementor Support"
 msgstr ""
@@ -301,9 +380,7 @@ msgid "RSFV Video"
 msgstr ""
 
 #: includes/Compatibility/Plugins/Elementor/widgets/class-rsfv-video-widget.php:105
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:348
-#: src/tools/components/ManageFloatingVideos.js:232
+#: assets/js/tools/index.js:30
 msgid "Video Source"
 msgstr ""
 
@@ -368,10 +445,11 @@ msgid "No featured video configured for this post."
 msgstr ""
 
 #: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:125
+#: assets/js/studio/studio.js:2
 msgid "Products"
 msgstr ""
 
-#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:627
+#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:636
 msgid "Product video - tap to play"
 msgstr ""
 
@@ -424,8 +502,7 @@ msgid "Set default product gallery thumb on single product page."
 msgstr ""
 
 #: includes/Featuresets/floating-video/class-init.php:69
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:201
+#: assets/js/tools/index.js:30
 msgid "Sticky Videos"
 msgstr ""
 
@@ -439,9 +516,14 @@ msgid "You do not have permission to manage sticky videos."
 msgstr ""
 
 #: includes/Featuresets/floating-video/class-rest-api.php:240
-#: includes/Featuresets/floating-video/class-rest-api.php:292
-#: includes/Featuresets/floating-video/class-rest-api.php:325
+#: includes/Featuresets/floating-video/class-rest-api.php:299
+#: includes/Featuresets/floating-video/class-rest-api.php:336
 msgid "Sticky video not found."
+msgstr ""
+
+#: includes/Featuresets/floating-video/class-rest-api.php:475
+#: includes/Tools/class-rest-api.php:551
+msgid "Embed URL must be from Youtube, Vimeo or Dailymotion."
 msgstr ""
 
 #: includes/Featuresets/rollback/class-init.php:66
@@ -473,60 +555,133 @@ msgstr ""
 msgid "Go to Plugins page"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:81
+#: includes/Settings/class-admin-settings.php:82
 msgid "Your settings have been saved."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:155
+#: includes/Settings/class-admin-settings.php:156
 msgid "The changes you made will be lost if you navigate away from this page."
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:156
+#: includes/Settings/class-admin-settings.php:157
 msgid "Select Thumbnail Image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:157
+#: includes/Settings/class-admin-settings.php:158
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:79
 msgid "Use this image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:335
+#: includes/Settings/class-admin-settings.php:336
+#: assets/js/tools/index.js:31
 msgid "Pro"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:336
+#: includes/Settings/class-admin-settings.php:337
 msgid "Checkout Pro now"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:508
-#: includes/Settings/class-admin-settings.php:536
+#: includes/Settings/class-admin-settings.php:509
+#: includes/Settings/class-admin-settings.php:537
 msgid "Change Image"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:509
+#: includes/Settings/class-admin-settings.php:510
 msgid "Revert to Default"
 msgstr ""
 
-#: includes/Settings/class-admin-settings.php:716
-#: includes/Settings/class-admin-settings.php:749
-#: includes/Settings/class-admin-settings.php:815
-#: includes/Settings/class-admin-settings.php:886
+#: includes/Settings/class-admin-settings.php:718
+#: includes/Settings/class-admin-settings.php:751
+#: includes/Settings/class-admin-settings.php:817
+#: includes/Settings/class-admin-settings.php:889
 msgid "Toggle"
 msgstr ""
 
-#: includes/Settings/class-register.php:65
+#: includes/Settings/class-register.php:68
 msgctxt "Page title"
 msgid "JetixWP Plugins"
 msgstr ""
 
-#: includes/Settings/class-register.php:66
+#: includes/Settings/class-register.php:69
 msgctxt "Menu title"
 msgid "JetixWP"
 msgstr ""
 
-#: includes/Settings/class-register.php:79
+#: includes/Settings/class-register.php:82
 msgid "Really Simple Featured Video Settings"
+msgstr ""
+
+#: includes/Settings/class-register.php:130
+#: includes/Settings/Tabs/class-general.php:183
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:25
+#: assets/js/tools/index.js:31
+msgid "Analytics"
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:43
+msgctxt "settings title"
+msgid "Video analytics"
+msgstr ""
+
+#. translators: %s: URL of the analytics report.
+#: includes/Settings/Tabs/class-analytics.php:46
+msgid "Counts are anonymous and stay on this site. No cookie is set. The report is in <a href=\"%s\">Video Tools</a>."
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:57
+msgid "Enable analytics"
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:58
+msgid "Record views and plays for videos added with this plugin."
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:64
+msgid "Skip logged-in editors"
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:65
+msgid "Visits from people who can edit posts are left out, so your own previews do not fill the report."
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:85
+msgid "Keep counts for"
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:86
+msgid "Free keeps the last 14 days. A longer history recording is a Pro setting."
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:93
+msgid "14 days"
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:94
+msgid "30 days"
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:95
+msgid "90 days"
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:96
+msgid "365 days"
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:97
+#: assets/js/tools/index.js:30
+msgid "All time"
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:101
+msgid "Country, device, and referrer"
+msgstr ""
+
+#: includes/Settings/Tabs/class-analytics.php:102
+msgid "Pro can record a country when your host sends one, a general device type, and the referring site name."
 msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:24
@@ -608,20 +763,7 @@ msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:169
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoTypeSelect.js:67
 msgid "Self Hosted"
-msgstr ""
-
-#: includes/Settings/Tabs/class-controls.php:170
-msgid "YouTube"
-msgstr ""
-
-#: includes/Settings/Tabs/class-controls.php:171
-msgid "Vimeo"
-msgstr ""
-
-#: includes/Settings/Tabs/class-controls.php:172
-msgid "Dailymotion"
 msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:186
@@ -720,9 +862,8 @@ msgid "If featured videos aren't working as expected in your theme, you may need
 msgstr ""
 
 #: includes/Settings/Tabs/class-general.php:121
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:332
-#: src/tools/components/ManageFloatingVideos.js:234
+#: assets/js/tools/index.js:25
+#: assets/js/tools/index.js:30
 msgid "Status"
 msgstr ""
 
@@ -743,7 +884,7 @@ msgstr ""
 msgid "Please select the post types you wish to enable featured video support at."
 msgstr ""
 
-#: includes/Settings/Tabs/class-general.php:185
+#: includes/Settings/Tabs/class-general.php:194
 msgid "Could not get current compatibility engine."
 msgstr ""
 
@@ -802,7 +943,7 @@ msgid "Upgrade"
 msgstr ""
 
 #: includes/Settings/Tabs/class-version-control.php:24
-msgid "Version Control"
+msgid "Rollbacks"
 msgstr ""
 
 #: includes/Settings/Tabs/class-version-control.php:44
@@ -825,145 +966,709 @@ msgstr ""
 msgid "Help and Support"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings-upgrade.php:14
-msgid "Get Premium Featured Video support with RSFV PRO"
+#: includes/Settings/Views/html-admin-settings-help.php:20
+msgid "We try our best to help with every support request for the free plugin. You can ask questions and get assistance by posting to the %1$sWordPress.org support forum%2$s. Because we are a small team, replies there can sometimes be delayed when many people need help at once."
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings-upgrade.php:17
-msgid "Priority Support"
+#: includes/Settings/Views/html-admin-settings-help.php:39
+msgid "If you need or want urgent support directly from the creator of this plugin, please consider upgrading to a JetixWP license. One-time payment options are available at %1$sJetixWP &gt; Really Simple Featured Video%2$s."
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings-upgrade.php:18
-msgid "Extended Autoplay on Hover"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-upgrade.php:19
-msgid "Change Video Aspect Ratio"
+#: includes/Settings/Views/html-admin-settings-help.php:59
+msgid "If you've found a bug, please submit an issue at %1$sGitHub%2$s."
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:20
-msgid "Change Video Order at WooCommerce Product page"
+msgid "More Video Studio templates and sizes"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:21
-msgid "Change Default Gallery Video Thumbnail at Woo Single Product page"
+msgid "8 more templates (Sale, Stats counter, Testimonial, Logo reveal, Lower third, Kinetic type, Event, Product showcase), plus 9:16, 4:5, 60 fps and 4K videos."
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings-upgrade.php:22
-msgid "Support for more Premium/Custom themes"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-upgrade.php:23
-msgid "Requests for Feature Enhancements"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-settings-upgrade.php:24
-msgid "Requests for Theme Compatibility"
+#: includes/Settings/Views/html-admin-settings-upgrade.php:25
+msgid "Music, brand kit and every Google Font"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:26
-msgid ".. and more coming soon."
+msgid "Add a soundtrack with fades, save your colors, font and logo once for every new video, pick any Google Font, and upload big videos past your host's limit."
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings-upgrade.php:28
-msgid "Explore RSFV and PRO"
+#: includes/Settings/Views/html-admin-settings-upgrade.php:30
+msgid "Make videos in bulk"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:31
+msgid "Tick products or posts on the Video Studio page and make all their videos in one go, each filled from its own title, price and photos."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:35
+#: includes/Settings/Views/html-admin-sidebar-promo.php:67
+#: assets/js/tools/index.js:31
+msgid "Full video analytics"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:36
+msgid "See plays, watch time and completion for every video, keep history beyond 14 days, and export to CSV."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:40
+msgid "WooCommerce gallery control"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:41
+msgid "Pick where the video sits in the product gallery, use your own gallery thumbnail, and set one aspect ratio for every video."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:45
+msgid "Extended autoplay on hover"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:46
+msgid "Preview videos on hover in shop, archive and listing pages, with finer control over how they play."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:50
+msgid "Premium and custom theme support"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:51
+msgid "Works with more premium themes out of the box. Using something unusual? Ask and we will add support."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:55
+msgid "Priority support from the developer"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:56
+msgid "Skip the forum queue. Your questions go straight to the person who builds the plugin, and your feature requests go to the front of the line."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:62
+msgid "Is this a subscription?"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:63
+msgid "No. You pay once and receive updates for life. There are no renewals and nothing to cancel."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:66
+msgid "Will my current settings and videos carry over?"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:67
+msgid "Yes. PRO runs alongside the free plugin and adds to it. Nothing is reset or removed when you upgrade."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:70
+msgid "What if PRO does not work for me?"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:71
+msgid "Ask for a refund within 14 days of purchase and you get your money back, no questions asked."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:79
+msgid "Anniversary deal · up to 50% off for a limited time"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:80
+msgid "Get more out of every featured video with RSFV PRO"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:81
+msgid "Make richer featured videos with Video Studio PRO, know which videos people watch, control exactly how they show up in your WooCommerce store, and get help directly from the developer when you need it."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:83
+msgid "Get PRO from $59"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:84
+msgid "Compare free vs PRO"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:87
+msgid "One-time payment"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:88
+msgid "Lifetime updates"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:89
+msgid "14-day money-back guarantee"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:94
+msgid "What you unlock"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:109
+msgid "Common questions"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-settings-upgrade.php:121
+msgid "Still unsure? Email %1$skrishna@jetixwp.com%2$s and I will personally get back to you."
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings.php:67
 msgid "Save changes"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings.php:93
-msgid "Your Email"
+#: includes/Settings/Views/html-admin-sidebar-promo.php:27
+msgid "Dismiss this notice."
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings.php:94
-msgid "First Name"
+#: includes/Settings/Views/html-admin-sidebar-promo.php:30
+msgid "Help keep this plugin free & updated"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-settings.php:95
-msgid "🚀 Send me the discount"
+#: includes/Settings/Views/html-admin-sidebar-promo.php:31
+msgid "Your review means a lot. It helps others discover that Really Simple Featured Video is free and actively maintained. If the plugin has helped you, please consider leaving your honest review/feedback on WordPress.org. Thank you!"
 msgstr ""
 
-#: includes/Tools/class-admin-tools.php:134
-msgid "Thumbnail"
+#: includes/Settings/Views/html-admin-sidebar-promo.php:34
+msgid "Leave a Review"
 msgstr ""
 
-#: includes/Tools/class-admin-tools.php:139
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:318
-#: src/tools/components/ManageFloatingVideos.js:231
+#: includes/Settings/Views/html-admin-sidebar-promo.php:43
+msgid "Anniversary deal: RSFV PRO from $59"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:44
+msgid "Make more videos with Video Studio PRO, get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates."
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:47
+msgid "Special Anniversary Deal"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:47
+msgid "Save up to 50%"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:50
+msgid "Single site"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:50
+msgid "Save 34%"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:54
+msgid "Unlimited sites"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:54
+msgid "Save 50%"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:58
+msgid "One-time payment · lifetime updates · no renewals"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:59
+msgid "Get PRO for $59"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:60
+msgid "Secure checkout · 14-day money-back guarantee"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:63
+msgid "What PRO adds"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:65
+#: assets/js/studio/studio.js:4
+#: assets/js/tools/index.js:31
+msgid "Video Studio PRO"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:65
+msgid "8 more templates, vertical and 4K sizes, music, brand kit, every Google Font, and videos for many entries at once"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:66
+#: assets/js/tools/index.js:31
+msgid "Priority support"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:66
+msgid "direct help from the developer"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:67
+msgid "history beyond 14 days, watch time, completion, CSV export"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:68
+#: assets/js/tools/index.js:31
+msgid "WooCommerce controls"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:68
+msgid "gallery order, thumbnails, aspect ratios"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:69
+#: assets/js/tools/index.js:31
+msgid "Autoplay on hover"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:69
+msgid "extended controls for listings and shops"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:70
+#: assets/js/tools/index.js:31
+msgid "Premium and custom themes"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:70
+msgid "more supported, compatibility on request"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:72
+#: assets/js/tools/index.js:31
+msgid "Compare free vs PRO →"
+msgstr ""
+
+#: includes/Studio/class-admin-page.php:58
+msgid "New"
+msgstr ""
+
+#: includes/Studio/class-admin-page.php:63
+msgid "Video Studio: Automatically Generate Featured Videos"
+msgstr ""
+
+#: includes/Studio/class-admin-page.php:64
+msgid "&nbsp;↳ Video Studio"
+msgstr ""
+
+#: includes/Studio/class-admin-page.php:130
+msgid "Really Simple Featured Video → Video Studio"
+msgstr ""
+
+#: includes/Studio/class-admin-page.php:131
+msgid "Automatically Generate Featured Videos"
+msgstr ""
+
+#: includes/Studio/class-composition.php:110
+msgid "The video details are missing."
+msgstr ""
+
+#: includes/Studio/class-composition.php:116
+msgid "That template is not available."
+msgstr ""
+
+#: includes/Studio/class-composition.php:123
+msgid "That video size is not available."
+msgstr ""
+
+#: includes/Studio/class-post-fields.php:102
+#: assets/js/studio/studio.js:2
+msgid "Sale"
+msgstr ""
+
+#: includes/Studio/class-registry.php:36
+msgid "Background"
+msgstr ""
+
+#: includes/Studio/class-registry.php:44
+msgid "Accent"
+msgstr ""
+
+#: includes/Studio/class-registry.php:52
+#: assets/js/studio/studio.js:2
+msgid "Text"
+msgstr ""
+
+#: includes/Studio/class-registry.php:60
+msgid "Font"
+msgstr ""
+
+#: includes/Studio/class-registry.php:79
+msgid "Text reveal"
+msgstr ""
+
+#: includes/Studio/class-registry.php:80
+msgid "A big headline that rises in word by word, with a short line under it."
+msgstr ""
+
+#: includes/Studio/class-registry.php:90
+msgid "Headline"
+msgstr ""
+
+#: includes/Studio/class-registry.php:91
+msgid "Your headline here"
+msgstr ""
+
+#: includes/Studio/class-registry.php:98
+msgid "Line under it"
+msgstr ""
+
+#: includes/Studio/class-registry.php:116
+msgid "Image slideshow"
+msgstr ""
+
+#: includes/Studio/class-registry.php:117
+msgid "Photos with a slow zoom and pan, moving into each other, with a title on top."
+msgstr ""
+
+#: includes/Studio/class-registry.php:127
+msgid "Images"
+msgstr ""
+
+#: includes/Studio/class-registry.php:135
+#: includes/Tools/class-admin-tools.php:145
+#: assets/js/studio/studio.js:6
+#: assets/js/tools/index.js:30
 msgid "Title"
 msgstr ""
 
-#: includes/Tools/class-admin-tools.php:144
-msgid "Video Status & Type"
+#: includes/Studio/class-registry.php:143
+msgid "Caption"
 msgstr ""
 
-#: includes/Tools/class-admin-tools.php:149
-msgid "Action"
+#: includes/Studio/class-registry.php:151
+msgid "Seconds per image"
 msgstr ""
 
-#: includes/Tools/class-admin-tools.php:154
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:345
-msgid "Video"
+#: includes/Studio/class-registry.php:160
+msgid "Photo fit"
 msgstr ""
 
-#: includes/Tools/class-register.php:72
-msgid "RSFV Tools"
+#: includes/Studio/class-registry.php:165
+msgid "Fill the frame"
 msgstr ""
 
-#: includes/Tools/class-register.php:73
-msgid "&nbsp;↳ Video Tools"
+#: includes/Studio/class-registry.php:169
+msgid "Show the whole photo"
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:213
-msgid "You do not have permission to access this endpoint."
+#: includes/Studio/class-registry.php:176
+msgid "Transition"
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:239
-msgid "The specified post type is not enabled for featured videos."
+#: includes/Studio/class-registry.php:181
+msgid "Crossfade"
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:248
-msgid "Invalid post type."
+#: includes/Studio/class-registry.php:185
+msgid "Slide"
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:363
-#: includes/Tools/class-rest-api.php:411
-#: includes/Tools/class-rest-api.php:505
-#: includes/Tools/class-rest-api.php:565
+#: includes/Studio/class-registry.php:189
+msgid "Zoom"
+msgstr ""
+
+#: includes/Studio/class-registry.php:196
+msgid "Shade behind text (%)"
+msgstr ""
+
+#: includes/Studio/class-registry.php:223
+msgid "Product card"
+msgstr ""
+
+#: includes/Studio/class-registry.php:224
+msgid "Product photo, name, price and a call to action. Fills itself from WooCommerce."
+msgstr ""
+
+#: includes/Studio/class-registry.php:234
+msgid "Product image"
+msgstr ""
+
+#: includes/Studio/class-registry.php:241
+msgid "Small label"
+msgstr ""
+
+#: includes/Studio/class-registry.php:242
+msgid "New arrival"
+msgstr ""
+
+#: includes/Studio/class-registry.php:249
+msgid "Name"
+msgstr ""
+
+#: includes/Studio/class-registry.php:250
+msgid "Product name"
+msgstr ""
+
+#: includes/Studio/class-registry.php:257
+msgid "Price"
+msgstr ""
+
+#: includes/Studio/class-registry.php:265
+msgid "Old price (crossed out)"
+msgstr ""
+
+#: includes/Studio/class-registry.php:273
+msgid "Badge"
+msgstr ""
+
+#: includes/Studio/class-registry.php:281
+msgid "Button text"
+msgstr ""
+
+#: includes/Studio/class-registry.php:282
+msgid "Shop now"
+msgstr ""
+
+#: includes/Studio/class-registry.php:298
+#: includes/Studio/class-registry.php:309
+msgid "Quote"
+msgstr ""
+
+#: includes/Studio/class-registry.php:299
+msgid "A quote that fades in word by word, then the author and their role."
+msgstr ""
+
+#: includes/Studio/class-registry.php:310
+msgid "Simple things, done really well."
+msgstr ""
+
+#: includes/Studio/class-registry.php:317
+msgid "Author"
+msgstr ""
+
+#: includes/Studio/class-registry.php:325
+msgid "Role or company"
+msgstr ""
+
+#: includes/Studio/class-registry.php:386
+msgid "16:9, 1080p (Full HD)"
+msgstr ""
+
+#: includes/Studio/class-registry.php:392
+msgid "16:9, 720p (HD)"
+msgstr ""
+
+#: includes/Studio/class-registry.php:398
+msgid "1:1, 1080 x 1080 (square)"
+msgstr ""
+
+#: includes/Studio/class-rest-api.php:121
+#: includes/Tools/class-rest-api.php:450
+#: includes/Tools/class-rest-api.php:498
+#: includes/Tools/class-rest-api.php:603
+#: includes/Tools/class-rest-api.php:663
 msgid "Post not found."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:372
-#: includes/Tools/class-rest-api.php:420
+#: includes/Studio/class-rest-api.php:124
+msgid "You are not allowed to add videos to this post."
+msgstr ""
+
+#: includes/Studio/class-rest-api.php:127
+msgid "Featured videos are not enabled for this post type."
+msgstr ""
+
+#: includes/Studio/class-rest-api.php:182
+msgid "The file did not upload. It may be bigger than this site allows."
+msgstr ""
+
+#: includes/Studio/class-rest-api.php:187
+msgid "That file type is not allowed."
+msgstr ""
+
+#. translators: %s: post title.
+#: includes/Studio/class-rest-api.php:239
+msgid "%s (Video Studio)"
+msgstr ""
+
+#. translators: %s: post title.
+#: includes/Studio/class-rest-api.php:256
+msgid "%s (Video Studio poster)"
+msgstr ""
+
+#: includes/Studio/class-rest-api.php:295
+msgid "No video was sent."
+msgstr ""
+
+#: includes/Tools/class-admin-tools.php:140
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/Tools/class-admin-tools.php:150
+msgid "Video Status & Type"
+msgstr ""
+
+#: includes/Tools/class-admin-tools.php:155
+#: assets/js/studio/studio.js:6
+msgid "Action"
+msgstr ""
+
+#: includes/Tools/class-admin-tools.php:160
+#: assets/js/tools/index.js:25
+#: assets/js/tools/index.js:30
+#: assets/js/tools/index.js:31
+msgid "Video"
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:175
+msgid "Send fewer rows in one check."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:228
+msgid "Send fewer rows in one save."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:296
+#: includes/Tools/class-rest-api.php:272
+msgid "The specified post type is not enabled for featured videos."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:983
+msgid "Ready."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:985
+#: assets/js/tools/index.js:11
+msgid "This will replace the current featured video."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:987
+msgid "No post was given."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:989
+msgid "No matching post was found."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:991
+msgid "That post cannot take a featured video."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:993
+#: assets/js/tools/index.js:7
+msgid "Source must be self or embed."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:995
+#: assets/js/tools/index.js:7
+msgid "The video value is empty."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:997
+#: assets/js/tools/index.js:7
+msgid "A cell is too long."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:999
+#: assets/js/tools/index.js:7
+msgid "The embed link is not a valid URL."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1001
+#: assets/js/tools/index.js:7
+msgid "Embed links must be YouTube, Vimeo, or Dailymotion."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1003
+#: assets/js/tools/index.js:7
+msgid "The video link is not allowed."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1005
+#: assets/js/tools/index.js:7
+msgid "The file is not a video this site allows."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1007
+#: assets/js/tools/index.js:7
+msgid "The video file was not included."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1009
+#: assets/js/tools/index.js:7
+msgid "The video file name does not match the row."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1011
+msgid "This post is already used by an earlier row."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1013
+msgid "This post already has a featured video. Set replace to yes to change it."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1015
+msgid "You cannot edit that post."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1017
+#: assets/js/tools/index.js:10
+msgid "You cannot upload files."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1019
+#: assets/js/tools/index.js:10
+msgid "The video is larger than this site allows."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1021
+#: assets/js/tools/index.js:10
+msgid "The video could not be downloaded."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1023
+#: assets/js/tools/index.js:10
+msgid "The video could not be saved to the library."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1025
+msgid "The video could not be set on the post."
+msgstr ""
+
+#: includes/Tools/class-bulk-import.php:1027
+msgid "This row was skipped."
+msgstr ""
+
+#: includes/Tools/class-register.php:81
+msgid "RSFV Tools"
+msgstr ""
+
+#: includes/Tools/class-register.php:82
+msgid "&nbsp;↳ Video Tools"
+msgstr ""
+
+#: includes/Tools/class-rest-api.php:246
+msgid "You do not have permission to edit this post."
+msgstr ""
+
+#: includes/Tools/class-rest-api.php:281
+msgid "Invalid post type."
+msgstr ""
+
+#: includes/Tools/class-rest-api.php:459
+#: includes/Tools/class-rest-api.php:507
 msgid "Invalid video source type."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:431
+#: includes/Tools/class-rest-api.php:518
 msgid "Invalid video attachment."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:441
+#: includes/Tools/class-rest-api.php:528
 msgid "Selected file is not a video."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:453
+#: includes/Tools/class-rest-api.php:540
 msgid "Invalid embed URL."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:516
+#: includes/Tools/class-rest-api.php:614
 msgid "Invalid poster image."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:526
-#: includes/Tools/class-rest-api.php:586
+#: includes/Tools/class-rest-api.php:624
+#: includes/Tools/class-rest-api.php:684
 msgid "Selected file is not an image."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:576
+#: includes/Tools/class-rest-api.php:674
 msgid "Invalid thumbnail image."
 msgstr ""
 
@@ -971,591 +1676,1404 @@ msgstr ""
 msgid "Really Simple Featured Video → Tools"
 msgstr ""
 
+#: assets/js/studio/studio.js:1
+msgid "The upload failed."
+msgstr ""
+
+#: assets/js/studio/studio.js:1
+msgid "Remove image"
+msgstr ""
+
+#: assets/js/studio/studio.js:1
+msgid "Use these"
+msgstr ""
+
+#: assets/js/studio/studio.js:1
+msgid "Change images"
+msgstr ""
+
+#: assets/js/studio/studio.js:1
+msgid "Choose images"
+msgstr ""
+
+#: assets/js/studio/studio.js:1
+msgid "Change image"
+msgstr ""
+
+#: assets/js/studio/studio.js:1
+msgid "Choose image"
+msgstr ""
+
+#. translators: %d: maximum number of images.
+#: assets/js/studio/studio.js:2
+msgid "Up to %d images."
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Filled from this post."
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Use the value from this post"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "All Google Fonts (PRO)"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Photos"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Brand"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Stats counter"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Testimonial"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Logo reveal"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Lower third"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Kinetic type"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Event"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Product showcase"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+#: assets/js/studio/studio.js:3
+msgid "Templates"
+msgstr ""
+
+#: assets/js/studio/studio.js:2
+msgid "Show templates"
+msgstr ""
+
+#. translators: %d: number of templates.
+#: assets/js/studio/studio.js:3
+msgid "All %d"
+msgstr ""
+
+#. translators: %d: number of PRO templates.
+#: assets/js/studio/studio.js:4
+msgid "%d more templates"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+#: assets/js/studio/studio.js:5
+msgid "PRO"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Get PRO"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Template thumbnails"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoTypeSelect.js:66
+msgid "Video preview"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+#: assets/js/tools/index.js:1
+msgid "Video Studio could not start."
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "The video is still being made. Close anyway?"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "This browser cannot encode video. Try Chrome, Edge or Firefox."
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Rendering needs Chrome, Edge or Firefox. Preview works here."
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Rendering needs a secure (HTTPS) connection to this site. Preview works here."
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Content"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Style"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Music & brand"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "A soundtrack with fade in and out"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "A brand kit with your colors, font and logo"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Every Google Font"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Vertical, 4:5, 60 fps and 4K sizes"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Done"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+#: assets/js/tools/index.js:2
+msgid "Close"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+#: assets/js/studio/studio.js:5
+msgid "Video Studio"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+#: assets/js/tools/index.js:2
+msgid "Size"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+#: assets/js/tools/index.js:1
+msgid "9:16, Stories, Reels, Shorts (PRO)"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "4:5, feed (PRO)"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "16:9, 1080p at 60 fps (PRO)"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+#: assets/js/tools/index.js:1
+msgid "16:9, 4K (PRO)"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+msgid "Video options"
+msgstr ""
+
+#: assets/js/studio/studio.js:4
+#: assets/js/tools/index.js:2
+msgid "Also use the poster as featured image"
+msgstr ""
+
+#. translators: 1: video size, 2: upload limit.
+#: assets/js/studio/studio.js:5
+msgid "The video is %1$s, but this site accepts uploads up to %2$s. Try a smaller size."
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Make again"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Make video"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Saved to the Media Library and set as the featured video."
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Saved as this post’s featured video. Update the post to keep other changes."
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Making the video"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Uploading"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Keep this tab open until it finishes."
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+#: assets/js/tools/index.js:2
+#: assets/js/tools/index.js:29
+#: assets/js/tools/index.js:30
+msgid "Cancel"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Pause"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Play"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Time"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+#: assets/js/tools/index.js:2
+msgid "Edit in Video Studio"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Create with Video Studio"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "This video was made with Video Studio."
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "This post changed after the video was made. Open Video Studio to make it again."
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "The list could not be loaded."
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "That entry could not be opened."
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "View in Media Library"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Edit this entry"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Go back"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Choose the post, page or product the video is for. Video Studio fills the template from it, makes the video in this browser tab, saves it to the Media Library and sets it as that entry’s featured video."
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Type"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+#: assets/js/tools/index.js:14
+msgid "Search"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Only without a video"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+msgid "Tick many entries and make all their videos in one go."
+msgstr ""
+
+#. translators: %d: number of selected entries.
+#: assets/js/studio/studio.js:6
+msgid "%d selected"
+msgstr ""
+
+#: assets/js/studio/studio.js:6
+msgid "Clear selection"
+msgstr ""
+
+#: assets/js/studio/studio.js:6
+msgid "Select all on this page"
+msgstr ""
+
+#: assets/js/studio/studio.js:6
+msgid "Featured video"
+msgstr ""
+
+#: assets/js/studio/studio.js:6
+#: assets/js/tools/index.js:14
+msgid "Nothing found."
+msgstr ""
+
+#: assets/js/studio/studio.js:6
+#: assets/js/tools/index.js:13
+#: assets/js/tools/index.js:30
+msgid "(no title)"
+msgstr ""
+
+#: assets/js/studio/studio.js:6
+msgid "Video file"
+msgstr ""
+
+#: assets/js/studio/studio.js:6
+msgid "Embedded video"
+msgstr ""
+
+#: assets/js/studio/studio.js:6
+msgid "Make a new video"
+msgstr ""
+
+#: assets/js/studio/studio.js:6
+msgid "Make a video"
+msgstr ""
+
+#: assets/js/studio/studio.js:6
+msgid "Previous"
+msgstr ""
+
+#. translators: 1: page, 2: pages.
+#: assets/js/studio/studio.js:7
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: assets/js/studio/studio.js:7
+msgid "Next"
+msgstr ""
+
+#: assets/js/tools/index.js:1
 msgid "Select Type"
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:27
 msgid "Select or Upload Video"
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:77
 msgid "Select Poster Image"
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:169
 msgid "Error saving embed URL."
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:143
 msgid "Please enter a valid URL."
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:176
 msgid "Are you sure you want to remove the video?"
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:208
 msgid "Are you sure you want to remove the poster?"
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:242
 msgid "Edit Video"
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:248
 msgid "Edit Poster"
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:249
 msgid "Set Poster"
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:557
-#: src/tools/components/VideoAction.js:259
-#: src/tools/components/VideoAction.js:278
-#: src/tools/components/VideoAction.js:315
+#: assets/js/tools/index.js:30
 msgid "Saving..."
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:370
-#: src/tools/components/VideoAction.js:267
-#: src/tools/components/VideoAction.js:286
+#: assets/js/tools/index.js:25
+#: assets/js/tools/index.js:30
 msgid "Remove"
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:307
 msgid "Enter video URL..."
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoAction.js:315
 msgid "Save"
 msgstr ""
 
 #: assets/js/tools/index.js:1
-#: src/tools/components/VideoPreview.js:50
+msgid "Making videos needs Chrome, Edge or Firefox. Preview works here."
+msgstr ""
+
+#: assets/js/tools/index.js:1
+msgid "Making videos needs a secure (HTTPS) connection. Preview works here."
+msgstr ""
+
+#. translators: %s: post title.
+#: assets/js/tools/index.js:2
+msgid "Auto Generate Video: %s"
+msgstr ""
+
+#: assets/js/tools/index.js:2
+msgid "Template"
+msgstr ""
+
+#: assets/js/tools/index.js:2
+msgid "The text, prices and photos come from this entry. To change them first, open it in Video Studio."
+msgstr ""
+
+#: assets/js/tools/index.js:2
+msgid "Done. The video is in the Media Library and set as the featured video."
+msgstr ""
+
+#: assets/js/tools/index.js:2
+msgid "Making the video…"
+msgstr ""
+
+#: assets/js/tools/index.js:2
+msgid "Uploading…"
+msgstr ""
+
+#: assets/js/tools/index.js:2
+msgid "Customize in Video Studio"
+msgstr ""
+
+#: assets/js/tools/index.js:2
+msgid "The video is bigger than this site accepts. Try a smaller size."
+msgstr ""
+
+#: assets/js/tools/index.js:2
+msgid "Generate video"
+msgstr ""
+
+#: assets/js/tools/index.js:2
+msgid "Auto Generate Video"
+msgstr ""
+
+#: assets/js/tools/index.js:2
 msgid "View Video"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/ThumbnailCell.js:19
+#: assets/js/tools/index.js:2
 msgid "Select Featured Image"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/ThumbnailCell.js:21
-#: src/tools/components/ThumbnailCell.js:131
+#: assets/js/tools/index.js:2
 msgid "Set featured image"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/ThumbnailCell.js:113
+#: assets/js/tools/index.js:2
 msgid "Remove featured image"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/PostsTable.js:32
+#: assets/js/tools/index.js:2
 msgid "No posts found for this post type."
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/PostsTable.js:41
+#: assets/js/tools/index.js:2
 msgid "Has Video"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/PostsTable.js:47
+#: assets/js/tools/index.js:2
 msgid "No Video"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/PostsTable.js:100
+#: assets/js/tools/index.js:2
 msgid "(No title)"
 msgstr ""
 
-#: assets/js/tools/index.js:1
 #: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:270
-#: src/tools/components/PostsTable.js:110
+#: assets/js/tools/index.js:30
 msgid "Edit"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/PostsTable.js:120
+#: assets/js/tools/index.js:2
 msgid "View"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/Pagination.js:34
+#: assets/js/tools/index.js:2
 msgid "items"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/Pagination.js:41
+#: assets/js/tools/index.js:2
 msgid "First page"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/Pagination.js:49
+#: assets/js/tools/index.js:2
 msgid "Previous page"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/Pagination.js:55
+#: assets/js/tools/index.js:2
 msgid "of"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/Pagination.js:63
+#: assets/js/tools/index.js:2
 msgid "Next page"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/Pagination.js:71
+#: assets/js/tools/index.js:2
 msgid "Last page"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/PostTypeFilter.js:17
+#: assets/js/tools/index.js:2
 msgid "Post Type:"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/ManageFeaturedVideos.js:84
+#: assets/js/tools/index.js:2
 msgid "posts"
 msgstr ""
 
-#: assets/js/tools/index.js:1
-#: src/tools/components/ManageFeaturedVideos.js:197
+#: assets/js/tools/index.js:2
 msgid "Per page:"
 msgstr ""
 
 #. translators: %s: post type name
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFeaturedVideos.js:222
+#: assets/js/tools/index.js:3
 msgid "Search %s..."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFeaturedVideos.js:234
+#: assets/js/tools/index.js:3
 msgid "Loading posts..."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:69
-#: src/tools/components/FloatingVideoForm.js:376
-msgid "Select Video"
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:5
+msgid "No %s was given."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:307
-msgid "Edit Sticky Video"
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:6
+msgid "No matching %s was found."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:308
-msgid "Add New Sticky Video"
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:7
+msgid "That %s cannot take a featured video."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:311
-msgid "← Back to List"
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:8
+msgid "This %s is already used by an earlier row."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:325
-msgid "Enter a name for this sticky video"
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:9
+msgid "This %s already has a featured video. Set replace to yes to change it."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:338
-#: src/tools/components/ManageFloatingVideos.js:262
-msgid "Active"
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:10
+msgid "You cannot edit that %s."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:339
-#: src/tools/components/ManageFloatingVideos.js:262
-msgid "Draft"
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:11
+msgid "The video could not be set on the %s."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:354
-msgid "Self-hosted (Upload)"
+#: assets/js/tools/index.js:11
+msgid "Not checked"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:355
-msgid "Embed (URL)"
+#: assets/js/tools/index.js:11
+msgid "Ready"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:361
-msgid "Video File"
+#: assets/js/tools/index.js:11
+msgid "Will replace"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:367
-msgid "Change Video"
+#: assets/js/tools/index.js:11
+msgid "Discarded"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:384
-msgid "Embed URL"
+#: assets/js/tools/index.js:11
+msgid "Saved"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:394
-msgid "Paste a YouTube, Vimeo, or other supported video URL."
+#: assets/js/tools/index.js:11
+msgid "Working"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:402
-msgid "Display Conditions"
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:12
+msgid "Select %s"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:405
-msgid "Show On"
+#. translators: %s: post ID
+#: assets/js/tools/index.js:13
+msgid "ID %s"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:411
-msgid "Sitewide (All Pages)"
+#: assets/js/tools/index.js:13
+msgid "Loading…"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:412
-msgid "Specific Posts & Pages (All CPTs)"
+#: assets/js/tools/index.js:13
+msgid "The list could not be loaded. Close and open it to try again."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:413
-msgid "Post Type (Singles & Archives)"
+#. translators: %d: post ID
+#: assets/js/tools/index.js:14
+msgid "ID %d"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:414
-msgid "Taxonomy Terms"
+#: assets/js/tools/index.js:14
+msgid "Post"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:421
-msgid "Select Posts & Pages"
+#: assets/js/tools/index.js:14
+msgid "The list is limited to 10,000 rows."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:446
-msgid "Search posts, pages & custom post types..."
+#: assets/js/tools/index.js:14
+msgid "Only video files go here. For a CSV or TXT, switch to Import CSV or TXT."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:473
-msgid "Select Post Types"
+#: assets/js/tools/index.js:14
+msgid "Drop up to 200 video files at a time. For more, use a CSV with https links."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:487
-msgid "The sticky video will appear on single and archive pages of selected post types."
+#: assets/js/tools/index.js:14
+msgid "Only video files were added."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:495
-msgid "Select Taxonomy Terms"
+#: assets/js/tools/index.js:14
+msgid "Drop a CSV or TXT file."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:520
-msgid "Search taxonomy terms..."
+#: assets/js/tools/index.js:14
+msgid "Drop up to 200 video files at a time. For more, put https links in the CSV."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:543
-msgid "The sticky video will appear on archive pages and single posts belonging to the selected terms."
+#: assets/js/tools/index.js:14
+msgid "Each CSV or TXT file must be 2 MB or smaller."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:559
-msgid "Update Sticky Video"
+#: assets/js/tools/index.js:14
+msgid "The first line must be post,source,value,replace."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:560
-msgid "Create Sticky Video"
+#: assets/js/tools/index.js:14
+msgid "A file can hold up to 10,000 rows."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/FloatingVideoForm.js:563
-msgid "Cancel"
+#: assets/js/tools/index.js:14
+msgid "The file has no rows."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:146
-msgid "Sitewide"
+#: assets/js/tools/index.js:14
+msgid "Some video files did not match a row, so they were left out."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:150
-msgid "1 specific post/page"
+#. translators: 1: current row, 2: rows to save
+#: assets/js/tools/index.js:15
+msgid "Saving %1$d of %2$d"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:151
-msgid "specific posts/pages"
+#: assets/js/tools/index.js:15
+msgid "The upload stopped. Saved rows are kept. Press Continue to retry the rest."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:153
-msgid "Post Types"
+#: assets/js/tools/index.js:15
+msgid "Turn on a post type in the plugin settings before uploading videos."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:155
-msgid "Taxonomy terms"
+#: assets/js/tools/index.js:15
+msgid "Check rows"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:170
-msgid "Self-hosted"
+#: assets/js/tools/index.js:15
+msgid "Continue"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:66
-msgid "Sticky video created successfully."
+#: assets/js/tools/index.js:15
+msgid "Upload and set videos"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:73
-msgid "Sticky video updated successfully."
+#: assets/js/tools/index.js:15
+msgid "Add by hand"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:80
-msgid "Error saving sticky video."
+#: assets/js/tools/index.js:15
+msgid "Import CSV or TXT"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:206
-msgid "+ Add New Sticky Video"
+#: assets/js/tools/index.js:15
+#: assets/js/tools/index.js:31
+msgid "Bulk upload"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:213
-msgid "Loading sticky videos..."
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:16
+msgid "Every video must go to a %s. A row without one is thrown away, and its file is never uploaded."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:218
-msgid "No sticky videos yet"
+#: assets/js/tools/index.js:16
+msgid "How to add videos"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:219
-msgid "Add a sticky video to display a play button on your site that opens a video popup when clicked."
+#: assets/js/tools/index.js:16
+msgid "To switch method or post type, press Start over first."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:224
-msgid "Create Your First Sticky Video"
+#: assets/js/tools/index.js:16
+msgid "Drop video files here"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:233
-msgid "Display On"
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:17
+msgid "You pick the %s for each one in the next step."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:235
+#: assets/js/tools/index.js:17
+msgid "Choose videos"
+msgstr ""
+
+#: assets/js/tools/index.js:17
+msgid "or"
+msgstr ""
+
+#: assets/js/tools/index.js:17
+msgid "Paste YouTube, Vimeo, or Dailymotion links, one per line"
+msgstr ""
+
+#: assets/js/tools/index.js:17
+msgid "Paste up to 200 links. For more, use a CSV file."
+msgstr ""
+
+#: assets/js/tools/index.js:17
+msgid "Add links"
+msgstr ""
+
+#: assets/js/tools/index.js:17
+msgid "Drop a CSV or TXT file here"
+msgstr ""
+
+#: assets/js/tools/index.js:17
+msgid "If a row names a video file, drop that file at the same time."
+msgstr ""
+
+#: assets/js/tools/index.js:17
+msgid "Choose file"
+msgstr ""
+
+#: assets/js/tools/index.js:17
+msgid "File format"
+msgstr ""
+
+#: assets/js/tools/index.js:17
+msgid "Download sample CSV"
+msgstr ""
+
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:18
+msgid "%s ID or slug."
+msgstr ""
+
+#: assets/js/tools/index.js:18
+msgid "self for a video file, embed for a link."
+msgstr ""
+
+#: assets/js/tools/index.js:18
+msgid "A YouTube, Vimeo, or Dailymotion link. Or a file name like intro.mp4. Or an https link ending in .mp4."
+msgstr ""
+
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:19
+msgid "yes to replace a video the %s already has. Empty means no."
+msgstr ""
+
+#: assets/js/tools/index.js:19
+msgid "TXT files can use tabs. Blank lines and lines starting with # are skipped. Up to 10,000 rows."
+msgstr ""
+
+#. translators: %d: row count
+#: assets/js/tools/index.js:20
+msgid "Not checked: %d"
+msgstr ""
+
+#. translators: %d: row count
+#: assets/js/tools/index.js:21
+msgid "Ready: %d"
+msgstr ""
+
+#. translators: %d: row count
+#: assets/js/tools/index.js:22
+msgid "Will replace: %d"
+msgstr ""
+
+#. translators: %d: row count
+#: assets/js/tools/index.js:23
+msgid "Discarded: %d"
+msgstr ""
+
+#. translators: %d: row count
+#: assets/js/tools/index.js:24
+msgid "Saved: %d"
+msgstr ""
+
+#. translators: %d: number of rows
+#: assets/js/tools/index.js:25
+msgid "%d rows are loaded. The list is too long to edit here. Check the counts, then run it."
+msgstr ""
+
+#: assets/js/tools/index.js:25
+msgid "Replace"
+msgstr ""
+
+#: assets/js/tools/index.js:25
+#: assets/js/tools/index.js:30
 msgid "Actions"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:250
-msgid "(no title)"
+#: assets/js/tools/index.js:25
+msgid "File"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:127
+#: assets/js/tools/index.js:25
+msgid "Replace the current featured video"
+msgstr ""
+
+#: assets/js/tools/index.js:25
+msgid "Discarded rows"
+msgstr ""
+
+#. translators: 1: post id or slug, 2: reason
+#: assets/js/tools/index.js:26
+msgid "%1$s — %2$s"
+msgstr ""
+
+#. translators: %s: singular post type name, such as Product
+#: assets/js/tools/index.js:27
+msgid "(no %s)"
+msgstr ""
+
+#: assets/js/tools/index.js:27
+msgid "Download the report to see every discarded row."
+msgstr ""
+
+#. translators: %d: number of discarded rows not listed
+#: assets/js/tools/index.js:28
+msgid "%d more are not listed. The full list is in the report after the upload."
+msgstr ""
+
+#. translators: %d: rows that will replace an existing video
+#: assets/js/tools/index.js:29
+msgid "%d rows will replace an existing featured video."
+msgstr ""
+
+#: assets/js/tools/index.js:29
+msgid "Replace and continue"
+msgstr ""
+
+#. translators: 1: rows checked so far, 2: rows to check
+#: assets/js/tools/index.js:30
+msgid "Checking %1$d of %2$d"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "The check failed."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Download report"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Start over"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Select Video"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Edit Sticky Video"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Add New Sticky Video"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "← Back to List"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Enter a name for this sticky video"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Active"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Draft"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Self-hosted (Upload)"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Embed (URL)"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Video File"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Change Video"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Embed URL"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Paste a YouTube, Vimeo, or Dailymotion URL."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Display Conditions"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Show On"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Sitewide (All Pages)"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Specific Posts & Pages (All CPTs)"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Post Type (Singles & Archives)"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Taxonomy Terms"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Select Posts & Pages"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Search posts, pages & custom post types..."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Select Post Types"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "The sticky video will appear on single and archive pages of selected post types."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Select Taxonomy Terms"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Search taxonomy terms..."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "The sticky video will appear on archive pages and single posts belonging to the selected terms."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Update Sticky Video"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Create Sticky Video"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Sitewide"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "1 specific post/page"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "specific posts/pages"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Post Types"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Taxonomy terms"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Sticky video created successfully."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Sticky video updated successfully."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Error saving sticky video."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "+ Add New Sticky Video"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Loading sticky videos..."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "No sticky videos yet"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Add a sticky video to display a play button on your site that opens a video popup when clicked."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Create Your First Sticky Video"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Display On"
+msgstr ""
+
+#: assets/js/tools/index.js:30
 msgid "Sticky video activated."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:128
+#: assets/js/tools/index.js:30
 msgid "Sticky video deactivated."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:133
+#: assets/js/tools/index.js:30
 msgid "Error updating status."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:277
+#: assets/js/tools/index.js:30
 msgid "Deactivate"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:277
+#: assets/js/tools/index.js:30
 msgid "Activate"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:92
+#: assets/js/tools/index.js:30
 msgid "Are you sure you want to delete this sticky video?"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:101
+#: assets/js/tools/index.js:30
 msgid "Sticky video deleted."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:105
+#: assets/js/tools/index.js:30
 msgid "Error deleting sticky video."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/ManageFloatingVideos.js:284
+#: assets/js/tools/index.js:30
 msgid "Delete"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:17
-msgid "🙋‍♂️ Important Note"
+#: assets/js/tools/index.js:30
+msgid "Views and plays over time"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:19
+#: assets/js/tools/index.js:30
+#: assets/js/tools/index.js:31
+msgid "Views"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+#: assets/js/tools/index.js:31
+msgid "Plays"
+msgstr ""
+
+#: assets/js/tools/index.js:30
+#: assets/js/tools/index.js:31
+msgid "Nothing in this period yet."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "The report could not be loaded."
+msgstr ""
+
+#: assets/js/tools/index.js:30
+msgid "Loading report…"
+msgstr ""
+
+#. translators: %d: number of days.
+#: assets/js/tools/index.js:31
+msgid "Last %d days"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Videos tracked"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Play rate"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Kind"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Source"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Watch time"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Completion"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Video Analytics"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Date range"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Range"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "From"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "To"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Compare"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Export CSV"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "A view is a player actually on screen. A play is someone starting the video. Hover preview does not count."
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Recording only the last 14 days of history."
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Analytics settings"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Analytics is turned off. New visits are not being counted."
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Turn it on"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Average watch"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Where videos were shown"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Video source"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Videos"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "No videos yet. Add a featured or sticky video and this list will fill in."
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Removed"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "How far people watched"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Share of plays that reached each point."
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Played"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Reached 25%"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Reached 50%"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Reached 75%"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Completed"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Countries"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Devices"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Referring sites"
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Available in Pro."
+msgstr ""
+
+#: assets/js/tools/index.js:31
+msgid "Important Note"
+msgstr ""
+
+#: assets/js/tools/index.js:31
 msgid "If Featured Videos are not working with your theme, try selecting a supported"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:19
+#: assets/js/tools/index.js:31
 msgid "Theme Compatibility Engine"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:19
+#: assets/js/tools/index.js:31
 msgid "in Settings."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:21
+#: assets/js/tools/index.js:31
 msgid "If your theme is not listed and the issue persists, submit a request on our GitHub repository. Please note that PRO subscribers receive priority support over GitHub requests, which supports the continuous development of the plugin."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:23
+#: assets/js/tools/index.js:31
 msgid "Go to Settings"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:23
+#: assets/js/tools/index.js:31
 msgid "File a Request"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:29
-msgid "🚀 Ready to go beyond?"
+#: assets/js/tools/index.js:31
+msgid "Ready to go beyond?"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:32
-msgid "Unlock powerful features like advanced video controls, extended WooCommerce integration, and more!"
+#: assets/js/tools/index.js:31
+msgid "RSFV PRO adds more Video Studio templates and tools, deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:35
-msgid "✅ Extended Autoplay on Hover"
+#: assets/js/tools/index.js:31
+msgid "8 more templates, vertical and 4K sizes, music, brand kit, every Google Font, videos in bulk"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:36
-msgid "✅ Extended WooCommerce Featured Video"
+#: assets/js/tools/index.js:31
+msgid "History beyond 14 days, watch time, completion, CSV export"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:37
-msgid "✅ Support for more Premium/Custom Themes"
+#: assets/js/tools/index.js:31
+msgid "Gallery order, thumbnails, aspect ratios"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:38
-msgid "✅ Requests for Theme Compatibility"
+#: assets/js/tools/index.js:31
+msgid "Extended controls for listings and shops"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:39
-msgid "✅ Priority Support"
+#: assets/js/tools/index.js:31
+msgid "More supported, compatibility on request"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:40
-msgid "And much more..."
+#: assets/js/tools/index.js:31
+msgid "Direct help from the developer"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:48
-msgid "Upgrade Now"
+#: assets/js/tools/index.js:31
+msgid "See PRO plans"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:55
+#: assets/js/tools/index.js:31
+msgid "One-time payment · lifetime updates · 14-day money-back guarantee"
+msgstr ""
+
+#: assets/js/tools/index.js:31
 msgid "Quick Tips"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:58
+#: assets/js/tools/index.js:31
 msgid "Click on a thumbnail to set or change the featured image."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:59
+#: assets/js/tools/index.js:31
 msgid "Use the video type dropdown to switch between self-hosted and embed videos."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:60
+#: assets/js/tools/index.js:31
 msgid "Set a poster image for self-hosted videos to display before playback."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:61
+#: assets/js/tools/index.js:31
 msgid "Search for posts by title using the search field above."
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:67
+#: assets/js/tools/index.js:31
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:72
+#: assets/js/tools/index.js:31
 msgid "Submit search"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/components/Sidebar.js:76
+#: assets/js/tools/index.js:31
 msgid "Close media modal"
 msgstr ""
 
-#: assets/js/tools/index.js:2
-#: src/tools/App.js:21
+#: assets/js/tools/index.js:31
 msgid "Manage Sticky Videos"
 msgstr ""
