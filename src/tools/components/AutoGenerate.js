@@ -143,7 +143,8 @@ const AutoGenerate = ( { post, onClose, onDone } ) => {
 				}
 				await sandboxRef.current.call( 'load', payload );
 				loadedRef.current = { vars, autofill };
-				await sandboxRef.current.call( 'play' );
+				// No player controls here, so the preview keeps looping.
+				await sandboxRef.current.call( 'play', { loop: true } );
 				setStage( 'ready' );
 			} catch ( e ) {
 				setError( e.message );
