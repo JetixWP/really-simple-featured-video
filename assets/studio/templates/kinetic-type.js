@@ -71,15 +71,23 @@
 			} );
 		},
 
+		// Line 3 types on one letter every 55 ms from 2.7 s. Set from the
+		// time on every frame: 1 ms tweens can be skipped when seeking,
+		// which left letters hidden.
+		update: ( t, ctx ) => {
+			const shown = Math.floor( ( t - 2.7 ) / 0.055 ) + 1;
+			ctx.$$( '.kt-char' ).forEach( ( el, i ) => {
+				el.style.opacity = i < shown ? '1' : '0';
+			} );
+		},
+
 		timeline: ( tl, ctx ) => {
-			const { stagger } = ctx.anime;
 			const w = ctx.width;
 
 			tl.set( '.kt-flash', { scaleX: 0 }, 0 )
 				.set( '.kt-1', { x: -w, skewX: 20 }, 0 )
 				.set( '.kt-2', { scale: 4, opacity: 0 }, 0 )
 				.set( '.kt-underline', { scaleX: 0 }, 0 )
-				.set( '.kt-char', { opacity: 0 }, 0 )
 				.add(
 					'.kt-1',
 					{
@@ -119,11 +127,6 @@
 					'.kt-underline',
 					{ scaleX: [ 0, 1 ], duration: 500, ease: 'inOutQuart' },
 					2300
-				)
-				.add(
-					'.kt-char',
-					{ opacity: [ 0, 1 ], duration: 1, delay: stagger( 55 ) },
-					2700
 				)
 				.add(
 					'.kt-stack',
