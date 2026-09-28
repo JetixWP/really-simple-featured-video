@@ -97,7 +97,7 @@ class Admin_Tools {
 		);
 
 		// Video Studio, for Auto Generate Video and Edit in Video Studio.
-		if ( class_exists( '\\RSFV\\Studio\\Studio' ) && \RSFV\Studio\Studio::enqueue_app() ) {
+		if ( class_exists( '\\RSFV\\Studio\\Studio' ) && \RSFV\Studio\Studio::is_supported() && \RSFV\Studio\Studio::enqueue_app() ) {
 			\RSFV\Studio\Studio::localize_base();
 		}
 	}

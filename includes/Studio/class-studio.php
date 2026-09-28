@@ -38,11 +38,25 @@ class Studio {
 	 * Constructor.
 	 */
 	public function __construct() {
+		if ( ! self::is_supported() ) {
+			return;
+		}
+
 		new REST_API();
 		new Admin_Page();
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 		add_action( 'rsfv_metabox_after_source', array( $this, 'render_launcher' ) );
+	}
+
+	/**
+	 * Whether this WordPress can run the Video Studio screens (they need
+	 * React 18 from WordPress 6.2). Older sites keep everything else.
+	 *
+	 * @return bool
+	 */
+	public static function is_supported() {
+		return is_wp_version_compatible( '6.2' );
 	}
 
 	/**
