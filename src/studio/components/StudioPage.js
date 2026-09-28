@@ -492,7 +492,15 @@ const StudioPage = ( { base } ) => {
 											isBusy={ opening === item.id }
 											disabled={ !! opening }
 										>
-											{ __( 'Make in Studio', 'rsfv' ) }
+											{ item.has_video && item.from_studio
+												? __(
+														'Remake in Studio',
+														'rsfv'
+												  )
+												: __(
+														'Make in Studio',
+														'rsfv'
+												  ) }
 										</Button>
 									</div>
 								</td>
