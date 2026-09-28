@@ -3,7 +3,7 @@ Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 0.90.0
+Stable tag: 1.0.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -97,7 +97,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
-* ✅ **Video Studio PRO** - 8 more templates (Sale, Stats counter, Testimonial, Logo reveal, Lower third, Kinetic type, Event, Product showcase), vertical and 4K sizes, music, a brand kit, every Google Font, big uploads past your host's limit, and Bulk generate for many products at once.
+* ✅ **Video Studio PRO** - 8 more templates (Sale, Stats counter, Testimonial, Logo reveal, Lower third, Kinetic type, Event, Product showcase), vertical and 4K sizes, music, a brand kit, every Google Font, big uploads past your host's limit, and videos for many entries at once.
 * ✅ **Extended Video Analytics** - Longer history recordings, watch time, completion, and CSV export.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Extended Sticky Videos** - Story layout for the Sticky Video popup, with tab bars to switch between videos.
@@ -169,6 +169,15 @@ Video Studio uses these libraries and fonts:
 * Manrope, Ysabeau Office, Roboto Slab and Vollkorn fonts (SIL Open Font License 1.1), see assets/studio/fonts/LICENSE.txt
 
 == Changelog ==
+
+= 1.0.0 =
+* New: Video Studio. Make a featured video from a template inside WordPress. It fills itself from the post or WooCommerce product, is made in your browser and is saved to your Media Library with a poster image
+* New: 4 templates: Text reveal, Image slideshow, Product card and Quote, with live thumbnails of your entry in each
+* New: 16:9 in 720p or 1080p, and 1:1 square. Videos are kept under your site's upload limit
+* New: Video Studio page under Video Tools. Pick an entry and make its video, or show only entries without a video
+* New: Auto Generate Video and Edit in Video Studio in Video Tools > Manage Featured Videos
+* New: The Featured Video box tells you when a post changed after its video was made
+* Improvement: License is now GPLv2 or later
 
 = 0.90.0 =
 * New: Bulk upload tab in Video Tools for video files, embed links, and CSV or TXT import
