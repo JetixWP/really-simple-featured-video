@@ -1982,3 +1982,14 @@ ease-in-out;
 		grid-template-columns: 1fr;
 	}
 }
+
+/* Leave the title room next to the sidebar on medium screens. */
+@media (max-width: 1600px) {
+	.rsfv-posts-table .column-video-action {
+		width: 240px;
+	}
+
+	.rsfv-posts-table .column-video-preview {
+		width: 220px;
+	}
+}
