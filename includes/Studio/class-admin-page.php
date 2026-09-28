@@ -142,7 +142,7 @@ class Admin_Page {
 				<?php
 				ob_start();
 				$rsfv_promo_studio = true;
-				include RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-sidebar-promo.php';
+				require RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-sidebar-promo.php';
 				$rsfv_sidebar = trim( ob_get_clean() );
 				?>
 				<?php if ( '' !== $rsfv_sidebar ) : ?>

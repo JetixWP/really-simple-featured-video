@@ -73,7 +73,7 @@ if ( ! $tab_exists ) {
 
 				<div class="sidebar">
 
-					<?php include RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-sidebar-promo.php'; ?>
+					<?php require RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-sidebar-promo.php'; ?>
 					<?php do_action( 'rsfv_extend_settings_sidebar' ); ?>
 			</div>
 
