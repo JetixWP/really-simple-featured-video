@@ -21,6 +21,7 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 import StudioModal from './StudioModal';
+import AutoGenerate from './AutoGenerate';
 import { proUrl } from '../promo';
 
 /**
@@ -38,12 +39,36 @@ function setUrlPost( postId ) {
 	window.history.replaceState( null, '', url.toString() );
 }
 
+// The chosen post type is remembered in this browser.
+const POST_TYPE_KEY = 'rsfv_studio_post_type';
+
+const storedPostType = ( postTypes ) => {
+	try {
+		const stored = window.localStorage.getItem( POST_TYPE_KEY );
+		if ( stored && postTypes.some( ( t ) => t.value === stored ) ) {
+			return stored;
+		}
+	} catch ( e ) {
+		// Storage blocked: use the first type.
+	}
+	return ( postTypes[ 0 ] || {} ).value || 'post';
+};
+
 const StudioPage = ( { base } ) => {
 	const postTypes = base.postTypes || [];
 
-	const [ postType, setPostType ] = useState(
-		( postTypes[ 0 ] || {} ).value || 'post'
+	const [ postType, setPostTypeState ] = useState( () =>
+		storedPostType( postTypes )
 	);
+	const setPostType = ( value ) => {
+		setPostTypeState( value );
+		try {
+			window.localStorage.setItem( POST_TYPE_KEY, value );
+		} catch ( e ) {
+			// Only for this visit.
+		}
+	};
+	const [ autoFor, setAutoFor ] = useState( null );
 	const [ search, setSearch ] = useState( '' );
 	const [ withoutVideo, setWithoutVideo ] = useState( false );
 	const [ selected, setSelected ] = useState( {} );
@@ -444,26 +469,53 @@ const StudioPage = ( { base } ) => {
 									{ ! item.has_video && '—' }
 								</td>
 								<td className="rsfv-studio-page__action-col">
-									<Button
-										variant={
-											item.has_video
-												? 'secondary'
-												: 'primary'
-										}
-										size="compact"
-										onClick={ () => open( item.id ) }
-										isBusy={ opening === item.id }
-										disabled={ !! opening }
-									>
-										{ item.has_video
-											? __( 'Make a new video', 'rsfv' )
-											: __( 'Make a video', 'rsfv' ) }
-									</Button>
+									<div className="rsfv-studio-page__actions">
+										{ ! item.has_video && (
+											<Button
+												variant="primary"
+												size="compact"
+												onClick={ () =>
+													setAutoFor( item )
+												}
+												disabled={ !! opening }
+											>
+												{ __(
+													'Auto Generate Video',
+													'rsfv'
+												) }
+											</Button>
+										) }
+										<Button
+											variant="secondary"
+											size="compact"
+											onClick={ () => open( item.id ) }
+											isBusy={ opening === item.id }
+											disabled={ !! opening }
+										>
+											{ __( 'Make in Studio', 'rsfv' ) }
+										</Button>
+									</div>
 								</td>
 							</tr>
 						) ) }
 				</tbody>
 			</table>
+
+			{ autoFor && (
+				<AutoGenerate
+					post={ autoFor }
+					onClose={ () => {
+						setAutoFor( null );
+						setRefresh( ( n ) => n + 1 );
+					} }
+					onDone={ () => setRefresh( ( n ) => n + 1 ) }
+					onCustomize={ () => {
+						const id = autoFor.id;
+						setAutoFor( null );
+						open( id );
+					} }
+				/>
+			) }
 
 			{ list.pages > 1 && (
 				<div className="rsfv-studio-page__pages">
