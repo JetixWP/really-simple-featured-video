@@ -7,6 +7,7 @@
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Button, ExternalLink } from '@wordpress/components';
+import { proTemplateNames, proUrl } from '../promo';
 
 const DISMISS_KEY = 'rsfvStudioProCardDismissed';
 
@@ -61,19 +62,29 @@ const TemplatePicker = ( {
 			) ) }
 
 			{ ! isPro && ! hidden && (
-				<div className="rsfv-studio-template rsfv-studio-template--pro">
-					<span className="rsfv-studio-template__title">
-						{ __( 'More in PRO', 'rsfv' ) }
-					</span>
-					<span className="rsfv-studio-template__desc">
+				<div className="rsfv-studio-promo rsfv-studio-template--pro">
+					<p>
+						<strong>{ __( '8 more templates', 'rsfv' ) }</strong>
+						<span className="rsfv-pro-tag">
+							{ __( 'PRO', 'rsfv' ) }
+						</span>
+					</p>
+					<div className="rsfv-studio-promo__chips">
+						{ proTemplateNames().map( ( name ) => (
+							<span key={ name }>{ name }</span>
+						) ) }
+					</div>
+					<p>
 						{ __(
-							'More templates, vertical and square sizes, 4K, music and making videos for many products at once.',
+							'Also vertical, square and 4K sizes, music and a brand kit.',
 							'rsfv'
 						) }
-					</span>
+					</p>
 					<span className="rsfv-studio-template__links">
-						<ExternalLink href={ upgradeUrl }>
-							{ __( 'See PRO', 'rsfv' ) }
+						<ExternalLink
+							href={ proUrl( upgradeUrl, 'studio-templates' ) }
+						>
+							{ __( 'Get PRO', 'rsfv' ) }
 						</ExternalLink>
 						<Button variant="link" onClick={ dismiss }>
 							{ __( 'Hide', 'rsfv' ) }

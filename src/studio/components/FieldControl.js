@@ -63,6 +63,7 @@ const FieldControl = ( {
 	def,
 	value,
 	fonts,
+	isPro = true,
 	fromPost,
 	canRefill,
 	onRefill,
@@ -145,6 +146,13 @@ const FieldControl = ( {
 					  })`
 					: fonts[ family ].label || family,
 			} ) );
+			if ( ! isPro ) {
+				options.push( {
+					value: '',
+					label: __( 'All Google Fonts (PRO)', 'rsfv' ),
+					disabled: true,
+				} );
+			}
 			// Long lists (PRO Google Fonts) get a searchable picker.
 			if ( options.length > 20 ) {
 				return (

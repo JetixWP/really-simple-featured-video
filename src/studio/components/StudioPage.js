@@ -21,6 +21,7 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 import StudioModal from './StudioModal';
+import { proUrl } from '../promo';
 
 /**
  * Keep the open post in the URL so a reload comes back to it.
@@ -138,6 +139,11 @@ const StudioPage = ( { base } ) => {
 			open( postId );
 		}
 	}, [] );
+
+	// Full width for the editor (the sidebar hides).
+	useEffect( () => {
+		document.body.classList.toggle( 'rsfv-studio-editing', !! editor );
+	}, [ editor ] );
 
 	const back = () => {
 		setEditor( null );
@@ -286,6 +292,23 @@ const StudioPage = ( { base } ) => {
 					__nextHasNoMarginBottom
 				/>
 			</div>
+
+			{ ! canSelect && ! base.isPro && (
+				<p className="rsfv-studio-page__prohint">
+					{ __(
+						'Tick many entries and make all their videos in one go.',
+						'rsfv'
+					) }
+					<a
+						className="rsfv-pro-tag"
+						href={ proUrl( base.upgradeUrl, 'studio-bulk' ) }
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{ __( 'PRO', 'rsfv' ) }
+					</a>
+				</p>
+			) }
 
 			{ canSelect && selectedItems.length > 0 && (
 				<div className="rsfv-studio-page__bulkbar">

@@ -19,6 +19,20 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 
+const proSizes = [
+	{
+		value: 'pro-portrait',
+		label: __( '9:16, Stories, Reels, Shorts (PRO)', 'rsfv' ),
+		disabled: true,
+	},
+	{
+		value: 'pro-square',
+		label: __( '1:1, square (PRO)', 'rsfv' ),
+		disabled: true,
+	},
+	{ value: 'pro-4k', label: __( '16:9, 4K (PRO)', 'rsfv' ), disabled: true },
+];
+
 const AutoGenerate = ( { post, onClose, onDone } ) => {
 	const api = window.rsfvStudioApi;
 	const config = window.rsfvStudio || {};
@@ -254,10 +268,13 @@ const AutoGenerate = ( { post, onClose, onDone } ) => {
 					<SelectControl
 						label={ __( 'Size', 'rsfv' ) }
 						value={ presetId }
-						options={ Object.keys( presets ).map( ( id ) => ( {
-							value: id,
-							label: presets[ id ].label,
-						} ) ) }
+						options={ [
+							...Object.keys( presets ).map( ( id ) => ( {
+								value: id,
+								label: presets[ id ].label,
+							} ) ),
+							...( config.isPro ? [] : proSizes ),
+						] }
 						onChange={ setPresetId }
 						disabled={ busy || 'done' === stage }
 						__nextHasNoMarginBottom

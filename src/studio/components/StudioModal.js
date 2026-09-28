@@ -28,6 +28,7 @@ import { autofillValue, buildLoadPayload, initialVars } from '../payload';
 import { applyToEditor, uploadRender } from '../upload';
 import FieldControl from './FieldControl';
 import TemplatePicker from './TemplatePicker';
+import { proPresetOptions, proUrl } from '../promo';
 
 /**
  * Post fields with the title/excerpt as currently typed in the editor.
@@ -430,6 +431,7 @@ const StudioModal = ( {
 					def={ def }
 					value={ values.vars[ def.id ] }
 					fonts={ fonts }
+					isPro={ !! config.isPro }
 					fromPost={ !! values.autofill[ def.id ] }
 					canRefill={ undefined !== filled }
 					onRefill={ () => refill( def ) }
@@ -475,15 +477,45 @@ const StudioModal = ( {
 					</section>
 				) ) }
 
+				{ ! config.isPro && (
+					<section className="rsfv-studio__section">
+						<h3>
+							{ __( 'Music & brand kit', 'rsfv' ) }
+							<a
+								className="rsfv-pro-tag"
+								href={ proUrl(
+									config.upgradeUrl,
+									'studio-editor'
+								) }
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{ __( 'PRO', 'rsfv' ) }
+							</a>
+						</h3>
+						<div className="rsfv-studio-promo">
+							<p>
+								{ __(
+									'Add a soundtrack with fades, save your colors, font and logo as a brand kit, and use any Google Font.',
+									'rsfv'
+								) }
+							</p>
+						</div>
+					</section>
+				) }
+
 				<section className="rsfv-studio__section">
 					<h3>{ __( 'Video', 'rsfv' ) }</h3>
 					<SelectControl
 						label={ __( 'Size', 'rsfv' ) }
 						value={ presetId }
-						options={ Object.keys( presets ).map( ( id ) => ( {
-							value: id,
-							label: presets[ id ].label,
-						} ) ) }
+						options={ [
+							...Object.keys( presets ).map( ( id ) => ( {
+								value: id,
+								label: presets[ id ].label,
+							} ) ),
+							...( config.isPro ? [] : proPresetOptions() ),
+						] }
 						onChange={ ( id ) => {
 							setPresetId( id );
 							setResult( null );
