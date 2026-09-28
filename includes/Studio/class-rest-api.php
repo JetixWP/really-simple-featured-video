@@ -90,15 +90,16 @@ class REST_API {
 	}
 
 	/**
-	 * Permission check: the user can edit the post, its type has featured
-	 * videos, and the user can upload files.
+	 * Whether the current user may add a Video Studio video to a post: they
+	 * can edit it, its type has featured videos, and they can upload files.
+	 * Add-ons that upload in other ways use this too.
 	 *
-	 * @param \WP_REST_Request $request Request.
+	 * @param int $post_id Post ID.
 	 *
-	 * @return bool|\WP_Error
+	 * @return true|\WP_Error
 	 */
-	public function can_edit_post( $request ) {
-		$post_id = absint( $request['post_id'] );
+	public static function check_post_access( $post_id ) {
+		$post_id = absint( $post_id );
 		$post    = $post_id ? get_post( $post_id ) : null;
 
 		if ( ! $post ) {
@@ -112,6 +113,17 @@ class REST_API {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Permission callback for routes with a post_id.
+	 *
+	 * @param \WP_REST_Request $request Request.
+	 *
+	 * @return true|\WP_Error
+	 */
+	public function can_edit_post( $request ) {
+		return self::check_post_access( $request['post_id'] );
 	}
 
 	/**

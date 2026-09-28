@@ -66,6 +66,27 @@ class Studio {
 	}
 
 	/**
+	 * Data every Video Studio screen needs (editor and add-on screens).
+	 *
+	 * @return array
+	 */
+	public static function get_base_data() {
+		return array(
+			'restUrl'       => esc_url_raw( rest_url( REST_API::NAMESPACE . '/studio/' ) ),
+			'nonce'         => wp_create_nonce( 'wp_rest' ),
+			'runtimeUrl'    => self::asset_url( 'studio-runtime.js' ),
+			'templates'     => array_values( Registry::get_templates() ),
+			'presets'       => Registry::get_presets(),
+			'defaultPreset' => 'landscape-1080',
+			'fonts'         => Registry::get_fonts(),
+			'extensions'    => Registry::get_runtime_extensions(),
+			'maxUploadSize' => wp_max_upload_size(),
+			'isPro'         => defined( 'RSFV_PRO_VERSION' ),
+			'upgradeUrl'    => RSFV_PLUGIN_PRO_URL . '/#pricing',
+		);
+	}
+
+	/**
 	 * Data the editor needs.
 	 *
 	 * @param \WP_Post $post Post.
@@ -73,27 +94,17 @@ class Studio {
 	 * @return array
 	 */
 	public static function get_editor_data( $post ) {
-		$composition = Composition::get( $post->ID );
-
-		$data = array(
-			'restUrl'       => esc_url_raw( rest_url( REST_API::NAMESPACE . '/studio/' ) ),
-			'nonce'         => wp_create_nonce( 'wp_rest' ),
-			'postId'        => $post->ID,
-			'postType'      => $post->post_type,
-			'runtimeUrl'    => self::asset_url( 'studio-runtime.js' ),
-			'templates'     => array_values( Registry::get_templates() ),
-			'presets'       => Registry::get_presets(),
-			'defaultPreset' => 'landscape-1080',
-			'fonts'         => Registry::get_fonts(),
-			'extensions'    => Registry::get_runtime_extensions(),
-			'fields'        => Post_Fields::get( $post ),
-			'composition'   => $composition,
-			'isCurrent'     => Composition::is_current( $post->ID ),
-			'changed'       => Composition::changed_sources( $post->ID ),
-			'maxUploadSize' => wp_max_upload_size(),
-			'supportsThumb' => post_type_supports( $post->post_type, 'thumbnail' ),
-			'isPro'         => defined( 'RSFV_PRO_VERSION' ),
-			'upgradeUrl'    => RSFV_PLUGIN_PRO_URL . '/#pricing',
+		$data = array_merge(
+			self::get_base_data(),
+			array(
+				'postId'        => $post->ID,
+				'postType'      => $post->post_type,
+				'fields'        => Post_Fields::get( $post ),
+				'composition'   => Composition::get( $post->ID ),
+				'isCurrent'     => Composition::is_current( $post->ID ),
+				'changed'       => Composition::changed_sources( $post->ID ),
+				'supportsThumb' => post_type_supports( $post->post_type, 'thumbnail' ),
+			)
 		);
 
 		/**
@@ -152,6 +163,14 @@ class Studio {
 				$asset['version']
 			);
 		}
+
+		/**
+		 * Fires after the Video Studio app is enqueued, so add-ons can load
+		 * their scripts after it.
+		 *
+		 * @since 0.91.0
+		 */
+		do_action( 'rsfv_studio_enqueued' );
 
 		return true;
 	}

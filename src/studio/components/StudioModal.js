@@ -260,10 +260,23 @@ const StudioModal = ( { config, onClose, onSaved } ) => {
 				context
 			);
 
-			const extensions = applyFilters(
+			/**
+			 * Filter settings passed to runtime extensions. Values may be
+			 * promises (for example a music file being fetched).
+			 *
+			 * @param {Object} extensions Settings keyed by extension id.
+			 * @param {Object} context    Editor context.
+			 */
+			const pending = applyFilters(
 				'rsfv.studio.renderExtensions',
 				{},
 				context
+			);
+			const extensions = {};
+			await Promise.all(
+				Object.keys( pending || {} ).map( async ( key ) => {
+					extensions[ key ] = await pending[ key ];
+				} )
 			);
 			let budget = maxSize;
 			let rendered = null;
