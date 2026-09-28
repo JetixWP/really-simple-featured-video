@@ -180,6 +180,9 @@ Video Studio uses these libraries and fonts:
 * Improvement: License is now GPLv2 or later
 * Fix: Saving an edit screen that was opened earlier no longer puts back an old video after the video was changed in Video Studio, Video Tools or another tab
 * Fix: Video Tools now shows videos saved before a video source was stored, as the site already plays them
+* Improvement: 9:16 listed in the aspect ratio setting (PRO)
+* Improvement: The Sticky Video link field lists the supported video sites
+* Improvement: Video Studio turns itself off on WordPress older than 6.2 instead of loading blank screens
 
 = 0.90.0 =
 * New: Bulk upload tab in Video Tools for video files, embed links, and CSV or TXT import
