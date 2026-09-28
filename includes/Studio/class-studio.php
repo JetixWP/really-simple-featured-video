@@ -39,6 +39,7 @@ class Studio {
 	 */
 	public function __construct() {
 		new REST_API();
+		new Admin_Page();
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 		add_action( 'rsfv_metabox_after_source', array( $this, 'render_launcher' ) );

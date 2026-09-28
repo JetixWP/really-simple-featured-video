@@ -226,6 +226,7 @@ final class Plugin {
 		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-post-fields.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-composition.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-rest-api.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-admin-page.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/Studio/class-studio.php';
 
 		// Database upgraders.

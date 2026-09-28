@@ -274,3 +274,100 @@
 		}
 	}
 }
+
+// Video Studio admin page.
+.rsfv-studio-page {
+	margin-top: 12px;
+
+	&__intro {
+		max-width: 760px;
+		color: #50575e;
+	}
+
+	&__filters {
+		display: flex;
+		gap: 12px;
+		align-items: flex-end;
+		flex-wrap: wrap;
+		margin: 16px 0 12px;
+
+		> * {
+			min-width: 200px;
+		}
+	}
+
+	&__table {
+		max-width: 1100px;
+
+		td {
+			vertical-align: middle;
+		}
+	}
+
+	&__action-col {
+		width: 170px;
+		text-align: right;
+	}
+
+	&__title {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		img,
+		.rsfv-studio-page__nothumb {
+			width: 40px;
+			height: 40px;
+			object-fit: cover;
+			border-radius: 2px;
+			background: #f0f0f1;
+			flex-shrink: 0;
+		}
+
+		.button-link {
+			font-weight: 600;
+			text-align: left;
+		}
+	}
+
+	&__pages {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		margin-top: 12px;
+	}
+
+	&__current {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 12px;
+		flex-wrap: wrap;
+		background: #fff;
+		border: 1px solid #dcdcde;
+		border-bottom: 0;
+		padding: 10px 16px;
+
+		strong {
+			margin-left: 6px;
+			font-size: 14px;
+		}
+	}
+
+	&__links {
+		display: flex;
+		gap: 16px;
+	}
+}
+
+.rsfv-studio-inline {
+	height: calc(100vh - 210px);
+	min-height: 560px;
+	display: flex;
+	background: #fff;
+	border: 1px solid #dcdcde;
+
+	.rsfv-studio {
+		height: auto;
+	}
+}

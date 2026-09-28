@@ -75,6 +75,21 @@ class REST_API {
 
 		register_rest_route(
 			self::NAMESPACE,
+			'/studio/editor/(?P<post_id>\d+)',
+			array(
+				'methods'             => \WP_REST_Server::READABLE,
+				'callback'            => array( $this, 'editor_data' ),
+				'permission_callback' => array( $this, 'can_edit_post' ),
+				'args'                => array(
+					'post_id' => array(
+						'sanitize_callback' => 'absint',
+					),
+				),
+			)
+		);
+
+		register_rest_route(
+			self::NAMESPACE,
 			'/studio/post-fields/(?P<post_id>\d+)',
 			array(
 				'methods'             => \WP_REST_Server::READABLE,
@@ -124,6 +139,23 @@ class REST_API {
 	 */
 	public function can_edit_post( $request ) {
 		return self::check_post_access( $request['post_id'] );
+	}
+
+	/**
+	 * Everything the editor needs for one post (Video Studio page).
+	 *
+	 * @param \WP_REST_Request $request Request.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function editor_data( $request ) {
+		$post = get_post( absint( $request['post_id'] ) );
+		$data = Studio::get_editor_data( $post );
+
+		$data['postTitle'] = html_entity_decode( get_the_title( $post ), ENT_QUOTES, 'UTF-8' );
+		$data['editLink']  = get_edit_post_link( $post->ID, 'raw' );
+
+		return rest_ensure_response( $data );
 	}
 
 	/**
