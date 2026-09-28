@@ -180,7 +180,7 @@ Video Studio uses these libraries and fonts:
 * Improvement: License is now GPLv2 or later
 * Fix: Saving an edit screen that was opened earlier no longer puts back an old video after the video was changed in Video Studio, Video Tools or another tab
 * Fix: Video Tools now shows videos saved before a video source was stored, as the site already plays them
-* Improvement: 9:16 listed in the aspect ratio setting (PRO)
+* Improvement: 9:16 listed in the aspect ratio setting
 * Improvement: The Sticky Video link field lists the supported video sites
 * Improvement: Video Studio turns itself off on WordPress older than 6.2 instead of loading blank screens
 * Fix: A fatal error with the Codeixer product gallery when no product was loaded, and a PHP warning with Woostify
