@@ -25,6 +25,7 @@ You get a really simple settings page which has all the controls you need for ma
 
 == 👉️ Features ==
 
+* **Video Studio** - Make a featured video right inside WordPress from a template. Pick a template, change the text, colors, font and images (filled from the post or WooCommerce product), preview it and click Make video. The video is made in your browser and saved to your Media Library.
 * **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
@@ -42,6 +43,18 @@ You get a really simple settings page which has all the controls you need for ma
 * **Bulk Video Uploader** - Assign video files or Youtube, Vimeo, and Dailymotion links to posts from Video Tools. Add rows by hand, or import a CSV or TXT file.
 * **Video Analytics** - See views and plays for featured videos in Video Tools. Counts stay on your site. No cookie is set. Records the last 14 days of history.
 
+
+== 👉️ Video Studio ==
+
+Video Studio makes short featured videos from templates, without any outside service. Open it from the Featured Video box on any post, page or product.
+
+* 4 templates: Text reveal, Image slideshow, Product card and Quote
+* Fills itself from the post or WooCommerce product: title, price, sale price, photos and category
+* Live preview, then Make video. The video is made in your browser and saved as the post's featured video with a poster image
+* 16:9 in 720p or 1080p. The file is kept under your site's upload limit
+* The box tells you when the post changed after the video was made, so you can make it again
+
+Making a video needs Chrome, Edge or Firefox on a secure (HTTPS) connection. Safari can preview templates but can't make the video yet. Keep the tab open while the video is being made.
 
 == 👉️ Video Autoplay on Hover Support ==
 
@@ -83,6 +96,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
+* ✅ **Video Studio PRO** - 8 more templates (Sale, Stats counter, Testimonial, Logo reveal, Lower third, Kinetic type, Event, Product showcase), vertical, square and 4K sizes, music, a brand kit, big uploads past your host's limit, and Bulk generate for many products at once.
 * ✅ **Extended Video Analytics** - Longer history recordings, watch time, completion, and CSV export.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Extended Sticky Videos** - Story layout for the Sticky Video popup, with tab bars to switch between videos.
@@ -128,12 +142,30 @@ And if you're a Pro user, you can send a support ticket via the [account](https:
 = Can I upload many videos at once? =
 Yes. Open Video Tools and use the Bulk upload tab. You can add files or embed links by hand, or import a CSV or TXT file. Each row needs a post. A row without a post is discarded, and its file is not uploaded.
 
+= Does Video Studio send my content to another service? =
+No. Templates are played and recorded into a video file by your own browser, then uploaded to your own Media Library. Nothing is sent anywhere else.
+
+= Why can't I make a video in Safari? =
+Safari doesn't let a web page read back the picture Video Studio draws, so it can't record the video. You can still pick a template and preview it. Use Chrome, Edge or Firefox to make the video.
+
 = What does Video Analytics count? =
 A view is a player actually on screen. A play is someone starting the video. Hover preview does not count. Counts stay in your own database. See the Privacy section.
 
 == Privacy ==
 
 Analytics stores anonymous view and play totals in your own database. It does not set a cookie, does not store IP addresses or user ids, and does not send counts to JetixWP. Free keeps 14 days of those totals. A browser tab may remember, in sessionStorage, which video was already counted during that visit.
+
+Video Studio runs entirely in your browser and your site. Templates, fonts and scripts are bundled with the plugin and nothing is loaded from or sent to outside servers.
+
+== Source code and credits ==
+
+Source code and build tools: [github.com/JetixWP/really-simple-featured-video](https://github.com/JetixWP/really-simple-featured-video)
+
+Video Studio uses these libraries and fonts:
+
+* [Anime.js](https://animejs.com/) (MIT) for template animations
+* [Mediabunny](https://mediabunny.dev/) (MPL-2.0) to write MP4 and WebM files
+* Manrope, Ysabeau Office, Roboto Slab and Vollkorn fonts (SIL Open Font License 1.1), see assets/studio/fonts/LICENSE.txt
 
 == Changelog ==
 

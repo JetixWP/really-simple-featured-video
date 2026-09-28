@@ -21,6 +21,7 @@ You get a really simple settings page which has all the controls you need for ma
 == 👉️ Features ==
 
 * **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
+* **Video Studio** - Make a featured video right inside WordPress from a template, filled from the post or WooCommerce product. The video is made in your browser and saved to your Media Library.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
@@ -101,6 +102,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
+* ✅ **Video Studio PRO** - 8 more templates, vertical, square and 4K sizes, music, a brand kit, big uploads past your host's limit, and Bulk generate.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 4:3, 3:2, 1:1, 9:16 or a custom ratio.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.
