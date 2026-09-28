@@ -60,7 +60,7 @@ class Admin_Page {
 
 		$this->hook_suffix = (string) add_submenu_page(
 			$primary_slug,
-			__( 'Video Studio', 'rsfv' ),
+			__( 'Video Studio: Automatically Generate Featured Videos', 'rsfv' ),
 			__( '&nbsp;↳ Video Studio', 'rsfv' ) . $badge,
 			'manage_options',
 			self::SLUG,
@@ -112,6 +112,10 @@ class Admin_Page {
 	 * @return void
 	 */
 	public function render() {
-		echo '<div class="wrap rsfv-studio-page-wrap"><h1 class="wp-heading-inline">' . esc_html__( 'Video Studio', 'rsfv' ) . '</h1><hr class="wp-header-end"><div id="rsfv-studio-page"></div></div>';
+		printf(
+			'<div class="wrap rsfv-studio-page-wrap"><h1 class="wp-heading-inline">%1$s <span class="rsfv-studio-page-subtitle">%2$s</span></h1><hr class="wp-header-end"><div id="rsfv-studio-page"></div></div>',
+			esc_html__( 'Video Studio:', 'rsfv' ),
+			esc_html__( 'Automatically Generate Featured Videos', 'rsfv' )
+		);
 	}
 }
