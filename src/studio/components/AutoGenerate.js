@@ -13,11 +13,11 @@ import {
 	Button,
 	Modal,
 	Notice,
-	ProgressBar,
 	SelectControl,
 	Spinner,
 	ToggleControl,
 } from '@wordpress/components';
+import Progress from './Progress';
 
 import Sandbox from '../sandbox';
 import { buildLoadPayload, initialVars } from '../payload';
@@ -331,7 +331,7 @@ const AutoGenerate = ( {
 			) }
 			{ busy && (
 				<div className="rsfv-autogen__progress">
-					<ProgressBar
+					<Progress
 						className="rsfv-autogen__bar"
 						value={ Math.round( progress * 100 ) }
 					/>

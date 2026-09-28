@@ -22,13 +22,13 @@ import {
 	ExternalLink,
 	Modal,
 	Notice,
-	ProgressBar,
 	RangeControl,
 	SelectControl,
 	Spinner,
 	TabPanel,
 	ToggleControl,
 } from '@wordpress/components';
+import Progress from './Progress';
 import { useInstanceId } from '@wordpress/compose';
 import Sandbox from '../sandbox';
 import { autofillValue, buildLoadPayload, initialVars } from '../payload';
@@ -767,7 +767,7 @@ const StudioModal = ( {
 									</strong>
 									<span>{ percent }%</span>
 								</div>
-								<ProgressBar
+								<Progress
 									className="rsfv-studio__bar-progress"
 									value={ percent }
 								/>

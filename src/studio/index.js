@@ -19,6 +19,7 @@ import { applyToEditor, defaultUploader, uploadRender } from './upload';
 import Launcher from './components/Launcher';
 import StudioModal from './components/StudioModal';
 import AutoGenerate from './components/AutoGenerate';
+import Progress from './components/Progress';
 import StudioPage from './components/StudioPage';
 import './style.scss';
 
@@ -37,6 +38,7 @@ window.rsfvStudioApi = {
 	uploadRender,
 	StudioModal,
 	AutoGenerate,
+	Progress,
 };
 
 domReady( () => {

@@ -970,3 +970,18 @@ body.rsfv-studio-editing {
 		grid-template-columns: 1fr;
 	}
 }
+
+// Progress bar for WordPress before 6.6 (see components/Progress.js).
+.rsfv-progress {
+	height: 4px;
+	width: 100%;
+	border-radius: 2px;
+	background: #e0e0e0;
+	overflow: hidden;
+
+	&__fill {
+		height: 100%;
+		background: var(--wp-admin-theme-color, #008710);
+		transition: width 0.2s ease;
+	}
+}
