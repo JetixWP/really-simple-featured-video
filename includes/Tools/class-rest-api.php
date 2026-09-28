@@ -81,11 +81,17 @@ class REST_API {
 						'default'           => 20,
 						'sanitize_callback' => 'absint',
 					),
-					'search'    => array(
+					'search'        => array(
 						'required'          => false,
 						'type'              => 'string',
 						'default'           => '',
 						'sanitize_callback' => 'sanitize_text_field',
+					),
+					'without_video' => array(
+						'required'          => false,
+						'type'              => 'boolean',
+						'default'           => false,
+						'sanitize_callback' => 'rest_sanitize_boolean',
 					),
 				),
 			)
@@ -286,6 +292,59 @@ class REST_API {
 			'orderby'        => 'date',
 			'order'          => 'DESC',
 		);
+
+		// Only entries without a featured video (same rules as has_video).
+		if ( $request->get_param( 'without_video' ) ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$args['meta_query'] = array(
+				'relation' => 'OR',
+				array(
+					'relation' => 'AND',
+					array(
+						'relation' => 'OR',
+						array(
+							'key'     => RSFV_SOURCE_META_KEY,
+							'compare' => 'NOT EXISTS',
+						),
+						array(
+							'key'     => RSFV_SOURCE_META_KEY,
+							'value'   => 'embed',
+							'compare' => '!=',
+						),
+					),
+					array(
+						'relation' => 'OR',
+						array(
+							'key'     => RSFV_META_KEY,
+							'compare' => 'NOT EXISTS',
+						),
+						array(
+							'key'     => RSFV_META_KEY,
+							'value'   => array( '', '0' ),
+							'compare' => 'IN',
+						),
+					),
+				),
+				array(
+					'relation' => 'AND',
+					array(
+						'key'   => RSFV_SOURCE_META_KEY,
+						'value' => 'embed',
+					),
+					array(
+						'relation' => 'OR',
+						array(
+							'key'     => RSFV_EMBED_META_KEY,
+							'compare' => 'NOT EXISTS',
+						),
+						array(
+							'key'   => RSFV_EMBED_META_KEY,
+							'value' => '',
+						),
+					),
+				),
+			);
+		}
 
 		// Add search if provided.
 		$search = $request->get_param( 'search' );
