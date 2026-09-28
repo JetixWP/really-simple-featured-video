@@ -1,0 +1,276 @@
+/**
+ * Video Studio editor styles.
+ *
+ * @package RSFV
+ */
+
+.rsfv-studio-launcher {
+	margin: 4px 0 8px;
+
+	.components-button {
+		margin-bottom: 6px;
+	}
+}
+
+.rsfv-studio-muted {
+	color: #646970;
+	font-size: 12px;
+	margin: 4px 0;
+}
+
+.rsfv-studio-stale {
+	color: #996800;
+	font-size: 12px;
+	margin: 4px 0;
+}
+
+.rsfv-studio-modal {
+	.components-modal__content {
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+
+	.components-modal__header {
+		padding: 0 16px;
+		flex-shrink: 0;
+	}
+
+	.components-modal__children-container {
+		flex: 1;
+		min-height: 0;
+		display: flex;
+	}
+}
+
+.rsfv-studio {
+	display: flex;
+	flex: 1;
+	min-height: 0;
+	height: 100%;
+
+	&__sidebar {
+		width: 340px;
+		flex-shrink: 0;
+		overflow-y: auto;
+		border-right: 1px solid #e0e0e0;
+		padding: 16px;
+		box-sizing: border-box;
+	}
+
+	&__section {
+		margin-bottom: 24px;
+
+		h3 {
+			font-size: 11px;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			margin: 0 0 12px;
+			color: #1e1e1e;
+		}
+	}
+
+	&__main {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		background: #f0f0f1;
+	}
+
+	&__stage {
+		position: relative;
+		flex: 1;
+		min-height: 240px;
+		margin: 16px 16px 0;
+		background: repeating-conic-gradient(#e2e4e7 0% 25%, #f6f7f7 0% 50%) 50% / 24px 24px;
+		border-radius: 4px;
+		overflow: hidden;
+
+		.rsfv-studio-frame {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			border: 0;
+		}
+	}
+
+	&__loading {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	&__controls {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 8px 16px;
+	}
+
+	&__scrub {
+		flex: 1;
+	}
+
+	&__time {
+		font-variant-numeric: tabular-nums;
+		color: #50575e;
+		font-size: 12px;
+		min-width: 80px;
+		text-align: right;
+	}
+
+	&__footer {
+		padding: 0 16px 16px;
+
+		.components-notice {
+			margin: 0 0 12px;
+		}
+	}
+
+	&__progress {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 12px;
+
+		.rsfv-studio__bar {
+			flex: 1;
+			width: auto;
+			max-width: none;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 8px;
+
+		.rsfv-studio-muted {
+			margin-right: auto;
+		}
+	}
+}
+
+.rsfv-studio-field {
+	margin-bottom: 16px;
+}
+
+.rsfv-studio-templates {
+	display: grid;
+	gap: 8px;
+}
+
+.rsfv-studio-template {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	text-align: left;
+	padding: 10px 12px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	background: #fff;
+	cursor: pointer;
+	font: inherit;
+
+	&:hover:not(:disabled) {
+		border-color: #8c8f94;
+	}
+
+	&.is-selected {
+		border-color: var(--wp-admin-theme-color, #2271b1);
+		box-shadow: 0 0 0 1px var(--wp-admin-theme-color, #2271b1);
+	}
+
+	&:disabled {
+		cursor: default;
+		opacity: 0.7;
+	}
+
+	&__title {
+		font-weight: 600;
+		color: #1e1e1e;
+	}
+
+	&__desc {
+		font-size: 12px;
+		color: #646970;
+		line-height: 1.4;
+	}
+
+	&__links {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		font-size: 12px;
+	}
+
+	&--pro {
+		cursor: default;
+		background: #f6f7f7;
+		border-style: dashed;
+	}
+}
+
+.rsfv-studio-media {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-bottom: 8px;
+
+	&__item {
+		position: relative;
+		width: 64px;
+		height: 64px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 2px;
+			display: block;
+		}
+	}
+
+	&__remove.components-button {
+		position: absolute;
+		top: 2px;
+		right: 2px;
+		min-width: 0;
+		width: 20px;
+		height: 20px;
+		padding: 0;
+		background: rgba(255, 255, 255, 0.9);
+		border-radius: 50%;
+	}
+}
+
+.rsfv-studio-color.components-button {
+	gap: 8px;
+	width: 100%;
+	justify-content: flex-start;
+}
+
+@media (max-width: 782px) {
+	.rsfv-studio {
+		flex-direction: column-reverse;
+
+		&__sidebar {
+			width: auto;
+			border-right: 0;
+			border-top: 1px solid #e0e0e0;
+		}
+
+		&__stage {
+			min-height: 220px;
+		}
+	}
+}

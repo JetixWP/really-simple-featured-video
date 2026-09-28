@@ -225,6 +225,15 @@ class Metabox {
 
 		echo wp_kses( $select_source, $this->get_allowed_html() );
 		echo wp_kses( $styles, $this->get_allowed_html() );
+
+		/**
+		 * Fires after the video source fields in the Featured Video box.
+		 *
+		 * @since 0.91.0
+		 *
+		 * @param \WP_Post $post Post being edited.
+		 */
+		do_action( 'rsfv_metabox_after_source', $post );
 	}
 
 	/**
