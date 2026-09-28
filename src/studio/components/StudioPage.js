@@ -126,8 +126,10 @@ const StudioPage = ( { base } ) => {
 
 	// Opened from a link with ?post_id=.
 	useEffect( () => {
-		if ( base.openPost ) {
-			open( base.openPost );
+		// wp_localize_script sends numbers as strings ("0").
+		const postId = parseInt( base.openPost, 10 ) || 0;
+		if ( postId > 0 ) {
+			open( postId );
 		}
 	}, [] );
 
