@@ -7,13 +7,15 @@
 
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import AutoGenerate from './AutoGenerate';
 
 const StudioAction = ( { post, onUpdate } ) => {
 	const [ open, setOpen ] = useState( false );
 	const studioUrl = ( window.rsfvTools && window.rsfvTools.studioUrl ) || '';
 
-	if ( ! window.rsfvStudioApi || ! window.rsfvStudio || ! studioUrl ) {
+	const AutoGenerate =
+		window.rsfvStudioApi && window.rsfvStudioApi.AutoGenerate;
+
+	if ( ! AutoGenerate || ! window.rsfvStudio || ! studioUrl ) {
 		return null;
 	}
 
@@ -62,6 +64,7 @@ const StudioAction = ( { post, onUpdate } ) => {
 			{ open && (
 				<AutoGenerate
 					post={ post }
+					studioUrl={ studioUrl }
 					onClose={ () => setOpen( false ) }
 					onDone={ done }
 				/>

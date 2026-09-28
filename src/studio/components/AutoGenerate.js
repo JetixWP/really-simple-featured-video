@@ -19,21 +19,37 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 
-const proSizes = [
-	{
-		value: 'pro-portrait',
-		label: __( '9:16, Stories, Reels, Shorts (PRO)', 'rsfv' ),
-		disabled: true,
-	},
-	{ value: 'pro-4k', label: __( '16:9, 4K (PRO)', 'rsfv' ), disabled: true },
-];
+import Sandbox from '../sandbox';
+import { buildLoadPayload, initialVars } from '../payload';
+import { uploadRender } from '../upload';
+import { proPresetOptions } from '../promo';
 
-const AutoGenerate = ( { post, onClose, onDone } ) => {
-	const api = window.rsfvStudioApi;
+// Used by Video Tools and the Video Studio page (shared as
+// window.rsfvStudioApi.AutoGenerate).
+const api = { Sandbox, buildLoadPayload, initialVars, uploadRender };
+
+/**
+ * Auto Generate Video dialog.
+ *
+ * @param {Object}   props             Props.
+ * @param {Object}   props.post        Entry: id, title.
+ * @param {Function} props.onClose     Close the dialog.
+ * @param {Function} props.onDone      Video saved (upload response).
+ * @param {string}   props.studioUrl   Video Studio page URL (for a link).
+ * @param {Function} props.onCustomize Open the entry in the editor instead
+ *                                     of following the link.
+ * @return {JSX.Element} Dialog.
+ */
+const AutoGenerate = ( {
+	post,
+	onClose,
+	onDone,
+	studioUrl = '',
+	onCustomize = null,
+} ) => {
 	const config = window.rsfvStudio || {};
 	const templates = config.templates || [];
 	const presets = config.presets || {};
-	const studioUrl = ( window.rsfvTools && window.rsfvTools.studioUrl ) || '';
 
 	const [ fields, setFields ] = useState( null );
 	const [ templateId, setTemplateId ] = useState( '' );
@@ -269,7 +285,7 @@ const AutoGenerate = ( { post, onClose, onDone } ) => {
 								value: id,
 								label: presets[ id ].label,
 							} ) ),
-							...( config.isPro ? [] : proSizes ),
+							...( config.isPro ? [] : proPresetOptions() ),
 						] }
 						onChange={ setPresetId }
 						disabled={ busy || 'done' === stage }
@@ -328,10 +344,20 @@ const AutoGenerate = ( { post, onClose, onDone } ) => {
 			) }
 
 			<div className="rsfv-autogen__actions">
-				{ studioUrl && (
+				{ ( onCustomize || studioUrl ) && (
 					<a
 						className="rsfv-autogen__studio"
-						href={ `${ studioUrl }&post_id=${ post.id }` }
+						href={
+							studioUrl
+								? `${ studioUrl }&post_id=${ post.id }`
+								: '#'
+						}
+						onClick={ ( event ) => {
+							if ( onCustomize ) {
+								event.preventDefault();
+								onCustomize();
+							}
+						} }
 					>
 						{ 'done' === stage
 							? __( 'Edit in Video Studio', 'rsfv' )
