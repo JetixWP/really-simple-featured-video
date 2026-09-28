@@ -78,7 +78,7 @@ class Admin_Page {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
-		echo '<style>#adminmenu .rsfv-menu-badge{display:inline-block;margin-left:4px;padding:0 6px;border-radius:9px;background:#00a32a;color:#fff;font-size:9px;font-weight:600;line-height:17px;text-transform:uppercase;letter-spacing:.03em;vertical-align:1px}</style>';
+		echo '<style>#adminmenu .rsfv-menu-badge{display:inline-block;margin-left:2px;padding:0 5px;border-radius:8px;background:#008710;color:#fff;font-size:8px;font-weight:700;line-height:15px;text-transform:uppercase;vertical-align:1px;white-space:nowrap}</style>';
 	}
 
 	/**
@@ -104,6 +104,9 @@ class Admin_Page {
 		);
 
 		wp_localize_script( 'rsfv-studio', 'rsfvStudio', $data );
+
+		// Sidebar cards styled like Settings.
+		wp_enqueue_style( 'rsfv_settings', RSFV_PLUGIN_URL . 'assets/css/admin-settings.css', array(), filemtime( RSFV_PLUGIN_DIR . 'assets/css/admin-settings.css' ) );
 
 		// Same JetixWP header and tabs as Video Tools.
 		$tools_css = RSFV_PLUGIN_DIR . 'assets/js/tools/style-index.css';
@@ -134,7 +137,20 @@ class Admin_Page {
 					</div>
 				</div>
 			</div>
-			<div id="rsfv-studio-page" class="rsfv-tools-app"></div>
+			<div class="rsfv-studio-layout">
+				<div id="rsfv-studio-page" class="rsfv-tools-app"></div>
+				<?php
+				ob_start();
+				$rsfv_promo_studio = true;
+				include RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-sidebar-promo.php';
+				$rsfv_sidebar = trim( ob_get_clean() );
+				?>
+				<?php if ( '' !== $rsfv_sidebar ) : ?>
+					<div class="sidebar rsfv-studio-sidebar">
+						<?php echo $rsfv_sidebar; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in the view. ?>
+					</div>
+				<?php endif; ?>
+			</div>
 		</div>
 		<?php
 	}
