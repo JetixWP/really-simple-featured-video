@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-28T13:11:21+00:00\n"
+"POT-Creation-Date: 2026-09-28T13:17:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -2315,6 +2315,10 @@ msgstr ""
 #: assets/js/studio/studio.js:9
 #: assets/js/tools/index.js:1
 msgid "Auto Generate Video"
+msgstr ""
+
+#: assets/js/studio/studio.js:9
+msgid "Remake in Studio"
 msgstr ""
 
 #: assets/js/studio/studio.js:9
