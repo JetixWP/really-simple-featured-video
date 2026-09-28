@@ -20,6 +20,9 @@ if ( ! function_exists( 'wc_get_gallery_image_html' ) || ! apply_filters( 'wpgs_
 }
 
 global $product;
+if ( ! $product instanceof WC_Product ) {
+	return;
+}
 $post_thumbnail_id = $product->get_image_id();
 $gallery_options   = get_option( 'wpgs_form' );
 $html              = '';
