@@ -229,7 +229,7 @@ class Metabox {
 		/**
 		 * Fires after the video source fields in the Featured Video box.
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param \WP_Post $post Post being edited.
 		 */

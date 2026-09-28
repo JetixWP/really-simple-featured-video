@@ -50,7 +50,7 @@ class Admin_Page {
 		/**
 		 * Filter whether the Video Studio menu item shows a "New" badge.
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param bool $show Show the badge.
 		 */

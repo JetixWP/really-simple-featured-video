@@ -354,7 +354,7 @@ class Registry {
 		 * script that calls RSFVStudio.registerTemplate()), duration, category,
 		 * vars (list of variables, see Registry::VAR_TYPES).
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param array $templates Templates.
 		 */
@@ -407,7 +407,7 @@ class Registry {
 		 *
 		 * Each preset: label, width, height (even numbers), fps.
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param array $presets Presets keyed by id.
 		 */
@@ -464,7 +464,7 @@ class Registry {
 		/**
 		 * Filter the Video Studio fonts (WOFF2 files on this site).
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param array $fonts Fonts keyed by family: label, url, weight, style.
 		 */
@@ -481,7 +481,7 @@ class Registry {
 		/**
 		 * Filter the Video Studio runtime extensions.
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param string[] $scripts Script URLs.
 		 */

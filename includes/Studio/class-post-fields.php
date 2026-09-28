@@ -122,7 +122,7 @@ class Post_Fields {
 		/**
 		 * Filter the details Video Studio templates can fill themselves from.
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param array    $fields Fields.
 		 * @param \WP_Post $post   Post.

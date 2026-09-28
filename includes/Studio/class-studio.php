@@ -111,7 +111,7 @@ class Studio {
 		/**
 		 * Filter the data passed to the Video Studio editor.
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param array    $data Data.
 		 * @param \WP_Post $post Post.
@@ -169,7 +169,7 @@ class Studio {
 		 * Fires after the Video Studio app is enqueued, so add-ons can load
 		 * their scripts after it.
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 */
 		do_action( 'rsfv_studio_enqueued' );
 

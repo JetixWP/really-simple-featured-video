@@ -171,7 +171,7 @@ class Composition {
 		 * Filter extra settings saved with a composition (for example PRO
 		 * music). Nothing is kept unless an add-on sanitizes it here.
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param array $extras  Clean extras.
 		 * @param array $raw     Raw extras from the editor.
@@ -184,7 +184,7 @@ class Composition {
 		/**
 		 * Filter a sanitized Video Studio composition before it is saved.
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param array $composition Composition.
 		 * @param array $raw         Raw composition from the editor.
@@ -284,7 +284,7 @@ class Composition {
 		/**
 		 * Fires after Video Studio saved a video on a post.
 		 *
-		 * @since 0.91.0
+		 * @since 1.0.0
 		 *
 		 * @param int   $post_id     Post ID.
 		 * @param int   $video_id    Video attachment ID.
