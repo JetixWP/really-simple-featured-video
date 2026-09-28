@@ -177,6 +177,20 @@ class Studio {
 	}
 
 	/**
+	 * Pass the shared config to the app once per page (add-ons may call
+	 * this too).
+	 *
+	 * @return void
+	 */
+	public static function localize_base() {
+		$existing = wp_scripts()->get_data( 'rsfv-studio', 'data' );
+		if ( is_string( $existing ) && false !== strpos( $existing, 'var rsfvStudio ' ) ) {
+			return;
+		}
+		wp_localize_script( 'rsfv-studio', 'rsfvStudio', self::get_base_data() );
+	}
+
+	/**
 	 * Enqueue on post edit screens.
 	 *
 	 * @return void
