@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php $rsfv_pro_url = 'https://jetixwp.com/plugins/really-simple-featured-video/?utm_campaign=' . ( empty( $rsfv_promo_studio ) ? 'settings-sidebar' : 'studio-sidebar' ) . '&utm_source=rsfv-plugin'; ?>
 						<div class="upgrade-box">
 							<div>
-								<h3>🎉 &nbsp;<?php esc_html_e( 'Anniversary deal: RSFV PRO from $59', 'rsfv' ); ?></h3>
+								<h3><span class="dashicons dashicons-tag rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Anniversary deal: RSFV PRO from $59', 'rsfv' ); ?></h3>
 								<p class="desc"><?php esc_html_e( 'Get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates.', 'rsfv' ); ?></p>
 							</div>
 							<div class="rsfv-anniversary-deal">
@@ -57,19 +57,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</ul>
 								<p class="rsfv-anniversary-deal__note"><?php esc_html_e( 'One-time payment · lifetime updates · no renewals', 'rsfv' ); ?></p>
 								<a class="button button-primary" href="<?php echo esc_url( $rsfv_pro_url . '#pricing' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Get PRO for $59', 'rsfv' ); ?></a>
-								<p class="rsfv-anniversary-deal__secure">🔒 <?php esc_html_e( 'Secure checkout · 14-day money-back guarantee', 'rsfv' ); ?></p>
+								<p class="rsfv-anniversary-deal__secure"><span class="dashicons dashicons-lock rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Secure checkout · 14-day money-back guarantee', 'rsfv' ); ?></p>
 							</div>
 							<div>
 								<p class="desc"><strong><?php esc_html_e( 'What PRO adds', 'rsfv' ); ?></strong></p>
 								<ul class="rsfv-upgrade-features">
 									<?php if ( ! empty( $rsfv_promo_studio ) ) : ?>
-										<li>✅ <strong><?php esc_html_e( 'Video Studio PRO', 'rsfv' ); ?></strong> — <?php esc_html_e( '8 more templates, vertical, square and 4K sizes, music, brand kit, all Google Fonts, and making videos for many entries at once', 'rsfv' ); ?></li>
+										<li><strong><?php esc_html_e( 'Video Studio PRO', 'rsfv' ); ?></strong> — <?php esc_html_e( '8 more templates, vertical, square and 4K sizes, music, brand kit, all Google Fonts, and making videos for many entries at once', 'rsfv' ); ?></li>
 									<?php endif; ?>
-									<li>✅ <strong><?php esc_html_e( 'Priority support', 'rsfv' ); ?></strong> — <?php esc_html_e( 'direct help from the developer', 'rsfv' ); ?></li>
-									<li>✅ <strong><?php esc_html_e( 'Full video analytics', 'rsfv' ); ?></strong> — <?php esc_html_e( 'history beyond 14 days, watch time, completion, CSV export', 'rsfv' ); ?></li>
-									<li>✅ <strong><?php esc_html_e( 'WooCommerce controls', 'rsfv' ); ?></strong> — <?php esc_html_e( 'gallery order, thumbnails, aspect ratios', 'rsfv' ); ?></li>
-									<li>✅ <strong><?php esc_html_e( 'Autoplay on hover', 'rsfv' ); ?></strong> — <?php esc_html_e( 'extended controls for listings and shops', 'rsfv' ); ?></li>
-									<li>✅ <strong><?php esc_html_e( 'Premium and custom themes', 'rsfv' ); ?></strong> — <?php esc_html_e( 'more supported, compatibility on request', 'rsfv' ); ?></li>
+									<li><strong><?php esc_html_e( 'Priority support', 'rsfv' ); ?></strong> — <?php esc_html_e( 'direct help from the developer', 'rsfv' ); ?></li>
+									<li><strong><?php esc_html_e( 'Full video analytics', 'rsfv' ); ?></strong> — <?php esc_html_e( 'history beyond 14 days, watch time, completion, CSV export', 'rsfv' ); ?></li>
+									<li><strong><?php esc_html_e( 'WooCommerce controls', 'rsfv' ); ?></strong> — <?php esc_html_e( 'gallery order, thumbnails, aspect ratios', 'rsfv' ); ?></li>
+									<li><strong><?php esc_html_e( 'Autoplay on hover', 'rsfv' ); ?></strong> — <?php esc_html_e( 'extended controls for listings and shops', 'rsfv' ); ?></li>
+									<li><strong><?php esc_html_e( 'Premium and custom themes', 'rsfv' ); ?></strong> — <?php esc_html_e( 'more supported, compatibility on request', 'rsfv' ); ?></li>
 								</ul>
 								<p class="rsfv-upgrade-compare"><a href="<?php echo esc_url( $rsfv_pro_url . '#compare' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Compare free vs PRO →', 'rsfv' ); ?></a></p>
 							</div>

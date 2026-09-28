@@ -66,7 +66,7 @@ $rsfv_pro_faqs = array(
 <div class="upgrade-content">
 
 	<section class="rsfv-pro-hero">
-		<p class="rsfv-pro-eyebrow">🎉 <?php esc_html_e( 'Anniversary deal · up to 50% off for a limited time', 'rsfv' ); ?></p>
+		<p class="rsfv-pro-eyebrow"><span class="dashicons dashicons-tag rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Anniversary deal · up to 50% off for a limited time', 'rsfv' ); ?></p>
 		<h1 class="tab-heading"><?php esc_html_e( 'Get more out of every featured video with RSFV PRO', 'rsfv' ); ?></h1>
 		<p class="rsfv-pro-lead"><?php esc_html_e( 'Know which videos people watch, control exactly how they show up in your WooCommerce store, and get help directly from the developer when you need it.', 'rsfv' ); ?></p>
 		<div class="rsfv-pro-actions">

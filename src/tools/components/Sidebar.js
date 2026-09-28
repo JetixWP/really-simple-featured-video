@@ -15,7 +15,11 @@ const Sidebar = () => {
 		<div className="rsfv-sidebar">
 			<div className="rsfv-sidebar-panel">
 				<h3 className="rsfv-sidebar-title">
-					{ __( '🙋‍♂️ Important Note', 'rsfv' ) }
+					<span
+						className="dashicons dashicons-info-outline rsfv-promo-icon"
+						aria-hidden="true"
+					/>
+					{ __( 'Important Note', 'rsfv' ) }
 				</h3>
 				<p>{ __( "If Featured Videos are not working with your theme, try selecting a supported", 'rsfv' ) } <a href={ `${ window.rsfvTools?.settingsUrl || '#' }` }>{ __( "Theme Compatibility Engine", "rsfv" ) }</a> { __( "in Settings.", "rsfv" ) }</p>
 
@@ -30,7 +34,11 @@ const Sidebar = () => {
 			{ ! isPro && (
 				<div className="rsfv-sidebar-panel rsfv-upgrade-banner">
 					<h3 className="rsfv-upgrade-title">
-						{ __( '🚀 Ready to go beyond?', 'rsfv' ) }
+						<span
+							className="dashicons dashicons-star-filled rsfv-promo-icon"
+							aria-hidden="true"
+						/>
+						{ __( 'Ready to go beyond?', 'rsfv' ) }
 					</h3>
 					<p className="rsfv-upgrade-description">
 						{ __( 'RSFV PRO adds deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer.', 'rsfv' ) }
