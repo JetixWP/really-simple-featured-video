@@ -66,6 +66,22 @@ class Registry {
 	}
 
 	/**
+	 * Optional logo (PRO fills it from the brand kit).
+	 *
+	 * @return array
+	 */
+	public static function logo_var() {
+		return array(
+			'id'      => 'logo',
+			'type'    => 'image',
+			'label'   => __( 'Logo', 'rsfv' ),
+			'default' => 0,
+			'brand'   => 'logo',
+			'group'   => 'style',
+		);
+	}
+
+	/**
 	 * Built-in templates.
 	 *
 	 * @return array
@@ -334,6 +350,200 @@ class Registry {
 							'accent'     => '#a78bfa',
 							'text_color' => '#ffffff',
 							'font'       => 'Vollkorn',
+						)
+					)
+				),
+			),
+			array(
+				'id'          => 'news-headline',
+				'title'       => __( 'News headline', 'rsfv' ),
+				'description' => __( 'The post photo with a slow zoom, a category tag, the headline line by line, a short summary and a byline.', 'rsfv' ),
+				'version'     => '1.0.0',
+				'script'      => $base . 'news-headline.js',
+				'duration'    => 8,
+				'category'    => 'blog',
+				'vars'        => array_merge(
+					array(
+						array(
+							'id'       => 'image',
+							'type'     => 'image',
+							'label'    => __( 'Photo', 'rsfv' ),
+							'default'  => 0,
+							'autofill' => 'featured_image',
+						),
+						array(
+							'id'        => 'category',
+							'type'      => 'string',
+							'label'     => __( 'Tag', 'rsfv' ),
+							'default'   => __( 'News', 'rsfv' ),
+							'autofill'  => 'category',
+							'maxLength' => 30,
+						),
+						array(
+							'id'        => 'title',
+							'type'      => 'string',
+							'label'     => __( 'Headline', 'rsfv' ),
+							'default'   => __( 'City opens its first car-free street to walkers and bikes', 'rsfv' ),
+							'autofill'  => 'title',
+							'maxLength' => 100,
+						),
+						array(
+							'id'        => 'excerpt',
+							'type'      => 'text',
+							'label'     => __( 'Short summary', 'rsfv' ),
+							'default'   => __( 'The new route links the old town with the river park, and early numbers show twice as many people on foot.', 'rsfv' ),
+							'autofill'  => 'excerpt',
+							'maxLength' => 200,
+						),
+						array(
+							'id'        => 'author',
+							'type'      => 'string',
+							'label'     => __( 'Author', 'rsfv' ),
+							'default'   => __( 'Jordan Lee', 'rsfv' ),
+							'autofill'  => 'author',
+							'maxLength' => 50,
+						),
+						array(
+							'id'        => 'site_name',
+							'type'      => 'string',
+							'label'     => __( 'Site name', 'rsfv' ),
+							'default'   => __( 'The Daily Post', 'rsfv' ),
+							'autofill'  => 'site_name',
+							'maxLength' => 50,
+						),
+					),
+					self::style_vars(
+						array(
+							'background' => '#111111',
+							'accent'     => '#e11d48',
+							'text_color' => '#ffffff',
+							'font'       => 'Manrope',
+						)
+					),
+					array( self::logo_var() )
+				),
+			),
+			array(
+				'id'          => 'testimonial',
+				'title'       => __( 'Testimonial', 'rsfv' ),
+				'description' => __( 'Star rating, a customer review, their photo and name.', 'rsfv' ),
+				'version'     => '1.0.0',
+				'script'      => $base . 'testimonial.js',
+				'duration'    => 9,
+				'category'    => 'text',
+				'vars'        => array_merge(
+					array(
+						array(
+							'id'      => 'photo',
+							'type'    => 'image',
+							'label'   => __( 'Customer photo', 'rsfv' ),
+							'default' => 0,
+						),
+						array(
+							'id'      => 'rating',
+							'type'    => 'enum',
+							'label'   => __( 'Stars', 'rsfv' ),
+							'default' => '5',
+							'options' => array(
+								array(
+									'value' => '5',
+									'label' => '5',
+								),
+								array(
+									'value' => '4',
+									'label' => '4',
+								),
+								array(
+									'value' => '3',
+									'label' => '3',
+								),
+								array(
+									'value' => '0',
+									'label' => __( 'No stars', 'rsfv' ),
+								),
+							),
+						),
+						array(
+							'id'        => 'review',
+							'type'      => 'text',
+							'label'     => __( 'Review', 'rsfv' ),
+							'default'   => __( 'Arrived fast, fits perfectly and feels great. I have already ordered a second one.', 'rsfv' ),
+							'autofill'  => 'excerpt',
+							'maxLength' => 280,
+						),
+						array(
+							'id'        => 'name',
+							'type'      => 'string',
+							'label'     => __( 'Name', 'rsfv' ),
+							'default'   => __( 'Alex Morgan', 'rsfv' ),
+							'maxLength' => 50,
+						),
+						array(
+							'id'        => 'detail',
+							'type'      => 'string',
+							'label'     => __( 'Detail', 'rsfv' ),
+							'default'   => __( 'Verified buyer', 'rsfv' ),
+							'maxLength' => 60,
+						),
+						array(
+							'id'        => 'product',
+							'type'      => 'string',
+							'label'     => __( 'Product', 'rsfv' ),
+							'default'   => '',
+							'autofill'  => 'title',
+							'maxLength' => 80,
+						),
+					),
+					self::style_vars(
+						array(
+							'background' => '#fdf2f8',
+							'accent'     => '#db2777',
+							'text_color' => '#1f2937',
+							'font'       => 'Manrope',
+						)
+					),
+					array( self::logo_var() )
+				),
+			),
+			array(
+				'id'          => 'kinetic-type',
+				'title'       => __( 'Kinetic type', 'rsfv' ),
+				'description' => __( 'Three short lines that slam, zoom and type onto the screen.', 'rsfv' ),
+				'version'     => '1.0.0',
+				'script'      => $base . 'kinetic-type.js',
+				'duration'    => 6,
+				'category'    => 'text',
+				'vars'        => array_merge(
+					array(
+						array(
+							'id'        => 'line1',
+							'type'      => 'string',
+							'label'     => __( 'Line 1', 'rsfv' ),
+							'default'   => __( 'Make it', 'rsfv' ),
+							'maxLength' => 24,
+						),
+						array(
+							'id'        => 'line2',
+							'type'      => 'string',
+							'label'     => __( 'Line 2', 'rsfv' ),
+							'default'   => __( 'move.', 'rsfv' ),
+							'maxLength' => 16,
+						),
+						array(
+							'id'        => 'line3',
+							'type'      => 'string',
+							'label'     => __( 'Line 3', 'rsfv' ),
+							'default'   => __( 'Make it yours.', 'rsfv' ),
+							'autofill'  => 'site_name',
+							'maxLength' => 40,
+						),
+					),
+					self::style_vars(
+						array(
+							'background' => '#fafafa',
+							'accent'     => '#ef4444',
+							'text_color' => '#0a0a0a',
+							'font'       => 'Manrope',
 						)
 					)
 				),
