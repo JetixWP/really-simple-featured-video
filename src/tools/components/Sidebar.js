@@ -70,7 +70,7 @@ const Sidebar = () => {
 					</h3>
 					<p className="rsfv-upgrade-description">
 						{ __(
-							'RSFV PRO adds more Video Studio templates and tools, deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer.',
+							'RSFV PRO lets Video Studio auto generate videos from more templates, adds deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer.',
 							'rsfv'
 						) }
 					</p>
@@ -81,7 +81,7 @@ const Sidebar = () => {
 							</strong>
 							<span>
 								{ __(
-									'20 more templates, vertical and 4K sizes, music, brand kit, every Google Font, videos in bulk',
+									'Auto generate videos from 20 more templates, vertical and 4K sizes, music, brand kit, every Google Font, videos in bulk',
 									'rsfv'
 								) }
 							</span>

@@ -567,6 +567,12 @@ const StudioModal = ( {
 					<ul>
 						<li>
 							{ __(
+								'Auto generate videos from 20 more templates',
+								'rsfv'
+							) }
+						</li>
+						<li>
+							{ __(
 								'A soundtrack with fade in and out',
 								'rsfv'
 							) }
