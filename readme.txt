@@ -1,4 +1,4 @@
-=== Really Simple Featured Video for Posts, Pages & WooCommerce Products ===
+=== Really Simple Featured Video for Posts, Pages & WooCommerce Products - Auto Generate Videos ===
 Contributors: jetixwp, lushkant
 Requires at least: 6.0
 Requires PHP: 8.0
@@ -15,8 +15,6 @@ Add product & featured videos to WooCommerce, posts, pages and CPTs, or auto gen
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your Posts, Pages & WooCommerce Products. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
 [🚀 **Take a better look at Really Simple Featured Video**](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
-
-https://www.youtube.com/watch?v=KWi-xuEgy-o
 
 With Really Simple Featured Video you get a metabox at posts, pages, CPTs & Woo products edit screen sidebar, with a very similar interface as you're used to with featured image.
 
