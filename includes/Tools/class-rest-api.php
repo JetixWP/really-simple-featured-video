@@ -352,6 +352,7 @@ class REST_API {
 			'edit_link'    => esc_url_raw( $edit_link ),
 			'thumbnail'    => $thumbnail ? esc_url_raw( $thumbnail ) : '',
 			'has_video'    => (bool) $has_video,
+			'from_studio'  => class_exists( '\\RSFV\\Studio\\Composition' ) && \RSFV\Studio\Composition::is_current( $post->ID ),
 			'video_source' => sanitize_key( $video_source ),
 			'video_id'     => $video_id ? absint( $video_id ) : 0,
 			'video_url'    => $video_url ? esc_url_raw( $video_url ) : '',

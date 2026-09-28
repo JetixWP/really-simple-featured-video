@@ -95,6 +95,11 @@ class Admin_Tools {
 			'rsfvTools',
 			self::get_localized_data()
 		);
+
+		// Video Studio, for Auto Generate Video and Edit in Video Studio.
+		if ( class_exists( '\\RSFV\\Studio\\Studio' ) && \RSFV\Studio\Studio::enqueue_app() ) {
+			\RSFV\Studio\Studio::localize_base();
+		}
 	}
 
 	/**
@@ -111,6 +116,7 @@ class Admin_Tools {
 			'isPro'       => defined( 'RSFV_PRO_VERSION' ),
 			'upgradeUrl'  => RSFV_PLUGIN_PRO_URL . '/#pricing',
 			'settingsUrl' => admin_url( 'admin.php?page=rsfv-settings' ),
+			'studioUrl'   => admin_url( 'admin.php?page=rsfv-studio' ),
 		);
 
 		/**
