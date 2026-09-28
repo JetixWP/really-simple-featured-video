@@ -407,3 +407,121 @@
 		height: auto;
 	}
 }
+
+// JetixWP brand colors for WordPress components on Video Studio screens.
+.rsfv-studio-page-wrap,
+.rsfv-studio-modal,
+.rsfv-studio-launcher,
+.rsfv-studio-inline,
+.rsfv-autogen {
+	--wp-admin-theme-color: #008710;
+	--wp-admin-theme-color--rgb: 0, 135, 16;
+	--wp-admin-theme-color-darker-10: #007a0e;
+	--wp-admin-theme-color-darker-10--rgb: 0, 122, 14;
+	--wp-admin-theme-color-darker-20: #00650c;
+	--wp-admin-theme-color-darker-20--rgb: 0, 101, 12;
+}
+
+.rsfv-studio-page-wrap .rsfv-studio-page .button-link,
+.rsfv-studio-page-wrap .rsfv-studio-page__links a {
+	color: #008710;
+}
+
+// Page layout: list and sidebar, like Settings.
+.rsfv-studio-layout {
+	margin: 0 40px 0 30px;
+	max-width: 1360px;
+
+	@media screen and (min-width: 1100px) {
+		display: grid;
+		grid-template-columns: minmax(0, 8fr) minmax(280px, 4fr);
+		column-gap: 40px;
+		align-items: start;
+	}
+
+	#rsfv-studio-page > .rsfv-tab-content {
+		margin-left: 0;
+		min-width: 0;
+		max-width: none;
+		padding-right: 0;
+	}
+
+	> .sidebar {
+		margin-top: 20px;
+	}
+}
+
+// While editing, the editor gets the full width.
+.rsfv-studio-editing .rsfv-studio-layout {
+	display: block;
+	max-width: none;
+
+	> .sidebar {
+		display: none;
+	}
+}
+
+// PRO promos (free only).
+.rsfv-pro-tag {
+	display: inline-block;
+	margin-left: 4px;
+	padding: 0 6px;
+	border-radius: 3px;
+	background: #008710;
+	color: #fff;
+	font-size: 10px;
+	font-weight: 600;
+	line-height: 17px;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	vertical-align: 1px;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		color: #fff;
+		background: #00650c;
+	}
+}
+
+.rsfv-studio-promo {
+	border: 1px dashed #8cc793;
+	background: #f1faee;
+	border-radius: 4px;
+	padding: 10px 12px;
+	font-size: 12px;
+	line-height: 1.5;
+	color: #3c434a;
+
+	p {
+		margin: 0 0 6px;
+	}
+
+	a {
+		color: #008710;
+		font-weight: 600;
+	}
+}
+
+.rsfv-studio-promo__chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	margin: 6px 0 8px;
+
+	span {
+		border: 1px solid #c3c4c7;
+		border-radius: 10px;
+		padding: 0 8px;
+		background: #fff;
+		color: #646970;
+		font-size: 11px;
+		line-height: 20px;
+	}
+}
+
+.rsfv-studio-page__prohint {
+	margin: -4px 0 12px;
+	font-size: 12px;
+	color: #50575e;
+}
