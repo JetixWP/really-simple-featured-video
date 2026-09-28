@@ -23,7 +23,7 @@ $rsfv_pro_features = array(
 	array(
 		'icon'  => 'dashicons-cart',
 		'title' => __( 'WooCommerce gallery control', 'rsfv' ),
-		'desc'  => __( 'Pick where the video sits in the product gallery, set its thumbnail, and change the aspect ratio per product.', 'rsfv' ),
+		'desc'  => __( 'Pick where the video sits in the product gallery, use your own gallery thumbnail, and set one aspect ratio for every video.', 'rsfv' ),
 	),
 	array(
 		'icon'  => 'dashicons-controls-play',
