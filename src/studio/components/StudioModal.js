@@ -73,6 +73,25 @@ function liveFields( fields ) {
 const formatSize = ( bytes ) => `${ ( bytes / 1048576 ).toFixed( 1 ) } MB`;
 const formatTime = ( seconds ) => `${ ( seconds || 0 ).toFixed( 1 ) }s`;
 
+// The loop choice is remembered in this browser.
+const LOOP_KEY = 'rsfvStudioLoop';
+
+const savedLoop = () => {
+	try {
+		return '1' === window.localStorage.getItem( LOOP_KEY );
+	} catch ( e ) {
+		return false;
+	}
+};
+
+const saveLoop = ( on ) => {
+	try {
+		window.localStorage.setItem( LOOP_KEY, on ? '1' : '0' );
+	} catch ( e ) {
+		// Private mode: only for this visit.
+	}
+};
+
 const StudioModal = ( {
 	config,
 	onClose,
@@ -130,6 +149,8 @@ const StudioModal = ( {
 	const [ setThumbnail, setSetThumbnail ] = useState( false );
 	const [ lastTab, setLastTab ] = useState( 'content' );
 	const [ edited, setEdited ] = useState( false );
+	const [ loop, setLoop ] = useState( savedLoop );
+	const loopRef = useRef( loop );
 	const [ pendingTemplate, setPendingTemplate ] = useState( '' );
 	const [ seen, setSeen ] = useState( false );
 	const headingId = `rsfv-studio-heading-${ useInstanceId( StudioModal ) }`;
@@ -158,6 +179,7 @@ const StudioModal = ( {
 		} );
 		sandboxRef.current = sandbox;
 		sandbox.on( 'time', ( data ) => setTime( data.time ) );
+		sandbox.on( 'ended', () => setPlaying( false ) );
 		sandbox.on( 'progress', ( data ) =>
 			setProgress( data.frame / data.frames )
 		);
@@ -204,7 +226,10 @@ const StudioModal = ( {
 				setStatus( 'ready' );
 				// Thumbnails wait for the first preview.
 				setSeen( true );
-				await sandboxRef.current.call( 'play' );
+				// Play once after every change (or keep going with loop on).
+				await sandboxRef.current.call( 'play', {
+					loop: loopRef.current,
+				} );
 				setPlaying( true );
 			} catch ( e ) {
 				if ( seq === loadSeq.current ) {
@@ -272,9 +297,17 @@ const StudioModal = ( {
 			await sandbox.call( 'pause' );
 			setPlaying( false );
 		} else {
-			await sandbox.call( 'play' );
+			await sandbox.call( 'play', { loop } );
 			setPlaying( true );
 		}
+	};
+
+	const toggleLoop = () => {
+		const next = ! loop;
+		setLoop( next );
+		loopRef.current = next;
+		saveLoop( next );
+		sandboxRef.current.call( 'loop', { loop: next } ).catch( () => {} );
 	};
 
 	const scrub = async ( value ) => {
@@ -505,7 +538,7 @@ const StudioModal = ( {
 						name: 'pro',
 						title: (
 							<>
-								{ __( 'Music & brand', 'rsfv' ) }
+								{ __( 'Music & Brand Kit', 'rsfv' ) }
 								<span className="rsfv-pro-tag">
 									{ __( 'PRO', 'rsfv' ) }
 								</span>
@@ -788,6 +821,18 @@ const StudioModal = ( {
 						<span className="rsfv-studio__time">
 							{ formatTime( info.duration ) }
 						</span>
+						<Button
+							className="rsfv-studio__loop"
+							icon="controls-repeat"
+							label={
+								loop
+									? __( 'Loop is on', 'rsfv' )
+									: __( 'Loop is off', 'rsfv' )
+							}
+							showTooltip
+							isPressed={ loop }
+							onClick={ toggleLoop }
+						/>
 					</div>
 
 					<TemplateStrip

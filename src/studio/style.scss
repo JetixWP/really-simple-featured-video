@@ -270,6 +270,11 @@
 		flex: 1;
 	}
 
+	&__loop.components-button.is-pressed {
+		background: #008710;
+		color: #fff;
+	}
+
 	&__time {
 		font-variant-numeric: tabular-nums;
 		color: #50575e;
