@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-28T12:34:20+00:00\n"
+"POT-Creation-Date: 2026-09-28T12:54:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -141,36 +141,36 @@ msgstr ""
 msgid "Use this video"
 msgstr ""
 
-#: includes/class-metabox.php:120
+#: includes/class-metabox.php:131
 #: assets/js/tools/index.js:1
 msgid "Upload Video"
 msgstr ""
 
-#: includes/class-metabox.php:171
+#: includes/class-metabox.php:182
 msgid "Set Poster Image"
 msgstr ""
 
-#: includes/class-metabox.php:176
+#: includes/class-metabox.php:187
 msgid "Remove Poster"
 msgstr ""
 
-#: includes/class-metabox.php:187
+#: includes/class-metabox.php:198
 msgid "Remove Video"
 msgstr ""
 
-#: includes/class-metabox.php:195
+#: includes/class-metabox.php:206
 msgid "Video url goes here"
 msgstr ""
 
-#: includes/class-metabox.php:196
+#: includes/class-metabox.php:207
 msgid "Directly copy &amp; paste video urls from Youtube, Vimeo &amp; Dailymotion."
 msgstr ""
 
-#: includes/class-metabox.php:203
+#: includes/class-metabox.php:214
 msgid "Self"
 msgstr ""
 
-#: includes/class-metabox.php:211
+#: includes/class-metabox.php:222
 #: includes/Compatibility/Plugins/Elementor/widgets/class-rsfv-video-widget.php:140
 #: assets/js/tools/index.js:1
 #: assets/js/tools/index.js:25
@@ -178,11 +178,11 @@ msgstr ""
 msgid "Embed"
 msgstr ""
 
-#: includes/class-metabox.php:217
+#: includes/class-metabox.php:228
 msgid "Please select a video source"
 msgstr ""
 
-#: includes/class-metabox.php:221
+#: includes/class-metabox.php:232
 msgid "Set & Manage Videos from One Place"
 msgstr ""
 
@@ -522,7 +522,7 @@ msgid "Sticky video not found."
 msgstr ""
 
 #: includes/Featuresets/floating-video/class-rest-api.php:475
-#: includes/Tools/class-rest-api.php:551
+#: includes/Tools/class-rest-api.php:558
 msgid "Embed URL must be from Youtube, Vimeo or Dailymotion."
 msgstr ""
 
@@ -1293,294 +1293,294 @@ msgstr ""
 msgid "Logo"
 msgstr ""
 
-#: includes/Studio/class-registry.php:95
+#: includes/Studio/class-registry.php:108
 msgid "Text reveal"
 msgstr ""
 
-#: includes/Studio/class-registry.php:96
+#: includes/Studio/class-registry.php:109
 msgid "A big headline that rises in word by word, with a short line under it."
 msgstr ""
 
-#: includes/Studio/class-registry.php:106
-#: includes/Studio/class-registry.php:385
+#: includes/Studio/class-registry.php:119
+#: includes/Studio/class-registry.php:398
 msgid "Headline"
 msgstr ""
 
-#: includes/Studio/class-registry.php:107
+#: includes/Studio/class-registry.php:120
 msgid "Your headline here"
 msgstr ""
 
-#: includes/Studio/class-registry.php:114
+#: includes/Studio/class-registry.php:127
 msgid "Line under it"
 msgstr ""
 
-#: includes/Studio/class-registry.php:132
+#: includes/Studio/class-registry.php:145
 msgid "Image slideshow"
 msgstr ""
 
-#: includes/Studio/class-registry.php:133
+#: includes/Studio/class-registry.php:146
 msgid "Photos with a slow zoom and pan, moving into each other, with a title on top."
 msgstr ""
 
-#: includes/Studio/class-registry.php:143
+#: includes/Studio/class-registry.php:156
 msgid "Images"
 msgstr ""
 
-#: includes/Studio/class-registry.php:151
+#: includes/Studio/class-registry.php:164
 #: includes/Tools/class-admin-tools.php:145
 #: assets/js/studio/studio.js:8
 #: assets/js/tools/index.js:30
 msgid "Title"
 msgstr ""
 
-#: includes/Studio/class-registry.php:159
+#: includes/Studio/class-registry.php:172
 msgid "Caption"
 msgstr ""
 
-#: includes/Studio/class-registry.php:167
+#: includes/Studio/class-registry.php:180
 msgid "Seconds per image"
 msgstr ""
 
-#: includes/Studio/class-registry.php:176
+#: includes/Studio/class-registry.php:189
 msgid "Photo fit"
 msgstr ""
 
-#: includes/Studio/class-registry.php:181
+#: includes/Studio/class-registry.php:194
 msgid "Fill the frame"
 msgstr ""
 
-#: includes/Studio/class-registry.php:185
+#: includes/Studio/class-registry.php:198
 msgid "Show the whole photo"
 msgstr ""
 
-#: includes/Studio/class-registry.php:192
+#: includes/Studio/class-registry.php:205
 msgid "Transition"
 msgstr ""
 
-#: includes/Studio/class-registry.php:197
+#: includes/Studio/class-registry.php:210
 msgid "Crossfade"
 msgstr ""
 
-#: includes/Studio/class-registry.php:201
+#: includes/Studio/class-registry.php:214
 msgid "Slide"
 msgstr ""
 
-#: includes/Studio/class-registry.php:205
+#: includes/Studio/class-registry.php:218
 msgid "Zoom"
 msgstr ""
 
-#: includes/Studio/class-registry.php:212
+#: includes/Studio/class-registry.php:225
 msgid "Shade behind text (%)"
 msgstr ""
 
-#: includes/Studio/class-registry.php:239
+#: includes/Studio/class-registry.php:252
 msgid "Product card"
 msgstr ""
 
-#: includes/Studio/class-registry.php:240
+#: includes/Studio/class-registry.php:253
 msgid "Product photo, name, price and a call to action. Fills itself from WooCommerce."
 msgstr ""
 
-#: includes/Studio/class-registry.php:250
+#: includes/Studio/class-registry.php:263
 msgid "Product image"
 msgstr ""
 
-#: includes/Studio/class-registry.php:257
+#: includes/Studio/class-registry.php:270
 msgid "Small label"
 msgstr ""
 
-#: includes/Studio/class-registry.php:258
+#: includes/Studio/class-registry.php:271
 msgid "New arrival"
 msgstr ""
 
-#: includes/Studio/class-registry.php:265
-#: includes/Studio/class-registry.php:477
+#: includes/Studio/class-registry.php:278
+#: includes/Studio/class-registry.php:490
 msgid "Name"
 msgstr ""
 
-#: includes/Studio/class-registry.php:266
+#: includes/Studio/class-registry.php:279
 msgid "Product name"
 msgstr ""
 
-#: includes/Studio/class-registry.php:273
+#: includes/Studio/class-registry.php:286
 msgid "Price"
 msgstr ""
 
-#: includes/Studio/class-registry.php:281
+#: includes/Studio/class-registry.php:294
 msgid "Old price (crossed out)"
 msgstr ""
 
-#: includes/Studio/class-registry.php:289
+#: includes/Studio/class-registry.php:302
 msgid "Badge"
 msgstr ""
 
-#: includes/Studio/class-registry.php:297
+#: includes/Studio/class-registry.php:310
 msgid "Button text"
 msgstr ""
 
-#: includes/Studio/class-registry.php:298
+#: includes/Studio/class-registry.php:311
 msgid "Shop now"
 msgstr ""
 
-#: includes/Studio/class-registry.php:314
-#: includes/Studio/class-registry.php:325
+#: includes/Studio/class-registry.php:327
+#: includes/Studio/class-registry.php:338
 msgid "Quote"
 msgstr ""
 
-#: includes/Studio/class-registry.php:315
+#: includes/Studio/class-registry.php:328
 msgid "A quote that fades in word by word, then the author and their role."
 msgstr ""
 
-#: includes/Studio/class-registry.php:326
+#: includes/Studio/class-registry.php:339
 msgid "Simple things, done really well."
 msgstr ""
 
-#: includes/Studio/class-registry.php:333
-#: includes/Studio/class-registry.php:401
+#: includes/Studio/class-registry.php:346
+#: includes/Studio/class-registry.php:414
 msgid "Author"
 msgstr ""
 
-#: includes/Studio/class-registry.php:341
+#: includes/Studio/class-registry.php:354
 msgid "Role or company"
 msgstr ""
 
-#: includes/Studio/class-registry.php:359
+#: includes/Studio/class-registry.php:372
 msgid "News headline"
 msgstr ""
 
-#: includes/Studio/class-registry.php:360
+#: includes/Studio/class-registry.php:373
 msgid "The post photo with a slow zoom, a category tag, the headline line by line, a short summary and a byline."
 msgstr ""
 
-#: includes/Studio/class-registry.php:370
+#: includes/Studio/class-registry.php:383
 msgid "Photo"
 msgstr ""
 
-#: includes/Studio/class-registry.php:377
+#: includes/Studio/class-registry.php:390
 msgid "Tag"
 msgstr ""
 
-#: includes/Studio/class-registry.php:378
+#: includes/Studio/class-registry.php:391
 msgid "News"
 msgstr ""
 
-#: includes/Studio/class-registry.php:386
+#: includes/Studio/class-registry.php:399
 msgid "City opens its first car-free street to walkers and bikes"
 msgstr ""
 
-#: includes/Studio/class-registry.php:393
+#: includes/Studio/class-registry.php:406
 msgid "Short summary"
 msgstr ""
 
-#: includes/Studio/class-registry.php:394
+#: includes/Studio/class-registry.php:407
 msgid "The new route links the old town with the river park, and early numbers show twice as many people on foot."
 msgstr ""
 
-#: includes/Studio/class-registry.php:402
+#: includes/Studio/class-registry.php:415
 msgid "Jordan Lee"
 msgstr ""
 
-#: includes/Studio/class-registry.php:409
+#: includes/Studio/class-registry.php:422
 msgid "Site name"
 msgstr ""
 
-#: includes/Studio/class-registry.php:410
+#: includes/Studio/class-registry.php:423
 msgid "The Daily Post"
 msgstr ""
 
-#: includes/Studio/class-registry.php:428
+#: includes/Studio/class-registry.php:441
 msgid "Testimonial"
 msgstr ""
 
-#: includes/Studio/class-registry.php:429
+#: includes/Studio/class-registry.php:442
 msgid "Star rating, a customer review, their photo and name."
 msgstr ""
 
-#: includes/Studio/class-registry.php:439
+#: includes/Studio/class-registry.php:452
 msgid "Customer photo"
 msgstr ""
 
-#: includes/Studio/class-registry.php:445
+#: includes/Studio/class-registry.php:458
 msgid "Stars"
 msgstr ""
 
-#: includes/Studio/class-registry.php:462
+#: includes/Studio/class-registry.php:475
 msgid "No stars"
 msgstr ""
 
-#: includes/Studio/class-registry.php:469
+#: includes/Studio/class-registry.php:482
 msgid "Review"
 msgstr ""
 
-#: includes/Studio/class-registry.php:470
+#: includes/Studio/class-registry.php:483
 msgid "Arrived fast, fits perfectly and feels great. I have already ordered a second one."
 msgstr ""
 
-#: includes/Studio/class-registry.php:478
+#: includes/Studio/class-registry.php:491
 msgid "Alex Morgan"
 msgstr ""
 
-#: includes/Studio/class-registry.php:484
+#: includes/Studio/class-registry.php:497
 msgid "Detail"
 msgstr ""
 
-#: includes/Studio/class-registry.php:485
+#: includes/Studio/class-registry.php:498
 msgid "Verified buyer"
 msgstr ""
 
-#: includes/Studio/class-registry.php:491
+#: includes/Studio/class-registry.php:504
 msgid "Product"
 msgstr ""
 
-#: includes/Studio/class-registry.php:510
+#: includes/Studio/class-registry.php:523
 msgid "Kinetic type"
 msgstr ""
 
-#: includes/Studio/class-registry.php:511
+#: includes/Studio/class-registry.php:524
 msgid "Three short lines that slam, zoom and type onto the screen."
 msgstr ""
 
-#: includes/Studio/class-registry.php:521
+#: includes/Studio/class-registry.php:534
 msgid "Line 1"
 msgstr ""
 
-#: includes/Studio/class-registry.php:522
+#: includes/Studio/class-registry.php:535
 msgid "Make it"
 msgstr ""
 
-#: includes/Studio/class-registry.php:528
+#: includes/Studio/class-registry.php:541
 msgid "Line 2"
 msgstr ""
 
-#: includes/Studio/class-registry.php:529
+#: includes/Studio/class-registry.php:542
 msgid "move."
 msgstr ""
 
-#: includes/Studio/class-registry.php:535
+#: includes/Studio/class-registry.php:548
 msgid "Line 3"
 msgstr ""
 
-#: includes/Studio/class-registry.php:536
+#: includes/Studio/class-registry.php:549
 msgid "Make it yours."
 msgstr ""
 
-#: includes/Studio/class-registry.php:596
+#: includes/Studio/class-registry.php:609
 msgid "16:9, 1080p (Full HD)"
 msgstr ""
 
-#: includes/Studio/class-registry.php:602
+#: includes/Studio/class-registry.php:615
 msgid "16:9, 720p (HD)"
 msgstr ""
 
-#: includes/Studio/class-registry.php:608
+#: includes/Studio/class-registry.php:621
 msgid "1:1, 1080 x 1080 (square)"
 msgstr ""
 
 #: includes/Studio/class-rest-api.php:121
-#: includes/Tools/class-rest-api.php:450
-#: includes/Tools/class-rest-api.php:498
-#: includes/Tools/class-rest-api.php:603
-#: includes/Tools/class-rest-api.php:663
+#: includes/Tools/class-rest-api.php:457
+#: includes/Tools/class-rest-api.php:505
+#: includes/Tools/class-rest-api.php:610
+#: includes/Tools/class-rest-api.php:670
 msgid "Post not found."
 msgstr ""
 
@@ -1601,16 +1601,16 @@ msgid "That file type is not allowed."
 msgstr ""
 
 #. translators: %s: post title.
-#: includes/Studio/class-rest-api.php:239
+#: includes/Studio/class-rest-api.php:241
 msgid "%s (Video Studio)"
 msgstr ""
 
 #. translators: %s: post title.
-#: includes/Studio/class-rest-api.php:256
+#: includes/Studio/class-rest-api.php:257
 msgid "%s (Video Studio poster)"
 msgstr ""
 
-#: includes/Studio/class-rest-api.php:295
+#: includes/Studio/class-rest-api.php:296
 msgid "No video was sent."
 msgstr ""
 
@@ -1769,33 +1769,33 @@ msgstr ""
 msgid "Invalid post type."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:459
-#: includes/Tools/class-rest-api.php:507
+#: includes/Tools/class-rest-api.php:466
+#: includes/Tools/class-rest-api.php:514
 msgid "Invalid video source type."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:518
+#: includes/Tools/class-rest-api.php:525
 msgid "Invalid video attachment."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:528
+#: includes/Tools/class-rest-api.php:535
 msgid "Selected file is not a video."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:540
+#: includes/Tools/class-rest-api.php:547
 msgid "Invalid embed URL."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:614
+#: includes/Tools/class-rest-api.php:621
 msgid "Invalid poster image."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:624
-#: includes/Tools/class-rest-api.php:684
+#: includes/Tools/class-rest-api.php:631
+#: includes/Tools/class-rest-api.php:691
 msgid "Selected file is not an image."
 msgstr ""
 
-#: includes/Tools/class-rest-api.php:674
+#: includes/Tools/class-rest-api.php:681
 msgid "Invalid thumbnail image."
 msgstr ""
 
@@ -1956,6 +1956,18 @@ msgstr ""
 #. translators: %d: number of templates.
 #: assets/js/studio/studio.js:3
 msgid "All %d"
+msgstr ""
+
+#: assets/js/studio/studio.js:3
+msgid "Update RSFV PRO"
+msgstr ""
+
+#: assets/js/studio/studio.js:3
+msgid "Version 1.40.0 or newer adds its templates, sizes, music and brand kit here."
+msgstr ""
+
+#: assets/js/studio/studio.js:3
+msgid "Go to Plugins"
 msgstr ""
 
 #. translators: %d: number of PRO templates.
