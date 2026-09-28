@@ -62,6 +62,11 @@
 	&__section {
 		margin-bottom: 24px;
 
+		// Space between stacked controls (e.g. Size, then the toggle).
+		> .components-base-control + .components-base-control {
+			margin-top: 16px;
+		}
+
 		h3 {
 			font-size: 11px;
 			font-weight: 600;
@@ -284,7 +289,7 @@
 }
 
 .rsfv-studio-page {
-	margin-top: 0;
+	margin-top: 20px;
 
 	&__intro {
 		max-width: 760px;
@@ -293,7 +298,7 @@
 
 	&__filters {
 		display: flex;
-		gap: 12px;
+		gap: 12px 20px;
 		align-items: flex-end;
 		flex-wrap: wrap;
 		margin: 16px 0 12px;
@@ -309,6 +314,30 @@
 		td {
 			vertical-align: middle;
 		}
+
+		.check-column {
+			width: 32px;
+			padding-left: 10px;
+		}
+	}
+
+	&__bulkbar {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+		max-width: 1100px;
+		box-sizing: border-box;
+		background: #fff;
+		border: 1px solid #c3c4c7;
+		border-left: 4px solid var(--jwp-rsfv__color-brand, #008710);
+		padding: 8px 12px;
+		margin-bottom: 12px;
+	}
+
+	&__bulkpanel {
+		max-width: 1100px;
+		margin-bottom: 16px;
 	}
 
 	&__action-col {
@@ -368,7 +397,7 @@
 }
 
 .rsfv-studio-inline {
-	height: calc(100vh - 290px);
+	height: calc(100vh - 250px);
 	min-height: 560px;
 	display: flex;
 	background: #fff;

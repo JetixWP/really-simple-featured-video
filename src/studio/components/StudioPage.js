@@ -9,6 +9,7 @@
 import { useEffect, useState } from '@wordpress/element';
 import { __, sprintf } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
+import { applyFilters } from '@wordpress/hooks';
 import { addQueryArgs } from '@wordpress/url';
 import {
 	Button,
@@ -17,6 +18,7 @@ import {
 	SelectControl,
 	Spinner,
 	TextControl,
+	ToggleControl,
 } from '@wordpress/components';
 import StudioModal from './StudioModal';
 
@@ -42,6 +44,9 @@ const StudioPage = ( { base } ) => {
 		( postTypes[ 0 ] || {} ).value || 'post'
 	);
 	const [ search, setSearch ] = useState( '' );
+	const [ withoutVideo, setWithoutVideo ] = useState( false );
+	const [ selected, setSelected ] = useState( {} );
+	const [ action, setAction ] = useState( '' );
 	const [ page, setPage ] = useState( 1 );
 	const [ list, setList ] = useState( { items: [], pages: 0 } );
 	const [ loading, setLoading ] = useState( true );
@@ -68,6 +73,7 @@ const StudioPage = ( { base } ) => {
 					search,
 					page,
 					per_page: 20,
+					without_video: withoutVideo ? 1 : 0,
 				} ),
 				parse: false,
 			} )
@@ -103,7 +109,7 @@ const StudioPage = ( { base } ) => {
 			live = false;
 			clearTimeout( timer );
 		};
-	}, [ postType, search, page, refresh, editor ] );
+	}, [ postType, search, page, withoutVideo, refresh, editor ] );
 
 	const open = async ( postId ) => {
 		setOpening( postId );
@@ -166,7 +172,7 @@ const StudioPage = ( { base } ) => {
 					key={ editor.postId }
 					config={ editor }
 					inline
-					closeLabel={ __( 'Choose another', 'rsfv' ) }
+					closeLabel={ __( 'Go back', 'rsfv' ) }
 					onClose={ back }
 					onSaved={ ( response ) => {
 						setSaved( response );
@@ -181,6 +187,54 @@ const StudioPage = ( { base } ) => {
 			</div>
 		);
 	}
+
+	/**
+	 * Filter bulk actions for selected entries (PRO adds "Make videos").
+	 * Checkboxes only show when there is at least one action.
+	 *
+	 * @param {Array}  actions Actions: { id, label, render( context ) }.
+	 * @param {Object} base    Page config.
+	 */
+	const bulkActions = applyFilters( 'rsfv.studio.bulkActions', [], base );
+	const canSelect = bulkActions.length > 0;
+	const selectedItems = Object.values( selected );
+	const allOnPage =
+		list.items.length > 0 &&
+		list.items.every( ( item ) => selected[ item.id ] );
+	const columns = canSelect ? 4 : 3;
+
+	const toggleItem = ( item, on ) =>
+		setSelected( ( current ) => {
+			const next = { ...current };
+			if ( on ) {
+				next[ item.id ] = item;
+			} else {
+				delete next[ item.id ];
+			}
+			return next;
+		} );
+
+	const togglePage = ( on ) =>
+		setSelected( ( current ) => {
+			const next = { ...current };
+			list.items.forEach( ( item ) => {
+				if ( on ) {
+					next[ item.id ] = item;
+				} else {
+					delete next[ item.id ];
+				}
+			} );
+			return next;
+		} );
+
+	const current = bulkActions.find( ( a ) => a.id === action );
+	const actionContext = {
+		base,
+		items: selectedItems,
+		clear: () => setSelected( {} ),
+		close: () => setAction( '' ),
+		refresh: () => setRefresh( ( n ) => n + 1 ),
+	};
 
 	return (
 		<div className="rsfv-studio-page">
@@ -222,11 +276,78 @@ const StudioPage = ( { base } ) => {
 					__nextHasNoMarginBottom
 					__next40pxDefaultSize
 				/>
+				<ToggleControl
+					label={ __( 'Only without a video', 'rsfv' ) }
+					checked={ withoutVideo }
+					onChange={ ( value ) => {
+						setWithoutVideo( value );
+						setPage( 1 );
+					} }
+					__nextHasNoMarginBottom
+				/>
 			</div>
+
+			{ canSelect && selectedItems.length > 0 && (
+				<div className="rsfv-studio-page__bulkbar">
+					<strong>
+						{ sprintf(
+							/* translators: %d: number of selected entries. */
+							__( '%d selected', 'rsfv' ),
+							selectedItems.length
+						) }
+					</strong>
+					{ bulkActions.map( ( a ) => (
+						<Button
+							key={ a.id }
+							variant={
+								action === a.id ? 'primary' : 'secondary'
+							}
+							size="compact"
+							onClick={ () =>
+								setAction( action === a.id ? '' : a.id )
+							}
+						>
+							{ a.label }
+						</Button>
+					) ) }
+					<Button
+						variant="tertiary"
+						size="compact"
+						onClick={ () => {
+							setSelected( {} );
+							setAction( '' );
+						} }
+					>
+						{ __( 'Clear selection', 'rsfv' ) }
+					</Button>
+				</div>
+			) }
+
+			{ current && (
+				<div className="rsfv-studio-page__bulkpanel">
+					{ current.render( actionContext ) }
+				</div>
+			) }
 
 			<table className="widefat striped rsfv-studio-page__table">
 				<thead>
 					<tr>
+						{ canSelect && (
+							<td className="check-column">
+								<input
+									type="checkbox"
+									checked={ allOnPage }
+									onChange={ ( event ) =>
+										togglePage( event.target.checked )
+									}
+									disabled={ ! list.items.length }
+									aria-label={ __(
+										'Select all on this page',
+										'rsfv'
+									) }
+								/>
+							</td>
+						) }
 						<th>{ __( 'Title', 'rsfv' ) }</th>
 						<th>{ __( 'Featured video', 'rsfv' ) }</th>
 						<th className="rsfv-studio-page__action-col">
@@ -239,14 +360,14 @@ const StudioPage = ( { base } ) => {
 				<tbody>
 					{ loading && (
 						<tr>
-							<td colSpan="3">
+							<td colSpan={ columns }>
 								<Spinner />
 							</td>
 						</tr>
 					) }
 					{ ! loading && ! list.items.length && (
 						<tr>
-							<td colSpan="3">
+							<td colSpan={ columns }>
 								{ typeLabel.notFound ||
 									__( 'Nothing found.', 'rsfv' ) }
 							</td>
@@ -255,6 +376,21 @@ const StudioPage = ( { base } ) => {
 					{ ! loading &&
 						list.items.map( ( item ) => (
 							<tr key={ item.id }>
+								{ canSelect && (
+									<td className="check-column">
+										<input
+											type="checkbox"
+											checked={ !! selected[ item.id ] }
+											onChange={ ( event ) =>
+												toggleItem(
+													item,
+													event.target.checked
+												)
+											}
+											aria-label={ item.title }
+										/>
+									</td>
+								) }
 								<td>
 									<div className="rsfv-studio-page__title">
 										{ item.thumbnail ? (

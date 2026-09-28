@@ -18,7 +18,7 @@ import {
 import { applyToEditor, defaultUploader, uploadRender } from './upload';
 import Launcher from './components/Launcher';
 import StudioModal from './components/StudioModal';
-import StudioApp from './components/StudioApp';
+import StudioPage from './components/StudioPage';
 import './style.scss';
 
 // Building blocks for add-ons (PRO bulk generate uses these).
@@ -45,6 +45,10 @@ domReady( () => {
 
 	const page = document.getElementById( 'rsfv-studio-page' );
 	if ( page && window.rsfvStudio ) {
-		createRoot( page ).render( <StudioApp base={ window.rsfvStudio } /> );
+		createRoot( page ).render(
+			<div className="rsfv-tab-content">
+				<StudioPage base={ window.rsfvStudio } />
+			</div>
+		);
 	}
 } );
