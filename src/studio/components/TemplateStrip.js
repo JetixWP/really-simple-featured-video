@@ -15,6 +15,9 @@ const ICONS = {
 	images: 'format-gallery',
 	product: 'cart',
 	brand: 'star-filled',
+	blog: 'admin-post',
+	food: 'carrot',
+	business: 'building',
 };
 
 const categoryLabel = ( category ) => {
@@ -23,6 +26,9 @@ const categoryLabel = ( category ) => {
 		images: __( 'Photos', 'rsfv' ),
 		product: __( 'Products', 'rsfv' ),
 		brand: __( 'Brand', 'rsfv' ),
+		blog: __( 'Blog & news', 'rsfv' ),
+		food: __( 'Food', 'rsfv' ),
+		business: __( 'Business', 'rsfv' ),
 	};
 	return (
 		labels[ category ] ||
@@ -157,7 +163,12 @@ const TemplateStrip = ( {
 							</span>
 						</span>
 						<span className="rsfv-studio-card__names">
-							{ proNames.join( ', ' ) }
+							{ sprintf(
+								/* translators: 1: a few template names, 2: how many more. */
+								__( '%1$s and %2$d more', 'rsfv' ),
+								proNames.slice( 0, 4 ).join( ', ' ),
+								proNames.length - 4
+							) }
 						</span>
 						<ExternalLink
 							href={ proUrl( upgradeUrl, 'studio-templates' ) }

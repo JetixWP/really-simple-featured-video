@@ -26,10 +26,26 @@ export const proPresetOptions = () => [
 	{ value: 'pro-4k', label: __( '16:9, 4K (PRO)', 'rsfv' ), disabled: true },
 ];
 
+// Varied use cases first: the promo card shows the first few.
 export const proTemplateNames = () => [
+	__( 'News headline', 'rsfv' ),
+	__( 'Recipe', 'rsfv' ),
+	__( 'Property listing', 'rsfv' ),
+	__( 'Course', 'rsfv' ),
+	__( 'Countdown', 'rsfv' ),
+	__( 'Coupon code', 'rsfv' ),
 	__( 'Sale', 'rsfv' ),
-	__( 'Stats counter', 'rsfv' ),
 	__( 'Testimonial', 'rsfv' ),
+	__( 'Top list', 'rsfv' ),
+	__( 'Podcast episode', 'rsfv' ),
+	__( 'Menu board', 'rsfv' ),
+	__( 'Visit us', 'rsfv' ),
+	__( 'Destination', 'rsfv' ),
+	__( 'Before and after', 'rsfv' ),
+	__( 'We’re hiring', 'rsfv' ),
+	__( 'App feature', 'rsfv' ),
+	__( 'Portfolio grid', 'rsfv' ),
+	__( 'Stats counter', 'rsfv' ),
 	__( 'Logo reveal', 'rsfv' ),
 	__( 'Lower third', 'rsfv' ),
 	__( 'Kinetic type', 'rsfv' ),
