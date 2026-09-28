@@ -8,7 +8,7 @@ Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Really Simple Featured Video lets you add product video & featured video to WooCommerce Products & Posts, Pages, CPTs (with featured images).
+Add product & featured videos to WooCommerce, posts, pages and CPTs, or auto generate them from templates with Video Studio.
 
 == Description ==
 
@@ -25,7 +25,7 @@ You get a really simple settings page which has all the controls you need for ma
 
 == 👉️ Features ==
 
-* **Video Studio** - Make a featured video right inside WordPress from a template. Pick a template, change the text, colors, font and images (filled from the post or WooCommerce product), preview it and click Make video. The video is made in your browser and saved to your Media Library.
+* **Video Studio** - Auto generate featured videos from templates, right inside WordPress. Pick a template, change the text, colors, font and images (filled from the post or WooCommerce product), preview it and click Make video. The video is made in your browser and saved to your Media Library.
 * **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
@@ -46,7 +46,7 @@ You get a really simple settings page which has all the controls you need for ma
 
 == 👉️ Video Studio ==
 
-Video Studio makes short featured videos from templates, without any outside service. Open it from the Featured Video box on any post, page or product, or from the Video Studio page (under Video Tools): pick the post type and the entry, then make its video.
+Video Studio auto generates short featured videos from templates, without any outside service. Open it from the Featured Video box on any post, page or product, or from the Video Studio page (under Video Tools): pick the post type and the entry, then make its video.
 
 * 7 templates: Text reveal, Image slideshow, Product card, Quote, News headline, Testimonial and Kinetic type
 * Fills itself from the post or WooCommerce product: title, price, sale price, photos and category
@@ -97,7 +97,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
-* ✅ **Video Studio PRO** - 20 more templates for shops, blogs, food, real estate, courses, events, local businesses and portfolios, vertical and 4K sizes, music, a brand kit, every Google Font, big uploads past your host's limit, and videos for many entries at once.
+* ✅ **Video Studio PRO** - Auto generate videos from 20 more templates for shops, blogs, food, real estate, courses, events, local businesses and portfolios, vertical and 4K sizes, music, a brand kit, every Google Font, big uploads past your host's limit, and videos for many entries at once.
 * ✅ **Extended Video Analytics** - Longer history recordings, watch time, completion, and CSV export.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Extended Sticky Videos** - Story layout for the Sticky Video popup, with tab bars to switch between videos.
@@ -171,7 +171,7 @@ Video Studio uses these libraries and fonts:
 == Changelog ==
 
 = 1.0.0 =
-* New: Video Studio. Make a featured video from a template inside WordPress. It fills itself from the post or WooCommerce product, is made in your browser and is saved to your Media Library with a poster image
+* New: Video Studio. Auto generate featured videos from templates inside WordPress. It fills itself from the post or WooCommerce product, is made in your browser and is saved to your Media Library with a poster image
 * New: 7 templates: Text reveal, Image slideshow, Product card, Quote, News headline, Testimonial and Kinetic type, with live thumbnails of your entry in each
 * New: 16:9 in 720p or 1080p, and 1:1 square. Videos are kept under your site's upload limit
 * New: Video Studio page under Video Tools. Pick an entry and make its video, or show only entries without a video
