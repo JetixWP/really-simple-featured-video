@@ -51,7 +51,7 @@ Video Studio makes short featured videos from templates, without any outside ser
 * 4 templates: Text reveal, Image slideshow, Product card and Quote
 * Fills itself from the post or WooCommerce product: title, price, sale price, photos and category
 * Live preview, then Make video. The video is made in your browser and saved as the post's featured video with a poster image
-* 16:9 in 720p or 1080p. The file is kept under your site's upload limit
+* 16:9 in 720p or 1080p, or 1:1 square. The file is kept under your site's upload limit
 * The box tells you when the post changed after the video was made, so you can make it again
 * In Video Tools > Manage Featured Videos, entries without a video get an Auto Generate Video button: pick a template and it makes the video in one step
 
@@ -97,7 +97,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
-* ✅ **Video Studio PRO** - 8 more templates (Sale, Stats counter, Testimonial, Logo reveal, Lower third, Kinetic type, Event, Product showcase), vertical, square and 4K sizes, music, a brand kit, big uploads past your host's limit, and Bulk generate for many products at once.
+* ✅ **Video Studio PRO** - 8 more templates (Sale, Stats counter, Testimonial, Logo reveal, Lower third, Kinetic type, Event, Product showcase), vertical and 4K sizes, music, a brand kit, every Google Font, big uploads past your host's limit, and Bulk generate for many products at once.
 * ✅ **Extended Video Analytics** - Longer history recordings, watch time, completion, and CSV export.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Extended Sticky Videos** - Story layout for the Sticky Video popup, with tab bars to switch between videos.

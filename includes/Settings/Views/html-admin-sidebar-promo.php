@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<div class="upgrade-box">
 							<div>
 								<h3><span class="dashicons dashicons-tag rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Anniversary deal: RSFV PRO from $59', 'rsfv' ); ?></h3>
-								<p class="desc"><?php esc_html_e( 'Get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates.', 'rsfv' ); ?></p>
+								<p class="desc"><?php esc_html_e( 'Make more videos with Video Studio PRO, get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates.', 'rsfv' ); ?></p>
 							</div>
 							<div class="rsfv-anniversary-deal">
 								<p class="rsfv-anniversary-deal__label"><?php esc_html_e( 'Special Anniversary Deal', 'rsfv' ); ?> <span class="rsfv-anniversary-deal__badge"><?php esc_html_e( 'Save up to 50%', 'rsfv' ); ?></span></p>
@@ -62,9 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<div>
 								<p class="desc"><strong><?php esc_html_e( 'What PRO adds', 'rsfv' ); ?></strong></p>
 								<ul class="rsfv-upgrade-features">
-									<?php if ( ! empty( $rsfv_promo_studio ) ) : ?>
-										<li><strong><?php esc_html_e( 'Video Studio PRO', 'rsfv' ); ?></strong> — <?php esc_html_e( '8 more templates, vertical, square and 4K sizes, music, brand kit, all Google Fonts, and making videos for many entries at once', 'rsfv' ); ?></li>
-									<?php endif; ?>
+									<li><strong><?php esc_html_e( 'Video Studio PRO', 'rsfv' ); ?></strong> — <?php esc_html_e( '8 more templates, vertical and 4K sizes, music, brand kit, every Google Font, and videos for many entries at once', 'rsfv' ); ?></li>
 									<li><strong><?php esc_html_e( 'Priority support', 'rsfv' ); ?></strong> — <?php esc_html_e( 'direct help from the developer', 'rsfv' ); ?></li>
 									<li><strong><?php esc_html_e( 'Full video analytics', 'rsfv' ); ?></strong> — <?php esc_html_e( 'history beyond 14 days, watch time, completion, CSV export', 'rsfv' ); ?></li>
 									<li><strong><?php esc_html_e( 'WooCommerce controls', 'rsfv' ); ?></strong> — <?php esc_html_e( 'gallery order, thumbnails, aspect ratios', 'rsfv' ); ?></li>
