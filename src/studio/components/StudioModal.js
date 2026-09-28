@@ -64,7 +64,13 @@ function liveFields( fields ) {
 const formatSize = ( bytes ) => `${ ( bytes / 1048576 ).toFixed( 1 ) } MB`;
 const formatTime = ( seconds ) => `${ ( seconds || 0 ).toFixed( 1 ) }s`;
 
-const StudioModal = ( { config, onClose, onSaved } ) => {
+const StudioModal = ( {
+	config,
+	onClose,
+	onSaved,
+	inline = false,
+	closeLabel = '',
+} ) => {
 	const { templates, presets, fonts } = config;
 	const saved = config.composition;
 	const fields = useMemo( () => liveFields( config.fields || {} ), [] );
@@ -433,6 +439,210 @@ const StudioModal = ( { config, onClose, onSaved } ) => {
 		);
 	};
 
+	const body = (
+		<div className="rsfv-studio">
+			<aside className="rsfv-studio__sidebar">
+				<section className="rsfv-studio__section">
+					<h3>{ __( 'Template', 'rsfv' ) }</h3>
+					<TemplatePicker
+						templates={ templates }
+						value={ templateId }
+						onChange={ chooseTemplate }
+						disabled={ busy }
+						isPro={ config.isPro }
+						upgradeUrl={ config.upgradeUrl }
+					/>
+				</section>
+
+				{ contentVars.length > 0 && (
+					<section className="rsfv-studio__section">
+						<h3>{ __( 'Content', 'rsfv' ) }</h3>
+						{ contentVars.map( renderField ) }
+					</section>
+				) }
+
+				{ styleVars.length > 0 && (
+					<section className="rsfv-studio__section">
+						<h3>{ __( 'Style', 'rsfv' ) }</h3>
+						{ styleVars.map( renderField ) }
+					</section>
+				) }
+
+				{ panels.map( ( panel ) => (
+					<section className="rsfv-studio__section" key={ panel.id }>
+						<h3>{ panel.title }</h3>
+						{ panel.render( panelContext ) }
+					</section>
+				) ) }
+
+				<section className="rsfv-studio__section">
+					<h3>{ __( 'Video', 'rsfv' ) }</h3>
+					<SelectControl
+						label={ __( 'Size', 'rsfv' ) }
+						value={ presetId }
+						options={ Object.keys( presets ).map( ( id ) => ( {
+							value: id,
+							label: presets[ id ].label,
+						} ) ) }
+						onChange={ ( id ) => {
+							setPresetId( id );
+							setResult( null );
+						} }
+						disabled={ busy }
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+					/>
+					{ config.supportsThumb && (
+						<ToggleControl
+							label={ __(
+								'Also use the poster as featured image',
+								'rsfv'
+							) }
+							checked={ setThumbnail }
+							onChange={ setSetThumbnail }
+							disabled={ busy }
+							__nextHasNoMarginBottom
+						/>
+					) }
+				</section>
+			</aside>
+
+			<main className="rsfv-studio__main">
+				<div className="rsfv-studio__stage" ref={ frameRef }>
+					{ ( 'booting' === status || 'loading' === status ) && (
+						<div className="rsfv-studio__loading">
+							<Spinner />
+						</div>
+					) }
+				</div>
+
+				<div className="rsfv-studio__controls">
+					<Button
+						icon={ playing ? 'controls-pause' : 'controls-play' }
+						label={
+							playing
+								? __( 'Pause', 'rsfv' )
+								: __( 'Play', 'rsfv' )
+						}
+						onClick={ togglePlay }
+						disabled={ busy || 'ready' !== status }
+					/>
+					<div className="rsfv-studio__scrub">
+						<RangeControl
+							label={ __( 'Time', 'rsfv' ) }
+							hideLabelFromVision
+							value={ Math.min( time, info.duration ) }
+							min={ 0 }
+							max={ info.duration || 1 }
+							step={ 0.01 }
+							withInputField={ false }
+							showTooltip={ false }
+							onChange={ scrub }
+							disabled={ busy || 'ready' !== status }
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
+						/>
+					</div>
+					<span className="rsfv-studio__time">
+						{ formatTime( time ) } / { formatTime( info.duration ) }
+					</span>
+				</div>
+
+				<div className="rsfv-studio__footer">
+					{ blocked && (
+						<Notice status="warning" isDismissible={ false }>
+							{ blocked }
+						</Notice>
+					) }
+					{ error && (
+						<Notice
+							status="error"
+							onRemove={ () => setError( '' ) }
+						>
+							{ error }
+						</Notice>
+					) }
+					{ result && (
+						<Notice status="success" isDismissible={ false }>
+							{ inline
+								? __(
+										'Saved to the Media Library and set as the featured video.',
+										'rsfv'
+								  )
+								: __(
+										'Saved as this post’s featured video. Update the post to keep other changes.',
+										'rsfv'
+								  ) }
+						</Notice>
+					) }
+
+					{ busy && (
+						<div className="rsfv-studio__progress">
+							<ProgressBar
+								className="rsfv-studio__bar"
+								value={ Math.round( progress * 100 ) }
+							/>
+							<span>
+								{ 'rendering' === status
+									? sprintf(
+											/* translators: %d: percent. */
+											__(
+												'Making the video… %d%%',
+												'rsfv'
+											),
+											Math.round( progress * 100 )
+									  )
+									: sprintf(
+											/* translators: %d: percent. */
+											__( 'Uploading… %d%%', 'rsfv' ),
+											Math.round( progress * 100 )
+									  ) }
+							</span>
+							{ 'rendering' === status && (
+								<Button variant="tertiary" onClick={ cancel }>
+									{ __( 'Cancel', 'rsfv' ) }
+								</Button>
+							) }
+						</div>
+					) }
+
+					<div className="rsfv-studio__actions">
+						{ 'rendering' === status && (
+							<span className="rsfv-studio-muted">
+								{ __(
+									'Keep this tab open until it finishes.',
+									'rsfv'
+								) }
+							</span>
+						) }
+						<Button variant="tertiary" onClick={ requestClose }>
+							{ closeLabel ||
+								( result
+									? __( 'Done', 'rsfv' )
+									: __( 'Close', 'rsfv' ) ) }
+						</Button>
+						<Button
+							variant="primary"
+							onClick={ render }
+							disabled={
+								busy || 'ready' !== status || !! blocked
+							}
+							isBusy={ busy }
+						>
+							{ result
+								? __( 'Make again', 'rsfv' )
+								: __( 'Make video', 'rsfv' ) }
+						</Button>
+					</div>
+				</div>
+			</main>
+		</div>
+	);
+
+	if ( inline ) {
+		return <div className="rsfv-studio-inline">{ body }</div>;
+	}
+
 	return (
 		<Modal
 			title={ __( 'Video Studio', 'rsfv' ) }
@@ -441,206 +651,7 @@ const StudioModal = ( { config, onClose, onSaved } ) => {
 			isFullScreen
 			className="rsfv-studio-modal"
 		>
-			<div className="rsfv-studio">
-				<aside className="rsfv-studio__sidebar">
-					<section className="rsfv-studio__section">
-						<h3>{ __( 'Template', 'rsfv' ) }</h3>
-						<TemplatePicker
-							templates={ templates }
-							value={ templateId }
-							onChange={ chooseTemplate }
-							disabled={ busy }
-							isPro={ config.isPro }
-							upgradeUrl={ config.upgradeUrl }
-						/>
-					</section>
-
-					{ contentVars.length > 0 && (
-						<section className="rsfv-studio__section">
-							<h3>{ __( 'Content', 'rsfv' ) }</h3>
-							{ contentVars.map( renderField ) }
-						</section>
-					) }
-
-					{ styleVars.length > 0 && (
-						<section className="rsfv-studio__section">
-							<h3>{ __( 'Style', 'rsfv' ) }</h3>
-							{ styleVars.map( renderField ) }
-						</section>
-					) }
-
-					{ panels.map( ( panel ) => (
-						<section
-							className="rsfv-studio__section"
-							key={ panel.id }
-						>
-							<h3>{ panel.title }</h3>
-							{ panel.render( panelContext ) }
-						</section>
-					) ) }
-
-					<section className="rsfv-studio__section">
-						<h3>{ __( 'Video', 'rsfv' ) }</h3>
-						<SelectControl
-							label={ __( 'Size', 'rsfv' ) }
-							value={ presetId }
-							options={ Object.keys( presets ).map( ( id ) => ( {
-								value: id,
-								label: presets[ id ].label,
-							} ) ) }
-							onChange={ ( id ) => {
-								setPresetId( id );
-								setResult( null );
-							} }
-							disabled={ busy }
-							__nextHasNoMarginBottom
-							__next40pxDefaultSize
-						/>
-						{ config.supportsThumb && (
-							<ToggleControl
-								label={ __(
-									'Also use the poster as featured image',
-									'rsfv'
-								) }
-								checked={ setThumbnail }
-								onChange={ setSetThumbnail }
-								disabled={ busy }
-								__nextHasNoMarginBottom
-							/>
-						) }
-					</section>
-				</aside>
-
-				<main className="rsfv-studio__main">
-					<div className="rsfv-studio__stage" ref={ frameRef }>
-						{ ( 'booting' === status || 'loading' === status ) && (
-							<div className="rsfv-studio__loading">
-								<Spinner />
-							</div>
-						) }
-					</div>
-
-					<div className="rsfv-studio__controls">
-						<Button
-							icon={
-								playing ? 'controls-pause' : 'controls-play'
-							}
-							label={
-								playing
-									? __( 'Pause', 'rsfv' )
-									: __( 'Play', 'rsfv' )
-							}
-							onClick={ togglePlay }
-							disabled={ busy || 'ready' !== status }
-						/>
-						<div className="rsfv-studio__scrub">
-							<RangeControl
-								label={ __( 'Time', 'rsfv' ) }
-								hideLabelFromVision
-								value={ Math.min( time, info.duration ) }
-								min={ 0 }
-								max={ info.duration || 1 }
-								step={ 0.01 }
-								withInputField={ false }
-								showTooltip={ false }
-								onChange={ scrub }
-								disabled={ busy || 'ready' !== status }
-								__nextHasNoMarginBottom
-								__next40pxDefaultSize
-							/>
-						</div>
-						<span className="rsfv-studio__time">
-							{ formatTime( time ) } /{ ' ' }
-							{ formatTime( info.duration ) }
-						</span>
-					</div>
-
-					<div className="rsfv-studio__footer">
-						{ blocked && (
-							<Notice status="warning" isDismissible={ false }>
-								{ blocked }
-							</Notice>
-						) }
-						{ error && (
-							<Notice
-								status="error"
-								onRemove={ () => setError( '' ) }
-							>
-								{ error }
-							</Notice>
-						) }
-						{ result && (
-							<Notice status="success" isDismissible={ false }>
-								{ __(
-									'Saved as this post’s featured video. Update the post to keep other changes.',
-									'rsfv'
-								) }
-							</Notice>
-						) }
-
-						{ busy && (
-							<div className="rsfv-studio__progress">
-								<ProgressBar
-									className="rsfv-studio__bar"
-									value={ Math.round( progress * 100 ) }
-								/>
-								<span>
-									{ 'rendering' === status
-										? sprintf(
-												/* translators: %d: percent. */
-												__(
-													'Making the video… %d%%',
-													'rsfv'
-												),
-												Math.round( progress * 100 )
-										  )
-										: sprintf(
-												/* translators: %d: percent. */
-												__( 'Uploading… %d%%', 'rsfv' ),
-												Math.round( progress * 100 )
-										  ) }
-								</span>
-								{ 'rendering' === status && (
-									<Button
-										variant="tertiary"
-										onClick={ cancel }
-									>
-										{ __( 'Cancel', 'rsfv' ) }
-									</Button>
-								) }
-							</div>
-						) }
-
-						<div className="rsfv-studio__actions">
-							{ 'rendering' === status && (
-								<span className="rsfv-studio-muted">
-									{ __(
-										'Keep this tab open until it finishes.',
-										'rsfv'
-									) }
-								</span>
-							) }
-							<Button variant="tertiary" onClick={ requestClose }>
-								{ result
-									? __( 'Done', 'rsfv' )
-									: __( 'Close', 'rsfv' ) }
-							</Button>
-							<Button
-								variant="primary"
-								onClick={ render }
-								disabled={
-									busy || 'ready' !== status || !! blocked
-								}
-								isBusy={ busy }
-							>
-								{ result
-									? __( 'Make again', 'rsfv' )
-									: __( 'Make video', 'rsfv' ) }
-							</Button>
-						</div>
-					</div>
-				</main>
-			</div>
+			{ body }
 		</Modal>
 	);
 };
