@@ -175,7 +175,7 @@ class REST_API {
 	 * @param array    $file    File array (name, tmp_name, error, size).
 	 * @param string[] $allowed Allowed MIME types.
 	 *
-	 * @return true|\WP_Error
+	 * @return string|\WP_Error The file's real extension.
 	 */
 	public static function check_file( $file, $allowed ) {
 		if ( ! is_array( $file ) || empty( $file['tmp_name'] ) || ( isset( $file['error'] ) && UPLOAD_ERR_OK !== (int) $file['error'] ) ) {
@@ -183,11 +183,11 @@ class REST_API {
 		}
 
 		$check = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'] );
-		if ( empty( $check['type'] ) || ! in_array( $check['type'], $allowed, true ) ) {
+		if ( empty( $check['type'] ) || empty( $check['ext'] ) || ! in_array( $check['type'], $allowed, true ) ) {
 			return new \WP_Error( 'rsfv_studio_file_type', __( 'That file type is not allowed.', 'rsfv' ), array( 'status' => 400 ) );
 		}
 
-		return true;
+		return $check['ext'];
 	}
 
 	/**
@@ -208,14 +208,16 @@ class REST_API {
 			return $composition;
 		}
 
-		$checked = self::check_file( $video, self::VIDEO_MIMES );
-		if ( is_wp_error( $checked ) ) {
-			return $checked;
+		$video_ext = self::check_file( $video, self::VIDEO_MIMES );
+		if ( is_wp_error( $video_ext ) ) {
+			return $video_ext;
 		}
+		$poster_ext = '';
 		if ( $poster ) {
-			$checked = self::check_file( $poster, self::POSTER_MIMES );
-			if ( is_wp_error( $checked ) ) {
-				$poster = null;
+			$poster_ext = self::check_file( $poster, self::POSTER_MIMES );
+			if ( is_wp_error( $poster_ext ) ) {
+				$poster     = null;
+				$poster_ext = '';
 			}
 		}
 
@@ -227,8 +229,8 @@ class REST_API {
 		$slug  = $post->post_name ? $post->post_name : 'post-' . $post_id;
 		$title = get_the_title( $post );
 
-		$video_ext     = pathinfo( $video['name'], PATHINFO_EXTENSION );
-		$video['name'] = sanitize_file_name( $slug . '-video.' . ( 'webm' === strtolower( $video_ext ) ? 'webm' : 'mp4' ) );
+		// Names use the extension the file type check found, not the one sent.
+		$video['name'] = sanitize_file_name( $slug . '-video.' . $video_ext );
 
 		$video_id = media_handle_sideload(
 			$video,
@@ -245,8 +247,7 @@ class REST_API {
 
 		$poster_id = 0;
 		if ( $poster ) {
-			$poster_ext     = pathinfo( $poster['name'], PATHINFO_EXTENSION );
-			$poster['name'] = sanitize_file_name( $slug . '-video-poster.' . strtolower( $poster_ext ? $poster_ext : 'jpg' ) );
+			$poster['name'] = sanitize_file_name( $slug . '-video-poster.' . $poster_ext );
 			$poster_id      = media_handle_sideload(
 				$poster,
 				$post_id,
