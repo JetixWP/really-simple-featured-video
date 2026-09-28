@@ -140,7 +140,7 @@ const StudioPage = ( { base } ) => {
 		}
 	}, [] );
 
-	// Full width for the editor (the sidebar hides).
+	// The editor fills the screen below the admin bar.
 	useEffect( () => {
 		document.body.classList.toggle( 'rsfv-studio-editing', !! editor );
 	}, [ editor ] );
@@ -152,33 +152,28 @@ const StudioPage = ( { base } ) => {
 	};
 
 	if ( editor ) {
+		const links = [];
+		if ( saved && saved.video ) {
+			links.push( {
+				href: `${ base.mediaUrl }${ saved.video.id }`,
+				label: __( 'View in Media Library', 'rsfv' ),
+			} );
+		}
+		if ( editor.editLink ) {
+			links.push( {
+				href: editor.editLink,
+				label: __( 'Edit this entry', 'rsfv' ),
+			} );
+		}
 		return (
 			<div className="rsfv-studio-page">
-				<div className="rsfv-studio-page__current">
-					<div>
-						<span className="rsfv-studio-muted">
-							{ __( 'Making a video for', 'rsfv' ) }
-						</span>
-						<strong>{ editor.postTitle }</strong>
-					</div>
-					<div className="rsfv-studio-page__links">
-						{ saved && saved.video && (
-							<a href={ `${ base.mediaUrl }${ saved.video.id }` }>
-								{ __( 'View in Media Library', 'rsfv' ) }
-							</a>
-						) }
-						{ editor.editLink && (
-							<a href={ editor.editLink }>
-								{ __( 'Edit this entry', 'rsfv' ) }
-							</a>
-						) }
-					</div>
-				</div>
 				<StudioModal
 					key={ editor.postId }
 					config={ editor }
 					inline
 					closeLabel={ __( 'Go back', 'rsfv' ) }
+					postTitle={ editor.postTitle }
+					links={ links }
 					onClose={ back }
 					onSaved={ ( response ) => {
 						setSaved( response );
