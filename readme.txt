@@ -4,7 +4,7 @@ Requires at least: 6.0
 Requires PHP: 8.0
 Tested up to: 7.1
 Stable tag: 1.0.0
-Tags: video, featured video, woocommerce, product video, video embed
+Tags: video, featured video, woocommerce, product video, video generator
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -174,7 +174,7 @@ Video Studio uses these libraries and fonts:
 * New: Video Studio. Auto generate featured videos from templates inside WordPress. It fills itself from the post or WooCommerce product, is made in your browser and is saved to your Media Library with a poster image
 * New: 7 templates: Text reveal, Image slideshow, Product card, Quote, News headline, Testimonial and Kinetic type, with live thumbnails of your entry in each
 * New: 16:9 in 720p or 1080p, and 1:1 square. Videos are kept under your site's upload limit
-* New: Video Studio page under Video Tools. Pick an entry and make its video, or show only entries without a video
+* New: Video Studio page under Video Tools. Pick an entry and Auto Generate Video in one step or Make in Studio, or show only entries without a video
 * New: Auto Generate Video and Edit in Video Studio in Video Tools > Manage Featured Videos
 * New: The Featured Video box tells you when a post changed after its video was made
 * Improvement: License is now GPLv2 or later
