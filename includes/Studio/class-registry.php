@@ -82,20 +82,33 @@ class Registry {
 	}
 
 	/**
+	 * URL of a built-in template script, versioned by its modified time so
+	 * browsers load the new file after an update.
+	 *
+	 * @param string $file File name in assets/studio/templates.
+	 *
+	 * @return string
+	 */
+	protected static function template_url( $file ) {
+		$path = RSFV_PLUGIN_DIR . 'assets/studio/templates/' . $file;
+		$ver  = file_exists( $path ) ? filemtime( $path ) : RSFV_VERSION;
+
+		return add_query_arg( 'ver', $ver, RSFV_PLUGIN_URL . 'assets/studio/templates/' . $file );
+	}
+
+	/**
 	 * Built-in templates.
 	 *
 	 * @return array
 	 */
 	protected static function core_templates() {
-		$base = RSFV_PLUGIN_URL . 'assets/studio/templates/';
-
 		return array(
 			array(
 				'id'          => 'text-reveal',
 				'title'       => __( 'Text reveal', 'rsfv' ),
 				'description' => __( 'A big headline that rises in word by word, with a short line under it.', 'rsfv' ),
 				'version'     => '1.0.0',
-				'script'      => $base . 'text-reveal.js',
+				'script'      => self::template_url( 'text-reveal.js' ),
 				'duration'    => 7,
 				'category'    => 'text',
 				'vars'        => array_merge(
@@ -132,7 +145,7 @@ class Registry {
 				'title'       => __( 'Image slideshow', 'rsfv' ),
 				'description' => __( 'Photos with a slow zoom and pan, moving into each other, with a title on top.', 'rsfv' ),
 				'version'     => '1.0.0',
-				'script'      => $base . 'image-slideshow.js',
+				'script'      => self::template_url( 'image-slideshow.js' ),
 				'duration'    => 9,
 				'category'    => 'images',
 				'vars'        => array_merge(
@@ -239,7 +252,7 @@ class Registry {
 				'title'       => __( 'Product card', 'rsfv' ),
 				'description' => __( 'Product photo, name, price and a call to action. Fills itself from WooCommerce.', 'rsfv' ),
 				'version'     => '1.0.0',
-				'script'      => $base . 'product-card.js',
+				'script'      => self::template_url( 'product-card.js' ),
 				'duration'    => 8,
 				'category'    => 'product',
 				'vars'        => array_merge(
@@ -314,7 +327,7 @@ class Registry {
 				'title'       => __( 'Quote', 'rsfv' ),
 				'description' => __( 'A quote that fades in word by word, then the author and their role.', 'rsfv' ),
 				'version'     => '1.0.0',
-				'script'      => $base . 'quote.js',
+				'script'      => self::template_url( 'quote.js' ),
 				'duration'    => 9,
 				'category'    => 'text',
 				'vars'        => array_merge(
@@ -359,7 +372,7 @@ class Registry {
 				'title'       => __( 'News headline', 'rsfv' ),
 				'description' => __( 'The post photo with a slow zoom, a category tag, the headline line by line, a short summary and a byline.', 'rsfv' ),
 				'version'     => '1.0.0',
-				'script'      => $base . 'news-headline.js',
+				'script'      => self::template_url( 'news-headline.js' ),
 				'duration'    => 8,
 				'category'    => 'blog',
 				'vars'        => array_merge(
@@ -428,7 +441,7 @@ class Registry {
 				'title'       => __( 'Testimonial', 'rsfv' ),
 				'description' => __( 'Star rating, a customer review, their photo and name.', 'rsfv' ),
 				'version'     => '1.0.0',
-				'script'      => $base . 'testimonial.js',
+				'script'      => self::template_url( 'testimonial.js' ),
 				'duration'    => 9,
 				'category'    => 'text',
 				'vars'        => array_merge(
@@ -510,7 +523,7 @@ class Registry {
 				'title'       => __( 'Kinetic type', 'rsfv' ),
 				'description' => __( 'Three short lines that slam, zoom and type onto the screen.', 'rsfv' ),
 				'version'     => '1.0.0',
-				'script'      => $base . 'kinetic-type.js',
+				'script'      => self::template_url( 'kinetic-type.js' ),
 				'duration'    => 6,
 				'category'    => 'text',
 				'vars'        => array_merge(
