@@ -5,15 +5,19 @@
  */
 
 import { createRoot } from '@wordpress/element';
+import domReady from '@wordpress/dom-ready';
 import App from './App';
 import './style.css';
 
 // Import hooks to make them globally available.
 import './hooks';
 
-const container = document.getElementById( 'rsfv-tools-app' );
+// Mount on DOM ready so add-ons loaded after this script can add tabs.
+domReady( () => {
+	const container = document.getElementById( 'rsfv-tools-app' );
 
-if ( container ) {
-	const root = createRoot( container );
-	root.render( <App /> );
-}
+	if ( container ) {
+		const root = createRoot( container );
+		root.render( <App /> );
+	}
+} );

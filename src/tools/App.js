@@ -6,6 +6,7 @@
 
 import { useState, useEffect, useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { applyFilters } from '@wordpress/hooks';
 import ManageFeaturedVideos from './components/ManageFeaturedVideos';
 import BulkUpload from './components/BulkUpload';
 import ManageFloatingVideos from './components/ManageFloatingVideos';
@@ -13,7 +14,12 @@ import AnalyticsReport from './components/AnalyticsReport';
 import Sidebar from './components/Sidebar';
 
 const App = () => {
-	const tabs = [
+	/**
+	 * Filter the Tools tabs. Add-on tabs pass a render() function.
+	 *
+	 * @param {Array} tabs Tabs: { id, label, render? }.
+	 */
+	const tabs = applyFilters( 'rsfv.tools.tabs', [
 		{
 			id: 'manage',
 			label: __( 'Manage Featured Videos', 'rsfv' ),
@@ -30,7 +36,7 @@ const App = () => {
 			id: 'analytics',
 			label: __( 'Analytics', 'rsfv' ),
 		},
-	];
+	] );
 
 	/**
 	 * Get the initial tab from URL hash or default to first tab.
@@ -93,6 +99,15 @@ const App = () => {
 							<ManageFloatingVideos />
 						) }
 						{ activeTab === 'analytics' && <AnalyticsReport /> }
+						{ tabs
+							.filter(
+								( tab ) =>
+									tab.id === activeTab &&
+									'function' === typeof tab.render
+							)
+							.map( ( tab ) => (
+								<div key={ tab.id }>{ tab.render() }</div>
+							) ) }
 					</div>
 					<Sidebar />
 				</div>
