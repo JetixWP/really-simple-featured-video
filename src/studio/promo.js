@@ -26,31 +26,29 @@ export const proPresetOptions = () => [
 	{ value: 'pro-4k', label: __( '16:9, 4K (PRO)', 'rsfv' ), disabled: true },
 ];
 
-// Varied use cases first: the promo card shows the first few.
-export const proTemplateNames = () => [
-	__( 'News headline', 'rsfv' ),
-	__( 'Recipe', 'rsfv' ),
-	__( 'Property listing', 'rsfv' ),
-	__( 'Course', 'rsfv' ),
-	__( 'Countdown', 'rsfv' ),
-	__( 'Coupon code', 'rsfv' ),
-	__( 'Sale', 'rsfv' ),
-	__( 'Testimonial', 'rsfv' ),
-	__( 'Top list', 'rsfv' ),
-	__( 'Podcast episode', 'rsfv' ),
-	__( 'Menu board', 'rsfv' ),
-	__( 'Visit us', 'rsfv' ),
-	__( 'Destination', 'rsfv' ),
-	__( 'Before and after', 'rsfv' ),
-	__( 'We’re hiring', 'rsfv' ),
-	__( 'App feature', 'rsfv' ),
-	__( 'Portfolio grid', 'rsfv' ),
-	__( 'Stats counter', 'rsfv' ),
-	__( 'Logo reveal', 'rsfv' ),
-	__( 'Lower third', 'rsfv' ),
-	__( 'Kinetic type', 'rsfv' ),
-	__( 'Event', 'rsfv' ),
-	__( 'Product showcase', 'rsfv' ),
+// PRO templates by category. Varied use cases first: the promo card on
+// All shows the first few.
+export const proTemplates = () => [
+	{ name: __( 'Recipe', 'rsfv' ), category: 'food' },
+	{ name: __( 'Property listing', 'rsfv' ), category: 'business' },
+	{ name: __( 'Course', 'rsfv' ), category: 'business' },
+	{ name: __( 'Countdown', 'rsfv' ), category: 'text' },
+	{ name: __( 'Coupon code', 'rsfv' ), category: 'product' },
+	{ name: __( 'Sale', 'rsfv' ), category: 'product' },
+	{ name: __( 'Top list', 'rsfv' ), category: 'blog' },
+	{ name: __( 'Podcast episode', 'rsfv' ), category: 'blog' },
+	{ name: __( 'Menu board', 'rsfv' ), category: 'food' },
+	{ name: __( 'Visit us', 'rsfv' ), category: 'business' },
+	{ name: __( 'Destination', 'rsfv' ), category: 'images' },
+	{ name: __( 'Before and after', 'rsfv' ), category: 'images' },
+	{ name: __( 'We’re hiring', 'rsfv' ), category: 'business' },
+	{ name: __( 'App feature', 'rsfv' ), category: 'business' },
+	{ name: __( 'Portfolio grid', 'rsfv' ), category: 'images' },
+	{ name: __( 'Event', 'rsfv' ), category: 'text' },
+	{ name: __( 'Stats counter', 'rsfv' ), category: 'text' },
+	{ name: __( 'Product showcase', 'rsfv' ), category: 'product' },
+	{ name: __( 'Lower third', 'rsfv' ), category: 'images' },
+	{ name: __( 'Logo reveal', 'rsfv' ), category: 'brand' },
 ];
 
 /**

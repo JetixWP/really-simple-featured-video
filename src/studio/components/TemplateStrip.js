@@ -6,9 +6,9 @@
  */
 
 import { useEffect, useRef, useState } from '@wordpress/element';
-import { __, sprintf } from '@wordpress/i18n';
+import { __, _n, sprintf } from '@wordpress/i18n';
 import { Dashicon, ExternalLink } from '@wordpress/components';
-import { proTemplateNames, proUrl } from '../promo';
+import { proTemplates, proUrl } from '../promo';
 
 const ICONS = {
 	text: 'editor-textcolor',
@@ -49,8 +49,15 @@ const TemplateStrip = ( {
 	const [ filter, setFilter ] = useState( 'all' );
 	const listRef = useRef( null );
 
+	const promo = isPro ? [] : proTemplates();
+
+	// Free also lists PRO's categories; they show the PRO card only.
 	const categories = [
-		...new Set( templates.map( ( t ) => t.category ).filter( Boolean ) ),
+		...new Set(
+			[ ...templates, ...promo ]
+				.map( ( t ) => t.category )
+				.filter( Boolean )
+		),
 	];
 	const shown =
 		'all' === filter
@@ -76,7 +83,11 @@ const TemplateStrip = ( {
 		}
 	};
 
-	const proNames = proTemplateNames();
+	const promoShown =
+		'all' === filter
+			? promo
+			: promo.filter( ( t ) => t.category === filter );
+	const promoNames = promoShown.map( ( t ) => t.name );
 
 	return (
 		<section className="rsfv-studio-strip">
@@ -148,14 +159,19 @@ const TemplateStrip = ( {
 					</button>
 				) ) }
 
-				{ ! isPro && 'all' === filter && (
+				{ promoShown.length > 0 && (
 					<div className="rsfv-studio-card rsfv-studio-card--pro">
 						<span className="rsfv-studio-card__promo">
 							<strong>
 								{ sprintf(
 									/* translators: %d: number of PRO templates. */
-									__( '%d more templates', 'rsfv' ),
-									proNames.length
+									_n(
+										'%d more template',
+										'%d more templates',
+										promoShown.length,
+										'rsfv'
+									),
+									promoShown.length
 								) }
 							</strong>
 							<span className="rsfv-pro-tag">
@@ -163,12 +179,14 @@ const TemplateStrip = ( {
 							</span>
 						</span>
 						<span className="rsfv-studio-card__names">
-							{ sprintf(
-								/* translators: 1: a few template names, 2: how many more. */
-								__( '%1$s and %2$d more', 'rsfv' ),
-								proNames.slice( 0, 4 ).join( ', ' ),
-								proNames.length - 4
-							) }
+							{ promoNames.length > 5
+								? sprintf(
+										/* translators: 1: a few template names, 2: how many more. */
+										__( '%1$s and %2$d more', 'rsfv' ),
+										promoNames.slice( 0, 4 ).join( ', ' ),
+										promoNames.length - 4
+								  )
+								: promoNames.join( ', ' ) }
 						</span>
 						<ExternalLink
 							href={ proUrl( upgradeUrl, 'studio-templates' ) }
