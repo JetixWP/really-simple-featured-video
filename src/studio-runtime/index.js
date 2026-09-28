@@ -39,6 +39,7 @@ const state = {
 	css: '',
 	objectUrls: [],
 	playing: false,
+	loop: false,
 	playFrom: 0,
 	playStart: 0,
 	rendering: false,
@@ -249,6 +250,15 @@ function tick() {
 	}
 	let time = state.playFrom + ( performance.now() - state.playStart ) / 1000;
 	if ( time >= state.duration ) {
+		if ( ! state.loop ) {
+			// Play once: stop on the last frame.
+			state.playing = false;
+			state.playFrom = state.duration;
+			seek( state.duration );
+			emit( 'time', { time: state.duration } );
+			emit( 'ended' );
+			return;
+		}
 		time = 0;
 		state.playFrom = 0;
 		state.playStart = performance.now();
@@ -427,16 +437,40 @@ const handlers = {
 	async seek( { time } ) {
 		pause();
 		seek( time );
+		// Play continues from here.
+		state.playFrom = Math.max( 0, Math.min( time, state.duration ) );
 		return { time };
 	},
 
-	async play() {
+	/**
+	 * Play the preview.
+	 *
+	 * @param {Object}  payload      Options.
+	 * @param {boolean} payload.loop Start again at the end.
+	 * @return {Promise<Object>} Nothing.
+	 */
+	async play( { loop } = {} ) {
 		if ( state.rendering || ! state.scene ) {
 			return {};
+		}
+		if ( undefined !== loop ) {
+			state.loop = !! loop;
+		}
+		if ( state.playing ) {
+			return {};
+		}
+		// At the end, play from the start again.
+		if ( state.playFrom >= state.duration - 0.01 ) {
+			state.playFrom = 0;
 		}
 		state.playing = true;
 		state.playStart = performance.now();
 		window.requestAnimationFrame( tick );
+		return {};
+	},
+
+	async loop( { loop } ) {
+		state.loop = !! loop;
 		return {};
 	},
 
