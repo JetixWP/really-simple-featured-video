@@ -102,7 +102,7 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 <strong>RSFV PRO plugin includes these features -</strong>
 
-* ✅ **Video Studio PRO** - 23 more templates for shops, blogs, food, real estate, courses, events, local businesses and portfolios, vertical and 4K sizes, music, a brand kit, every Google Font, big uploads past your host's limit, and videos for many entries at once.
+* ✅ **Video Studio PRO** - 20 more templates for shops, blogs, food, real estate, courses, events, local businesses and portfolios, vertical and 4K sizes, music, a brand kit, every Google Font, big uploads past your host's limit, and videos for many entries at once.
 * ✅ **Extended Autoplay on Hover** - Customize the way video autoplay on hover works on your site all via the plugin settings.
 * ✅ **Change Video Aspect Ratio** - Apply sitewide featured video aspect ratio such as 16:9, 4:3, 3:2, 1:1, 9:16 or a custom ratio.
 * ✅ **Change Video Order at Woo Product CPT** - Set video order at single product pages of WooCommerce Product CPT.

@@ -81,7 +81,7 @@ const Sidebar = () => {
 							</strong>
 							<span>
 								{ __(
-									'23 more templates, vertical and 4K sizes, music, brand kit, every Google Font, videos in bulk',
+									'20 more templates, vertical and 4K sizes, music, brand kit, every Google Font, videos in bulk',
 									'rsfv'
 								) }
 							</span>
