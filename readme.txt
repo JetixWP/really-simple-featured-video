@@ -5,7 +5,7 @@ Requires PHP: 8.0
 Tested up to: 7.1
 Stable tag: 0.90.0
 Tags: video, featured video, woocommerce, product video, video embed
-License: GPLv2
+License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Really Simple Featured Video lets you add product video & featured video to WooCommerce Products & Posts, Pages, CPTs (with featured images).

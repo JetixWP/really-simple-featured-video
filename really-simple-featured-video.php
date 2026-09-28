@@ -6,7 +6,7 @@
  * Version:     0.90.0
  * Author:      JetixWP Plugins
  * Author URI:  https://jetixwp.com
- * License:     GPL2
+ * License:     GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: rsfv
  * Domain Path: /languages/
