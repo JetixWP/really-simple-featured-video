@@ -129,6 +129,8 @@ const StudioModal = ( {
 	const [ result, setResult ] = useState( null );
 	const [ setThumbnail, setSetThumbnail ] = useState( false );
 	const [ lastTab, setLastTab ] = useState( 'content' );
+	const [ edited, setEdited ] = useState( false );
+	const [ pendingTemplate, setPendingTemplate ] = useState( '' );
 	const [ seen, setSeen ] = useState( false );
 	const headingId = `rsfv-studio-heading-${ useInstanceId( StudioModal ) }`;
 
@@ -214,9 +216,9 @@ const StudioModal = ( {
 		return () => clearTimeout( timer );
 	}, [ booted, templateId, presetId, JSON.stringify( values.vars ) ] );
 
-	const chooseTemplate = ( id ) => {
+	const switchTemplate = ( id ) => {
 		const next = templates.find( ( t ) => t.id === id );
-		if ( ! next || id === templateId ) {
+		if ( ! next ) {
 			return;
 		}
 		setTemplateId( id );
@@ -227,7 +229,20 @@ const StudioModal = ( {
 				saved && saved.template === id ? saved.vars : null
 			)
 		);
+		setEdited( false );
 		setResult( null );
+	};
+
+	// Changes are lost on a switch, so ask first when there are any.
+	const chooseTemplate = ( id ) => {
+		if ( id === templateId ) {
+			return;
+		}
+		if ( edited ) {
+			setPendingTemplate( id );
+			return;
+		}
+		switchTemplate( id );
 	};
 
 	const setVar = useCallback( ( id, value ) => {
@@ -235,6 +250,7 @@ const StudioModal = ( {
 			vars: { ...current.vars, [ id ]: value },
 			autofill: { ...current.autofill, [ id ]: false },
 		} ) );
+		setEdited( true );
 		setResult( null );
 	}, [] );
 
@@ -247,6 +263,7 @@ const StudioModal = ( {
 			vars: { ...current.vars, [ def.id ]: value },
 			autofill: { ...current.autofill, [ def.id ]: true },
 		} ) );
+		setEdited( true );
 	};
 
 	const togglePlay = async () => {
@@ -372,6 +389,8 @@ const StudioModal = ( {
 			applyToEditor( response );
 			doAction( 'rsfv.studio.saved', response, context );
 			setResult( response );
+			// Saved with the video, so switching loses nothing now.
+			setEdited( false );
 			setStatus( 'ready' );
 			onSaved( response );
 		} catch ( e ) {
@@ -811,6 +830,43 @@ const StudioModal = ( {
 					) }
 				</aside>
 			</div>
+
+			{ pendingTemplate && (
+				<Modal
+					title={ __( 'Switch template?', 'rsfv' ) }
+					onRequestClose={ () => setPendingTemplate( '' ) }
+					size="small"
+					className="rsfv-studio-confirm"
+				>
+					<p>
+						{ sprintf(
+							/* translators: %s: template name. */
+							__(
+								'Your changes to %s will be lost. The new template starts again from this entry.',
+								'rsfv'
+							),
+							template ? template.title : ''
+						) }
+					</p>
+					<div className="rsfv-studio-confirm__actions">
+						<Button
+							variant="tertiary"
+							onClick={ () => setPendingTemplate( '' ) }
+						>
+							{ __( 'Keep editing', 'rsfv' ) }
+						</Button>
+						<Button
+							variant="primary"
+							onClick={ () => {
+								switchTemplate( pendingTemplate );
+								setPendingTemplate( '' );
+							} }
+						>
+							{ __( 'Switch template', 'rsfv' ) }
+						</Button>
+					</div>
+				</Modal>
+			) }
 
 			<div
 				className="rsfv-studio__offstage"

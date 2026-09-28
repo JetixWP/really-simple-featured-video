@@ -361,6 +361,25 @@
 	}
 }
 
+.rsfv-studio-confirm {
+	--wp-admin-theme-color: #008710;
+	--wp-admin-theme-color--rgb: 0, 135, 16;
+	--wp-admin-theme-color-darker-10: #007a0e;
+	--wp-admin-theme-color-darker-20: #00650c;
+
+	p {
+		margin-top: 0;
+		max-width: 360px;
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 8px;
+		margin-top: 20px;
+	}
+}
+
 // Template strip under the preview.
 .rsfv-studio-strip {
 	flex-shrink: 0;
