@@ -104,6 +104,13 @@ class Admin_Page {
 		);
 
 		wp_localize_script( 'rsfv-studio', 'rsfvStudio', $data );
+
+		// Same JetixWP header and tabs as Video Tools.
+		$tools_css = RSFV_PLUGIN_DIR . 'assets/js/tools/style-index.css';
+		if ( file_exists( $tools_css ) ) {
+			wp_enqueue_style( 'rsfv-tools', RSFV_PLUGIN_URL . 'assets/js/tools/style-index.css', array( 'wp-components' ), filemtime( $tools_css ) );
+			wp_add_inline_style( 'rsfv-tools', 'body.jetixwp_page_rsfv-studio #wpcontent{padding-left:0}' );
+		}
 	}
 
 	/**
@@ -112,10 +119,23 @@ class Admin_Page {
 	 * @return void
 	 */
 	public function render() {
-		printf(
-			'<div class="wrap rsfv-studio-page-wrap"><h1 class="wp-heading-inline">%1$s <span class="rsfv-studio-page-subtitle">%2$s</span></h1><hr class="wp-header-end"><div id="rsfv-studio-page"></div></div>',
-			esc_html__( 'Video Studio:', 'rsfv' ),
-			esc_html__( 'Automatically Generate Featured Videos', 'rsfv' )
-		);
+		?>
+		<div class="wrap rsfv rsfv-tools rsfv-studio-page-wrap">
+			<div class="plugin-header">
+				<div class="plugin-header-wrap">
+					<div class="plugin-info">
+						<h1 class="menu-title"><?php esc_html_e( 'Really Simple Featured Video → Video Studio', 'rsfv' ); ?></h1>
+						<span class="rsfv-studio-page-subtitle"><?php esc_html_e( 'Automatically Generate Featured Videos', 'rsfv' ); ?></span>
+						<?php do_action( 'rsfv_extend_plugin_header' ); ?>
+					</div>
+
+					<div class="brand-info">
+						<a href="https://jetixwp.com?utm_campaign=settings-header&utm_source=rsfv-plugin" target="_blank"><img class="brand-logo" src="<?php echo esc_url( RSFV_PLUGIN_URL . 'assets/images/jwp-icon-dark.svg' ); ?>" alt="RSFV"></a>
+					</div>
+				</div>
+			</div>
+			<div id="rsfv-studio-page" class="rsfv-tools-app"></div>
+		</div>
+		<?php
 	}
 }

@@ -277,12 +277,14 @@
 
 // Video Studio admin page.
 .rsfv-studio-page-subtitle {
-	font-weight: 400;
 	color: #50575e;
+	font-size: 14px;
+	padding-left: 10px;
+	border-left: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .rsfv-studio-page {
-	margin-top: 12px;
+	margin-top: 0;
 
 	&__intro {
 		max-width: 760px;
@@ -366,7 +368,7 @@
 }
 
 .rsfv-studio-inline {
-	height: calc(100vh - 210px);
+	height: calc(100vh - 290px);
 	min-height: 560px;
 	display: flex;
 	background: #fff;
