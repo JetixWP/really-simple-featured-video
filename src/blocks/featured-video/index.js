@@ -1,7 +1,5 @@
 /**
  * Featured Video block registration.
- *
- * @package RSFV
  */
 
 import { registerBlockType } from '@wordpress/blocks';

@@ -1,7 +1,5 @@
 /**
  * Featured Video block editor component.
- *
- * @package RSFV
  */
 
 import { __ } from '@wordpress/i18n';
@@ -21,10 +19,19 @@ import { useDebounce } from '@wordpress/compose';
 import apiFetch from '@wordpress/api-fetch';
 import { addQueryArgs } from '@wordpress/url';
 
-const data = window.rsfvBlock || { controls: {}, hover: false, settingsUrl: '' };
+const data = window.rsfvBlock || {
+	controls: {},
+	hover: false,
+	settingsUrl: '',
+};
 
 // Post types that are not entries, so there is no featured video to preview.
-const NON_ENTRY_TYPES = [ 'wp_template', 'wp_template_part', 'wp_block', 'wp_navigation' ];
+const NON_ENTRY_TYPES = [
+	'wp_template',
+	'wp_template_part',
+	'wp_block',
+	'wp_navigation',
+];
 
 const PROVIDERS = {
 	self: __( 'Self-hosted', 'rsfv' ),
@@ -123,7 +130,9 @@ function PostPicker( { value, valueLabel, onChange } ) {
 				label={ __( 'Post with a featured video', 'rsfv' ) }
 				value={ value ? String( value ) : null }
 				options={ allOptions }
-				onChange={ ( next ) => onChange( next ? parseInt( next, 10 ) : 0 ) }
+				onChange={ ( next ) =>
+					onChange( next ? parseInt( next, 10 ) : 0 )
+				}
 				onFilterValueChange={ debouncedFetch }
 				__nextHasNoMarginBottom
 				__next40pxDefaultSize
@@ -160,7 +169,9 @@ function Preview( { info } ) {
 				</svg>
 			</span>
 			{ info.title && (
-				<span className="rsfv-block-preview__label">{ info.title }</span>
+				<span className="rsfv-block-preview__label">
+					{ info.title }
+				</span>
 			) }
 		</div>
 	);
@@ -169,7 +180,9 @@ function Preview( { info } ) {
 /**
  * Message shown instead of the preview.
  *
- * @param {Object} props Component props.
+ * @param {Object}  props              Component props.
+ * @param {string}  props.instructions Text shown under the title.
+ * @param {Element} props.children     Extra content, such as a post picker.
  * @return {Element} Placeholder.
  */
 function EmptyState( { instructions, children } ) {
@@ -276,7 +289,10 @@ export default function Edit( { attributes, setAttributes, context } ) {
 			<EmptyState
 				instructions={
 					isPostSource
-						? __( 'Pick a post to show its featured video.', 'rsfv' )
+						? __(
+								'Pick a post to show its featured video.',
+								'rsfv'
+						  )
 						: __(
 								'Shows the featured video of the entry this block is placed in. Nothing to preview here, it appears on the site.',
 								'rsfv'
@@ -324,7 +340,10 @@ export default function Edit( { attributes, setAttributes, context } ) {
 			<EmptyState
 				instructions={
 					isPostSource
-						? __( 'The selected post has no featured video.', 'rsfv' )
+						? __(
+								'The selected post has no featured video.',
+								'rsfv'
+						  )
 						: __(
 								'This entry has no featured video yet. Add one in the Featured Video box.',
 								'rsfv'
@@ -357,7 +376,9 @@ export default function Edit( { attributes, setAttributes, context } ) {
 								label: __( 'Another post', 'rsfv' ),
 							},
 						] }
-						onChange={ ( next ) => setAttributes( { source: next } ) }
+						onChange={ ( next ) =>
+							setAttributes( { source: next } )
+						}
 					/>
 					{ isPostSource && (
 						<PostPicker
@@ -369,7 +390,10 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						/>
 					) }
 				</PanelBody>
-				<PanelBody title={ __( 'Player', 'rsfv' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Player', 'rsfv' ) }
+					initialOpen={ false }
+				>
 					{ PLAYER_SETTINGS.filter(
 						( item ) => ! item.selfOnly || 'embed' !== provider
 					).map( ( item ) => (
@@ -402,7 +426,9 @@ export default function Edit( { attributes, setAttributes, context } ) {
 						label={ __( 'Play when hovered', 'rsfv' ) }
 						value={ hover }
 						options={ getTriStateOptions( !! data.hover ) }
-						onChange={ ( next ) => setAttributes( { hover: next } ) }
+						onChange={ ( next ) =>
+							setAttributes( { hover: next } )
+						}
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
 					/>
@@ -421,7 +447,9 @@ export default function Edit( { attributes, setAttributes, context } ) {
 								label: __( 'The featured image', 'rsfv' ),
 							},
 						] }
-						onChange={ ( next ) => setAttributes( { fallback: next } ) }
+						onChange={ ( next ) =>
+							setAttributes( { fallback: next } )
+						}
 						help={ __(
 							'Shown when the post has no featured video.',
 							'rsfv'
