@@ -77,11 +77,18 @@ class FrontEnd {
 			return $html;
 		}
 
-		if ( 'object' !== gettype( $post ) ) {
+		// Use the post the thumbnail was requested for, the global post only when none is given.
+		$target_id = absint( $post_id );
+
+		if ( ! $target_id && 'object' === gettype( $post ) ) {
+			$target_id = $post->ID;
+		}
+
+		if ( ! $target_id ) {
 			return $html;
 		}
 
-		return self::get_featured_video_markup( $post->ID, $html );
+		return self::get_featured_video_markup( $target_id, $html );
 	}
 
 	/**
