@@ -43,6 +43,7 @@
     "vendor",
     "languages",
     "readme.txt",
-    "really-simple-featured-video.php"
+    "really-simple-featured-video.php",
+    "uninstall.php"
   ]
 }
