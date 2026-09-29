@@ -7,10 +7,10 @@
     "build": "npm run build:tools && npm run build:studio && npm run build:blocks",
     "build:tools": "wp-scripts build --webpack-src-dir=src/tools --output-path=assets/js/tools",
     "build:blocks": "wp-scripts build --webpack-src-dir=src/blocks --output-path=assets/blocks --webpack-copy-php",
-    "build:studio": "wp-scripts build studio=./src/studio/index.js studio-runtime=./src/studio-runtime/index.js --output-path=assets/js/studio",
+    "build:studio": "wp-scripts build studio=./index.js studio-runtime=../studio-runtime/index.js --webpack-src-dir=src/studio --output-path=assets/js/studio",
     "start": "wp-scripts start --webpack-src-dir=src/tools --output-path=assets/js/tools",
     "start:blocks": "wp-scripts start --webpack-src-dir=src/blocks --output-path=assets/blocks --webpack-copy-php",
-    "start:studio": "wp-scripts start studio=./src/studio/index.js studio-runtime=./src/studio-runtime/index.js --output-path=assets/js/studio",
+    "start:studio": "wp-scripts start studio=./index.js studio-runtime=../studio-runtime/index.js --webpack-src-dir=src/studio --output-path=assets/js/studio",
     "package": "composer install --no-dev && wp-scripts plugin-zip",
     "scripts-update": "wp-scripts packages-update",
     "translate": "wp i18n make-pot . ./languages/rsfv.pot"
