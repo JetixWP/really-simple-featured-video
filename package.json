@@ -1,14 +1,16 @@
 {
   "name": "really-simple-featured-video",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your custom post types. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build:tools && npm run build:studio",
+    "build": "npm run build:tools && npm run build:studio && npm run build:blocks",
     "build:tools": "wp-scripts build --webpack-src-dir=src/tools --output-path=assets/js/tools",
-    "build:studio": "wp-scripts build studio=./src/studio/index.js studio-runtime=./src/studio-runtime/index.js --output-path=assets/js/studio",
+    "build:blocks": "wp-scripts build --webpack-src-dir=src/blocks --output-path=assets/blocks --webpack-copy-php",
+    "build:studio": "wp-scripts build studio=./index.js studio-runtime=../studio-runtime/index.js --webpack-src-dir=src/studio --output-path=assets/js/studio",
     "start": "wp-scripts start --webpack-src-dir=src/tools --output-path=assets/js/tools",
-    "start:studio": "wp-scripts start studio=./src/studio/index.js studio-runtime=./src/studio-runtime/index.js --output-path=assets/js/studio",
+    "start:blocks": "wp-scripts start --webpack-src-dir=src/blocks --output-path=assets/blocks --webpack-copy-php",
+    "start:studio": "wp-scripts start studio=./index.js studio-runtime=../studio-runtime/index.js --webpack-src-dir=src/studio --output-path=assets/js/studio",
     "package": "composer install --no-dev && wp-scripts plugin-zip",
     "scripts-update": "wp-scripts packages-update",
     "translate": "wp i18n make-pot . ./languages/rsfv.pot"
@@ -41,6 +43,7 @@
     "vendor",
     "languages",
     "readme.txt",
-    "really-simple-featured-video.php"
+    "really-simple-featured-video.php",
+    "uninstall.php"
   ]
 }

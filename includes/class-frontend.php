@@ -77,11 +77,18 @@ class FrontEnd {
 			return $html;
 		}
 
-		if ( 'object' !== gettype( $post ) ) {
+		// Use the post the thumbnail was requested for, the global post only when none is given.
+		$target_id = absint( $post_id );
+
+		if ( ! $target_id && 'object' === gettype( $post ) ) {
+			$target_id = $post->ID;
+		}
+
+		if ( ! $target_id ) {
 			return $html;
 		}
 
-		return self::get_featured_video_markup( $post->ID, $html );
+		return self::get_featured_video_markup( $target_id, $html );
 	}
 
 	/**
@@ -120,12 +127,13 @@ class FrontEnd {
 					$video_id = get_post_meta( $post->ID, RSFV_META_KEY, true );
 
 					if ( $video_id ) {
-						$previous_surface = class_exists( '\RSFV\Analytics\Stamp' ) ? \RSFV\Analytics\Stamp::swap_surface( $surface ) : '';
-						$shortcode_output = do_shortcode( '[rsfv]' );
-
-						if ( class_exists( '\RSFV\Analytics\Stamp' ) ) {
-							\RSFV\Analytics\Stamp::swap_surface( $previous_surface );
-						}
+						$shortcode_output = Renderer::render(
+							$post->ID,
+							array(
+								'surface'  => $surface,
+								'restrict' => false,
+							)
+						);
 
 						return '<div class="rsfv-shortcode-wrapper" data-rsfv-video="true" data-rsfv-source="self" style="clear:both">' . $shortcode_output . '</div>';
 					}
@@ -137,12 +145,13 @@ class FrontEnd {
 						$embed_data = self::get_instance()->parse_embed_url( $embed_url );
 						$video_type = is_array( $embed_data ) ? $embed_data['host'] : 'unknown';
 
-						$previous_surface = class_exists( '\RSFV\Analytics\Stamp' ) ? \RSFV\Analytics\Stamp::swap_surface( $surface ) : '';
-						$shortcode_output = do_shortcode( '[rsfv]' );
-
-						if ( class_exists( '\RSFV\Analytics\Stamp' ) ) {
-							\RSFV\Analytics\Stamp::swap_surface( $previous_surface );
-						}
+						$shortcode_output = Renderer::render(
+							$post->ID,
+							array(
+								'surface'  => $surface,
+								'restrict' => false,
+							)
+						);
 
 						return '<div class="rsfv-shortcode-wrapper" data-rsfv-video="true" data-rsfv-source="embed" data-rsfv-type="' . esc_attr( $video_type ) . '" style="clear:both">' . $shortcode_output . '</div>';
 					}

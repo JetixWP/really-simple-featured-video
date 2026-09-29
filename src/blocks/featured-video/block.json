@@ -1,0 +1,98 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "rsfv/featured-video",
+	"version": "1.1.0",
+	"title": "Featured Video",
+	"category": "media",
+	"icon": "video-alt3",
+	"description": "Show the featured video of the current entry, or of any other post, with player settings you can change per block.",
+	"keywords": [ "video", "featured", "featured video", "rsfv", "player" ],
+	"textdomain": "rsfv",
+	"usesContext": [ "postId", "postType" ],
+	"attributes": {
+		"source": {
+			"type": "string",
+			"enum": [ "current", "post" ],
+			"default": "current"
+		},
+		"postId": {
+			"type": "integer",
+			"default": 0
+		},
+		"controls": {
+			"type": "string",
+			"enum": [ "inherit", "on", "off" ],
+			"default": "inherit"
+		},
+		"autoplay": {
+			"type": "string",
+			"enum": [ "inherit", "on", "off" ],
+			"default": "inherit"
+		},
+		"loop": {
+			"type": "string",
+			"enum": [ "inherit", "on", "off" ],
+			"default": "inherit"
+		},
+		"mute": {
+			"type": "string",
+			"enum": [ "inherit", "on", "off" ],
+			"default": "inherit"
+		},
+		"pip": {
+			"type": "string",
+			"enum": [ "inherit", "on", "off" ],
+			"default": "inherit"
+		},
+		"download": {
+			"type": "string",
+			"enum": [ "inherit", "on", "off" ],
+			"default": "inherit"
+		},
+		"hover": {
+			"type": "string",
+			"enum": [ "inherit", "on", "off" ],
+			"default": "inherit"
+		},
+		"fallback": {
+			"type": "string",
+			"enum": [ "none", "image" ],
+			"default": "none"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"margin": true
+		},
+		"shadow": true,
+		"__experimentalBorder": {
+			"radius": true
+		}
+	},
+	"variations": [
+		{
+			"name": "current",
+			"title": "Featured Video",
+			"description": "Show the featured video of the entry this block is placed in. Works in templates and Query Loops.",
+			"isDefault": true,
+			"icon": "video-alt3",
+			"attributes": { "source": "current" },
+			"isActive": [ "source" ]
+		},
+		{
+			"name": "post",
+			"title": "Featured Video (from another post)",
+			"description": "Show the featured video of any post, page or product you pick.",
+			"icon": "video-alt3",
+			"attributes": { "source": "post" },
+			"isActive": [ "source" ]
+		}
+	],
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

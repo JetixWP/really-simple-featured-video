@@ -157,6 +157,10 @@ final class Plugin {
 		$this->frontend_provider     = FrontEnd::get_instance();
 		$this->studio_provider       = \RSFV\Studio\Studio::get_instance();
 
+		// Blocks.
+		\RSFV\Blocks\REST_API::get_instance();
+		\RSFV\Blocks\Featured_Video::get_instance();
+
 		// Load compatibility.
 		$this->plugin_provider = Plugin_Provider::get_instance();
 		$this->theme_provider  = Theme_Provider::get_instance();
@@ -200,7 +204,10 @@ final class Plugin {
 
 		// Frontend loaders.
 		require_once RSFV_PLUGIN_DIR . 'includes/Featuresets/class-register-featuresets.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/class-renderer.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-shortcode.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Blocks/class-rest-api.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/Blocks/class-featured-video.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-frontend.php';
 
 		// Plugin compatibility.
