@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-29T02:17:36+00:00\n"
+"POT-Creation-Date: 2026-09-29T02:41:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -29,7 +29,7 @@ msgstr ""
 
 #. Description of the plugin
 #: really-simple-featured-video.php
-msgid "Adds support for Featured Video to WordPress posts, pages & WooCommerce products, and auto generates featured videos from templates with Video Studio."
+msgid "Adds featured videos to WordPress posts, pages & WooCommerce products, shows them with a block or shortcode, and auto generates them from templates with Video Studio."
 msgstr ""
 
 #. Author of the plugin
