@@ -24,7 +24,7 @@ class Stats {
 	 * @return string[]
 	 */
 	public static function surfaces() {
-		$surfaces = array( 'thumbnail', 'shortcode', 'elementor', 'bricks', 'woo_gallery', 'woo_archive', 'sticky' );
+		$surfaces = array( 'thumbnail', 'shortcode', 'elementor', 'bricks', 'block', 'woo_gallery', 'woo_archive', 'sticky' );
 
 		/**
 		 * Surfaces the collector will accept.
@@ -651,6 +651,7 @@ class Stats {
 			'shortcode'   => __( 'Shortcode', 'rsfv' ),
 			'elementor'   => __( 'Elementor', 'rsfv' ),
 			'bricks'      => __( 'Bricks', 'rsfv' ),
+			'block'       => __( 'Block', 'rsfv' ),
 			'woo_gallery' => __( 'Product gallery', 'rsfv' ),
 			'woo_archive' => __( 'Shop', 'rsfv' ),
 			'sticky'      => __( 'Sticky video', 'rsfv' ),
