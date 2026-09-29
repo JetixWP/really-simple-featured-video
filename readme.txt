@@ -8,11 +8,13 @@ Tags: video, featured video, woocommerce, product video, video generator
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Add product & featured videos to WooCommerce, posts, pages and CPTs, or auto generate them from templates with Video Studio.
+Add featured videos to posts, pages & WooCommerce products, show them with a block or shortcode, or auto generate them with Video Studio.
 
 == Description ==
 
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your Posts, Pages & WooCommerce Products. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
+
+Show those videos wherever you build: your theme's featured image spot, the **Featured Video block** in the block editor and Site Editor, a shortcode, or the Elementor and Bricks builders.
 
 [🚀 **Take a better look at Really Simple Featured Video**](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
 
@@ -24,7 +26,7 @@ You get a really simple settings page which has all the controls you need for ma
 == 👉️ Features ==
 
 * **Video Studio** - Auto generate featured videos from templates, right inside WordPress. Pick a template, change the text, colors, font and images (filled from the post or WooCommerce product), preview it and click Make video. The video is made in your browser and saved to your Media Library.
-* **Featured Video block** - Add the featured video of the current entry, or of any other post, from the block editor and Site Editor. Works in templates and Query Loops, with player settings you can change per block.
+* **Featured Video block** - Add the block wherever you want a video: it shows the featured video of the entry it is in, or of any other post you pick. Works in templates and Query Loops, with player settings you can change per block.
 * **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
@@ -81,7 +83,7 @@ RSFV supports Elementor Pro builder with its Posts/Archives and WooCommerce Prod
 
 == 👉️ How to use the Featured Video block ==
 
-Add the **Featured Video** block from the Media category in the block editor or the Site Editor.
+Add the **Featured Video** block from the Media category in the block editor or the Site Editor. It is never added for you: nothing on your site changes until you place the block yourself.
 
 * **This entry** shows the featured video of the post, page or product the block is placed in. Place it in a single template, a Query Loop, or the content of a post, and it follows the entry it is in.
 * **Another post** shows the featured video of any post, page or product you pick. Search for a post that has a featured video and choose it.
@@ -152,6 +154,15 @@ Yes, as long as the theme you use follows standard WordPress/WooCommerce way of 
 = Where can I get help? =
 For the free version of this plugin, support is limited to support forums here.
 And if you're a Pro user, you can send a support ticket via the [account](https://jetixwp.com/account) page from our site for any query you may have, and we will get back to you at the earliest.
+
+= Is the Featured Video block added to my site automatically? =
+No. Updating the plugin does not change any post or template. Add the block yourself where you want it, or keep using the featured image spot, shortcodes or your builder as before.
+
+= Do I need the block to show featured videos? =
+No. Featured videos still show where your theme shows the featured image. The block is for when you want to place a video somewhere else, such as a Site Editor template, a Query Loop or inside a post, or show the video of a different post.
+
+= Can I show the featured video of another post? =
+Yes. Add the block, choose "Another post" and pick a post, page or product that has a featured video. The shortcode [rsfv_by_postid post_id="281"] does the same. The video is only shown to people who are allowed to see that post.
 
 = Can I upload many videos at once? =
 Yes. Open Video Tools and use the Bulk upload tab. You can add files or embed links by hand, or import a CSV or TXT file. Each row needs a post. A row without a post is discarded, and its file is not uploaded.
