@@ -69,7 +69,7 @@
 			"margin": true
 		},
 		"shadow": true,
-		"border": {
+		"__experimentalBorder": {
 			"radius": true
 		}
 	},
