@@ -63,11 +63,15 @@ class Renderer {
 		);
 
 		foreach ( self::CONTROL_KEYS as $key ) {
-			if ( ! isset( $args[ $key ] ) || '' === $args[ $key ] || null === $args[ $key ] ) {
+			if ( ! isset( $args[ $key ] ) ) {
 				continue;
 			}
 
-			$clean['controls'][ $key ] = wp_validate_boolean( $args[ $key ] );
+			$enabled = self::parse_flag( $args[ $key ] );
+
+			if ( null !== $enabled ) {
+				$clean['controls'][ $key ] = $enabled;
+			}
 		}
 
 		if ( isset( $args['hover'] ) ) {
@@ -91,6 +95,35 @@ class Renderer {
 		 * @param array $args  Raw arguments.
 		 */
 		return apply_filters( 'rsfv_render_args', $clean, $args );
+	}
+
+	/**
+	 * Read a true or false value from a boolean, number or shortcode string.
+	 *
+	 * @param mixed $value Raw value.
+	 *
+	 * @return bool|null Null when the value is empty or not recognised, so the global setting stays.
+	 */
+	private static function parse_flag( $value ) {
+		if ( is_bool( $value ) ) {
+			return $value;
+		}
+
+		if ( ! is_string( $value ) && ! is_int( $value ) ) {
+			return null;
+		}
+
+		$value = strtolower( trim( (string) $value ) );
+
+		if ( in_array( $value, array( '1', 'true', 'yes', 'on' ), true ) ) {
+			return true;
+		}
+
+		if ( in_array( $value, array( '0', 'false', 'no', 'off' ), true ) ) {
+			return false;
+		}
+
+		return null;
 	}
 
 	/**
