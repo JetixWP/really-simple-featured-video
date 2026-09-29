@@ -50,6 +50,23 @@ class Shortcode {
 	}
 
 	/**
+	 * Attributes both shortcodes accept, all empty so a global setting is kept unless one is set.
+	 *
+	 * @return array
+	 */
+	private function get_default_atts() {
+		return array(
+			'controls' => '',
+			'autoplay' => '',
+			'loop'     => '',
+			'mute'     => '',
+			'pip'      => '',
+			'download' => '',
+			'hover'    => '',
+		);
+	}
+
+	/**
 	 * Show video on posts & pages.
 	 *
 	 * @param array $atts Shortcode attributes.
@@ -62,21 +79,12 @@ class Shortcode {
 			return '';
 		}
 
-		$video_markup = $this->get_video_markup( $post->ID, $post->post_type );
+		$args = shortcode_atts( $this->get_default_atts(), $atts, 'rsfv' );
 
-		// Apply hover enhancements if enabled.
-		if ( class_exists( 'RSFV\\Featuresets\\Hover_Autoplay\\Init' ) ) {
-			$video_data = array(
-				'post_id'        => $post->ID,
-				'post_type'      => $post->post_type,
-				'source'         => get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) ? get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) : 'self',
-				'shortcode_atts' => $atts,
-			);
+		// The post being displayed, so the same rules as the featured image apply.
+		$args['restrict'] = false;
 
-			$video_markup = apply_filters( 'rsfv_shortcode_video_output', $video_markup, $video_data );
-		}
-
-		return $video_markup;
+		return Renderer::render( $post->ID, $args );
 	}
 
 	/**
@@ -87,7 +95,7 @@ class Shortcode {
 	 * @return string
 	 */
 	public function show_video_by_post_id( $atts ) {
-		if ( is_array( $atts ) && ! isset( $atts['post_id'] ) ) {
+		if ( ! is_array( $atts ) || ! isset( $atts['post_id'] ) ) {
 			return esc_html__( 'Please add a post id!', 'rsfv' );
 		}
 
@@ -97,21 +105,16 @@ class Shortcode {
 			return esc_html__( 'Post not found!', 'rsfv' );
 		}
 
-		$video_markup = $this->get_video_markup( $post->ID, $post->post_type );
+		$args = shortcode_atts(
+			array_merge( $this->get_default_atts(), array( 'post_id' => '' ) ),
+			$atts,
+			'rsfv_by_postid'
+		);
 
-		// Apply hover enhancements if enabled.
-		if ( class_exists( 'RSFV\\Featuresets\\Hover_Autoplay\\Init' ) ) {
-			$video_data = array(
-				'post_id'        => $post->ID,
-				'post_type'      => $post->post_type,
-				'source'         => get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) ? get_post_meta( $post->ID, RSFV_SOURCE_META_KEY, true ) : 'self',
-				'shortcode_atts' => $atts,
-			);
+		unset( $args['post_id'] );
 
-			$video_markup = apply_filters( 'rsfv_shortcode_video_output', $video_markup, $video_data );
-		}
-
-		return $video_markup;
+		// Another post, so it has to be visible to the current viewer.
+		return Renderer::render( $post->ID, $args );
 	}
 
 	/**
