@@ -31,6 +31,7 @@ You get a really simple settings page which has all the controls you need for ma
 * **Elementor Pro Support** - Support for Posts/archive widgets with Elementor Pro builder.
 * **Support for Core themes** - We support all the newer core themes such as TwentyTwenty Four to Classic themes.
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
+* **Featured Video block** - Add the featured video of the current entry, or of any other post, from the block editor and Site Editor.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
 * **Manage Featured Videos** - Manage featured videos from one single place for all your post types and skip the repetitive steps of going to the edit screen to edit each post/page/product individually.
 * **Elementor Widget** - A dedicated Featured Video widget for Elementor that seamlessly integrates with your page designs, allowing easy video embedding and customization.
@@ -112,7 +113,6 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 More features to come in the future, to name a few -
 
-* ✨ **Featured Video Blocks for Full Site Editing**
 * ✨ And more from your requests
 
 If you wish to grab the PRO version with a lifetime deal please do [checkout Pro at our website](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)

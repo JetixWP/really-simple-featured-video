@@ -24,6 +24,7 @@ You get a really simple settings page which has all the controls you need for ma
 == 👉️ Features ==
 
 * **Video Studio** - Auto generate featured videos from templates, right inside WordPress. Pick a template, change the text, colors, font and images (filled from the post or WooCommerce product), preview it and click Make video. The video is made in your browser and saved to your Media Library.
+* **Featured Video block** - Add the featured video of the current entry, or of any other post, from the block editor and Site Editor. Works in templates and Query Loops, with player settings you can change per block.
 * **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
 * **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
@@ -78,6 +79,19 @@ RSFV supports Salient Theme WPBakery builder with its Post Loop Builder element,
 
 RSFV supports Elementor Pro builder with its Posts/Archives and WooCommerce Product widgets, you can use them to display Featured Videos for posts, pages, products and CPTs (with Featured Images). You can also display Featured Video on single pages via the shortcode - [rsfv]
 
+== 👉️ How to use the Featured Video block ==
+
+Add the **Featured Video** block from the Media category in the block editor or the Site Editor.
+
+* **This entry** shows the featured video of the post, page or product the block is placed in. Place it in a single template, a Query Loop, or the content of a post, and it follows the entry it is in.
+* **Another post** shows the featured video of any post, page or product you pick. Search for a post that has a featured video and choose it.
+* **Player** settings follow your global settings, and each one can be turned on or off for that block: controls, autoplay, loop, mute, picture in picture and download.
+* **Autoplay on hover** follows the global setting and can be turned on or off per block.
+* **When there is no video** the block can show nothing, or the featured image.
+* Alignment, margin, border radius and shadow are available under the block's style settings.
+
+The video of a draft, private or password protected post is only shown to people who can see that post. Featured video has to be turned on for the post type in the plugin settings.
+
 == 👉️ How to use Shortcodes ==
 
 There are also shortcodes to embed featured video at any post, page or product you want.
@@ -85,6 +99,8 @@ There are also shortcodes to embed featured video at any post, page or product y
 [rsfv] shortcode is for displaying set featured video of the individual post anywhere in the post.
 
 [rsfv_by_postid] shortcode is for displaying featured video of any post anywhere you want, you just need to pass a vaild post id to it e.g. [rsfv_by_postid post_id="281"]
+
+Both shortcodes accept these optional attributes to change the player for that shortcode only: controls, autoplay, loop, mute, pip, download (1 or 0) and hover (on or off). e.g. [rsfv autoplay="1" mute="1" hover="off"]
 
 You can send a feedback or a feature request at [github.com/JetixWP/really-simple-featured-video](https://github.com/JetixWP/really-simple-featured-video) Or create a thread at forums here, in any case.
 
@@ -107,7 +123,6 @@ We get quite a few requests from you guys, and the plugin offers most if not all
 
 More features to come in the future, to name a few -
 
-* ✨ **Featured Video Blocks for Full Site Editing**
 * ✨ And more from your requests
 
 If you wish to grab the PRO version with a lifetime deal please do [checkout PRO at our website](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
@@ -167,6 +182,15 @@ Video Studio uses these libraries and fonts:
 * Manrope, Ysabeau Office, Roboto Slab and Vollkorn fonts (SIL Open Font License 1.1), see assets/studio/fonts/LICENSE.txt
 
 == Changelog ==
+
+= 1.1.0 =
+* New: Featured Video block for the block editor and Site Editor. Shows the featured video of the entry it is in, including inside Query Loops and templates, or of any other post you pick
+* New: Per block player settings: controls, autoplay, loop, mute, picture in picture, download and autoplay on hover, plus a featured image fallback and alignment, margin, border radius and shadow
+* New: [rsfv] and [rsfv_by_postid] accept controls, autoplay, loop, mute, pip, download and hover attributes
+* New: Analytics count block views and plays as Block
+* Improvement: Requires WordPress 6.3 or newer
+* Fix: [rsfv_by_postid] no longer shows the video of draft, private or password protected posts to people who cannot see them
+* Fix: Featured video of one post no longer shows in the featured image of a different post that a theme or plugin lists on the same page
 
 = 1.0.0 =
 * New: Video Studio. Auto generate featured videos from templates inside WordPress. It fills itself from the post or WooCommerce product, is made in your browser and is saved to your Media Library with a poster image
