@@ -1,6 +1,6 @@
 === Really Simple Featured Video for Posts, Pages & WooCommerce Products - Auto Generate Videos ===
 Contributors: jetixwp, lushkant
-Requires at least: 6.0
+Requires at least: 6.3
 Requires PHP: 8.0
 Tested up to: 7.1
 Stable tag: 1.0.0
