@@ -153,10 +153,33 @@ class Renderer {
 	}
 
 	/**
-	 * Whether the current viewer may see the video of a post.
+	 * Whether the current viewer may see a post at all.
 	 *
 	 * Public posts are open to everyone, other statuses need permission to read
 	 * the post, and a post that still asks for its password stays hidden.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param \WP_Post|int|null $post Post object or ID.
+	 *
+	 * @return bool
+	 */
+	public static function can_view_post( $post ) {
+		$post = get_post( $post );
+
+		if ( ! $post instanceof \WP_Post ) {
+			return false;
+		}
+
+		if ( ! is_post_publicly_viewable( $post ) && ! current_user_can( 'read_post', $post->ID ) ) {
+			return false;
+		}
+
+		return ! post_password_required( $post );
+	}
+
+	/**
+	 * Whether the current viewer may see the featured video of a post.
 	 *
 	 * @param \WP_Post|int|null $post Post object or ID.
 	 *
@@ -173,15 +196,7 @@ class Renderer {
 			return false;
 		}
 
-		if ( ! is_post_publicly_viewable( $post ) && ! current_user_can( 'read_post', $post->ID ) ) {
-			return false;
-		}
-
-		if ( post_password_required( $post ) ) {
-			return false;
-		}
-
-		return true;
+		return self::can_view_post( $post );
 	}
 
 	/**
