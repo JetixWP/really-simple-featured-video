@@ -25,6 +25,20 @@ class Init {
 	protected static $instance;
 
 	/**
+	 * Per render override of the global on/off setting. Null keeps the global setting.
+	 *
+	 * @var bool|null
+	 */
+	protected static $override = null;
+
+	/**
+	 * Whether the hover assets were already enqueued in this request.
+	 *
+	 * @var bool
+	 */
+	protected static $assets_enqueued = false;
+
+	/**
 	 * Get a class instance.
 	 *
 	 * @return Init
@@ -95,7 +109,46 @@ class Init {
 			)
 		);
 
-		return wp_parse_args( $settings, $default_settings );
+		$settings = wp_parse_args( $settings, $default_settings );
+
+		if ( null !== self::$override ) {
+			$settings['enable_hover_autoplay'] = self::$override;
+		}
+
+		return $settings;
+	}
+
+	/**
+	 * Force hover on or off while one player is rendered.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param bool|null $enabled True or false to force it, null to use the global setting.
+	 *
+	 * @return bool|null The previous override, to restore afterwards.
+	 */
+	public static function set_override( $enabled ) {
+		$previous       = self::$override;
+		self::$override = null === $enabled ? null : (bool) $enabled;
+
+		return $previous;
+	}
+
+	/**
+	 * Make sure the hover script and style are loaded, once per request.
+	 *
+	 * Used when a player asks for hover although it is off globally.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @return void
+	 */
+	public static function ensure_assets() {
+		if ( self::$assets_enqueued ) {
+			return;
+		}
+
+		self::get_instance()->enqueue_scripts();
 	}
 
 	/**
@@ -107,9 +160,11 @@ class Init {
 		$settings = self::get_settings();
 
 		// Only continue if hover autoplay is enabled.
-		if ( ! $settings['enable_hover_autoplay'] ) {
-				return;
+		if ( ! $settings['enable_hover_autoplay'] || self::$assets_enqueued ) {
+			return;
 		}
+
+		self::$assets_enqueued = true;
 
 		// Register style.
 		wp_register_style(

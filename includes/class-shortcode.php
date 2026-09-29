@@ -131,11 +131,12 @@ class Shortcode {
 	/**
 	 * Creates video markup for showing at frontend.
 	 *
-	 * @param int    $post_id Post ID.
+	 * @param int    $post_id   Post ID.
 	 * @param string $post_type Post type.
+	 * @param array  $args      Optional cleaned render arguments, see Renderer::normalize_args().
 	 * @return string
 	 */
-	public function get_video_markup( $post_id, $post_type ) {
+	public function get_video_markup( $post_id, $post_type, $args = array() ) {
 		// Get enabled post types.
 		$post_types = get_post_types();
 
@@ -148,6 +149,7 @@ class Shortcode {
 
 		// Get video controls.
 		$video_controls = 'self' !== $video_source ? get_video_controls( 'embed' ) : get_video_controls();
+		$video_controls = Renderer::apply_control_overrides( $video_controls, $args );
 
 		// Prepare video data for hover functionality.
 		$video_data = array(
@@ -155,6 +157,7 @@ class Shortcode {
 			'post_type' => $post_type,
 			'source'    => $video_source,
 			'controls'  => $video_controls,
+			'args'      => $args,
 		);
 
 		if ( 'self' === $video_source ) {

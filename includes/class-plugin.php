@@ -200,6 +200,7 @@ final class Plugin {
 
 		// Frontend loaders.
 		require_once RSFV_PLUGIN_DIR . 'includes/Featuresets/class-register-featuresets.php';
+		require_once RSFV_PLUGIN_DIR . 'includes/class-renderer.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-shortcode.php';
 		require_once RSFV_PLUGIN_DIR . 'includes/class-frontend.php';
 
