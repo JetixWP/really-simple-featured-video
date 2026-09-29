@@ -32,18 +32,17 @@ You get a really simple settings page which has all the controls you need for ma
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
 * **Sticky Videos** - Add a play button at the bottom-left of your pages that opens a popup player, with display conditions, multi-video support and customizable controls.
-* **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
-* **Salient Theme WPBakery Builder Support** - Support for Post Loop Builder element with Salient theme.
-* **Elementor Pro Support** - Support for Posts/Archive, WooCommerce Product widgets with Elementor Pro builder.
-* **Bricks Builder Support** - Support for Posts/Archive with Bricks builder using custom widget elements.
-* **Support for Core themes** - We support all the newer core themes such as TwentyTwenty Four to Classic themes.
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
 * **Manage Featured Videos** - Manage featured videos from one single place for all your post types and skip the repetitive steps of going to the edit screen to edit each post/page/product individually.
-* **Elementor Widget** - A dedicated Featured Video widget for Elementor that seamlessly integrates with your page designs, allowing easy video embedding and customization.
 * **Bulk Video Uploader** - Assign video files or Youtube, Vimeo, and Dailymotion links to posts from Video Tools. Add rows by hand, or import a CSV or TXT file.
 * **Video Analytics** - See views and plays for featured videos in Video Tools. Counts stay on your site. No cookie is set. Records the last 14 days of history.
-
+* **Elementor Pro Support** - Support for Posts/Archive, WooCommerce Product widgets with Elementor Pro builder.
+* **Elementor Widget** - A dedicated Featured Video widget for Elementor that seamlessly integrates with your page designs, allowing easy video embedding and customization.
+* **Bricks Builder Support** - Support for Posts/Archive with Bricks builder using custom widget elements.
+* **Support for Core themes** - We support all the newer core themes such as TwentyTwenty Four to Classic themes.
+* **Astra Pro WooCommerce Module Support** - Support for vertical and horizontal product galleries.
+* **Salient Theme WPBakery Builder Support** - Support for Post Loop Builder element with Salient theme.
 
 == 👉️ Video Studio ==
 
@@ -69,6 +68,10 @@ https://www.youtube.com/watch?v=FLw3ntOXaLY
 This plugin came out of a real need with many plugins available out there yet none provides a good integration with WooCommerce.
 Really Simple Featured Video plugin provides a straightforward implementation for WooCommerce Product Featured Video, with which your set featured video loads directly into product thumbnails along with any other product images.
 
+== 👉️ Elementor Pro Builder Support ==
+
+RSFV supports Elementor Pro builder with its Posts/Archives and WooCommerce Product widgets, you can use them to display Featured Videos for posts, pages, products and CPTs (with Featured Images). You can also display Featured Video on single pages via the shortcode - [rsfv]
+
 == 👉️ Astra Pro WooCommerce Module Support ==
 
 RSFV supports Astra Pro WooCommerce module with horizontal and vertical product gallery types, which in turn brings you more control and customizable features.
@@ -77,9 +80,6 @@ RSFV supports Astra Pro WooCommerce module with horizontal and vertical product 
 
 RSFV supports Salient Theme WPBakery builder with its Post Loop Builder element, giving you more control and support for Custom post loops. You can also display Featured Video on single pages via the shortcode - [rsfv].
 
-== 👉️ Elementor Pro Builder Support ==
-
-RSFV supports Elementor Pro builder with its Posts/Archives and WooCommerce Product widgets, you can use them to display Featured Videos for posts, pages, products and CPTs (with Featured Images). You can also display Featured Video on single pages via the shortcode - [rsfv]
 
 == 👉️ How to use the Featured Video block ==
 
