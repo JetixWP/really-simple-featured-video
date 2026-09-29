@@ -171,9 +171,7 @@ Analytics stores anonymous view and play totals in your own database. It does no
 
 Video Studio runs entirely in your browser and your site. Templates, fonts and scripts are bundled with the plugin and nothing is loaded from or sent to outside servers.
 
-== Source code and credits ==
-
-Source code and build tools: [github.com/JetixWP/really-simple-featured-video](https://github.com/JetixWP/really-simple-featured-video)
+== Credits ==
 
 Video Studio uses these libraries and fonts:
 
