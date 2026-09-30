@@ -1,4 +1,4 @@
-=== Really Simple Featured Video for Posts, Pages & WooCommerce Products ===
+=== Really Simple Featured Video for Posts, Pages & WooCommerce Products - Auto Generate Videos ===
 Contributors: jetixwp, lushkant
 Requires at least: 6.3
 Requires PHP: 8.0
