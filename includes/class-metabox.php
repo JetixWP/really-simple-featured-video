@@ -99,12 +99,25 @@ class Metabox {
 
 		$attachment = get_post( $attachment_id );
 
-		if ( ! $attachment || 'attachment' !== $attachment->post_type || 0 !== strpos( (string) $attachment->post_mime_type, $type . '/' ) ) {
-			return false;
-		}
-
 		// The media library shows inherit status files to anyone with upload_files.
-		return current_user_can( 'read_post', $attachment_id ) || ( current_user_can( 'upload_files' ) && 'inherit' === $attachment->post_status );
+		$allowed = $attachment
+			&& 'attachment' === $attachment->post_type
+			&& 0 === strpos( (string) $attachment->post_mime_type, $type . '/' )
+			&& ( current_user_can( 'read_post', $attachment_id ) || ( current_user_can( 'upload_files' ) && 'inherit' === $attachment->post_status ) );
+
+		/**
+		 * Filters whether an attachment can be set as a post's video or poster.
+		 *
+		 * For plugins that serve media from another site, where the ID has no local attachment.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @param bool   $allowed       Whether the current user can use the attachment.
+		 * @param int    $attachment_id Attachment ID.
+		 * @param int    $post_id       Post being edited.
+		 * @param string $type          Expected type, video or image.
+		 */
+		return (bool) apply_filters( 'rsfv_can_use_attachment', $allowed, $attachment_id, $post_id, $type );
 	}
 
 	/**
