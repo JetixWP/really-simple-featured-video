@@ -157,7 +157,7 @@ class REST_API {
 			);
 		}
 
-		if ( Stats::ignore_editors() && is_user_logged_in() && current_user_can( 'edit_posts' ) ) {
+		if ( Stats::ignore_editors() && self::is_editor_request() ) {
 			return new WP_REST_Response( null, 204 );
 		}
 
@@ -402,6 +402,20 @@ class REST_API {
 		}
 
 		return bin2hex( substr( $packed, 0, 8 ) );
+	}
+
+	/**
+	 * Whether this visit comes from someone who can edit posts.
+	 *
+	 * This route has no nonce, so REST treats every visitor as logged out. The login
+	 * cookie is read directly. It only decides whether the visit is counted.
+	 *
+	 * @return bool
+	 */
+	private static function is_editor_request() {
+		$user_id = wp_validate_auth_cookie( '', 'logged_in' );
+
+		return $user_id && user_can( $user_id, 'edit_posts' );
 	}
 
 	/**

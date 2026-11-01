@@ -205,6 +205,7 @@ Video Studio uses these libraries and fonts:
 * Security: Escaped output in the Flatsome and CIX gallery templates. CIX gallery lightbox captions no longer keep inline HTML
 * Security: Featured Video block preview no longer shows titles of private post types to users who cannot edit them
 * Security: Stronger analytics rate limit. Sites behind a proxy or CDN can pass the visitor address with the rsfv_analytics_client_ip filter
+* Fix: The Skip logged-in editors analytics setting now works. Your own visits no longer add to the counts
 * Fix: Deleting the plugin on multisite now removes analytics data from every site
 * Fix: Deleting a site on multisite now also removes its analytics tables
 * Fix: Possible fatal errors from invalid analytics report dates, and from malformed Elementor and sticky video settings
