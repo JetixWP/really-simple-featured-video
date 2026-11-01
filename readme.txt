@@ -206,6 +206,7 @@ Video Studio uses these libraries and fonts:
 * Security: Featured Video block preview no longer shows titles of private post types to users who cannot edit them
 * Security: Stronger analytics rate limit. Sites behind a proxy or CDN can pass the visitor address with the rsfv_analytics_client_ip filter
 * Fix: Deleting the plugin on multisite now removes analytics data from every site
+* Fix: Deleting a site on multisite now also removes its analytics tables
 * Fix: Possible fatal errors from invalid analytics report dates, and from malformed Elementor and sticky video settings
 * Fix: Possible fatal errors in the Astra Pro and Flatsome gallery templates when there is no product, or when the Astra Pro gallery loads more than once on a page
 

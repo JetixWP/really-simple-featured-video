@@ -140,6 +140,23 @@ class Install {
 	}
 
 	/**
+	 * Add this plugin's tables to the ones dropped when a site is deleted. Core only drops its own.
+	 *
+	 * @param string[] $tables  Table names to drop.
+	 * @param int      $site_id ID of the site being deleted.
+	 * @return string[]
+	 */
+	public static function add_site_tables( $tables, $site_id ) {
+		global $wpdb;
+
+		$prefix   = $wpdb->get_blog_prefix( $site_id );
+		$tables[] = $prefix . 'rsfv_videos';
+		$tables[] = $prefix . 'rsfv_stats_daily';
+
+		return $tables;
+	}
+
+	/**
 	 * Whether both tables exist.
 	 *
 	 * @return bool
