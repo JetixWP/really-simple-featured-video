@@ -501,6 +501,9 @@ class FrontEnd {
 	 * unfiltered_html already had iframes in their posts keep them on save, without
 	 * the attributes that allow page overlays and device permission prompts.
 	 *
+	 * Background jobs have no user, so WordPress filters their saves as well. They
+	 * only write content back, so they keep what is already stored.
+	 *
 	 * @param array $tags Allowed tags.
 	 *
 	 * @return array
@@ -511,6 +514,10 @@ class FrontEnd {
 		}
 
 		if ( ! doing_filter( 'content_save_pre' ) && ! doing_filter( 'excerpt_save_pre' ) && ! doing_filter( 'content_filtered_save_pre' ) ) {
+			return $tags;
+		}
+
+		if ( ! is_user_logged_in() && ( wp_doing_cron() || ( defined( 'WP_CLI' ) && WP_CLI ) || doing_action( 'action_scheduler_run_queue' ) ) ) {
 			return $tags;
 		}
 

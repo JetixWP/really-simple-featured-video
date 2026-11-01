@@ -130,10 +130,17 @@ class Updater {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One time upgrade scan.
 		$authors = $wpdb->get_col( "SELECT DISTINCT post_author FROM {$wpdb->posts} WHERE post_content LIKE '%<iframe%' AND post_type NOT IN ('revision', 'attachment', 'nav_menu_item') AND post_status NOT IN ('auto-draft', 'trash', 'inherit')" );
 
+		// Keep iframes if the scan failed, or on multisite, where site admins lack unfiltered_html.
+		if ( $wpdb->last_error || ( $authors && is_multisite() ) ) {
+			Options::get_instance()->set( 'legacy_iframes_on_save', true );
+			return;
+		}
+
 		foreach ( $authors as $author_id ) {
 			$author = get_userdata( (int) $author_id );
 
-			if ( $author && ! user_can( $author, 'unfiltered_html' ) ) {
+			// A missing author could have been anyone, so keep their iframes too.
+			if ( ! $author || ! user_can( $author, 'unfiltered_html' ) ) {
 				Options::get_instance()->set( 'legacy_iframes_on_save', true );
 				return;
 			}
