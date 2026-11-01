@@ -17,7 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 $rsfv_has_pro = class_exists( '\RSFV_Pro\Plugin' );
 
 ?>
-					<?php if ( Register::should_show_delta_promo() ) : ?>
+					<?php // Updates through WP-CLI or a host can leave an older Register class in OPcache for a while. ?>
+					<?php if ( is_callable( array( Register::class, 'should_show_delta_promo' ) ) && Register::should_show_delta_promo() ) : ?>
 						<?php require RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-sidebar-delta-promo.php'; ?>
 					<?php endif; ?>
 

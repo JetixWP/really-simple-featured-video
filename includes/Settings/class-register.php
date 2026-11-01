@@ -161,6 +161,16 @@ class Register {
 	}
 
 	/**
+	 * Keeps an older sidebar view still in OPcache during an update from failing.
+	 * The review card is gone, so it always counts as dismissed.
+	 *
+	 * @return bool
+	 */
+	public static function is_review_card_dismissed() {
+		return true;
+	}
+
+	/**
 	 * Whether the Delta card should show in the sidebar.
 	 *
 	 * Hidden from users who cannot manage the site, on sites already using Delta,
