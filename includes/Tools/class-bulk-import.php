@@ -522,7 +522,18 @@ class Bulk_Import {
 
 		$this->load_media_api();
 
+		// A server can leave out or misstate the size above. Stop one byte past the limit, so the size check below still rejects it.
+		$limit_download = static function ( $args ) use ( $max ) {
+			if ( ! empty( $args['stream'] ) ) {
+				$args['limit_response_size'] = $max + 1;
+			}
+
+			return $args;
+		};
+
+		add_filter( 'http_request_args', $limit_download );
 		$tmp = download_url( $url, $this->download_timeout() );
+		remove_filter( 'http_request_args', $limit_download );
 
 		if ( is_wp_error( $tmp ) ) {
 			return new WP_Error( 'download_failed' );
