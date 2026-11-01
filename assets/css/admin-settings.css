@@ -1010,6 +1010,122 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	}
 }
 
+/**
+ * Settings sidebar Delta card.
+ */
+.rsfv .sidebar .rsfv-delta-promo {
+	position: relative;
+	margin-bottom: 24px;
+	padding: 25px 30px;
+	background: #fff;
+	border: 1px solid #dcdcdc;
+	border-radius: 4px;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__tag {
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	padding: 4px 8px;
+	background: #15171b;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__eyebrow {
+	margin: 0 0 12px;
+	color: #646970;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__header {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 15px;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__header img {
+	flex: 0 0 48px;
+	width: 48px;
+	height: 48px;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__header h3 {
+	margin: 0;
+	line-height: 1.4;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__header h3 a {
+	color: #15171b;
+	text-decoration: none;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__header h3 a:hover,
+.rsfv .sidebar .rsfv-delta-promo__header h3 a:focus {
+	text-decoration: underline;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .desc {
+	margin: 0 0 15px;
+	font-size: 15px;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .rsfv-upgrade-features {
+	margin: 0 0 15px;
+	padding: 0;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .rsfv-upgrade-features li {
+	margin: 0 0 8px;
+	font-size: 14px;
+	line-height: 1.45;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__pricing {
+	margin: 0 0 12px;
+	color: #1d1d1d;
+	font-size: 14px;
+	font-style: italic;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__support {
+	margin: 0 0 18px;
+	color: #50575e;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .button-primary {
+	display: block;
+	width: 100%;
+	padding: 8px 0;
+	background: #15171b;
+	border-color: #15171b;
+	box-sizing: border-box;
+	color: #fff;
+	font-size: 15px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .button-primary:active,
+.rsfv .sidebar .rsfv-delta-promo .button-primary:focus,
+.rsfv .sidebar .rsfv-delta-promo .button-primary:hover {
+	background: #26292a;
+	border-color: #26292a;
+	color: #fff !important;
+}
+
 /* Promo icons: one WordPress dashicon style for every promo card. */
 .rsfv-promo-icon.dashicons {
 	width: 20px;

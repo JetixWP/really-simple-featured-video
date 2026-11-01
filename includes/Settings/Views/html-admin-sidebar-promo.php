@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin View: sidebar with the review card and the PRO upgrade box.
+ * Admin View: sidebar with the review card, the Delta card and the PRO upgrade box.
  *
  * Used by Settings and Video Studio. Set $rsfv_promo_studio to true before
  * including it to list Video Studio PRO first.
@@ -38,6 +38,10 @@ $rsfv_has_pro = class_exists( '\RSFV_Pro\Plugin' );
 						</div>
 					<?php endif; ?>
 
+					<?php if ( Register::should_show_delta_promo() ) : ?>
+						<?php require RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-sidebar-delta-promo.php'; ?>
+					<?php endif; ?>
+
 					<?php if ( ! $rsfv_has_pro ) : ?>
 						<?php $rsfv_pro_url = 'https://jetixwp.com/plugins/really-simple-featured-video/?utm_campaign=' . ( empty( $rsfv_promo_studio ) ? 'settings-sidebar' : 'studio-sidebar' ) . '&utm_source=rsfv-plugin'; ?>
 						<div class="upgrade-box">
@@ -46,7 +50,7 @@ $rsfv_has_pro = class_exists( '\RSFV_Pro\Plugin' );
 								<p class="desc"><?php esc_html_e( 'Auto generate more featured videos from templates with Video Studio PRO, get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates.', 'rsfv' ); ?></p>
 							</div>
 							<div class="rsfv-deal">
-								<p class="rsfv-deal__label"><?php esc_html_e( 'Special Anniversary Deal', 'rsfv' ); ?> <span class="rsfv-deal__badge"><?php esc_html_e( 'Save up to 50%', 'rsfv' ); ?></span></p>
+								<p class="rsfv-deal__label"><?php esc_html_e( 'Special Black Friday Deal', 'rsfv' ); ?> <span class="rsfv-deal__badge"><?php esc_html_e( 'Save up to 50%', 'rsfv' ); ?></span></p>
 								<ul class="rsfv-deal__plans">
 									<li>
 										<span class="rsfv-deal__plan"><?php esc_html_e( 'Single site', 'rsfv' ); ?> <em><?php esc_html_e( 'Save 34%', 'rsfv' ); ?></em></span>

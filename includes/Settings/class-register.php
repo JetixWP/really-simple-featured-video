@@ -170,6 +170,30 @@ class Register {
 	}
 
 	/**
+	 * Whether the Delta card should show in the sidebar.
+	 *
+	 * Hidden from users who cannot manage the site and on sites already using Delta.
+	 *
+	 * @return bool
+	 */
+	public static function should_show_delta_promo() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return false;
+		}
+
+		if ( in_array( wp_get_theme()->get_template(), array( '21press-delta', 'delta' ), true ) ) {
+			return false;
+		}
+
+		/**
+		 * Filters whether the Delta card shows in the sidebar.
+		 *
+		 * @param bool $show Whether to show the card.
+		 */
+		return (bool) apply_filters( 'rsfv_show_delta_promo', true );
+	}
+
+	/**
 	 * Store a permanent review card dismiss in plugin options.
 	 *
 	 * @return void
