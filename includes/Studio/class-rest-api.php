@@ -197,13 +197,24 @@ class REST_API {
 	 *
 	 * @since 1.2.0
 	 *
-	 * @param int $size File size in bytes.
+	 * @param int    $size File size in bytes.
+	 * @param string $file Optional path to the file. A file already in this site's
+	 *                     uploads, like an add-on's temporary file, is not counted twice.
 	 *
 	 * @return bool
 	 */
-	public static function fits_upload_space( $size ) {
+	public static function fits_upload_space( $size, $file = '' ) {
 		if ( ! is_multisite() || get_site_option( 'upload_space_check_disabled' ) ) {
 			return true;
+		}
+
+		$uploads = wp_upload_dir( null, false );
+
+		if ( $file && 0 === strpos( wp_normalize_path( $file ), trailingslashit( wp_normalize_path( $uploads['basedir'] ) ) ) ) {
+			// Refresh the cached total so it includes this file once, then check the site is within its quota.
+			clean_dirsize_cache( $file );
+
+			return get_space_used() <= max( 0, get_space_allowed() );
 		}
 
 		return (int) $size <= (int) get_upload_space_available();
@@ -231,7 +242,7 @@ class REST_API {
 		if ( is_wp_error( $video_ext ) ) {
 			return $video_ext;
 		}
-		if ( ! self::fits_upload_space( (int) filesize( $video['tmp_name'] ) ) ) {
+		if ( ! self::fits_upload_space( (int) filesize( $video['tmp_name'] ), $video['tmp_name'] ) ) {
 			return new \WP_Error( 'rsfv_studio_upload_space', __( 'This site does not have enough upload space left for the video.', 'rsfv' ), array( 'status' => 413 ) );
 		}
 		$poster_ext = '';
