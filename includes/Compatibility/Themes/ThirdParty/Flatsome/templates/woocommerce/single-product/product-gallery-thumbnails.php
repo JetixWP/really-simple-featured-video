@@ -14,6 +14,10 @@ use function RSFV\Settings\get_post_types;
 
 global $post, $product;
 
+if ( ! $product instanceof WC_Product ) {
+	return;
+}
+
 $attachment_ids = $product->get_gallery_image_ids();
 $post_thumbnail = has_post_thumbnail();
 $thumb_count    = count( $attachment_ids );

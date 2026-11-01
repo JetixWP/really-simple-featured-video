@@ -23,6 +23,10 @@ defined( 'ABSPATH' ) || exit;
 
 global $product;
 
+if ( ! $product instanceof WC_Product ) {
+	return;
+}
+
 $columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
 $post_thumbnail_id = $product->get_image_id();
 $wrapper_classes   = apply_filters(
