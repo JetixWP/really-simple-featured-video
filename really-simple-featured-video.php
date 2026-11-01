@@ -3,7 +3,7 @@
  * Plugin Name: Really Simple Featured Video
  * Plugin URI:  https://jetixwp.com/plugins/really-simple-featured-video
  * Description: Adds featured videos to WordPress posts, pages & WooCommerce products, shows them with a block or shortcode, and auto generates them from templates with Video Studio.
- * Version:     1.1.0
+ * Version:     1.2.0
  * Author:      JetixWP Plugins
  * Author URI:  https://jetixwp.com
  * License:     GPLv2 or later
@@ -18,7 +18,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'RSFV_VERSION', '1.1.0' );
+define( 'RSFV_VERSION', '1.2.0' );
 define( 'RSFV_PLUGIN_FILE', __FILE__ );
 define( 'RSFV_PLUGIN_URL', plugin_dir_url( RSFV_PLUGIN_FILE ) );
 define( 'RSFV_PLUGIN_DIR', plugin_dir_path( RSFV_PLUGIN_FILE ) );
