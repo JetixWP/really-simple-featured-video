@@ -486,6 +486,41 @@ class FrontEnd {
 	}
 
 	/**
+	 * Stop the player markup allow list from letting people store iframes in content.
+	 *
+	 * Our iframes are generated when a page renders and are never stored, so the
+	 * allowance is only needed for display. Sites where people without
+	 * unfiltered_html already had iframes in their posts keep them on save, without
+	 * the attributes that allow page overlays and device permission prompts.
+	 *
+	 * @param array $tags Allowed tags.
+	 *
+	 * @return array
+	 */
+	private function limit_iframes_on_save( $tags ) {
+		if ( empty( $tags['iframe'] ) ) {
+			return $tags;
+		}
+
+		if ( ! doing_filter( 'content_save_pre' ) && ! doing_filter( 'excerpt_save_pre' ) && ! doing_filter( 'content_filtered_save_pre' ) ) {
+			return $tags;
+		}
+
+		/**
+		 * Filters whether people without unfiltered_html can keep iframes when saving content.
+		 *
+		 * @param bool $allow Defaults to true only where the 1.2.0 upgrade found such iframes.
+		 */
+		if ( apply_filters( 'rsfv_allow_iframes_on_content_save', (bool) Options::get_instance()->get( 'legacy_iframes_on_save' ) ) ) {
+			unset( $tags['iframe']['style'], $tags['iframe']['allow'] );
+		} else {
+			unset( $tags['iframe'] );
+		}
+
+		return $tags;
+	}
+
+	/**
 	 * Override wp_kses_post allowed html array to make way for videos.
 	 *
 	 * @param array  $allowed_html List of html tags.
@@ -497,7 +532,7 @@ class FrontEnd {
 
 		// Keep only for 'post' context.
 		if ( 'post' === $context ) {
-			$additional_html = $this->get_allowed_html();
+			$additional_html = $this->limit_iframes_on_save( $this->get_allowed_html() );
 
 			$updated_tags = $allowed_html;
 
