@@ -201,7 +201,7 @@ Video Studio uses these libraries and fonts:
 * Security: Featured videos of password protected posts stay hidden until the password is entered. Use the rsfv_show_video_on_protected_post filter to show them
 * Security: Users can only attach videos and posters from the Media Library that they are allowed to use
 * Security: Video Studio and Bulk Import respect multisite upload limits
-* Security: Bulk Import stops downloads at the upload limit
+* Security: Bulk Import no longer saves remote files past the upload limit
 * Security: Escaped output in the Flatsome and CIX gallery templates. CIX gallery lightbox captions no longer keep inline HTML
 * Security: Featured Video block preview no longer shows titles of private post types to users who cannot edit them
 * Security: Stronger analytics rate limit. Sites behind a proxy or CDN can pass the visitor address with the rsfv_analytics_client_ip filter
