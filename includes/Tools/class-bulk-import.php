@@ -17,6 +17,7 @@ use WP_Post;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
+use RSFV\Studio\REST_API as Studio_REST_API;
 use function RSFV\Settings\get_post_types;
 
 defined( 'ABSPATH' ) || exit;
@@ -529,7 +530,7 @@ class Bulk_Import {
 
 		$size = file_exists( $tmp ) ? (int) filesize( $tmp ) : 0;
 
-		if ( $size < 1 || $size > $max ) {
+		if ( $size < 1 || $size > $max || ! Studio_REST_API::fits_upload_space( $size ) ) {
 			wp_delete_file( $tmp );
 			return new WP_Error( 'too_large' );
 		}
@@ -594,7 +595,7 @@ class Bulk_Import {
 
 		$size = isset( $file['size'] ) ? (int) $file['size'] : 0;
 
-		if ( $size < 1 || $size > (int) wp_max_upload_size() ) {
+		if ( $size < 1 || $size > (int) wp_max_upload_size() || ! Studio_REST_API::fits_upload_space( $size ) ) {
 			return new WP_Error( 'too_large' );
 		}
 
