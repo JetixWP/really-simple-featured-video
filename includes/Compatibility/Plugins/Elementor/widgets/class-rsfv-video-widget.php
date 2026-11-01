@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use RSFV\Metabox;
 use function RSFV\Settings\get_post_types;
 
 /**
@@ -259,6 +260,14 @@ class RSFV_Video_Widget extends Widget_Base {
 		$cur_video_id = (string) get_post_meta( $post_id, RSFV_META_KEY, true );
 		$cur_poster   = (string) get_post_meta( $post_id, RSFV_POSTER_META_KEY, true );
 		$cur_embed    = (string) get_post_meta( $post_id, RSFV_EMBED_META_KEY, true );
+
+		if ( ! Metabox::can_use_attachment( $post_id, RSFV_META_KEY, $new_video_id, 'video' ) ) {
+			$new_video_id = $cur_video_id;
+		}
+
+		if ( ! Metabox::can_use_attachment( $post_id, RSFV_POSTER_META_KEY, $new_poster, 'image' ) ) {
+			$new_poster = $cur_poster;
+		}
 
 		// Nothing changed – skip the write.  This prevents two widgets
 		// on the same page from fighting: the one the user actually
