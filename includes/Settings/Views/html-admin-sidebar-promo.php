@@ -40,24 +40,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php $rsfv_pro_url = 'https://jetixwp.com/plugins/really-simple-featured-video/?utm_campaign=' . ( empty( $rsfv_promo_studio ) ? 'settings-sidebar' : 'studio-sidebar' ) . '&utm_source=rsfv-plugin'; ?>
 						<div class="upgrade-box">
 							<div>
-								<h3><span class="dashicons dashicons-tag rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Anniversary deal: RSFV PRO from $59', 'rsfv' ); ?></h3>
+								<h3><span class="dashicons dashicons-tag rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Black Friday deal: RSFV PRO from $59', 'rsfv' ); ?></h3>
 								<p class="desc"><?php esc_html_e( 'Auto generate more featured videos from templates with Video Studio PRO, get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates.', 'rsfv' ); ?></p>
 							</div>
-							<div class="rsfv-anniversary-deal">
-								<p class="rsfv-anniversary-deal__label"><?php esc_html_e( 'Special Anniversary Deal', 'rsfv' ); ?> <span class="rsfv-anniversary-deal__badge"><?php esc_html_e( 'Save up to 50%', 'rsfv' ); ?></span></p>
-								<ul class="rsfv-anniversary-deal__plans">
+							<div class="rsfv-deal">
+								<p class="rsfv-deal__label"><?php esc_html_e( 'Special Anniversary Deal', 'rsfv' ); ?> <span class="rsfv-deal__badge"><?php esc_html_e( 'Save up to 50%', 'rsfv' ); ?></span></p>
+								<ul class="rsfv-deal__plans">
 									<li>
-										<span class="rsfv-anniversary-deal__plan"><?php esc_html_e( 'Single site', 'rsfv' ); ?> <em><?php esc_html_e( 'Save 34%', 'rsfv' ); ?></em></span>
-										<span class="rsfv-anniversary-deal__amounts"><s>$89</s> <strong>$59</strong></span>
+										<span class="rsfv-deal__plan"><?php esc_html_e( 'Single site', 'rsfv' ); ?> <em><?php esc_html_e( 'Save 34%', 'rsfv' ); ?></em></span>
+										<span class="rsfv-deal__amounts"><s>$89</s> <strong>$59</strong></span>
 									</li>
 									<li>
-										<span class="rsfv-anniversary-deal__plan"><?php esc_html_e( 'Unlimited sites', 'rsfv' ); ?> <em><?php esc_html_e( 'Save 50%', 'rsfv' ); ?></em></span>
-										<span class="rsfv-anniversary-deal__amounts"><s>$199</s> <strong>$99</strong></span>
+										<span class="rsfv-deal__plan"><?php esc_html_e( 'Unlimited sites', 'rsfv' ); ?> <em><?php esc_html_e( 'Save 50%', 'rsfv' ); ?></em></span>
+										<span class="rsfv-deal__amounts"><s>$199</s> <strong>$99</strong></span>
 									</li>
 								</ul>
-								<p class="rsfv-anniversary-deal__note"><?php esc_html_e( 'One-time payment · lifetime updates · no renewals', 'rsfv' ); ?></p>
+								<p class="rsfv-deal__note"><?php esc_html_e( 'One-time payment · lifetime updates · no renewals', 'rsfv' ); ?></p>
 								<a class="button button-primary" href="<?php echo esc_url( $rsfv_pro_url . '#pricing' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Get PRO for $59', 'rsfv' ); ?></a>
-								<p class="rsfv-anniversary-deal__secure"><span class="dashicons dashicons-lock rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Secure checkout · 14-day money-back guarantee', 'rsfv' ); ?></p>
+								<p class="rsfv-deal__secure"><span class="dashicons dashicons-lock rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Secure checkout · 14-day money-back guarantee', 'rsfv' ); ?></p>
 							</div>
 							<div>
 								<p class="desc"><strong><?php esc_html_e( 'What PRO adds', 'rsfv' ); ?></strong></p>
