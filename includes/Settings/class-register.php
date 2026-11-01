@@ -33,9 +33,6 @@ class Register {
 
 		add_action( 'load-settings_page_rsfv-settings', array( $this, 'cleanup_plugin_settings_page' ) );
 
-		add_action( 'admin_init', array( $this, 'maybe_dismiss_review_card' ) );
-		add_action( 'wp_ajax_rsfv_dismiss_review_card', array( $this, 'dismiss_review_card' ) );
-
 		add_action( 'admin_init', array( $this, 'maybe_dismiss_delta_promo' ) );
 		add_action( 'wp_ajax_rsfv_dismiss_delta_promo', array( $this, 'dismiss_delta_promo' ) );
 	}
@@ -120,50 +117,6 @@ class Register {
 	}
 
 	/**
-	 * Persistently dismiss the settings sidebar review card.
-	 *
-	 * @return void
-	 */
-	public function dismiss_review_card() {
-		check_ajax_referer( 'rsfv_admin_nonce', '_wpnonce' );
-
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error(
-				array(
-					'message' => __( 'You do not have permission to perform this action.', 'rsfv' ),
-				),
-				403
-			);
-		}
-
-		self::set_review_card_dismissed();
-
-		wp_send_json_success();
-	}
-
-	/**
-	 * Handle a non-AJAX review card dismiss from the settings sidebar.
-	 *
-	 * @return void
-	 */
-	public function maybe_dismiss_review_card() {
-		if ( ! isset( $_GET['rsfv_dismiss_review'] ) ) {
-			return;
-		}
-
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
-		}
-
-		check_admin_referer( 'rsfv_dismiss_review_card' );
-
-		self::set_review_card_dismissed();
-
-		wp_safe_redirect( remove_query_arg( array( 'rsfv_dismiss_review', '_wpnonce' ) ) );
-		exit;
-	}
-
-	/**
 	 * Persistently dismiss the sidebar Delta card.
 	 *
 	 * @return void
@@ -208,15 +161,6 @@ class Register {
 	}
 
 	/**
-	 * Whether the review card has been dismissed.
-	 *
-	 * @return bool
-	 */
-	public static function is_review_card_dismissed() {
-		return (bool) Options::get_instance()->get( 'review_card_dismissed' );
-	}
-
-	/**
 	 * Whether the Delta card should show in the sidebar.
 	 *
 	 * Hidden from users who cannot manage the site, on sites already using Delta,
@@ -243,15 +187,6 @@ class Register {
 		 * @param bool $show Whether to show the card.
 		 */
 		return (bool) apply_filters( 'rsfv_show_delta_promo', true );
-	}
-
-	/**
-	 * Store a permanent review card dismiss in plugin options.
-	 *
-	 * @return void
-	 */
-	public static function set_review_card_dismissed() {
-		Options::get_instance()->set( 'review_card_dismissed', true );
 	}
 
 	/**

@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin View: sidebar with the review card, the Delta card and the PRO upgrade box.
+ * Admin View: sidebar with the Delta card and the PRO upgrade box.
  *
  * Used by Settings and Video Studio. Set $rsfv_promo_studio to true before
  * including it to list Video Studio PRO first.
@@ -17,27 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 $rsfv_has_pro = class_exists( '\RSFV_Pro\Plugin' );
 
 ?>
-					<?php if ( ! $rsfv_has_pro && ! Register::is_review_card_dismissed() ) : ?>
-						<?php
-						$rsfv_dismiss_review_url = wp_nonce_url(
-							add_query_arg( 'rsfv_dismiss_review', '1' ),
-							'rsfv_dismiss_review_card'
-						);
-						?>
-						<div class="notice-box is-dismissible" data-rsfv-dismiss="review-card">
-							<a class="notice-dismiss rsfv-dismiss-review" href="<?php echo esc_url( $rsfv_dismiss_review_url ); ?>">
-								<span class="screen-reader-text"><?php esc_html_e( 'Dismiss this notice.', 'rsfv' ); ?></span>
-							</a>
-							<div>
-								<h3><?php esc_html_e( 'Help keep this plugin free & updated', 'rsfv' ); ?></h3>
-								<p class="desc"><?php esc_html_e( 'Your review means a lot. It helps others discover that Really Simple Featured Video is free and actively maintained. If the plugin has helped you, please consider leaving your honest review/feedback on WordPress.org. Thank you!', 'rsfv' ); ?></p>
-							</div>
-							<div>
-								<a class="button button-primary" href="https://wordpress.org/support/plugin/really-simple-featured-video/reviews/#new-post" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Leave a Review', 'rsfv' ); ?></a>
-							</div>
-						</div>
-					<?php endif; ?>
-
 					<?php if ( Register::should_show_delta_promo() ) : ?>
 						<?php require RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-sidebar-delta-promo.php'; ?>
 					<?php endif; ?>

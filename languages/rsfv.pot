@@ -1177,7 +1177,6 @@ msgid "Save changes"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-sidebar-delta-promo.php:27
-#: includes/Settings/Views/html-admin-sidebar-promo.php:29
 msgid "Dismiss this notice."
 msgstr ""
 
@@ -1233,18 +1232,6 @@ msgstr ""
 
 #: includes/Settings/Views/html-admin-sidebar-delta-promo.php:63
 msgid "✨ Explore Delta"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:32
-msgid "Help keep this plugin free & updated"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:33
-msgid "Your review means a lot. It helps others discover that Really Simple Featured Video is free and actively maintained. If the plugin has helped you, please consider leaving your honest review/feedback on WordPress.org. Thank you!"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:36
-msgid "Leave a Review"
 msgstr ""
 
 #: includes/Settings/Views/html-admin-sidebar-promo.php:49
