@@ -179,6 +179,35 @@ class Renderer {
 	}
 
 	/**
+	 * Whether a post's featured video is held back until its password is entered.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @param \WP_Post|int $post Post object or ID.
+	 *
+	 * @return bool
+	 */
+	public static function is_password_locked( $post ) {
+		$post = get_post( $post );
+
+		if ( ! $post instanceof \WP_Post || ! post_password_required( $post ) ) {
+			return false;
+		}
+
+		/**
+		 * Filters whether a password protected post shows its video before the password is entered.
+		 *
+		 * Use this to keep a video as a public teaser for protected content.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @param bool     $show Whether to show the video. Default false.
+		 * @param \WP_Post $post The post.
+		 */
+		return ! apply_filters( 'rsfv_show_video_on_protected_post', false, $post );
+	}
+
+	/**
 	 * Whether the current viewer may see the featured video of a post.
 	 *
 	 * @param \WP_Post|int|null $post Post object or ID.
@@ -215,6 +244,10 @@ class Renderer {
 		}
 
 		$args = self::normalize_args( $args );
+
+		if ( self::is_password_locked( $post ) ) {
+			return '';
+		}
 
 		if ( $args['restrict'] && ! self::is_viewable( $post ) ) {
 			return '';

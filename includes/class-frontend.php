@@ -113,6 +113,10 @@ class FrontEnd {
 			return $markup;
 		}
 
+		if ( Renderer::is_password_locked( $post ) ) {
+			return $markup;
+		}
+
 		// Get enabled post types.
 		$post_types = get_post_types();
 
@@ -178,6 +182,10 @@ class FrontEnd {
 		$post = get_post( $post_id );
 
 		if ( 'object' !== gettype( $post ) ) {
+			return false;
+		}
+
+		if ( Renderer::is_password_locked( $post ) ) {
 			return false;
 		}
 

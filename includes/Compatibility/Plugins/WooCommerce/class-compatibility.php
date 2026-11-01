@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || exit;
 
 use RSFV\Options;
 use RSFV\Plugin;
+use RSFV\Renderer;
 use RSFV\Shortcode;
 use RSFV\Compatibility\Plugins\Base_Compatibility;
 use RSFV\Featuresets\Hover_Autoplay\Init as Hover_Autoplay;
@@ -394,6 +395,10 @@ class Compatibility extends Base_Compatibility {
 	 * @return string
 	 */
 	public static function woo_video_markup( $id, $wrapper_class = 'woocommerce-product-gallery__image', $wrapper_attributes = '', $thumbnail_only = false, $is_archives = false ) {
+		if ( Renderer::is_password_locked( $id ) ) {
+			return '';
+		}
+
 		$post_type = get_post_type( $id ) ?? 'product';
 
 		// Get enabled post types.
