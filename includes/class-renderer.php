@@ -175,7 +175,7 @@ class Renderer {
 			return false;
 		}
 
-		return ! post_password_required( $post );
+		return ! self::is_password_locked( $post );
 	}
 
 	/**
