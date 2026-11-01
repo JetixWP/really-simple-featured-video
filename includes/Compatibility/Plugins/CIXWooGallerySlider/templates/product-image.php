@@ -84,12 +84,13 @@ do_action( 'wpgs_before_image_gallery' );
 
 	$lightbox_src = wc_get_product_attachment_props( $post_thumbnail_id );
 
-	$img_caption = get_the_title( $post_thumbnail_id );
+	// The lightbox renders captions as HTML, so encode existing entities too. esc_attr() would leave them for the browser to decode.
+	$img_caption = htmlspecialchars( wp_strip_all_tags( html_entity_decode( get_the_title( $post_thumbnail_id ), ENT_QUOTES, 'UTF-8' ) ), ENT_QUOTES, 'UTF-8', true );
 	if ( apply_filters( 'wpgs_show_featured_image_in_gallery', true ) ) {
 
 		if ( '1' === $gallery_options['lightbox_picker'] ) {
 			$html .= '<div class="woocommerce-product-gallery__image single-product-main-image">';
-			$html .= '<a class="wpgs-lightbox-icon" data-caption="' . $img_caption . '" data-fancybox="wpgs-lightbox"  href="' . $lightbox_src['url'] . '"     data-mobile=["clickContent:close","clickSlide:close"] 	data-click-slide="close" 	data-animation-effect="fade" 	data-loop="true"     data-infobar="' . $lightbox_img_count . '"     data-hash="false" >' . $image . '</a></div>';
+			$html .= '<a class="wpgs-lightbox-icon" data-caption="' . $img_caption . '" data-fancybox="wpgs-lightbox"  href="' . esc_url( $lightbox_src['url'] ) . '"     data-mobile=["clickContent:close","clickSlide:close"] 	data-click-slide="close" 	data-animation-effect="fade" 	data-loop="true"     data-infobar="' . $lightbox_img_count . '"     data-hash="false" >' . $image . '</a></div>';
 
 		} else {
 			$html .= '<div class="woocommerce-product-gallery__image single-product-main-image">' . $image . '</div>';
@@ -115,10 +116,10 @@ do_action( 'wpgs_before_image_gallery' );
 			);
 			$lightbox_src    = wc_get_product_attachment_props( $attachment_id );
 
-			$img_caption     = get_the_title( $attachment_id );
+			$img_caption     = htmlspecialchars( wp_strip_all_tags( html_entity_decode( get_the_title( $attachment_id ), ENT_QUOTES, 'UTF-8' ) ), ENT_QUOTES, 'UTF-8', true );
 			$attachment_html = '';
 			if ( '1' === $gallery_options['lightbox_picker'] ) {
-				$attachment_html .= '<div><a class="wpgs-lightbox-icon" data-fancybox="wpgs-lightbox"                 data-caption="' . $img_caption . '"                 href="' . $lightbox_src['url'] . '" data-mobile=["clickContent:close","clickSlide:close"] 				data-click-slide="close" 				data-animation-effect="fade" 				data-loop="true"                 data-hash="false"                 data-infobar="' . $lightbox_img_count . '"                 >' . $thumbnail_image . '</a></div>';
+				$attachment_html .= '<div><a class="wpgs-lightbox-icon" data-fancybox="wpgs-lightbox"                 data-caption="' . $img_caption . '"                 href="' . esc_url( $lightbox_src['url'] ) . '" data-mobile=["clickContent:close","clickSlide:close"] 				data-click-slide="close" 				data-animation-effect="fade" 				data-loop="true"                 data-hash="false"                 data-infobar="' . $lightbox_img_count . '"                 >' . $thumbnail_image . '</a></div>';
 
 			} else {
 				$attachment_html .= '<div>' . $thumbnail_image . '</div>';
