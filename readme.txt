@@ -211,6 +211,7 @@ Video Studio uses these libraries and fonts:
 * Fix: Deleting a site on multisite now also removes its analytics tables
 * Fix: Possible fatal errors from invalid analytics report dates, and from malformed Elementor and sticky video settings
 * Fix: Possible fatal errors in the Astra Pro and Flatsome gallery templates when there is no product, or when the Astra Pro gallery loads more than once on a page
+* Fix: Settings pages no longer run off the side of the screen on phones, tablets and small laptops. The sidebar now sits below the settings on these screens
 
 = 1.1.0 =
 * New: Featured Video block for the block editor and Site Editor. Shows the featured video of the entry it is in, including inside Query Loops and templates, or of any other post you pick

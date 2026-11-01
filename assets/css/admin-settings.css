@@ -100,6 +100,28 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	}
 }
 
+/* The 920px minimum only fits from 1150px up, once the admin menu and page gutters are counted. */
+@media screen and (max-width: 1149px) {
+	.wrap.rsfv:not(.rsfv-tools) .plugin-header .plugin-header-wrap,
+	.rsfv-wrapper .rsfv-nav-tab-wrapper,
+	.rsfv-wrapper > .tab-content {
+		min-width: 0;
+	}
+
+	.wrap.rsfv:not(.rsfv-tools) .plugin-header .plugin-header-wrap {
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.rsfv-wrapper > .tab-content {
+		display: block;
+	}
+
+	.rsfv-wrapper > .tab-content > .sidebar {
+		margin-top: 30px;
+	}
+}
+
 .rsfv-wrapper .rsfv-nav-tab-wrapper {
 	border-bottom: none;
 }
