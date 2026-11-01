@@ -347,7 +347,7 @@ class Compatibility extends Base_Compatibility {
 		// Exit if the image contains site-logo.
 		if ( isset( $settings['__dynamic__'] ) ) {
 			$image = $settings['__dynamic__']['image'] ?? '';
-			if ( str_contains( $image, 'site-logo' ) ) {
+			if ( is_string( $image ) && str_contains( $image, 'site-logo' ) ) {
 				return $html;
 			}
 		}
