@@ -14,8 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$rsfv_has_pro = class_exists( '\RSFV_Pro\Plugin' );
+
 ?>
-					<?php if ( ! Register::is_review_card_dismissed() ) : ?>
+					<?php if ( ! $rsfv_has_pro && ! Register::is_review_card_dismissed() ) : ?>
 						<?php
 						$rsfv_dismiss_review_url = wp_nonce_url(
 							add_query_arg( 'rsfv_dismiss_review', '1' ),
@@ -36,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 					<?php endif; ?>
 
-					<?php if ( ! class_exists( '\RSFV_Pro\Plugin' ) ) : ?>
+					<?php if ( ! $rsfv_has_pro ) : ?>
 						<?php $rsfv_pro_url = 'https://jetixwp.com/plugins/really-simple-featured-video/?utm_campaign=' . ( empty( $rsfv_promo_studio ) ? 'settings-sidebar' : 'studio-sidebar' ) . '&utm_source=rsfv-plugin'; ?>
 						<div class="upgrade-box">
 							<div>
