@@ -35,6 +35,9 @@ class Register {
 
 		add_action( 'admin_init', array( $this, 'maybe_dismiss_review_card' ) );
 		add_action( 'wp_ajax_rsfv_dismiss_review_card', array( $this, 'dismiss_review_card' ) );
+
+		add_action( 'admin_init', array( $this, 'maybe_dismiss_delta_promo' ) );
+		add_action( 'wp_ajax_rsfv_dismiss_delta_promo', array( $this, 'dismiss_delta_promo' ) );
 	}
 
 	/**
@@ -161,6 +164,50 @@ class Register {
 	}
 
 	/**
+	 * Persistently dismiss the sidebar Delta card.
+	 *
+	 * @return void
+	 */
+	public function dismiss_delta_promo() {
+		check_ajax_referer( 'rsfv_admin_nonce', '_wpnonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error(
+				array(
+					'message' => __( 'You do not have permission to perform this action.', 'rsfv' ),
+				),
+				403
+			);
+		}
+
+		Options::get_instance()->set( 'delta_promo_dismissed', true );
+
+		wp_send_json_success();
+	}
+
+	/**
+	 * Handle a non-AJAX Delta card dismiss. Video Studio relies on this, it does not load the settings script.
+	 *
+	 * @return void
+	 */
+	public function maybe_dismiss_delta_promo() {
+		if ( ! isset( $_GET['rsfv_dismiss_delta'] ) ) {
+			return;
+		}
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		check_admin_referer( 'rsfv_dismiss_delta_promo' );
+
+		Options::get_instance()->set( 'delta_promo_dismissed', true );
+
+		wp_safe_redirect( remove_query_arg( array( 'rsfv_dismiss_delta', '_wpnonce' ) ) );
+		exit;
+	}
+
+	/**
 	 * Whether the review card has been dismissed.
 	 *
 	 * @return bool
@@ -172,12 +219,17 @@ class Register {
 	/**
 	 * Whether the Delta card should show in the sidebar.
 	 *
-	 * Hidden from users who cannot manage the site and on sites already using Delta.
+	 * Hidden from users who cannot manage the site, on sites already using Delta,
+	 * and once dismissed.
 	 *
 	 * @return bool
 	 */
 	public static function should_show_delta_promo() {
 		if ( ! current_user_can( 'manage_options' ) ) {
+			return false;
+		}
+
+		if ( Options::get_instance()->get( 'delta_promo_dismissed' ) ) {
 			return false;
 		}
 

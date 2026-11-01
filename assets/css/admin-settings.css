@@ -1022,6 +1022,14 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	border-radius: 4px;
 }
 
+.rsfv .sidebar .rsfv-delta-promo .notice-dismiss {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	text-decoration: none;
+}
+
 .rsfv .sidebar .rsfv-delta-promo__tag {
 	position: absolute;
 	top: -10px;

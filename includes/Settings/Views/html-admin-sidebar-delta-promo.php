@@ -2,8 +2,8 @@
 /**
  * Admin View: sidebar card promoting Delta (deltatheme.com).
  *
- * Included by html-admin-sidebar-promo.php, which sets $rsfv_promo_studio on the
- * Video Studio screen.
+ * Included by html-admin-sidebar-promo.php, which sets $rsfv_has_pro and, on the
+ * Video Studio screen, $rsfv_promo_studio. Only PRO users can dismiss the card.
  *
  * @package RSFV
  */
@@ -21,7 +21,12 @@ $rsfv_delta_args    = array(
 $rsfv_delta_url     = add_query_arg( array_merge( $rsfv_delta_args, array( 'utm_content' => $rsfv_delta_surface ) ), 'https://deltatheme.com/' );
 $rsfv_delta_cta_url = add_query_arg( array_merge( $rsfv_delta_args, array( 'utm_content' => $rsfv_delta_surface . '-cta' ) ), 'https://deltatheme.com/' );
 ?>
-					<div class="rsfv-delta-promo">
+					<div class="rsfv-delta-promo is-dismissible">
+						<?php if ( ! empty( $rsfv_has_pro ) ) : ?>
+							<a class="notice-dismiss rsfv-dismiss-delta" href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'rsfv_dismiss_delta', '1' ), 'rsfv_dismiss_delta_promo' ) ); ?>">
+								<span class="screen-reader-text"><?php esc_html_e( 'Dismiss this notice.', 'rsfv' ); ?></span>
+							</a>
+						<?php endif; ?>
 						<span class="rsfv-delta-promo__tag"><?php esc_html_e( 'New', 'rsfv' ); ?></span>
 						<p class="rsfv-delta-promo__eyebrow"><?php esc_html_e( 'Our latest and greatest', 'rsfv' ); ?></p>
 						<div class="rsfv-delta-promo__header">
