@@ -145,12 +145,16 @@ class REST_API {
 			return rest_ensure_response( $data );
 		}
 
+		$can_edit = current_user_can( 'edit_post', $post->ID );
+
 		$data['exists']      = true;
 		$data['id']          = $post->ID;
-		$data['title']       = wp_strip_all_tags( get_the_title( $post ) );
 		$data['typeEnabled'] = in_array( $post->post_type, get_post_types(), true );
 		$data['viewable']    = $data['typeEnabled'];
-		$data['editLink']    = current_user_can( 'edit_post', $post->ID ) ? get_edit_post_link( $post->ID, 'raw' ) : '';
+		$data['editLink']    = $can_edit ? get_edit_post_link( $post->ID, 'raw' ) : '';
+
+		// Titles of non public types can be secrets, a WooCommerce coupon's title is its code.
+		$data['title'] = ( $data['typeEnabled'] || $can_edit || is_post_type_viewable( $post->post_type ) ) ? wp_strip_all_tags( get_the_title( $post ) ) : '';
 
 		if ( ! $data['viewable'] || ! FrontEnd::has_featured_video( $post->ID ) ) {
 			return rest_ensure_response( $data );

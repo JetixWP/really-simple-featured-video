@@ -191,6 +191,36 @@ class REST_API {
 	}
 
 	/**
+	 * Whether a file fits the site's upload space on a multisite network.
+	 *
+	 * Core only checks this for regular uploads, not for REST requests or sideloads.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @param int    $size File size in bytes.
+	 * @param string $file Optional path to the file. A file already in this site's
+	 *                     uploads, like an add-on's temporary file, is not counted twice.
+	 *
+	 * @return bool
+	 */
+	public static function fits_upload_space( $size, $file = '' ) {
+		if ( ! is_multisite() || get_site_option( 'upload_space_check_disabled' ) ) {
+			return true;
+		}
+
+		$uploads = wp_upload_dir( null, false );
+
+		if ( $file && 0 === strpos( wp_normalize_path( $file ), trailingslashit( wp_normalize_path( $uploads['basedir'] ) ) ) ) {
+			// Refresh the cached total so it includes this file once, then check the site is within its quota.
+			clean_dirsize_cache( $file );
+
+			return get_space_used() <= max( 0, get_space_allowed() );
+		}
+
+		return (int) $size <= (int) get_upload_space_available();
+	}
+
+	/**
 	 * Save a rendered video (and poster) as attachments and set it as the
 	 * post's featured video. Also used by add-ons that upload in other ways.
 	 *
@@ -211,6 +241,9 @@ class REST_API {
 		$video_ext = self::check_file( $video, self::VIDEO_MIMES );
 		if ( is_wp_error( $video_ext ) ) {
 			return $video_ext;
+		}
+		if ( ! self::fits_upload_space( (int) filesize( $video['tmp_name'] ), $video['tmp_name'] ) ) {
+			return new \WP_Error( 'rsfv_studio_upload_space', __( 'This site does not have enough upload space left for the video.', 'rsfv' ), array( 'status' => 413 ) );
 		}
 		$poster_ext = '';
 		if ( $poster ) {
@@ -294,6 +327,11 @@ class REST_API {
 		$files = $request->get_file_params();
 		if ( empty( $files['video'] ) ) {
 			return new \WP_Error( 'rsfv_studio_file', __( 'No video was sent.', 'rsfv' ), array( 'status' => 400 ) );
+		}
+
+		// The editor encodes videos to fit this limit. Add-ons that upload in pieces use save_generated() directly.
+		if ( is_multisite() && ! empty( $files['video']['tmp_name'] ) && file_exists( $files['video']['tmp_name'] ) && (int) filesize( $files['video']['tmp_name'] ) > (int) wp_max_upload_size() ) {
+			return new \WP_Error( 'rsfv_studio_file_size', __( 'The video is larger than this site allows.', 'rsfv' ), array( 'status' => 413 ) );
 		}
 
 		$raw = json_decode( (string) $request['composition'], true );

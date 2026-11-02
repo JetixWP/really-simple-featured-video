@@ -3,7 +3,7 @@ Contributors: jetixwp, lushkant
 Requires at least: 6.3
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -191,6 +191,27 @@ Video Studio uses these libraries and fonts:
 * Manrope, Ysabeau Office, Roboto Slab and Vollkorn fonts (SIL Open Font License 1.1), see assets/studio/fonts/LICENSE.txt
 
 == Changelog ==
+
+= 1.2.0 =
+* New: Introducing Delta, from the JetixWP team, in the Settings and Video Studio sidebars
+* Improvement: Black Friday deal on RSFV PRO in the sidebar and Upgrade tab
+* Improvement: Removed the review card from the sidebar
+* Security: Updated the Freemius SDK to 2.13.5
+* Security: Users without the unfiltered_html capability can no longer save iframes in post content. Sites where those users already have iframes in posts keep them on save, without the style and allow attributes. Use the rsfv_allow_iframes_on_content_save filter to change this
+* Security: Featured videos of password protected posts stay hidden until the password is entered. Use the rsfv_show_video_on_protected_post filter to show them
+* Security: Users can only attach videos and posters from the Media Library that they are allowed to use
+* Security: Video Studio and Bulk Import respect multisite upload limits
+* Security: Bulk Import no longer saves remote files past the upload limit
+* Security: Escaped output in the Flatsome and CIX gallery templates. CIX gallery lightbox captions no longer keep inline HTML
+* Security: Featured Video block preview no longer shows titles of private post types to users who cannot edit them
+* Security: Stronger analytics rate limit. Sites behind a proxy or CDN can pass the visitor address with the rsfv_analytics_client_ip filter
+* Fix: On pages with several products, a product could show the video of an external product listed before it
+* Fix: The Skip logged-in editors analytics setting now works. Your own visits no longer add to the counts
+* Fix: Deleting the plugin on multisite now removes analytics data from every site
+* Fix: Deleting a site on multisite now also removes its analytics tables
+* Fix: Possible fatal errors from invalid analytics report dates, and from malformed Elementor and sticky video settings
+* Fix: Possible fatal errors in the Astra Pro and Flatsome gallery templates when there is no product, or when the Astra Pro gallery loads more than once on a page
+* Fix: Settings pages no longer run off the side of the screen on phones, tablets and small laptops. The sidebar now sits below the settings on these screens
 
 = 1.1.0 =
 * New: Featured Video block for the block editor and Site Editor. Shows the featured video of the entry it is in, including inside Query Loops and templates, or of any other post you pick

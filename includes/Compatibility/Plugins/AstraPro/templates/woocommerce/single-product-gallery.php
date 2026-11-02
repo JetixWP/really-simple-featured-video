@@ -23,12 +23,113 @@ use RSFV\Plugin;
 use RSFV\Options;
 use RSFV\FrontEnd;
 
+// The template can load more than once on a page, and these must exist before the markup below.
+if ( ! function_exists( 'rsfv_get_gallery_thumbnail' ) ) {
+	/**
+	 * Get HTML for gallery thumbnail.
+	 *
+	 * @param int $attachment_id Attachment ID.
+	 * @param int $slide_number Slide Number.
+	 * @return string
+	 */
+	function rsfv_get_gallery_thumbnail( $attachment_id, $slide_number ) {
+		$gallery_thumbnail = wc_get_image_size( 'gallery_thumbnail' );
+		$thumbnail_size    = apply_filters( 'ast_gallery_thumbnail_size', array( $gallery_thumbnail['width'], $gallery_thumbnail['height'] ) );
+		$full_size         = apply_filters( 'ast_gallery_full_size', apply_filters( 'ast_product_thumbnails_large_size', 'full' ) );
+		$thumbnail_src     = wp_get_attachment_image_src( $attachment_id, $thumbnail_size );
+		$alt_text          = trim( wp_strip_all_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) );
+		$full_src          = wp_get_attachment_image_src( $attachment_id, $full_size );
+		$image             = wp_get_attachment_image( $attachment_id, $thumbnail_size );
+		$is_first_slide    = 0 === $slide_number ? 'flex-active-slide' : '';
+
+		return '<div data-slide-number="' . esc_attr( $slide_number ) . '" data-thumb="' . esc_url( isset( $thumbnail_src[0] ) ? $thumbnail_src[0] : '' ) . '" data-thumb-alt="' . esc_attr( $alt_text ) . '" class="ast-woocommerce-product-gallery__image ' . esc_attr( $is_first_slide ) . '">' . $image . '</div>';
+	}
+}
+
+if ( ! function_exists( 'rsfv_get_video_slide_number' ) ) {
+	/**
+	 * Get thumbnail slider number for gallery.
+	 *
+	 * @param bool   $has_featured_video If featured video is set.
+	 * @param bool   $has_order_change If video has order change set.
+	 * @param string $video_order Order of video.
+	 * @param array  $attachment_ids All Attachment IDs.
+	 *
+	 * @return int
+	 */
+	function rsfv_get_video_slide_number( $has_featured_video, $has_order_change, $video_order, $attachment_ids ) {
+		if ( ! $has_featured_video ) {
+			return -1;
+		}
+
+		$video_slide_number = 0;
+		$has_pro            = Plugin::get_instance()->has_pro_active();
+
+		if ( ! $has_pro ) {
+			return $video_slide_number;
+		}
+
+		if ( ! $has_order_change ) {
+			return $video_slide_number;
+		}
+
+		$attachment_count = count( $attachment_ids );
+
+		if ( 'second' === $video_order ) {
+			$video_slide_number = 1;
+		} elseif ( 'last' === $video_order ) {
+			$video_slide_number = $attachment_count + 1;
+		}
+
+		return $video_slide_number;
+	}
+}
+
+if ( ! function_exists( 'rsfv_display_video_markup' ) ) {
+	/**
+	 * Display featured video markup.
+	 *
+	 * @param int    $product_id Product ID.
+	 * @param string $video_slide_attributes HTML attributes for video markup.
+	 * @param bool   $thumbnail_only If only thumbnail markup required.
+	 *
+	 * @return void
+	 */
+	function rsfv_display_video_markup( $product_id, $video_slide_attributes, $thumbnail_only = false ) {
+		echo wp_kses( Compatibility::woo_video_markup( $product_id, 'ast-woocommerce-product-gallery__image', $video_slide_attributes, $thumbnail_only ), Plugin::get_instance()->frontend_provider->get_allowed_html() );
+	}
+}
+
+if ( ! function_exists( 'rsfv_has_gallery_slider' ) ) {
+	/**
+	 * Checks whether gallery slider nav should be active.
+	 *
+	 * @param bool  $has_featured_video If featured video is set.
+	 * @param array $attachment_ids All Attachment IDs.
+	 *
+	 * @return bool
+	 */
+	function rsfv_has_gallery_slider( $has_featured_video, $attachment_ids ) {
+		$attachment_count = count( $attachment_ids ) + 1;
+
+		if ( $has_featured_video ) {
+			return $attachment_count + 1 <= 4;
+		}
+
+		return $attachment_count <= 4;
+	}
+}
+
 // Note: `wc_get_gallery_image_html` was added in WC 3.3.2 and did not exist prior. This check protects against theme overrides being used on older versions of WC.
 if ( ! function_exists( 'wc_get_gallery_image_html' ) ) {
 	return;
 }
 
 global $product;
+
+if ( ! $product instanceof WC_Product ) {
+	return;
+}
 
 $columns            = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
 $post_thumbnail_id  = $product->get_image_id();
@@ -168,94 +269,3 @@ $has_featured_video     = FrontEnd::has_featured_video( $product->get_id() );
 		</div>
 	<?php } ?>
 </div>
-
-<?php
-
-/**
- * Get HTML for gallery thumbnail.
- *
- * @param int $attachment_id Attachment ID.
- * @param int $slide_number Slide Number.
- * @return string
- */
-function rsfv_get_gallery_thumbnail( $attachment_id, $slide_number ) {
-	$gallery_thumbnail = wc_get_image_size( 'gallery_thumbnail' );
-	$thumbnail_size    = apply_filters( 'ast_gallery_thumbnail_size', array( $gallery_thumbnail['width'], $gallery_thumbnail['height'] ) );
-	$full_size         = apply_filters( 'ast_gallery_full_size', apply_filters( 'ast_product_thumbnails_large_size', 'full' ) );
-	$thumbnail_src     = wp_get_attachment_image_src( $attachment_id, $thumbnail_size );
-	$alt_text          = trim( wp_strip_all_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) );
-	$full_src          = wp_get_attachment_image_src( $attachment_id, $full_size );
-	$image             = wp_get_attachment_image( $attachment_id, $thumbnail_size );
-	$is_first_slide    = 0 === $slide_number ? 'flex-active-slide' : '';
-
-	return '<div data-slide-number="' . esc_attr( $slide_number ) . '" data-thumb="' . esc_url( isset( $thumbnail_src[0] ) ? $thumbnail_src[0] : '' ) . '" data-thumb-alt="' . esc_attr( $alt_text ) . '" class="ast-woocommerce-product-gallery__image ' . esc_attr( $is_first_slide ) . '">' . $image . '</div>';
-}
-
-/**
- * Get thumbnail slider number for gallery.
- *
- * @param bool   $has_featured_video If featured video is set.
- * @param bool   $has_order_change If video has order change set.
- * @param string $video_order Order of video.
- * @param array  $attachment_ids All Attachment IDs.
- *
- * @return int
- */
-function rsfv_get_video_slide_number( $has_featured_video, $has_order_change, $video_order, $attachment_ids ) {
-	if ( ! $has_featured_video ) {
-		return -1;
-	}
-
-	$video_slide_number = 0;
-	$has_pro            = Plugin::get_instance()->has_pro_active();
-
-	if ( ! $has_pro ) {
-		return $video_slide_number;
-	}
-
-	if ( ! $has_order_change ) {
-		return $video_slide_number;
-	}
-
-	$attachment_count = count( $attachment_ids );
-
-	if ( 'second' === $video_order ) {
-		$video_slide_number = 1;
-	} elseif ( 'last' === $video_order ) {
-		$video_slide_number = $attachment_count + 1;
-	}
-
-	return $video_slide_number;
-}
-
-/**
- * Display featured video markup.
- *
- * @param int    $product_id Product ID.
- * @param string $video_slide_attributes HTML attributes for video markup.
- * @param bool   $thumbnail_only If only thumbnail markup required.
- *
- * @return void
- */
-function rsfv_display_video_markup( $product_id, $video_slide_attributes, $thumbnail_only = false ) {
-	echo wp_kses( Compatibility::woo_video_markup( $product_id, 'ast-woocommerce-product-gallery__image', $video_slide_attributes, $thumbnail_only ), Plugin::get_instance()->frontend_provider->get_allowed_html() );
-}
-
-/**
- * Checks whether gallery slider nav should be active.
- *
- * @param bool  $has_featured_video If featured video is set.
- * @param array $attachment_ids All Attachment IDs.
- *
- * @return bool
- */
-function rsfv_has_gallery_slider( $has_featured_video, $attachment_ids ) {
-	$attachment_count = count( $attachment_ids ) + 1;
-
-	if ( $has_featured_video ) {
-		return $attachment_count + 1 <= 4;
-	}
-
-	return $attachment_count <= 4;
-}
-?>

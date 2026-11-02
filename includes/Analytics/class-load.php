@@ -39,6 +39,8 @@ class Load {
 	 * Constructor.
 	 */
 	public function __construct() {
+		add_filter( 'wpmu_drop_tables', array( Install::class, 'add_site_tables' ), 10, 2 );
+
 		Sync::hooks();
 		REST_API::hooks();
 		Tracker::hooks();

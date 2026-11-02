@@ -34,6 +34,10 @@ class Metabox {
 		// Saving post by updating "featured_video_uploading" meta key.
 		add_action( 'save_post', array( $this, 'save_video' ), 10, 1 );
 
+		// Attachment IDs in these keys get resolved to file URLs, so the Custom Fields box needs the same limit as the media picker.
+		add_filter( 'auth_post_meta_' . RSFV_META_KEY, array( $this, 'can_edit_attachment_meta' ), 10, 4 );
+		add_filter( 'auth_post_meta_' . RSFV_POSTER_META_KEY, array( $this, 'can_edit_attachment_meta' ), 10, 4 );
+
 		// Allows display property at style attribute for wp_kses.
 		add_filter(
 			'safe_style_css',
@@ -54,6 +58,66 @@ class Metabox {
 			self::$instance = new self();
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Limit Custom Fields edits of attachment meta to people who can use the media library.
+	 *
+	 * @param bool   $allowed  Whether the user can edit this meta.
+	 * @param string $meta_key Meta key.
+	 * @param int    $post_id  Post ID.
+	 * @param int    $user_id  User ID.
+	 *
+	 * @return bool
+	 */
+	public function can_edit_attachment_meta( $allowed, $meta_key, $post_id, $user_id ) {
+		return $allowed && user_can( $user_id, 'upload_files' );
+	}
+
+	/**
+	 * Whether the current user can set an attachment as a post's video or poster.
+	 *
+	 * Without this anyone who can edit a post could read the file URL of any
+	 * attachment by ID. A value that is already stored stays allowed, so posts keep
+	 * saving whatever they hold today.
+	 *
+	 * @since 1.2.0
+	 *
+	 * @param int        $post_id       Post being edited.
+	 * @param string     $meta_key      Meta key the ID is stored in.
+	 * @param int|string $attachment_id Submitted attachment ID.
+	 * @param string     $type          Expected type, video or image.
+	 *
+	 * @return bool
+	 */
+	public static function can_use_attachment( $post_id, $meta_key, $attachment_id, $type ) {
+		$attachment_id = absint( $attachment_id );
+
+		if ( ! $attachment_id || absint( get_post_meta( $post_id, $meta_key, true ) ) === $attachment_id ) {
+			return true;
+		}
+
+		$attachment = get_post( $attachment_id );
+
+		// The media library shows inherit status files to anyone with upload_files.
+		$allowed = $attachment
+			&& 'attachment' === $attachment->post_type
+			&& 0 === strpos( (string) $attachment->post_mime_type, $type . '/' )
+			&& ( current_user_can( 'read_post', $attachment_id ) || ( current_user_can( 'upload_files' ) && 'inherit' === $attachment->post_status ) );
+
+		/**
+		 * Filters whether an attachment can be set as a post's video or poster.
+		 *
+		 * For plugins that serve media from another site, where the ID has no local attachment.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @param bool   $allowed       Whether the current user can use the attachment.
+		 * @param int    $attachment_id Attachment ID.
+		 * @param int    $post_id       Post being edited.
+		 * @param string $type          Expected type, video or image.
+		 */
+		return (bool) apply_filters( 'rsfv_can_use_attachment', $allowed, $attachment_id, $post_id, $type );
 	}
 
 	/**
@@ -290,7 +354,7 @@ class Metabox {
 		if ( isset( $_POST[ RSFV_META_KEY ] ) ) {
 			$video_id = absint( wp_unslash( $_POST[ RSFV_META_KEY ] ) );
 			$shown    = isset( $loaded['video'] ) ? absint( $loaded['video'] ) : 0;
-			if ( ! self::changed_elsewhere( $post_id, 'video', $loaded, $video_id, $shown ) ) {
+			if ( ! self::changed_elsewhere( $post_id, 'video', $loaded, $video_id, $shown ) && self::can_use_attachment( $post_id, RSFV_META_KEY, $video_id, 'video' ) ) {
 				update_post_meta( $post_id, RSFV_META_KEY, $video_id );
 			}
 		}
@@ -306,7 +370,7 @@ class Metabox {
 		if ( isset( $_POST[ RSFV_POSTER_META_KEY ] ) ) {
 			$poster_id = absint( wp_unslash( $_POST[ RSFV_POSTER_META_KEY ] ) );
 			$shown     = isset( $loaded['poster'] ) ? absint( $loaded['poster'] ) : 0;
-			if ( ! self::changed_elsewhere( $post_id, 'poster', $loaded, $poster_id, $shown ) ) {
+			if ( ! self::changed_elsewhere( $post_id, 'poster', $loaded, $poster_id, $shown ) && self::can_use_attachment( $post_id, RSFV_POSTER_META_KEY, $poster_id, 'image' ) ) {
 				update_post_meta( $post_id, RSFV_POSTER_META_KEY, $poster_id );
 			}
 		}

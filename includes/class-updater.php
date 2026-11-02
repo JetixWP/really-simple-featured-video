@@ -38,6 +38,7 @@ class Updater {
 			'0.5.0' => 'upgrade_0_5',
 			'0.5.1' => 'upgrade_0_5',
 			'0.90.0' => 'upgrade_0_90',
+			'1.2.0' => 'upgrade_1_2',
 		);
 
 		$version = get_option( self::OPTION, '0.0.3' );
@@ -112,5 +113,37 @@ class Updater {
 		require_once RSFV_PLUGIN_DIR . 'includes/Analytics/class-install.php';
 
 		\RSFV\Analytics\Install::activate();
+	}
+
+	/**
+	 * Upgrade to 1.2.0.
+	 *
+	 * Iframes are no longer allowed when people without unfiltered_html save content.
+	 * If any of them already have iframes in posts, keep those iframes on the next
+	 * save instead of silently removing them. See FrontEnd::limit_iframes_on_save().
+	 *
+	 * @return void
+	 */
+	protected function upgrade_1_2() {
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One time upgrade scan.
+		$authors = $wpdb->get_col( "SELECT DISTINCT post_author FROM {$wpdb->posts} WHERE post_content LIKE '%<iframe%' AND post_type NOT IN ('revision', 'attachment', 'nav_menu_item') AND post_status NOT IN ('auto-draft', 'trash', 'inherit')" );
+
+		// Keep iframes if the scan failed, or on multisite, where site admins lack unfiltered_html.
+		if ( $wpdb->last_error || ( $authors && is_multisite() ) ) {
+			Options::get_instance()->set( 'legacy_iframes_on_save', true );
+			return;
+		}
+
+		foreach ( $authors as $author_id ) {
+			$author = get_userdata( (int) $author_id );
+
+			// A missing author could have been anyone, so keep their iframes too.
+			if ( ! $author || ! user_can( $author, 'unfiltered_html' ) ) {
+				Options::get_instance()->set( 'legacy_iframes_on_save', true );
+				return;
+			}
+		}
 	}
 }

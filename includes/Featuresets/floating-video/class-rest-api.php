@@ -505,9 +505,13 @@ class REST_API {
 				if ( is_array( $target_taxonomies ) ) {
 					$sanitized = array();
 					foreach ( $target_taxonomies as $tax_data ) {
+						if ( ! is_array( $tax_data ) ) {
+							continue;
+						}
+
 						$sanitized[] = array(
 							'taxonomy' => sanitize_key( $tax_data['taxonomy'] ?? '' ),
-							'terms'    => array_map( 'absint', $tax_data['terms'] ?? array() ),
+							'terms'    => array_map( 'absint', (array) ( $tax_data['terms'] ?? array() ) ),
 						);
 					}
 					update_post_meta( $post_id, '_rsfv_fv_target_taxonomies', $sanitized );

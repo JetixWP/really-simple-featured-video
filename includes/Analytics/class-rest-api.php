@@ -157,7 +157,7 @@ class REST_API {
 			);
 		}
 
-		if ( Stats::ignore_editors() && is_user_logged_in() && current_user_can( 'edit_posts' ) ) {
+		if ( Stats::ignore_editors() && self::is_editor_request() ) {
 			return new WP_REST_Response( null, 204 );
 		}
 
@@ -206,6 +206,14 @@ class REST_API {
 			);
 		}
 
+		// Events for unknown videos are dropped here, so they use no quota and write nothing.
+		$accepted = array_filter(
+			$accepted,
+			static function ( $item ) {
+				return Registry::exists( $item['video_id'] );
+			}
+		);
+
 		if ( empty( $accepted ) ) {
 			return new WP_REST_Response( null, 204 );
 		}
@@ -219,10 +227,6 @@ class REST_API {
 		}
 
 		foreach ( $accepted as $item ) {
-			if ( ! Registry::exists( $item['video_id'] ) ) {
-				continue;
-			}
-
 			if ( in_array( $item['event'], array( 'view', 'play' ), true ) ) {
 				Stats::increment( $item['video_id'], $item['event'], $item['surface'] );
 			}
@@ -330,24 +334,88 @@ class REST_API {
 	}
 
 	/**
-	 * A short-lived cap keyed by a salted hash of the IP. The IP is not stored.
+	 * A cap of 600 events per 10 minutes, keyed by a salted hash of the IP. The IP is not stored.
+	 *
+	 * The window ends 10 minutes after it starts, however busy the visitor is. A count
+	 * saved by an older version has no start time, so it just begins a new window.
 	 *
 	 * @param int $count Events about to be written.
 	 * @return bool
 	 */
 	private static function within_rate_limit( $count ) {
-		$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
-		$key = 'rsfv_ar_' . substr( wp_hash( $ip ), 0, 32 );
-		$used = (int) get_transient( $key );
-		$count = absint( $count );
+		$key    = 'rsfv_ar_' . substr( wp_hash( self::rate_limit_ip() ), 0, 32 );
+		$now    = time();
+		$length = 10 * MINUTE_IN_SECONDS;
+		$window = get_transient( $key );
 
-		if ( ( $used + $count ) > 600 ) {
+		if ( ! is_array( $window ) || ! isset( $window['start'], $window['used'] ) || ( $now - (int) $window['start'] ) >= $length ) {
+			$window = array(
+				'start' => $now,
+				'used'  => 0,
+			);
+		}
+
+		$used = (int) $window['used'] + absint( $count );
+
+		if ( $used > 600 ) {
 			return false;
 		}
 
-		set_transient( $key, $used + $count, 10 * MINUTE_IN_SECONDS );
+		$window['used'] = $used;
+
+		set_transient( $key, $window, max( 1, $length - ( $now - (int) $window['start'] ) ) );
 
 		return true;
+	}
+
+	/**
+	 * The address the rate limit counts against.
+	 *
+	 * One IPv6 customer often holds a whole /64, so those addresses share one count.
+	 *
+	 * @return string
+	 */
+	private static function rate_limit_ip() {
+		$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+
+		/**
+		 * Filters the visitor address used by the analytics rate limit.
+		 *
+		 * Behind a proxy or CDN every visitor can arrive from the same address. Sites
+		 * there can return the real one, read only from a header their proxy controls.
+		 *
+		 * @since 1.2.0
+		 *
+		 * @param string $ip Visitor address. Defaults to REMOTE_ADDR.
+		 */
+		$ip = (string) apply_filters( 'rsfv_analytics_client_ip', $ip );
+
+		if ( ! function_exists( 'inet_pton' ) || ! filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 ) ) {
+			return $ip;
+		}
+
+		$packed = inet_pton( $ip );
+
+		// IPv4 written as IPv6 (::ffff:192.0.2.1) is one visitor, not a /64.
+		if ( false === $packed || str_repeat( "\0", 10 ) . "\xff\xff" === substr( $packed, 0, 12 ) ) {
+			return $ip;
+		}
+
+		return bin2hex( substr( $packed, 0, 8 ) );
+	}
+
+	/**
+	 * Whether this visit comes from someone who can edit posts.
+	 *
+	 * This route has no nonce, so REST treats every visitor as logged out. The login
+	 * cookie is read directly. It only decides whether the visit is counted.
+	 *
+	 * @return bool
+	 */
+	private static function is_editor_request() {
+		$user_id = wp_validate_auth_cookie( '', 'logged_in' );
+
+		return $user_id && user_can( $user_id, 'edit_posts' );
 	}
 
 	/**

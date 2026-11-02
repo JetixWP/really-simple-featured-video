@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || exit;
 
 use RSFV\Options;
 use RSFV\Plugin;
+use RSFV\Renderer;
 use RSFV\Shortcode;
 use RSFV\Compatibility\Plugins\Base_Compatibility;
 use RSFV\Featuresets\Hover_Autoplay\Init as Hover_Autoplay;
@@ -111,6 +112,8 @@ class Compatibility extends Base_Compatibility {
 		if ( $options->has( 'product_video_external_url' ) && $product_video_external_url ) {
 			add_filter( 'rsfv_get_video_source', array( $this, 'set_external_product_url' ), 10, 2 );
 			add_filter( 'rsfv_get_woo_video_source', array( $this, 'set_external_product_url' ), 10, 2 );
+			add_filter( 'rsfv_get_embed_video_url', array( $this, 'filter_external_embed_url' ), 10, 2 );
+			add_filter( 'rsfv_get_embed_woo_video_url', array( $this, 'filter_external_embed_url' ), 10, 2 );
 		}
 	}
 
@@ -314,9 +317,37 @@ class Compatibility extends Base_Compatibility {
 	 * @return string
 	 */
 	public function set_external_product_url( $video_source, $product_id ) {
+		return $this->get_external_embed_url( $video_source, $product_id ) ? 'embed' : $video_source;
+	}
+
+	/**
+	 * Uses an external product's URL as its embed URL, when that is where its video comes from.
+	 *
+	 * @param string $embed_url Embed URL saved on the post.
+	 * @param int    $product_id Post ID.
+	 *
+	 * @return string
+	 */
+	public function filter_external_embed_url( $embed_url, $product_id ) {
+		$video_source = get_post_meta( $product_id, RSFV_SOURCE_META_KEY, true );
+		$external_url = $this->get_external_embed_url( $video_source ? $video_source : 'self', $product_id );
+
+		return $external_url ? $external_url : $embed_url;
+	}
+
+	/**
+	 * Get the URL an external product's video comes from: a product with no video
+	 * of its own, whose product URL points to a supported video host.
+	 *
+	 * @param string $video_source Video source type.
+	 * @param int    $product_id Post ID.
+	 *
+	 * @return string URL, or empty if this product does not use one.
+	 */
+	private function get_external_embed_url( $video_source, $product_id ) {
 		// Only modify for product post type.
 		if ( 'product' !== get_post_type( $product_id ) ) {
-			return $video_source;
+			return '';
 		}
 
 		$product      = wc_get_product( $product_id );
@@ -329,36 +360,18 @@ class Compatibility extends Base_Compatibility {
 			$video_url = get_post_meta( $product_id, RSFV_EMBED_META_KEY, true );
 		}
 
-		if ( '' === $video_url && 'external' === $product_type ) {
-			$options              = Options::get_instance();
-			$external_url_enabled = $options->get( 'product_video_external_url', false );
-			$external_url         = get_post_meta( $product_id, '_product_url', true );
-
-			if ( $external_url_enabled ) {
-				$frontend   = Plugin::get_instance()->frontend_provider;
-				$embed_data = $frontend->parse_embed_url( $external_url );
-
-				if ( is_array( $embed_data ) && isset( $embed_data['host'] ) && in_array( $embed_data['host'], array( 'youtube', 'vimeo', 'dailymotion' ), true ) ) {
-					$video_source = 'embed';
-
-					add_filter(
-						'rsfv_get_embed_woo_video_url',
-						function () use ( $external_url ) {
-							return esc_url( $external_url );
-						}
-					);
-
-					add_filter(
-						'rsfv_get_embed_video_url',
-						function () use ( $external_url ) {
-							return esc_url( $external_url );
-						}
-					);
-				}
-			}
+		if ( '' !== $video_url || 'external' !== $product_type || ! Options::get_instance()->get( 'product_video_external_url', false ) ) {
+			return '';
 		}
 
-		return $video_source;
+		$external_url = get_post_meta( $product_id, '_product_url', true );
+		$embed_data   = Plugin::get_instance()->frontend_provider->parse_embed_url( $external_url );
+
+		if ( is_array( $embed_data ) && isset( $embed_data['host'] ) && in_array( $embed_data['host'], array( 'youtube', 'vimeo', 'dailymotion' ), true ) ) {
+			return esc_url( $external_url );
+		}
+
+		return '';
 	}
 
 	/**
@@ -394,6 +407,10 @@ class Compatibility extends Base_Compatibility {
 	 * @return string
 	 */
 	public static function woo_video_markup( $id, $wrapper_class = 'woocommerce-product-gallery__image', $wrapper_attributes = '', $thumbnail_only = false, $is_archives = false ) {
+		if ( Renderer::is_password_locked( $id ) ) {
+			return '';
+		}
+
 		$post_type = get_post_type( $id ) ?? 'product';
 
 		// Get enabled post types.

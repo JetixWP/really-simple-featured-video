@@ -113,6 +113,10 @@ class FrontEnd {
 			return $markup;
 		}
 
+		if ( Renderer::is_password_locked( $post ) ) {
+			return $markup;
+		}
+
 		// Get enabled post types.
 		$post_types = get_post_types();
 
@@ -178,6 +182,10 @@ class FrontEnd {
 		$post = get_post( $post_id );
 
 		if ( 'object' !== gettype( $post ) ) {
+			return false;
+		}
+
+		if ( Renderer::is_password_locked( $post ) ) {
 			return false;
 		}
 
@@ -486,6 +494,48 @@ class FrontEnd {
 	}
 
 	/**
+	 * Stop the player markup allow list from letting people store iframes in content.
+	 *
+	 * Our iframes are generated when a page renders and are never stored, so the
+	 * allowance is only needed for display. Sites where people without
+	 * unfiltered_html already had iframes in their posts keep them on save, without
+	 * the attributes that allow page overlays and device permission prompts.
+	 *
+	 * Background jobs have no user, so WordPress filters their saves as well. They
+	 * only write content back, so they keep what is already stored.
+	 *
+	 * @param array $tags Allowed tags.
+	 *
+	 * @return array
+	 */
+	private function limit_iframes_on_save( $tags ) {
+		if ( empty( $tags['iframe'] ) ) {
+			return $tags;
+		}
+
+		if ( ! doing_filter( 'content_save_pre' ) && ! doing_filter( 'excerpt_save_pre' ) && ! doing_filter( 'content_filtered_save_pre' ) ) {
+			return $tags;
+		}
+
+		if ( ! is_user_logged_in() && ( wp_doing_cron() || ( defined( 'WP_CLI' ) && WP_CLI ) || doing_action( 'action_scheduler_run_queue' ) ) ) {
+			return $tags;
+		}
+
+		/**
+		 * Filters whether people without unfiltered_html can keep iframes when saving content.
+		 *
+		 * @param bool $allow Defaults to true only where the 1.2.0 upgrade found such iframes.
+		 */
+		if ( apply_filters( 'rsfv_allow_iframes_on_content_save', (bool) Options::get_instance()->get( 'legacy_iframes_on_save' ) ) ) {
+			unset( $tags['iframe']['style'], $tags['iframe']['allow'] );
+		} else {
+			unset( $tags['iframe'] );
+		}
+
+		return $tags;
+	}
+
+	/**
 	 * Override wp_kses_post allowed html array to make way for videos.
 	 *
 	 * @param array  $allowed_html List of html tags.
@@ -497,7 +547,7 @@ class FrontEnd {
 
 		// Keep only for 'post' context.
 		if ( 'post' === $context ) {
-			$additional_html = $this->get_allowed_html();
+			$additional_html = $this->limit_iframes_on_save( $this->get_allowed_html() );
 
 			$updated_tags = $allowed_html;
 

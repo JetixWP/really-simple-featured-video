@@ -13,9 +13,9 @@ jobs:
     name: Push to WP.org
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a # main
       - name: WordPress.org plugin asset/readme update
-        uses: 10up/action-wordpress-plugin-asset-update@develop
+        uses: 10up/action-wordpress-plugin-asset-update@3af0a1fe85f5f674c36e3c90bb6331e6fdaafdfd # develop
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}

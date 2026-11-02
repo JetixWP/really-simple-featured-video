@@ -100,6 +100,28 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	}
 }
 
+/* The 920px minimum only fits from 1150px up, once the admin menu and page gutters are counted. */
+@media screen and (max-width: 1149px) {
+	.wrap.rsfv:not(.rsfv-tools) .plugin-header .plugin-header-wrap,
+	.rsfv-wrapper .rsfv-nav-tab-wrapper,
+	.rsfv-wrapper > .tab-content {
+		min-width: 0;
+	}
+
+	.wrap.rsfv:not(.rsfv-tools) .plugin-header .plugin-header-wrap {
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.rsfv-wrapper > .tab-content {
+		display: block;
+	}
+
+	.rsfv-wrapper > .tab-content > .sidebar {
+		margin-top: 30px;
+	}
+}
+
 .rsfv-wrapper .rsfv-nav-tab-wrapper {
 	border-bottom: none;
 }
@@ -763,29 +785,12 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	font-size: 15px;
 }
 
+/* RSFV PRO's sidebar box uses these. */
 .rsfv .sidebar .notice-box {
 	position: relative;
 	margin-bottom: 24px;
 	padding-right: 40px;
 	border-radius: 4px;
-}
-
-.rsfv .sidebar .notice-box .notice-dismiss {
-	position: absolute;
-	top: 0;
-	right: 0;
-	z-index: 1;
-	text-decoration: none;
-}
-
-.rsfv .notice-box .button.button-primary {
-	font-size: 16px;
-	width: 100%;
-	padding: 6px 0;
-	text-align: center;
-	color: #fff;
-	display: inline-block;
-	box-sizing: border-box;
 }
 
 .rsfv .upgrade-btn {
@@ -850,7 +855,7 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	border-radius: 4px;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal {
+.rsfv .sidebar .upgrade-box .rsfv-deal {
 	margin-top: 8px;
 	padding: 16px;
 	background: #fff;
@@ -859,7 +864,7 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	text-align: center;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__label {
+.rsfv .sidebar .upgrade-box .rsfv-deal__label {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -873,7 +878,7 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	color: var(--jwp-wtc__color-brand);
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__badge {
+.rsfv .sidebar .upgrade-box .rsfv-deal__badge {
 	display: inline-block;
 	padding: 2px 8px;
 	border-radius: 999px;
@@ -884,14 +889,14 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	white-space: nowrap;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__plans {
+.rsfv .sidebar .upgrade-box .rsfv-deal__plans {
 	list-style: none;
 	margin: 0 0 10px;
 	padding: 0;
 	text-align: left;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__plans li {
+.rsfv .sidebar .upgrade-box .rsfv-deal__plans li {
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
@@ -902,44 +907,44 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	font-size: 14px;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__plans li:first-child {
+.rsfv .sidebar .upgrade-box .rsfv-deal__plans li:first-child {
 	border-top: 0;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__plan em {
+.rsfv .sidebar .upgrade-box .rsfv-deal__plan em {
 	display: block;
 	font-size: 12px;
 	font-style: normal;
 	color: var(--jwp-wtc__color-brand);
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__amounts {
+.rsfv .sidebar .upgrade-box .rsfv-deal__amounts {
 	white-space: nowrap;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__amounts s {
+.rsfv .sidebar .upgrade-box .rsfv-deal__amounts s {
 	color: #787c82;
 	font-size: 13px;
 	margin-right: 4px;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__amounts strong {
+.rsfv .sidebar .upgrade-box .rsfv-deal__amounts strong {
 	font-size: 20px;
 	line-height: 1;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__note,
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__secure {
+.rsfv .sidebar .upgrade-box .rsfv-deal__note,
+.rsfv .sidebar .upgrade-box .rsfv-deal__secure {
 	margin: 0 0 10px;
 	font-size: 12px;
 	color: #50575e;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal__secure {
+.rsfv .sidebar .upgrade-box .rsfv-deal__secure {
 	margin: 8px 0 0;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-anniversary-deal .button-primary {
+.rsfv .sidebar .upgrade-box .rsfv-deal .button-primary {
 	width: 100%;
 	padding: 8px 0;
 	font-size: 15px;
@@ -1008,6 +1013,130 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	.rsfv.upgrade form {
 		padding-bottom: 250px;
 	}
+}
+
+/**
+ * Settings sidebar Delta card.
+ */
+.rsfv .sidebar .rsfv-delta-promo {
+	position: relative;
+	margin-bottom: 24px;
+	padding: 25px 30px;
+	background: #fff;
+	border: 1px solid #dcdcdc;
+	border-radius: 4px;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .notice-dismiss {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	text-decoration: none;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__tag {
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	padding: 4px 8px;
+	background: #15171b;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__eyebrow {
+	margin: 0 0 12px;
+	color: #646970;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__header {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 15px;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__header img {
+	flex: 0 0 48px;
+	width: 48px;
+	height: 48px;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__header h3 {
+	margin: 0;
+	line-height: 1.4;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__header h3 a {
+	color: #15171b;
+	text-decoration: none;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__header h3 a:hover,
+.rsfv .sidebar .rsfv-delta-promo__header h3 a:focus {
+	text-decoration: underline;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .desc {
+	margin: 0 0 15px;
+	font-size: 15px;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .rsfv-upgrade-features {
+	margin: 0 0 15px;
+	padding: 0;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .rsfv-upgrade-features li {
+	margin: 0 0 8px;
+	font-size: 14px;
+	line-height: 1.45;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__pricing {
+	margin: 0 0 12px;
+	color: #1d1d1d;
+	font-size: 14px;
+	font-style: italic;
+}
+
+.rsfv .sidebar .rsfv-delta-promo__support {
+	margin: 0 0 18px;
+	color: #50575e;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .button-primary {
+	display: block;
+	width: 100%;
+	padding: 8px 0;
+	background: #15171b;
+	border-color: #15171b;
+	box-sizing: border-box;
+	color: #fff;
+	font-size: 15px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.rsfv .sidebar .rsfv-delta-promo .button-primary:active,
+.rsfv .sidebar .rsfv-delta-promo .button-primary:focus,
+.rsfv .sidebar .rsfv-delta-promo .button-primary:hover {
+	background: #26292a;
+	border-color: #26292a;
+	color: #fff !important;
 }
 
 /* Promo icons: one WordPress dashicon style for every promo card. */

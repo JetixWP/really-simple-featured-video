@@ -17,6 +17,7 @@ use WP_Post;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
+use RSFV\Studio\REST_API as Studio_REST_API;
 use function RSFV\Settings\get_post_types;
 
 defined( 'ABSPATH' ) || exit;
@@ -521,7 +522,18 @@ class Bulk_Import {
 
 		$this->load_media_api();
 
+		// A server can leave out or misstate the size above. Stop one byte past the limit, so the size check below still rejects it.
+		$limit_download = static function ( $args ) use ( $max ) {
+			if ( ! empty( $args['stream'] ) ) {
+				$args['limit_response_size'] = $max + 1;
+			}
+
+			return $args;
+		};
+
+		add_filter( 'http_request_args', $limit_download );
 		$tmp = download_url( $url, $this->download_timeout() );
+		remove_filter( 'http_request_args', $limit_download );
 
 		if ( is_wp_error( $tmp ) ) {
 			return new WP_Error( 'download_failed' );
@@ -529,7 +541,7 @@ class Bulk_Import {
 
 		$size = file_exists( $tmp ) ? (int) filesize( $tmp ) : 0;
 
-		if ( $size < 1 || $size > $max ) {
+		if ( $size < 1 || $size > $max || ! Studio_REST_API::fits_upload_space( $size ) ) {
 			wp_delete_file( $tmp );
 			return new WP_Error( 'too_large' );
 		}
@@ -594,7 +606,7 @@ class Bulk_Import {
 
 		$size = isset( $file['size'] ) ? (int) $file['size'] : 0;
 
-		if ( $size < 1 || $size > (int) wp_max_upload_size() ) {
+		if ( $size < 1 || $size > (int) wp_max_upload_size() || ! Studio_REST_API::fits_upload_space( $size ) ) {
 			return new WP_Error( 'too_large' );
 		}
 

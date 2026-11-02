@@ -14,6 +14,10 @@ use function RSFV\Settings\get_post_types;
 
 global $post, $product;
 
+if ( ! $product instanceof WC_Product ) {
+	return;
+}
+
 $attachment_ids = $product->get_gallery_image_ids();
 $post_thumbnail = has_post_thumbnail();
 $thumb_count    = count( $attachment_ids );
@@ -70,7 +74,7 @@ if ( $attachment_ids || $render_without_attachments || $has_video_thumbnail ) {
 	$gallery_class[] = 'slider row row-small row-slider slider-nav-small small-columns-4';
 	$gallery_class   = apply_filters( 'flatsome_single_product_thumbnails_classes', $gallery_class );
 	?>
-	<div class="<?php echo implode( ' ', $gallery_class ); ?>"
+	<div class="<?php echo esc_attr( implode( ' ', $gallery_class ) ); ?>"
 		data-flickity-options='{
 			"cellAlign": "<?php echo $thumb_cell_align; ?>",
 			"wrapAround": false,
@@ -109,7 +113,7 @@ if ( $attachment_ids || $render_without_attachments || $has_video_thumbnail ) {
 				$image_id  = get_post_thumbnail_id( $post->ID );
 				$image     = wp_get_attachment_image_src( $image_id, apply_filters( 'woocommerce_gallery_thumbnail_size', 'woocommerce_' . $image_size ) );
 				$image_alt = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-				$image     = '<img src="' . $image[0] . '" alt="' . $image_alt . '" width="' . $gallery_thumbnail['width'] . '" height="' . $gallery_thumbnail['height'] . '" class="attachment-woocommerce_thumbnail" />';
+				$image     = '<img src="' . esc_url( $image[0] ) . '" alt="' . esc_attr( $image_alt ) . '" width="' . absint( $gallery_thumbnail['width'] ) . '" height="' . absint( $gallery_thumbnail['height'] ) . '" class="attachment-woocommerce_thumbnail" />';
 
 				echo $image;
 				?>
@@ -129,7 +133,7 @@ if ( $attachment_ids || $render_without_attachments || $has_video_thumbnail ) {
 			}
 
 			$image_alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
-			$image     = '<img src="' . $image[0] . '" alt="' . $image_alt . '" width="' . $gallery_thumbnail['width'] . '" height="' . $gallery_thumbnail['height'] . '"  class="attachment-woocommerce_thumbnail" />';
+			$image     = '<img src="' . esc_url( $image[0] ) . '" alt="' . esc_attr( $image_alt ) . '" width="' . absint( $gallery_thumbnail['width'] ) . '" height="' . absint( $gallery_thumbnail['height'] ) . '"  class="attachment-woocommerce_thumbnail" />';
 
 			echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', sprintf( '<div class="col"><a>%s</a></div>', $image ), $attachment_id, $post->ID, $image_class );
 
