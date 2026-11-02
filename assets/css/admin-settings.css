@@ -766,20 +766,31 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	}
 }
 
-.rsfv .sidebar .upgrade-box {
+.rsfv .sidebar .upgrade-box,
+.rsfv .notice-box {
 	background: #fff;
 	border: 1px solid #dcdcdc;
 	padding: 5px 30px 25px;
 }
 
 
-.rsfv .sidebar .upgrade-box > * {
+.rsfv .sidebar .upgrade-box > *,
+.rsfv .notice-box > * {
 	margin-bottom: 15px;
 }
 
 .rsfv .sidebar .upgrade-box .desc,
+.rsfv .notice-box .desc,
 .rsfv .sidebar .upgrade-box li {
 	font-size: 15px;
+}
+
+/* RSFV PRO's sidebar box uses these. */
+.rsfv .sidebar .notice-box {
+	position: relative;
+	margin-bottom: 24px;
+	padding-right: 40px;
+	border-radius: 4px;
 }
 
 .rsfv .upgrade-btn {
