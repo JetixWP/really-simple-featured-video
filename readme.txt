@@ -193,8 +193,6 @@ Video Studio uses these libraries and fonts:
 == Changelog ==
 
 = 1.2.0 =
-* New: Introducing Delta, from the JetixWP team, in the Settings and Video Studio sidebars
-* Improvement: Black Friday deal on RSFV PRO in the sidebar and Upgrade tab
 * Improvement: Removed the review card from the sidebar
 * Security: Updated the Freemius SDK to 2.13.5
 * Security: Users without the unfiltered_html capability can no longer save iframes in post content. Sites where those users already have iframes in posts keep them on save, without the style and allow attributes. Use the rsfv_allow_iframes_on_content_save filter to change this
