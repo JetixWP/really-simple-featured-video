@@ -12,6 +12,8 @@ Really Simple Featured Video lets you add product video & featured video to WooC
 
 == Description ==
 
+✨ Have you seen our brand new launch? [Delta, the agent-first WordPress theme with built-in MCP](https://deltatheme.com/?utm_medium=wp.org&utm_source=wordpressorg&utm_campaign=readme)
+
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your Posts, Pages & WooCommerce Products. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
 Show those videos wherever you build: your theme's featured image spot, the **Featured Video block** in the block editor and Site Editor, a shortcode, or the Elementor and Bricks builders.
@@ -128,6 +130,20 @@ More features to come in the future, to name a few -
 * ✨ And more from your requests
 
 If you wish to grab the PRO version with a lifetime deal please do [checkout PRO at our website](https://jetixwp.com/plugins/really-simple-featured-video/?utm_source=wporg&utm_medium=referral&utm_campaign=readme)
+
+== 👉️ Meet Delta, from the JetixWP team ==
+
+[Delta](https://deltatheme.com/?utm_medium=wp.org&utm_source=wordpressorg&utm_campaign=readme&utm_content=description) is our latest product: an agent-first WordPress theme with built-in MCP. Describe the site you want and your AI agent builds and maintains it in clean HTML and CSS, with no page builder involved.
+
+* Works with Claude, ChatGPT, Cursor and any MCP client
+* Clean HTML and CSS output, no builder markup
+* Templates for every part of your site
+* Keep writing posts in the block editor
+* Bring your own AI, no AI fee from Delta
+
+Delta is in early development and available with a Founder’s Lifetime License: one payment, lifetime updates and support, and a 30-day refund guarantee. Every Founder’s License helps us build Delta, the next big thing for AI in WordPress.
+
+Delta replaces your current theme, so it is best for a new site or a planned rebuild. It is a separate product and is not required to use Really Simple Featured Video.
 
 == Screenshots ==
 
