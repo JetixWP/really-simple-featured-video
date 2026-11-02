@@ -13,7 +13,7 @@ jobs:
     name: New tag
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@61b9e3751b92087fd0b06925ba6dd6314e06f089 # master
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a # main
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@e6a227995083578a04f0d9b15a6e806b7155e344 # master (1.4.1)
         env:
