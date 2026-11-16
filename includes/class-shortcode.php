@@ -337,6 +337,23 @@ class Shortcode {
 			$attributes['disablepictureinpicture'] = true;
 		}
 
+		/**
+		 * Filters the preload hint for self-hosted videos.
+		 *
+		 * Browsers fetch the whole file when no hint is set. "metadata" loads only
+		 * the size, duration and first frame until the video plays. Autoplay
+		 * videos load in full either way. Return "auto" for the old behaviour or
+		 * an empty string to leave the attribute out.
+		 *
+		 * @param string $preload        One of "auto", "metadata", "none" or "".
+		 * @param array  $video_controls Video control settings.
+		 */
+		$preload = apply_filters( 'rsfv_video_preload', 'metadata', $video_controls );
+
+		if ( in_array( $preload, array( 'auto', 'metadata', 'none' ), true ) ) {
+			$attributes['preload'] = $preload;
+		}
+
 		return $attributes;
 	}
 
