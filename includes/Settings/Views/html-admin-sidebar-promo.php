@@ -16,27 +16,43 @@ $rsfv_has_pro = class_exists( '\RSFV_Pro\Plugin' );
 
 ?>
 					<?php if ( ! $rsfv_has_pro ) : ?>
-						<?php $rsfv_pro_url = 'https://jetixwp.com/plugins/really-simple-featured-video/?utm_campaign=' . ( empty( $rsfv_promo_studio ) ? 'settings-sidebar' : 'studio-sidebar' ) . '&utm_source=rsfv-plugin'; ?>
-						<div class="upgrade-box">
-							<div>
-								<h3><span class="dashicons dashicons-tag rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Black Friday deal: RSFV PRO from $59', 'rsfv' ); ?></h3>
-								<p class="desc"><?php esc_html_e( 'Auto generate more featured videos from templates with Video Studio PRO, get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates.', 'rsfv' ); ?></p>
-							</div>
-							<div class="rsfv-deal">
-								<p class="rsfv-deal__label"><?php esc_html_e( 'Special Black Friday Deal', 'rsfv' ); ?> <span class="rsfv-deal__badge"><?php esc_html_e( 'Save up to 50%', 'rsfv' ); ?></span></p>
-								<ul class="rsfv-deal__plans">
+						<?php
+						$rsfv_pro_url            = 'https://jetixwp.com/plugins/really-simple-featured-video/?utm_campaign=' . ( empty( $rsfv_promo_studio ) ? 'settings-sidebar' : 'studio-sidebar' ) . '&utm_source=rsfv-plugin';
+						$rsfv_checkout_url       = 'https://checkout.freemius.com/plugin/8537/plan/37071/licenses/%s/?billing_cycle=lifetime&coupon=BLACKFRIDAY26&hide_coupon=true';
+						$rsfv_checkout_single    = sprintf( $rsfv_checkout_url, '1' );
+						$rsfv_checkout_unlimited = sprintf( $rsfv_checkout_url, 'unlimited' );
+						?>
+						<div class="upgrade-box rsfv-bf">
+							<div class="rsfv-bf__deal">
+								<p class="rsfv-bf__top">
+									<span class="rsfv-bf__eyebrow"><?php esc_html_e( 'Black Friday', 'rsfv' ); ?></span>
+									<span class="rsfv-bf__badge"><?php esc_html_e( 'Up to 50% off', 'rsfv' ); ?></span>
+								</p>
+								<h3 class="rsfv-bf__title"><?php esc_html_e( 'RSFV PRO for life, from $59', 'rsfv' ); ?></h3>
+								<p class="rsfv-bf__ends"><span class="dashicons dashicons-clock" aria-hidden="true"></span><?php esc_html_e( 'Ends December 2', 'rsfv' ); ?></p>
+								<ul class="rsfv-bf__plans">
 									<li>
-										<span class="rsfv-deal__plan"><?php esc_html_e( 'Single site', 'rsfv' ); ?> <em><?php esc_html_e( 'Save 34%', 'rsfv' ); ?></em></span>
-										<span class="rsfv-deal__amounts"><s>$89</s> <strong>$59</strong></span>
+										<a class="rsfv-bf__plan is-best" href="<?php echo esc_url( $rsfv_checkout_unlimited ); ?>" target="_blank" rel="noopener noreferrer">
+											<span class="rsfv-bf__plan-info">
+												<span class="rsfv-bf__plan-name"><?php esc_html_e( 'Unlimited sites', 'rsfv' ); ?></span>
+												<span class="rsfv-bf__plan-tag"><?php esc_html_e( 'Best value · save 50%', 'rsfv' ); ?></span>
+											</span>
+											<span class="rsfv-bf__amounts"><s><span class="screen-reader-text"><?php esc_html_e( 'Regular price', 'rsfv' ); ?></span>$199</s> <strong><span class="screen-reader-text"><?php esc_html_e( 'Black Friday price', 'rsfv' ); ?></span>$99</strong></span>
+										</a>
 									</li>
 									<li>
-										<span class="rsfv-deal__plan"><?php esc_html_e( 'Unlimited sites', 'rsfv' ); ?> <em><?php esc_html_e( 'Save 50%', 'rsfv' ); ?></em></span>
-										<span class="rsfv-deal__amounts"><s>$199</s> <strong>$99</strong></span>
+										<a class="rsfv-bf__plan" href="<?php echo esc_url( $rsfv_checkout_single ); ?>" target="_blank" rel="noopener noreferrer">
+											<span class="rsfv-bf__plan-info">
+												<span class="rsfv-bf__plan-name"><?php esc_html_e( 'Single site', 'rsfv' ); ?></span>
+												<span class="rsfv-bf__plan-tag"><?php esc_html_e( 'Save 34%', 'rsfv' ); ?></span>
+											</span>
+											<span class="rsfv-bf__amounts"><s><span class="screen-reader-text"><?php esc_html_e( 'Regular price', 'rsfv' ); ?></span>$89</s> <strong><span class="screen-reader-text"><?php esc_html_e( 'Black Friday price', 'rsfv' ); ?></span>$59</strong></span>
+										</a>
 									</li>
 								</ul>
-								<p class="rsfv-deal__note"><?php esc_html_e( 'One-time payment · lifetime updates · no renewals', 'rsfv' ); ?></p>
-								<a class="button button-primary" href="<?php echo esc_url( $rsfv_pro_url . '#pricing' ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Get PRO for $59', 'rsfv' ); ?></a>
-								<p class="rsfv-deal__secure"><span class="dashicons dashicons-lock rsfv-promo-icon" aria-hidden="true"></span><?php esc_html_e( 'Secure checkout · 14-day money-back guarantee', 'rsfv' ); ?></p>
+								<a class="button rsfv-bf__cta" href="<?php echo esc_url( $rsfv_checkout_unlimited ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Claim 50% off', 'rsfv' ); ?></a>
+								<p class="rsfv-bf__fine"><?php esc_html_e( 'One-time payment · lifetime updates · no renewals', 'rsfv' ); ?></p>
+								<p class="rsfv-bf__fine"><span class="dashicons dashicons-lock" aria-hidden="true"></span><?php esc_html_e( 'Secure checkout · 14-day money-back guarantee', 'rsfv' ); ?></p>
 							</div>
 							<div>
 								<p class="desc"><strong><?php esc_html_e( 'What PRO adds', 'rsfv' ); ?></strong></p>
@@ -59,4 +75,15 @@ $rsfv_has_pro = class_exists( '\RSFV_Pro\Plugin' );
 
 							</div>
 						</div>
+
+						<?php if ( ! empty( $rsfv_promo_studio ) ) : ?>
+							<?php // The Studio list runs long, this keeps the deal in view once the box above scrolls away. ?>
+							<div class="rsfv-bf-mini">
+								<p>
+									<strong><?php esc_html_e( 'Black Friday: RSFV PRO from $59', 'rsfv' ); ?></strong>
+									<span><?php esc_html_e( 'Up to 50% off · ends December 2', 'rsfv' ); ?></span>
+								</p>
+								<a class="button rsfv-bf__cta" href="<?php echo esc_url( $rsfv_checkout_unlimited ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Claim 50% off', 'rsfv' ); ?></a>
+							</div>
+						<?php endif; ?>
 					<?php endif; ?>
