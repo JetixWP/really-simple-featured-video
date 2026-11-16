@@ -209,10 +209,16 @@ const TemplateStrip = ( {
 								  )
 								: promoNames.join( ', ' ) }
 						</span>
+						<span className="rsfv-studio-card__deal">
+							{ __(
+								'Black Friday: up to 50% off, ends December 2',
+								'rsfv'
+							) }
+						</span>
 						<ExternalLink
 							href={ proUrl( upgradeUrl, 'studio-templates' ) }
 						>
-							{ __( 'Get PRO', 'rsfv' ) }
+							{ __( 'Get the PRO deal', 'rsfv' ) }
 						</ExternalLink>
 					</div>
 				) }

@@ -560,6 +560,16 @@
 		font-size: 11px;
 		line-height: 1.4;
 	}
+
+	&__deal {
+		align-self: flex-start;
+		padding: 1px 6px;
+		border-radius: 3px;
+		background: #101418;
+		color: #3ddc6a;
+		font-size: 11px;
+		font-weight: 600;
+	}
 }
 
 .rsfv-studio-media {
