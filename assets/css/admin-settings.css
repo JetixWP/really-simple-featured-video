@@ -855,16 +855,41 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	border-radius: 4px;
 }
 
+.rsfv .sidebar .upgrade-box.rsfv-bf {
+	border-color: #1d1e22;
+}
+
 /* Black Friday deal card, dark so it stands apart from the settings. */
 .rsfv .sidebar .upgrade-box .rsfv-bf__deal {
-	--rsfv-bf-bg: #101418;
-	--rsfv-bf-accent: #3ddc6a;
-	--rsfv-bf-muted: #a7b0b8;
-	margin: -15px -30px 20px;
-	padding: 22px 30px 20px;
-	background: var(--rsfv-bf-bg);
-	border-radius: 3px 3px 0 0;
-	color: #fff;
+	--rsfv-bf-bg: #0c0d10;
+	--rsfv-bf-surface: rgba(255, 255, 255, 0.035);
+	--rsfv-bf-line: rgba(255, 255, 255, 0.09);
+	--rsfv-bf-text: #f5f3ee;
+	--rsfv-bf-muted: #9a9ca3;
+	--rsfv-bf-gold: #e3c27e;
+	--rsfv-bf-gold-soft: rgba(227, 194, 126, 0.14);
+	position: relative;
+	isolation: isolate;
+	/* Cover the box's 1px border so the dark panel reaches its edges. */
+	margin: -16px -31px 20px;
+	padding: 25px 31px 21px;
+	background:
+		radial-gradient(120% 70% at 100% 0%, rgba(227, 194, 126, 0.13) 0%, rgba(227, 194, 126, 0) 60%),
+		linear-gradient(180deg, #16171b 0%, var(--rsfv-bf-bg) 100%);
+	border-radius: 4px 4px 0 0;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+	color: var(--rsfv-bf-text);
+}
+
+/* Hairline of gold along the top edge. */
+.rsfv .sidebar .upgrade-box .rsfv-bf__deal::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto;
+	height: 2px;
+	background: linear-gradient(90deg, rgba(227, 194, 126, 0) 0%, var(--rsfv-bf-gold) 50%, rgba(227, 194, 126, 0) 100%);
+	opacity: 0.8;
+	z-index: -1;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__deal > * {
@@ -877,56 +902,68 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__top {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	gap: 8px;
+	gap: 6px 8px;
+	margin-bottom: 14px;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__eyebrow {
-	color: var(--rsfv-bf-accent);
-	font-size: 12px;
-	font-weight: 700;
-	letter-spacing: 0.12em;
+	color: var(--rsfv-bf-gold);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.18em;
 	text-transform: uppercase;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__badge {
 	padding: 3px 10px;
+	border: 1px solid rgba(227, 194, 126, 0.45);
 	border-radius: 999px;
-	background: var(--rsfv-bf-accent);
-	color: var(--rsfv-bf-bg);
-	font-size: 12px;
-	font-weight: 700;
+	background: var(--rsfv-bf-gold-soft);
+	color: var(--rsfv-bf-gold);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.02em;
 	white-space: nowrap;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__title {
 	margin-bottom: 6px;
-	color: #fff;
-	font-size: 22px;
-	line-height: 1.25;
+	color: var(--rsfv-bf-text);
+	font-size: 23px;
+	font-weight: 600;
+	letter-spacing: -0.015em;
+	line-height: 1.2;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__ends {
 	display: flex;
 	align-items: center;
 	gap: 6px;
-	margin-bottom: 16px;
+	margin-bottom: 18px;
 	color: var(--rsfv-bf-muted);
 	font-size: 13px;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__deal .dashicons {
-	width: 16px;
-	height: 16px;
-	font-size: 16px;
-	color: var(--rsfv-bf-accent);
+	width: 14px;
+	height: 14px;
+	font-size: 14px;
+	color: var(--rsfv-bf-muted);
+}
+
+/* Inline so the lock stays beside the first word when the line wraps. */
+.rsfv .sidebar .upgrade-box .rsfv-bf__fine .dashicons {
+	margin-inline-end: 4px;
+	vertical-align: -2px;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__plans {
 	display: grid;
 	gap: 8px;
-	margin: 0 0 14px;
+	margin: 0 0 16px;
 	padding: 0;
 	list-style: none;
 }
@@ -940,37 +977,38 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	justify-content: space-between;
 	align-items: center;
 	gap: 10px;
-	padding: 10px 12px;
-	background: rgba(255, 255, 255, 0.06);
-	border: 1px solid rgba(255, 255, 255, 0.16);
-	border-radius: 6px;
-	color: #fff;
+	padding: 12px 14px;
+	background: var(--rsfv-bf-surface);
+	border: 1px solid var(--rsfv-bf-line);
+	border-radius: 10px;
+	color: var(--rsfv-bf-text);
 	text-decoration: none;
-	transition: border-color 0.15s ease, background-color 0.15s ease;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__plan.is-best {
-	border: 2px solid var(--rsfv-bf-accent);
-	padding: 9px 11px;
+	background: linear-gradient(180deg, rgba(227, 194, 126, 0.12) 0%, rgba(227, 194, 126, 0.04) 100%);
+	border-color: rgba(227, 194, 126, 0.8);
+	box-shadow: 0 0 0 1px rgba(227, 194, 126, 0.15), 0 8px 24px -12px rgba(227, 194, 126, 0.35);
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__plan:hover,
 .rsfv .sidebar .upgrade-box .rsfv-bf__plan:focus {
-	background: rgba(255, 255, 255, 0.12);
-	border-color: var(--rsfv-bf-accent);
-	color: #fff;
+	background-color: rgba(255, 255, 255, 0.07);
+	border-color: var(--rsfv-bf-gold);
+	color: var(--rsfv-bf-text);
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__plan:focus-visible,
-.rsfv .sidebar .rsfv-bf__cta:focus-visible {
-	outline: 2px solid #fff;
+.rsfv .sidebar .upgrade-box .rsfv-bf__cta:focus-visible {
+	outline: 2px solid var(--rsfv-bf-gold);
 	outline-offset: 2px;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__plan-info {
 	display: flex;
 	flex-direction: column;
-	gap: 2px;
+	gap: 3px;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__plan-name {
@@ -979,62 +1017,94 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__plan-tag {
-	color: var(--rsfv-bf-accent);
+	color: var(--rsfv-bf-muted);
 	font-size: 12px;
 }
 
+.rsfv .sidebar .upgrade-box .rsfv-bf__plan.is-best .rsfv-bf__plan-tag {
+	color: var(--rsfv-bf-gold);
+}
+
 .rsfv .sidebar .upgrade-box .rsfv-bf__amounts {
+	display: flex;
+	align-items: baseline;
+	gap: 6px;
+	font-variant-numeric: tabular-nums;
 	white-space: nowrap;
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__amounts s {
-	margin-right: 4px;
 	color: var(--rsfv-bf-muted);
 	font-size: 13px;
+	text-decoration-color: rgba(154, 156, 163, 0.7);
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__amounts strong {
+	color: var(--rsfv-bf-text);
 	font-size: 22px;
+	font-weight: 600;
+	letter-spacing: -0.01em;
 	line-height: 1;
 }
 
-.rsfv .sidebar .rsfv-bf__cta.button {
+.rsfv .sidebar .upgrade-box .rsfv-bf__cta.button {
 	display: block;
 	width: 100%;
-	padding: 10px 0;
-	background: #3ddc6a;
+	margin-bottom: 12px;
+	padding: 11px 16px;
+	background: linear-gradient(180deg, #f1d79f 0%, #dcb465 100%);
 	border: 0;
-	border-radius: 6px;
+	border-radius: 10px;
 	box-sizing: border-box;
-	box-shadow: none;
-	color: #101418;
-	font-size: 16px;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 10px 24px -10px rgba(227, 194, 126, 0.55);
+	color: #17130a;
+	font-size: 15px;
 	font-weight: 700;
+	letter-spacing: 0.01em;
 	line-height: 1.4;
 	text-align: center;
-	transition: background-color 0.15s ease;
+	white-space: normal;
+	transition: filter 0.2s ease, box-shadow 0.2s ease;
 }
 
-.rsfv .sidebar .rsfv-bf__cta.button:hover,
-.rsfv .sidebar .rsfv-bf__cta.button:focus,
-.rsfv .sidebar .rsfv-bf__cta.button:active {
-	background: #6ee98f;
-	color: #101418 !important;
+.rsfv .sidebar .upgrade-box .rsfv-bf__cta.button:hover,
+.rsfv .sidebar .upgrade-box .rsfv-bf__cta.button:focus {
+	background: linear-gradient(180deg, #f1d79f 0%, #dcb465 100%);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 12px 28px -10px rgba(227, 194, 126, 0.7);
+	color: #17130a;
+	filter: brightness(1.06);
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__cta.button:active {
+	background: linear-gradient(180deg, #f1d79f 0%, #dcb465 100%);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	color: #17130a;
+	filter: brightness(0.96);
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-bf__fine {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 4px;
 	margin-bottom: 4px;
 	color: var(--rsfv-bf-muted);
 	font-size: 12px;
 	text-align: center;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-bf__cta {
-	margin-bottom: 10px;
+/* Keep the glow behind the badge in right-to-left languages. */
+.rtl .rsfv .sidebar .upgrade-box .rsfv-bf__deal {
+	background:
+		radial-gradient(120% 70% at 0% 0%, rgba(227, 194, 126, 0.13) 0%, rgba(227, 194, 126, 0) 60%),
+		linear-gradient(180deg, #16171b 0%, var(--rsfv-bf-bg) 100%);
+}
+
+/* Gradients and shadows are dropped in forced colours, so give the CTA and best plan borders. */
+@media (forced-colors: active) {
+	.rsfv .sidebar .upgrade-box .rsfv-bf__cta.button {
+		border: 1px solid ButtonText;
+	}
+
+	.rsfv .sidebar .upgrade-box .rsfv-bf__plan.is-best {
+		border-width: 2px;
+	}
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-upgrade-features {
