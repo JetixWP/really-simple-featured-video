@@ -159,28 +159,6 @@
 		}
 		$( '#rsfv_rollback_version_button' ).on( 'click', processPluginRollback );
 
-		$( '.rsfv-dismiss-delta' ).on(
-			'click',
-			function( e ) {
-				e.preventDefault();
-
-				const href = this.href;
-				const $box = $( this ).closest( '.is-dismissible' );
-
-				$box.slideUp( 200 );
-
-				$.post(
-					data.ajax_url,
-					{
-						action: 'rsfv_dismiss_delta_promo',
-						_wpnonce: data.nonce,
-					}
-				).fail( function() {
-					window.location = href;
-				} );
-			}
-		);
-
 		/**
 		 * AJAX getter for Compatibility Engine Status.
 		 */

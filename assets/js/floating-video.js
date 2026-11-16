@@ -37,6 +37,46 @@
 	var layouts = window.RSFVFloatingVideoLayouts = window.RSFVFloatingVideoLayouts || {};
 
 	/**
+	 * Player settings for Wistia and Loom, which name them differently.
+	 *
+	 * @param {string} provider Provider key.
+	 * @return {Array} Query parameters.
+	 */
+	function providerParams( provider ) {
+		var params = [];
+
+		if ( 'wistia' === provider ) {
+			params.push( 'autoPlay=' + ( embedControls.autoplay ? 'true' : 'false' ) );
+
+			if ( embedControls.mute ) {
+				params.push( 'muted=true' );
+			}
+
+			if ( embedControls.loop ) {
+				params.push( 'endVideoBehavior=loop' );
+			}
+
+			// The big play button stays so a video without autoplay can still start.
+			if ( ! embedControls.controls ) {
+				params.push( 'controlsVisibleOnLoad=false&playbar=false&smallPlayButton=false&volumeControl=false&fullscreenButton=false&settingsControl=false' );
+			}
+		} else {
+			// Loom has no option to hide its controls.
+			params.push( 'autoplay=' + ( embedControls.autoplay ? '1' : '0' ) );
+
+			if ( embedControls.mute ) {
+				params.push( 'muted=1&mute_video=true' );
+			}
+
+			if ( embedControls.loop ) {
+				params.push( 'loop_video=true' );
+			}
+		}
+
+		return params;
+	}
+
+	/**
 	 * Convert a standard YouTube/Vimeo URL into an embed URL with
 	 * parameters derived from the embed control settings.
 	 *
@@ -45,7 +85,8 @@
 	 */
 	function getEmbedUrl( url ) {
 		var match;
-		var baseUrl = '';
+		var baseUrl  = '';
+		var provider = '';
 
 		// YouTube: standard, short, nocookie, and embed URLs.
 		match = url.match( /(?:youtube(?:-nocookie)?\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/ );
@@ -53,11 +94,16 @@
 			baseUrl = 'https://www.youtube.com/embed/' + match[ 1 ];
 		}
 
-		// Vimeo.
+		// Vimeo. Unlisted videos keep their hash, from /ID/HASH or ?h=HASH.
 		if ( ! baseUrl ) {
-			match = url.match( /vimeo\.com\/(?:video\/)?(\d+)/ );
+			match = url.match( /vimeo\.com\/(?:video\/)?(\d+)(?:\/([a-f0-9]{6,})(?=[\/?#]|$))?/i );
 			if ( match ) {
 				baseUrl = 'https://player.vimeo.com/video/' + match[ 1 ];
+
+				var hash = match[ 2 ] || ( url.match( /[?&](?:amp;|#038;)?h=([a-f0-9]{6,})(?=[&#]|$)/i ) || [] )[ 1 ];
+				if ( hash ) {
+					baseUrl += '?h=' + hash;
+				}
 			}
 		}
 
@@ -69,9 +115,48 @@
 			}
 		}
 
+		// Bunny Stream: /embed/{library}/{video} or /play/{library}/{video}.
+		if ( ! baseUrl ) {
+			match = url.match( /^https?:\/\/((?:player|iframe)\.mediadelivery\.net)\/(?:embed|play)\/(\d+)\/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})\/?(?:[?#]|$)/i );
+			if ( match ) {
+				baseUrl = 'https://' + match[ 1 ].toLowerCase() + '/embed/' + match[ 2 ] + '/' + match[ 3 ].toLowerCase();
+			}
+		}
+
+		// Wistia: account subdomains on wistia.com, plus wistia.net and wi.st.
+		if ( ! baseUrl ) {
+			match = url.match( /^https?:\/\/(?:[a-z0-9-]+\.)*(?:wistia\.(?:com|net)|wi\.st)\/(?:medias|embed\/iframe|embed\/medias)\/([a-z0-9]{10})(?:\.jsonp)?\/?(?:[?#]|$)/i );
+			if ( match ) {
+				baseUrl  = 'https://fast.wistia.net/embed/iframe/' + match[ 1 ];
+				provider = 'wistia';
+			}
+		}
+
+		// Loom: share links can carry a title slug before the ID.
+		if ( ! baseUrl ) {
+			match = url.match( /^https?:\/\/(?:www\.)?loom\.com\/(?:share|embed)\/(?:[^\/?#]*-)?([0-9a-fA-F]{32})\/?(?:[?#]|$)/ );
+			if ( match ) {
+				baseUrl  = 'https://www.loom.com/embed/' + match[ 1 ].toLowerCase();
+				provider = 'loom';
+			}
+		}
+
+		// PeerTube runs on many domains, so match the path: /w/ID, /videos/watch/ID or /videos/embed/ID.
+		if ( ! baseUrl ) {
+			match = url.match( /^https?:\/\/([^\/?#]+)\/(?:w|videos\/watch|videos\/embed)\/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[1-9A-HJ-NP-Za-km-z]{22})\/?(?:[?#]|$)/ );
+			if ( match ) {
+				baseUrl = 'https://' + match[ 1 ].toLowerCase() + '/videos/embed/' + match[ 2 ];
+			}
+		}
+
 		// Unknown providers are not embedded.
 		if ( ! baseUrl ) {
 			return '';
+		}
+
+		// Wistia and Loom name their player settings differently.
+		if ( 'wistia' === provider || 'loom' === provider ) {
+			return baseUrl + '?' + providerParams( provider ).join( '&' );
 		}
 
 		// Build URL parameters from embed controls.
@@ -81,6 +166,11 @@
 
 		if ( embedControls.loop ) {
 			params.push( 'loop=1' );
+
+			// YouTube only loops a single video when it is also named as the playlist.
+			if ( baseUrl.indexOf( 'youtube.com' ) !== -1 ) {
+				params.push( 'playlist=' + baseUrl.split( '/embed/' )[ 1 ] );
+			}
 		}
 
 		if ( embedControls.mute ) {
@@ -107,7 +197,7 @@
 			params.push( 'api=postMessage' );
 		}
 
-		return baseUrl + '?' + params.join( '&' );
+		return baseUrl + ( baseUrl.indexOf( '?' ) === -1 ? '?' : '&' ) + params.join( '&' );
 	}
 
 	/**
@@ -288,6 +378,11 @@
 			}
 			iframe.allow = allowParts.join( '; ' );
 			iframe.allowFullscreen = true;
+
+			// PeerTube runs on any domain, so its player may not submit forms or send the page elsewhere.
+			if ( /^https:\/\/[^\/]+\/videos\/embed\//.test( embedSrc ) ) {
+				iframe.setAttribute( 'sandbox', 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-presentation' );
+			}
 
 			container.appendChild( iframe );
 

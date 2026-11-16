@@ -262,7 +262,7 @@ class Shortcode {
 		}
 
 		// Build URL parameters.
-		$url_params = $this->get_embed_url_parameters( $video_controls );
+		$url_params = $this->get_embed_url_parameters( $video_controls, $embed_data );
 
 		// Apply hover enhancements to iframe src.
 		$final_embed_url = apply_filters( 'rsfv_video_iframe_src', $embed_url, $url_params, $video_data );
@@ -275,10 +275,14 @@ class Shortcode {
 		// Apply filter to final embed URL with parameters.
 		$final_embed_url_with_params = apply_filters( 'rsfv_final_embed_url_with_params', $final_embed_url_with_params );
 
+		// Older cached copies of the Frontend class may not have this method during an update.
+		$sandbox = method_exists( $frontend, 'get_iframe_sandbox' ) ? $frontend::get_iframe_sandbox( $video_type ) : '';
+
 		// Build iframe.
 		$iframe_html = sprintf(
-			'<iframe class="rsfv-video" width="100%%" height="540" src="%s" frameborder="0" allowfullscreen></iframe>',
-			esc_url( $final_embed_url_with_params )
+			'<iframe class="rsfv-video" width="100%%" height="540" src="%s" frameborder="0" allowfullscreen%s></iframe>',
+			esc_url( $final_embed_url_with_params ),
+			$sandbox ? ' sandbox="' . esc_attr( $sandbox ) . '"' : ''
 		);
 
 		// Wrap in responsive container.
@@ -337,23 +341,111 @@ class Shortcode {
 			$attributes['disablepictureinpicture'] = true;
 		}
 
+		/**
+		 * Filters the preload hint for self-hosted videos.
+		 *
+		 * "metadata" loads only the size, duration and first frame until the video
+		 * plays. Without a hint each browser decides: Chrome and Firefox already
+		 * load metadata, Safari loads the whole file. Autoplay videos load in full
+		 * either way. Return "auto" to load the whole file or an empty string to
+		 * leave the attribute out, as before 1.5.0.
+		 *
+		 * @param string $preload        One of "auto", "metadata", "none" or "".
+		 * @param array  $video_controls Video control settings.
+		 */
+		$preload = apply_filters( 'rsfv_video_preload', 'metadata', $video_controls );
+
+		if ( in_array( $preload, array( 'auto', 'metadata', 'none' ), true ) ) {
+			$attributes['preload'] = $preload;
+		}
+
 		return $attributes;
+	}
+
+	/**
+	 * Player settings for providers that do not use the common autoplay=1 style parameters.
+	 *
+	 * @param array       $video_controls Video control settings.
+	 * @param array|false $embed_data     Parsed embed data.
+	 * @return string|null Query string, or null to use the common parameters.
+	 */
+	public static function get_provider_embed_parameters( $video_controls, $embed_data ) {
+		$host   = is_array( $embed_data ) && isset( $embed_data['host'] ) ? $embed_data['host'] : '';
+		$params = array();
+
+		if ( 'wistia' === $host ) {
+			// Wistia embed options: https://docs.wistia.com/docs/embed-options-and-plugins .
+			$params[] = 'autoPlay=' . ( empty( $video_controls['autoplay'] ) ? 'false' : 'true' );
+
+			if ( ! empty( $video_controls['mute'] ) ) {
+				$params[] = 'muted=true';
+			}
+
+			if ( ! empty( $video_controls['loop'] ) ) {
+				$params[] = 'endVideoBehavior=loop';
+			}
+
+			// The big play button stays so a video without autoplay can still start.
+			if ( empty( $video_controls['controls'] ) ) {
+				$params[] = 'controlsVisibleOnLoad=false&playbar=false&smallPlayButton=false&volumeControl=false&fullscreenButton=false&settingsControl=false';
+			}
+
+			return implode( '&', $params );
+		}
+
+		if ( 'loom' === $host ) {
+			// Loom has no option to hide its controls.
+			$params[] = 'autoplay=' . ( empty( $video_controls['autoplay'] ) ? '0' : '1' );
+
+			if ( ! empty( $video_controls['mute'] ) ) {
+				$params[] = 'muted=1&mute_video=true';
+			}
+
+			if ( ! empty( $video_controls['loop'] ) ) {
+				$params[] = 'loop_video=true';
+			}
+
+			return implode( '&', $params );
+		}
+
+		return null;
+	}
+
+	/**
+	 * Loop parameter for an embed. YouTube only loops a single video when it is also named as the playlist.
+	 *
+	 * @param array|false $embed_data Parsed embed data.
+	 * @return string
+	 */
+	public static function get_embed_loop_parameter( $embed_data ) {
+		if ( is_array( $embed_data ) && isset( $embed_data['host'], $embed_data['id'] ) && 'youtube' === $embed_data['host'] && $embed_data['id'] ) {
+			return 'loop=1&playlist=' . rawurlencode( $embed_data['id'] );
+		}
+
+		return 'loop=1';
 	}
 
 	/**
 	 * Get embed URL parameters
 	 *
-	 * @param array $video_controls Video control settings.
+	 * @param array       $video_controls Video control settings.
+	 * @param array|false $embed_data     Parsed embed data.
 	 * @return string
 	 */
-	private function get_embed_url_parameters( $video_controls ) {
+	private function get_embed_url_parameters( $video_controls, $embed_data = false ) {
+		$provider_params = self::get_provider_embed_parameters( $video_controls, $embed_data );
+
+		if ( null !== $provider_params ) {
+			return $provider_params;
+		}
+
 		$params = array();
 
 		$params[] = ! empty( $video_controls['autoplay'] ) ? 'autoplay=1' : 'autoplay=0';
 		$params[] = ! empty( $video_controls['controls'] ) ? 'controls=1' : 'controls=0';
 
 		if ( ! empty( $video_controls['loop'] ) ) {
-			$params[] = 'loop=1';
+			$params[] = self::get_embed_loop_parameter( $embed_data );
 		}
 
 		if ( ! empty( $video_controls['mute'] ) ) {

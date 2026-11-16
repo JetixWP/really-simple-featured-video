@@ -618,7 +618,8 @@ class Compatibility extends Base_Compatibility {
 		}
 
 		// Get URL parameters.
-		$url_params = self::get_woo_embed_url_parameters( $video_controls, $video_data );
+		$video_data['embed_data'] = $embed_data;
+		$url_params               = self::get_woo_embed_url_parameters( $video_controls, $video_data );
 
 		// Determine the correct URL concatenation method.
 		$final_embed_url_with_params = false !== strpos( $embed_url, '?' )
@@ -638,6 +639,13 @@ class Compatibility extends Base_Compatibility {
 			'allow'           => 'autoplay; fullscreen; picture-in-picture',
 			'loading'         => 'lazy',
 		);
+
+		// Older cached copies of the Frontend class may not have this method during an update.
+		$sandbox = method_exists( $frontend, 'get_iframe_sandbox' ) ? $frontend::get_iframe_sandbox( $video_type ) : '';
+
+		if ( $sandbox ) {
+			$iframe_attrs['sandbox'] = $sandbox;
+		}
 
 		// Add mobile-specific attributes.
 		if ( wp_is_mobile() ) {
@@ -716,9 +724,17 @@ class Compatibility extends Base_Compatibility {
 	 * @return string
 	 */
 	private static function get_woo_embed_url_parameters( $video_controls, $video_data ) {
+		// Older cached copies of the Shortcode class may not have these methods during an update.
+		$provider_params = method_exists( Shortcode::class, 'get_provider_embed_parameters' ) ? Shortcode::get_provider_embed_parameters( $video_controls, $video_data['embed_data'] ?? false ) : null;
+
+		if ( null !== $provider_params ) {
+			return $provider_params;
+		}
+
 		// Standard parameters.
 		$is_autoplay  = ! empty( $video_controls['autoplay'] ) ? 'autoplay=1&' : 'autoplay=0&';
-		$is_loop      = ! empty( $video_controls['loop'] ) ? 'loop=1&' : '';
+		$loop_param   = method_exists( Shortcode::class, 'get_embed_loop_parameter' ) ? Shortcode::get_embed_loop_parameter( $video_data['embed_data'] ?? false ) : 'loop=1';
+		$is_loop      = ! empty( $video_controls['loop'] ) ? $loop_param . '&' : '';
 		$is_muted     = ! empty( $video_controls['mute'] ) ? 'mute=1&muted=1&' : '';
 		$is_pip       = ! empty( $video_controls['pip'] ) ? 'picture-in-picture=1&' : '';
 		$has_controls = ! empty( $video_controls['controls'] ) ? 'controls=1&' : 'controls=0&';

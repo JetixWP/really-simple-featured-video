@@ -187,7 +187,7 @@ class RSFV_Video_Widget extends Widget_Base {
 				'label'       => esc_html__( 'Video URL', 'rsfv' ),
 				'type'        => Controls_Manager::URL,
 				'placeholder' => esc_html__( 'https://www.youtube.com/watch?v=...', 'rsfv' ),
-				'description' => esc_html__( 'Paste a video URL from YouTube, Vimeo, or Dailymotion.', 'rsfv' ),
+				'description' => esc_html__( 'Paste a video URL from YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia, or Loom.', 'rsfv' ),
 				'label_block' => true,
 				'options'     => false,
 				'condition'   => array(

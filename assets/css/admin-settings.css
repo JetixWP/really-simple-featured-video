@@ -855,102 +855,256 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	border-radius: 4px;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-deal {
-	margin-top: 8px;
-	padding: 16px;
-	background: #fff;
-	border: 1px solid var(--jwp-wtc__color-brand);
-	border-radius: 4px;
-	text-align: center;
+.rsfv .sidebar .upgrade-box.rsfv-bf {
+	border-color: #1d1e22;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-deal__label {
+/* Black Friday deal card, dark so it stands apart from the settings. */
+.rsfv .sidebar .upgrade-box .rsfv-bf__deal {
+	--rsfv-bf-bg: #0c0d10;
+	--rsfv-bf-surface: rgba(255, 255, 255, 0.035);
+	--rsfv-bf-line: rgba(255, 255, 255, 0.09);
+	--rsfv-bf-text: #f5f3ee;
+	--rsfv-bf-muted: #9a9ca3;
+	--rsfv-bf-gold: #e3c27e;
+	--rsfv-bf-gold-soft: rgba(227, 194, 126, 0.14);
+	position: relative;
+	isolation: isolate;
+	/* Cover the box's 1px border so the dark panel reaches its edges. */
+	margin: -16px -31px 20px;
+	padding: 25px 31px 21px;
+	background:
+		radial-gradient(120% 70% at 100% 0%, rgba(227, 194, 126, 0.13) 0%, rgba(227, 194, 126, 0) 60%),
+		linear-gradient(180deg, #16171b 0%, var(--rsfv-bf-bg) 100%);
+	border-radius: 4px 4px 0 0;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+	color: var(--rsfv-bf-text);
+}
+
+/* Hairline of gold along the top edge. */
+.rsfv .sidebar .upgrade-box .rsfv-bf__deal::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto;
+	height: 2px;
+	background: linear-gradient(90deg, rgba(227, 194, 126, 0) 0%, var(--rsfv-bf-gold) 50%, rgba(227, 194, 126, 0) 100%);
+	opacity: 0.8;
+	z-index: -1;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__deal > * {
+	margin: 0 0 12px;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__deal > :last-child {
+	margin-bottom: 0;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__top {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 6px 8px;
+	margin-bottom: 14px;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__eyebrow {
+	color: var(--rsfv-bf-gold);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__badge {
+	padding: 3px 10px;
+	border: 1px solid rgba(227, 194, 126, 0.45);
+	border-radius: 999px;
+	background: var(--rsfv-bf-gold-soft);
+	color: var(--rsfv-bf-gold);
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	white-space: nowrap;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__title {
+	margin-bottom: 6px;
+	color: var(--rsfv-bf-text);
+	font-size: 23px;
+	font-weight: 600;
+	letter-spacing: -0.015em;
+	line-height: 1.2;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__ends {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 18px;
+	color: var(--rsfv-bf-muted);
+	font-size: 13px;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__deal .dashicons {
+	width: 14px;
+	height: 14px;
+	font-size: 14px;
+	color: var(--rsfv-bf-muted);
+}
+
+/* Inline so the lock stays beside the first word when the line wraps. */
+.rsfv .sidebar .upgrade-box .rsfv-bf__fine .dashicons {
+	margin-inline-end: 4px;
+	vertical-align: -2px;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__plans {
+	display: grid;
+	gap: 8px;
+	margin: 0 0 16px;
+	padding: 0;
+	list-style: none;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__plans li {
+	margin: 0;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__plan {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	gap: 8px;
-	margin: 0 0 10px;
-	font-size: 12px;
-	font-weight: 700;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
-	text-align: left;
-	color: var(--jwp-wtc__color-brand);
+	gap: 10px;
+	padding: 12px 14px;
+	background: var(--rsfv-bf-surface);
+	border: 1px solid var(--rsfv-bf-line);
+	border-radius: 10px;
+	color: var(--rsfv-bf-text);
+	text-decoration: none;
+	transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-deal__badge {
-	display: inline-block;
-	padding: 2px 8px;
-	border-radius: 999px;
-	background: var(--jwp-wtc__color-brand);
-	color: #fff;
-	font-size: 11px;
-	letter-spacing: 0;
-	white-space: nowrap;
+.rsfv .sidebar .upgrade-box .rsfv-bf__plan.is-best {
+	background: linear-gradient(180deg, rgba(227, 194, 126, 0.12) 0%, rgba(227, 194, 126, 0.04) 100%);
+	border-color: rgba(227, 194, 126, 0.8);
+	box-shadow: 0 0 0 1px rgba(227, 194, 126, 0.15), 0 8px 24px -12px rgba(227, 194, 126, 0.35);
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-deal__plans {
-	list-style: none;
-	margin: 0 0 10px;
-	padding: 0;
-	text-align: left;
+.rsfv .sidebar .upgrade-box .rsfv-bf__plan:hover,
+.rsfv .sidebar .upgrade-box .rsfv-bf__plan:focus {
+	background-color: rgba(255, 255, 255, 0.07);
+	border-color: var(--rsfv-bf-gold);
+	color: var(--rsfv-bf-text);
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-deal__plans li {
+.rsfv .sidebar .upgrade-box .rsfv-bf__plan:focus-visible,
+.rsfv .sidebar .upgrade-box .rsfv-bf__cta:focus-visible {
+	outline: 2px solid var(--rsfv-bf-gold);
+	outline-offset: 2px;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__plan-info {
 	display: flex;
-	justify-content: space-between;
-	align-items: baseline;
-	gap: 8px;
-	margin: 0;
-	padding: 8px 0;
-	border-top: 1px solid #dcdcde;
+	flex-direction: column;
+	gap: 3px;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__plan-name {
 	font-size: 14px;
+	font-weight: 600;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-deal__plans li:first-child {
-	border-top: 0;
-}
-
-.rsfv .sidebar .upgrade-box .rsfv-deal__plan em {
-	display: block;
+.rsfv .sidebar .upgrade-box .rsfv-bf__plan-tag {
+	color: var(--rsfv-bf-muted);
 	font-size: 12px;
-	font-style: normal;
-	color: var(--jwp-wtc__color-brand);
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-deal__amounts {
+.rsfv .sidebar .upgrade-box .rsfv-bf__plan.is-best .rsfv-bf__plan-tag {
+	color: var(--rsfv-bf-gold);
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__amounts {
+	display: flex;
+	align-items: baseline;
+	gap: 6px;
+	font-variant-numeric: tabular-nums;
 	white-space: nowrap;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-deal__amounts s {
-	color: #787c82;
+.rsfv .sidebar .upgrade-box .rsfv-bf__amounts s {
+	color: var(--rsfv-bf-muted);
 	font-size: 13px;
-	margin-right: 4px;
+	text-decoration-color: rgba(154, 156, 163, 0.7);
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-deal__amounts strong {
-	font-size: 20px;
+.rsfv .sidebar .upgrade-box .rsfv-bf__amounts strong {
+	color: var(--rsfv-bf-text);
+	font-size: 22px;
+	font-weight: 600;
+	letter-spacing: -0.01em;
 	line-height: 1;
 }
 
-.rsfv .sidebar .upgrade-box .rsfv-deal__note,
-.rsfv .sidebar .upgrade-box .rsfv-deal__secure {
-	margin: 0 0 10px;
-	font-size: 12px;
-	color: #50575e;
-}
-
-.rsfv .sidebar .upgrade-box .rsfv-deal__secure {
-	margin: 8px 0 0;
-}
-
-.rsfv .sidebar .upgrade-box .rsfv-deal .button-primary {
+.rsfv .sidebar .upgrade-box .rsfv-bf__cta.button {
+	display: block;
 	width: 100%;
-	padding: 8px 0;
-	font-size: 15px;
-	font-weight: 600;
-	text-align: center;
+	margin-bottom: 12px;
+	padding: 11px 16px;
+	background: linear-gradient(180deg, #f1d79f 0%, #dcb465 100%);
+	border: 0;
+	border-radius: 10px;
 	box-sizing: border-box;
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 10px 24px -10px rgba(227, 194, 126, 0.55);
+	color: #17130a;
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: 0.01em;
+	line-height: 1.4;
+	text-align: center;
+	white-space: normal;
+	transition: filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__cta.button:hover,
+.rsfv .sidebar .upgrade-box .rsfv-bf__cta.button:focus {
+	background: linear-gradient(180deg, #f1d79f 0%, #dcb465 100%);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 12px 28px -10px rgba(227, 194, 126, 0.7);
+	color: #17130a;
+	filter: brightness(1.06);
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__cta.button:active {
+	background: linear-gradient(180deg, #f1d79f 0%, #dcb465 100%);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	color: #17130a;
+	filter: brightness(0.96);
+}
+
+.rsfv .sidebar .upgrade-box .rsfv-bf__fine {
+	margin-bottom: 4px;
+	color: var(--rsfv-bf-muted);
+	font-size: 12px;
+	text-align: center;
+}
+
+/* Keep the glow behind the badge in right-to-left languages. */
+.rtl .rsfv .sidebar .upgrade-box .rsfv-bf__deal {
+	background:
+		radial-gradient(120% 70% at 0% 0%, rgba(227, 194, 126, 0.13) 0%, rgba(227, 194, 126, 0) 60%),
+		linear-gradient(180deg, #16171b 0%, var(--rsfv-bf-bg) 100%);
+}
+
+/* Gradients and shadows are dropped in forced colours, so give the CTA and best plan borders. */
+@media (forced-colors: active) {
+	.rsfv .sidebar .upgrade-box .rsfv-bf__cta.button {
+		border: 1px solid ButtonText;
+	}
+
+	.rsfv .sidebar .upgrade-box .rsfv-bf__plan.is-best {
+		border-width: 2px;
+	}
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-upgrade-features {
@@ -968,6 +1122,12 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 .rsfv .sidebar .upgrade-box .rsfv-upgrade-compare {
 	margin: 4px 0 0;
 	font-size: 13px;
+	text-align: start;
+}
+
+/* Video Studio has no .tab-content wrapper, so set the link colour here too. */
+.rsfv .sidebar .upgrade-box a:not(.button):not(.rsfv-bf__plan) {
+	color: var(--jwp-wtc__color-brand);
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-upgrade-founder {
@@ -1013,130 +1173,6 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	.rsfv.upgrade form {
 		padding-bottom: 250px;
 	}
-}
-
-/**
- * Settings sidebar Delta card.
- */
-.rsfv .sidebar .rsfv-delta-promo {
-	position: relative;
-	margin-bottom: 24px;
-	padding: 25px 30px;
-	background: #fff;
-	border: 1px solid #dcdcdc;
-	border-radius: 4px;
-}
-
-.rsfv .sidebar .rsfv-delta-promo .notice-dismiss {
-	position: absolute;
-	top: 0;
-	right: 0;
-	z-index: 1;
-	text-decoration: none;
-}
-
-.rsfv .sidebar .rsfv-delta-promo__tag {
-	position: absolute;
-	top: -10px;
-	left: -10px;
-	padding: 4px 8px;
-	background: #15171b;
-	border-radius: 3px;
-	color: #fff;
-	font-size: 11px;
-	font-weight: 600;
-	text-transform: uppercase;
-}
-
-.rsfv .sidebar .rsfv-delta-promo__eyebrow {
-	margin: 0 0 12px;
-	color: #646970;
-	font-size: 11px;
-	font-weight: 600;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
-}
-
-.rsfv .sidebar .rsfv-delta-promo__header {
-	display: flex;
-	align-items: center;
-	gap: 15px;
-	margin-bottom: 15px;
-}
-
-.rsfv .sidebar .rsfv-delta-promo__header img {
-	flex: 0 0 48px;
-	width: 48px;
-	height: 48px;
-	border: 0;
-	border-radius: 0;
-	box-shadow: none;
-}
-
-.rsfv .sidebar .rsfv-delta-promo__header h3 {
-	margin: 0;
-	line-height: 1.4;
-}
-
-.rsfv .sidebar .rsfv-delta-promo__header h3 a {
-	color: #15171b;
-	text-decoration: none;
-}
-
-.rsfv .sidebar .rsfv-delta-promo__header h3 a:hover,
-.rsfv .sidebar .rsfv-delta-promo__header h3 a:focus {
-	text-decoration: underline;
-}
-
-.rsfv .sidebar .rsfv-delta-promo .desc {
-	margin: 0 0 15px;
-	font-size: 15px;
-}
-
-.rsfv .sidebar .rsfv-delta-promo .rsfv-upgrade-features {
-	margin: 0 0 15px;
-	padding: 0;
-}
-
-.rsfv .sidebar .rsfv-delta-promo .rsfv-upgrade-features li {
-	margin: 0 0 8px;
-	font-size: 14px;
-	line-height: 1.45;
-}
-
-.rsfv .sidebar .rsfv-delta-promo__pricing {
-	margin: 0 0 12px;
-	color: #1d1d1d;
-	font-size: 14px;
-	font-style: italic;
-}
-
-.rsfv .sidebar .rsfv-delta-promo__support {
-	margin: 0 0 18px;
-	color: #50575e;
-	font-size: 13px;
-	line-height: 1.5;
-}
-
-.rsfv .sidebar .rsfv-delta-promo .button-primary {
-	display: block;
-	width: 100%;
-	padding: 8px 0;
-	background: #15171b;
-	border-color: #15171b;
-	box-sizing: border-box;
-	color: #fff;
-	font-size: 15px;
-	font-weight: 600;
-	text-align: center;
-}
-
-.rsfv .sidebar .rsfv-delta-promo .button-primary:active,
-.rsfv .sidebar .rsfv-delta-promo .button-primary:focus,
-.rsfv .sidebar .rsfv-delta-promo .button-primary:hover {
-	background: #26292a;
-	border-color: #26292a;
-	color: #fff !important;
 }
 
 /* Promo icons: one WordPress dashicon style for every promo card. */

@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Featured Video 1.2.0\n"
+"Project-Id-Version: Really Simple Featured Video 1.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/really-simple-featured-video\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-01T11:18:32+00:00\n"
+"POT-Creation-Date: 2026-11-16T15:06:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: rsfv\n"
@@ -147,18 +147,18 @@ msgstr ""
 msgid "(no title)"
 msgstr ""
 
-#: includes/class-metabox.php:119
-#: includes/Settings/class-register.php:86
+#: includes/class-metabox.php:132
+#: includes/Settings/class-register.php:80
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:192
+#: src/blocks/featured-video/edit.js:196
 msgid "Featured Video"
 msgstr ""
 
-#: includes/class-metabox.php:141
+#: includes/class-metabox.php:154
 msgid "Insert Video"
 msgstr ""
 
-#: includes/class-metabox.php:142
+#: includes/class-metabox.php:155
 #: assets/js/tools/index.js:1
 #: assets/js/tools/index.js:29
 #: src/tools/components/FloatingVideoForm.js:70
@@ -166,54 +166,54 @@ msgstr ""
 msgid "Use this video"
 msgstr ""
 
-#: includes/class-metabox.php:182
+#: includes/class-metabox.php:195
 #: assets/js/tools/index.js:1
 #: src/tools/components/VideoAction.js:243
 msgid "Upload Video"
 msgstr ""
 
-#: includes/class-metabox.php:233
+#: includes/class-metabox.php:246
 msgid "Set Poster Image"
 msgstr ""
 
-#: includes/class-metabox.php:238
+#: includes/class-metabox.php:251
 msgid "Remove Poster"
 msgstr ""
 
-#: includes/class-metabox.php:249
+#: includes/class-metabox.php:262
 msgid "Remove Video"
 msgstr ""
 
-#: includes/class-metabox.php:257
+#: includes/class-metabox.php:270
 msgid "Video url goes here"
 msgstr ""
 
-#: includes/class-metabox.php:258
-msgid "Directly copy &amp; paste video urls from Youtube, Vimeo &amp; Dailymotion."
+#: includes/class-metabox.php:271
+msgid "Directly copy &amp; paste video urls from YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia &amp; Loom."
 msgstr ""
 
-#: includes/class-metabox.php:265
+#: includes/class-metabox.php:278
 msgid "Self"
 msgstr ""
 
-#: includes/class-metabox.php:273
+#: includes/class-metabox.php:286
 #: includes/Compatibility/Plugins/Elementor/widgets/class-rsfv-video-widget.php:141
 #: assets/blocks/featured-video/index.js:1
 #: assets/js/tools/index.js:1
 #: assets/js/tools/index.js:24
 #: assets/js/tools/index.js:29
-#: src/blocks/featured-video/edit.js:41
+#: src/blocks/featured-video/edit.js:45
 #: src/tools/components/BulkUpload.js:1646
 #: src/tools/components/ManageFloatingVideos.js:169
 #: src/tools/components/VideoTypeSelect.js:68
 msgid "Embed"
 msgstr ""
 
-#: includes/class-metabox.php:279
+#: includes/class-metabox.php:292
 msgid "Please select a video source"
 msgstr ""
 
-#: includes/class-metabox.php:283
+#: includes/class-metabox.php:296
 msgid "Set & Manage Videos from One Place"
 msgstr ""
 
@@ -463,7 +463,7 @@ msgid "https://www.youtube.com/watch?v=..."
 msgstr ""
 
 #: includes/Compatibility/Plugins/Elementor/widgets/class-rsfv-video-widget.php:190
-msgid "Paste a video URL from YouTube, Vimeo, or Dailymotion."
+msgid "Paste a video URL from YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia, or Loom."
 msgstr ""
 
 #: includes/Compatibility/Plugins/Elementor/widgets/class-rsfv-video-widget.php:314
@@ -478,13 +478,13 @@ msgstr ""
 msgid "No featured video configured for this post."
 msgstr ""
 
-#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:126
+#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:128
 #: assets/js/studio/studio.js:2
 #: src/studio/components/TemplateStrip.js:27
 msgid "Products"
 msgstr ""
 
-#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:641
+#: includes/Compatibility/Plugins/WooCommerce/class-compatibility.php:661
 msgid "Product video - tap to play"
 msgstr ""
 
@@ -559,7 +559,7 @@ msgstr ""
 
 #: includes/Featuresets/floating-video/class-rest-api.php:475
 #: includes/Tools/class-rest-api.php:558
-msgid "Embed URL must be from Youtube, Vimeo or Dailymotion."
+msgid "Embed URL must be from YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia or Loom."
 msgstr ""
 
 #: includes/Featuresets/rollback/class-init.php:66
@@ -635,24 +635,18 @@ msgstr ""
 msgid "Toggle"
 msgstr ""
 
-#: includes/Settings/class-register.php:71
+#: includes/Settings/class-register.php:65
 msgctxt "Page title"
 msgid "JetixWP Plugins"
 msgstr ""
 
-#: includes/Settings/class-register.php:72
+#: includes/Settings/class-register.php:66
 msgctxt "Menu title"
 msgid "JetixWP"
 msgstr ""
 
-#: includes/Settings/class-register.php:85
+#: includes/Settings/class-register.php:79
 msgid "Really Simple Featured Video Settings"
-msgstr ""
-
-#: includes/Settings/class-register.php:133
-#: includes/Settings/class-register.php:177
-#: includes/Settings/Tabs/class-general.php:183
-msgid "You do not have permission to perform this action."
 msgstr ""
 
 #: includes/Settings/Tabs/class-analytics.php:25
@@ -728,7 +722,7 @@ msgstr ""
 #: includes/Settings/Tabs/class-controls.php:24
 #: includes/Settings/Tabs/class-controls.php:58
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:45
+#: src/blocks/featured-video/edit.js:49
 msgid "Controls"
 msgstr ""
 
@@ -747,31 +741,31 @@ msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:59
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:48
+#: src/blocks/featured-video/edit.js:52
 msgid "Autoplay"
 msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:60
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:51
+#: src/blocks/featured-video/edit.js:55
 msgid "Loop"
 msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:61
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:53
+#: src/blocks/featured-video/edit.js:57
 msgid "Picture in Picture"
 msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:62
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:52
+#: src/blocks/featured-video/edit.js:56
 msgid "Mute sound"
 msgstr ""
 
 #: includes/Settings/Tabs/class-controls.php:66
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:56
+#: src/blocks/featured-video/edit.js:60
 msgid "Download"
 msgstr ""
 
@@ -941,6 +935,10 @@ msgstr ""
 msgid "Please select the post types you wish to enable featured video support at."
 msgstr ""
 
+#: includes/Settings/Tabs/class-general.php:183
+msgid "You do not have permission to perform this action."
+msgstr ""
+
 #: includes/Settings/Tabs/class-general.php:194
 msgid "Could not get current compatibility engine."
 msgstr ""
@@ -1062,7 +1060,7 @@ msgid "Tick products or posts on the Video Studio page and auto generate all the
 msgstr ""
 
 #: includes/Settings/Views/html-admin-settings-upgrade.php:35
-#: includes/Settings/Views/html-admin-sidebar-promo.php:73
+#: includes/Settings/Views/html-admin-sidebar-promo.php:62
 #: assets/js/tools/index.js:30
 #: src/tools/components/Sidebar.js:91
 msgid "Full video analytics"
@@ -1176,113 +1174,65 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:27
-msgid "Dismiss this notice."
+#: includes/Settings/Views/html-admin-sidebar-promo.php:28
+msgid "Black Friday"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:30
-#: includes/Studio/class-admin-page.php:58
-msgid "New"
+#: includes/Settings/Views/html-admin-sidebar-promo.php:29
+msgid "Up to 50% off"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:31
-msgid "Our latest and greatest"
+#: includes/Settings/Views/html-admin-sidebar-promo.php:31
+msgid "RSFV PRO for life, from $59"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:33
-msgid "Delta logo"
+#: includes/Settings/Views/html-admin-sidebar-promo.php:32
+msgid "Ends December 2"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:34
-msgid "Meet Delta: build WordPress sites with AI"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:37
-msgid "From the JetixWP team, seven months in the making and now out. Describe the site you want and your AI agent builds it in clean HTML and CSS, without the headache and learning curve of page builders."
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:40
-msgid "Works with Claude, ChatGPT, Cursor and any MCP client"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:41
-msgid "Clean HTML and CSS output, no builder markup"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:42
-msgid "Templates for every part of the site"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:43
-msgid "Sketchbook boards to try ideas safely"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:44
-msgid "Bring your own AI, no AI fee from Delta"
-msgstr ""
-
-#. translators: 1: single site price, 2: unlimited sites price.
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:52
-msgid "Founder’s Lifetime License: %1$s single site · %2$s unlimited sites. One payment, lifetime updates, 30-day refund guarantee."
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:61
-msgid "Founder’s pricing is half the regular price. Lock it in now and get your sites built and managed by an AI agent you already use."
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-delta-promo.php:63
-msgid "✨ Explore Delta"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:49
-msgid "Black Friday deal: RSFV PRO from $59"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:50
-msgid "Auto generate more featured videos from templates with Video Studio PRO, get deeper WooCommerce control, full video analytics, wider theme support, and direct help from the developer. One payment, lifetime updates."
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:53
-msgid "Special Black Friday Deal"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:53
-msgid "Save up to 50%"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:56
-msgid "Single site"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:56
-msgid "Save 34%"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:60
+#: includes/Settings/Views/html-admin-sidebar-promo.php:37
 msgid "Unlimited sites"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:60
-msgid "Save 50%"
+#: includes/Settings/Views/html-admin-sidebar-promo.php:38
+msgid "Best value · save 50%"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:64
+#: includes/Settings/Views/html-admin-sidebar-promo.php:40
+#: includes/Settings/Views/html-admin-sidebar-promo.php:49
+msgid "Regular price"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:40
+#: includes/Settings/Views/html-admin-sidebar-promo.php:49
+msgid "Black Friday price"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:46
+msgid "Single site"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:47
+msgid "Save 34%"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:53
+msgid "Claim 50% off"
+msgstr ""
+
+#: includes/Settings/Views/html-admin-sidebar-promo.php:54
 msgid "One-time payment · lifetime updates · no renewals"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:65
-msgid "Get PRO for $59"
-msgstr ""
-
-#: includes/Settings/Views/html-admin-sidebar-promo.php:66
+#: includes/Settings/Views/html-admin-sidebar-promo.php:55
 msgid "Secure checkout · 14-day money-back guarantee"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:69
+#: includes/Settings/Views/html-admin-sidebar-promo.php:58
 msgid "What PRO adds"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:71
+#: includes/Settings/Views/html-admin-sidebar-promo.php:60
 #: assets/js/studio/studio.js:5
 #: assets/js/tools/index.js:30
 #: src/studio/components/StudioModal.js:562
@@ -1290,60 +1240,64 @@ msgstr ""
 msgid "Video Studio PRO"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:71
+#: includes/Settings/Views/html-admin-sidebar-promo.php:60
 msgid "auto generate videos from 20 more templates, in vertical and 4K sizes, with music, a brand kit, every Google Font, and for many entries at once"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:72
+#: includes/Settings/Views/html-admin-sidebar-promo.php:61
 #: assets/js/tools/index.js:30
 #: src/tools/components/Sidebar.js:135
 msgid "Priority support"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:72
+#: includes/Settings/Views/html-admin-sidebar-promo.php:61
 msgid "direct help from the developer"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:73
+#: includes/Settings/Views/html-admin-sidebar-promo.php:62
 msgid "history beyond 14 days, watch time, completion, CSV export"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:74
+#: includes/Settings/Views/html-admin-sidebar-promo.php:63
 #: assets/js/tools/index.js:30
 #: src/tools/components/Sidebar.js:102
 msgid "WooCommerce controls"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:74
+#: includes/Settings/Views/html-admin-sidebar-promo.php:63
 msgid "gallery order, thumbnails, aspect ratios"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:75
+#: includes/Settings/Views/html-admin-sidebar-promo.php:64
 #: assets/blocks/featured-video/index.js:1
 #: assets/js/tools/index.js:30
-#: src/blocks/featured-video/edit.js:422
+#: src/blocks/featured-video/edit.js:426
 #: src/tools/components/Sidebar.js:113
 msgid "Autoplay on hover"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:75
+#: includes/Settings/Views/html-admin-sidebar-promo.php:64
 msgid "extended controls for listings and shops"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:76
+#: includes/Settings/Views/html-admin-sidebar-promo.php:65
 #: assets/js/tools/index.js:30
 #: src/tools/components/Sidebar.js:124
 msgid "Premium and custom themes"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:76
+#: includes/Settings/Views/html-admin-sidebar-promo.php:65
 msgid "more supported, compatibility on request"
 msgstr ""
 
-#: includes/Settings/Views/html-admin-sidebar-promo.php:78
+#: includes/Settings/Views/html-admin-sidebar-promo.php:67
 #: assets/js/tools/index.js:30
 #: src/tools/components/Sidebar.js:165
 msgid "Compare free vs PRO →"
+msgstr ""
+
+#: includes/Studio/class-admin-page.php:58
+msgid "New"
 msgstr ""
 
 #: includes/Studio/class-admin-page.php:63
@@ -1712,25 +1666,25 @@ msgstr ""
 msgid "That file type is not allowed."
 msgstr ""
 
-#: includes/Studio/class-rest-api.php:235
+#: includes/Studio/class-rest-api.php:246
 msgid "This site does not have enough upload space left for the video."
 msgstr ""
 
 #. translators: %s: post title.
-#: includes/Studio/class-rest-api.php:263
+#: includes/Studio/class-rest-api.php:274
 msgid "%s (Video Studio)"
 msgstr ""
 
 #. translators: %s: post title.
-#: includes/Studio/class-rest-api.php:279
+#: includes/Studio/class-rest-api.php:290
 msgid "%s (Video Studio poster)"
 msgstr ""
 
-#: includes/Studio/class-rest-api.php:318
+#: includes/Studio/class-rest-api.php:329
 msgid "No video was sent."
 msgstr ""
 
-#: includes/Studio/class-rest-api.php:323
+#: includes/Studio/class-rest-api.php:334
 #: includes/Tools/class-bulk-import.php:1031
 #: assets/js/tools/index.js:9
 #: src/tools/components/BulkUpload.js:369
@@ -1823,7 +1777,7 @@ msgstr ""
 #: includes/Tools/class-bulk-import.php:1013
 #: assets/js/tools/index.js:6
 #: src/tools/components/BulkUpload.js:333
-msgid "Embed links must be YouTube, Vimeo, or Dailymotion."
+msgid "Embed links must be YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia, or Loom."
 msgstr ""
 
 #: includes/Tools/class-bulk-import.php:1015
@@ -1939,134 +1893,134 @@ msgid "Really Simple Featured Video → Tools"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:49
+#: src/blocks/featured-video/edit.js:53
 msgid "Browsers only autoplay video that is muted."
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:57
+#: src/blocks/featured-video/edit.js:61
 msgid "Self-hosted videos only."
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:73
+#: src/blocks/featured-video/edit.js:77
 msgid "Use global setting (on)"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:74
+#: src/blocks/featured-video/edit.js:78
 msgid "Use global setting (off)"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:76
+#: src/blocks/featured-video/edit.js:80
 msgid "On"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:77
+#: src/blocks/featured-video/edit.js:81
 msgid "Off"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:130
+#: src/blocks/featured-video/edit.js:134
 msgid "Post with a featured video"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:314
+#: src/blocks/featured-video/edit.js:318
 msgid "This post can not be found, or you can not see it."
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:325
+#: src/blocks/featured-video/edit.js:329
 msgid "Featured video is not turned on for this type of content."
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:332
+#: src/blocks/featured-video/edit.js:336
 msgid "Open Featured Video settings"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:343
+#: src/blocks/featured-video/edit.js:347
 msgid "The selected post has no featured video."
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:347
+#: src/blocks/featured-video/edit.js:351
 msgid "This entry has no featured video yet. Add one in the Featured Video box."
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:292
+#: src/blocks/featured-video/edit.js:296
 msgid "Pick a post to show its featured video."
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:296
+#: src/blocks/featured-video/edit.js:300
 msgid "Shows the featured video of the entry this block is placed in. Nothing to preview here, it appears on the site."
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
 #: assets/js/tools/index.js:30
-#: src/blocks/featured-video/edit.js:365
+#: src/blocks/featured-video/edit.js:369
 #: src/tools/components/AnalyticsReport.js:193
 msgid "Source"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:367
+#: src/blocks/featured-video/edit.js:371
 msgid "Show the featured video of"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:372
+#: src/blocks/featured-video/edit.js:376
 msgid "This entry"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:376
+#: src/blocks/featured-video/edit.js:380
 msgid "Another post"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:394
+#: src/blocks/featured-video/edit.js:398
 msgid "Player"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:417
+#: src/blocks/featured-video/edit.js:421
 msgid "Global player settings"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:426
+#: src/blocks/featured-video/edit.js:430
 msgid "Play when hovered"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:437
+#: src/blocks/featured-video/edit.js:441
 msgid "When there is no video"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:441
+#: src/blocks/featured-video/edit.js:445
 msgid "Show"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:444
+#: src/blocks/featured-video/edit.js:448
 msgid "Nothing"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:447
+#: src/blocks/featured-video/edit.js:451
 msgid "The featured image"
 msgstr ""
 
 #: assets/blocks/featured-video/index.js:1
-#: src/blocks/featured-video/edit.js:453
+#: src/blocks/featured-video/edit.js:457
 msgid "Shown when the post has no featured video."
 msgstr ""
 
@@ -2325,9 +2279,13 @@ msgid "%1$s and %2$d more"
 msgstr ""
 
 #: assets/js/studio/studio.js:5
-#: src/studio/components/StudioModal.js:597
-#: src/studio/components/TemplateStrip.js:215
-msgid "Get PRO"
+#: src/studio/components/TemplateStrip.js:213
+msgid "Black Friday: up to 50% off, ends December 2"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+#: src/studio/components/TemplateStrip.js:221
+msgid "Get the PRO deal"
 msgstr ""
 
 #: assets/js/studio/studio.js:5
@@ -2402,6 +2360,11 @@ msgstr ""
 #: assets/js/studio/studio.js:5
 #: src/studio/components/StudioModal.js:588
 msgid "Vertical, 4:5, 60 fps and 4K sizes"
+msgstr ""
+
+#: assets/js/studio/studio.js:5
+#: src/studio/components/StudioModal.js:597
+msgid "Get PRO"
 msgstr ""
 
 #: assets/js/studio/studio.js:5
@@ -3178,7 +3141,7 @@ msgstr ""
 
 #: assets/js/tools/index.js:16
 #: src/tools/components/BulkUpload.js:1401
-msgid "Paste YouTube, Vimeo, or Dailymotion links, one per line"
+msgid "Paste YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia, or Loom links, one per line"
 msgstr ""
 
 #: assets/js/tools/index.js:16
@@ -3229,7 +3192,7 @@ msgstr ""
 
 #: assets/js/tools/index.js:17
 #: src/tools/components/BulkUpload.js:1500
-msgid "A YouTube, Vimeo, or Dailymotion link. Or a file name like intro.mp4. Or an https link ending in .mp4."
+msgid "A YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia, or Loom link. Or a file name like intro.mp4. Or an https link ending in .mp4."
 msgstr ""
 
 #. translators: %s: singular post type name, such as Product
@@ -3426,7 +3389,7 @@ msgstr ""
 
 #: assets/js/tools/index.js:29
 #: src/tools/components/FloatingVideoForm.js:394
-msgid "Paste a YouTube, Vimeo, or Dailymotion URL."
+msgid "Paste a YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia, or Loom URL."
 msgstr ""
 
 #: assets/js/tools/index.js:29
