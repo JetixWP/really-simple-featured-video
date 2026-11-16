@@ -38,6 +38,7 @@ const PROVIDERS = {
 	youtube: 'YouTube',
 	vimeo: 'Vimeo',
 	dailymotion: 'Dailymotion',
+	peertube: 'PeerTube',
 	unknown: __( 'Embed', 'rsfv' ),
 };
 

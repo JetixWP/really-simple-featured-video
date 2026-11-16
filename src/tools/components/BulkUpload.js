@@ -331,7 +331,7 @@ function reasonText( code, item ) {
 			return __( 'The embed link is not a valid URL.', 'rsfv' );
 		case 'unsupported_embed':
 			return __(
-				'Embed links must be YouTube, Vimeo, or Dailymotion.',
+				'Embed links must be YouTube, Vimeo, Dailymotion, or PeerTube.',
 				'rsfv'
 			);
 		case 'invalid_url':
@@ -1399,7 +1399,7 @@ const BulkUpload = () => {
 					<div className="rsfv-bulk-paste">
 						<label htmlFor="rsfv-bulk-links">
 							{ __(
-								'Paste YouTube, Vimeo, or Dailymotion links, one per line',
+								'Paste YouTube, Vimeo, Dailymotion, or PeerTube links, one per line',
 								'rsfv'
 							) }
 						</label>
@@ -1498,7 +1498,7 @@ const BulkUpload = () => {
 								</dt>
 								<dd>
 									{ __(
-										'A YouTube, Vimeo, or Dailymotion link. Or a file name like intro.mp4. Or an https link ending in .mp4.',
+										'A YouTube, Vimeo, Dailymotion, or PeerTube link. Or a file name like intro.mp4. Or an https link ending in .mp4.',
 										'rsfv'
 									) }
 								</dd>

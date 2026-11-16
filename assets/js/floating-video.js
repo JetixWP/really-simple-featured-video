@@ -74,6 +74,14 @@
 			}
 		}
 
+		// PeerTube runs on many domains, so match the path: /w/ID, /videos/watch/ID or /videos/embed/ID.
+		if ( ! baseUrl ) {
+			match = url.match( /^https?:\/\/([^\/?#]+)\/(?:w|videos\/watch|videos\/embed)\/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[1-9A-HJ-NP-Za-km-z]{22})\/?(?:[?#]|$)/ );
+			if ( match ) {
+				baseUrl = 'https://' + match[ 1 ].toLowerCase() + '/videos/embed/' + match[ 2 ];
+			}
+		}
+
 		// Unknown providers are not embedded.
 		if ( ! baseUrl ) {
 			return '';

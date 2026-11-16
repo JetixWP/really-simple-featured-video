@@ -320,7 +320,7 @@ class FrontEnd {
 				break;
 
 			default:
-				$embed_data = false;
+				$embed_data = $this->parse_peertube_url( $parsed );
 				break;
 		}
 
@@ -360,6 +360,39 @@ class FrontEnd {
 	}
 
 	/**
+	 * Parse a PeerTube video URL. PeerTube runs on many domains, so the path is matched instead of the host.
+	 *
+	 * Supports /w/{id}, /videos/watch/{id} and /videos/embed/{id}, where the ID is a UUID or a 22 character short ID.
+	 *
+	 * @param array $parsed Result of wp_parse_url().
+	 *
+	 * @return array|false
+	 */
+	private function parse_peertube_url( $parsed ) {
+		if ( empty( $parsed['path'] ) || empty( $parsed['host'] ) ) {
+			return false;
+		}
+
+		$pattern = '#^/(?:w|videos/watch|videos/embed)/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[1-9A-HJ-NP-Za-km-z]{22})/?$#';
+
+		if ( ! preg_match( $pattern, $parsed['path'], $matches ) ) {
+			return false;
+		}
+
+		$domain = strtolower( $parsed['host'] );
+
+		if ( ! empty( $parsed['port'] ) ) {
+			$domain .= ':' . absint( $parsed['port'] );
+		}
+
+		return array(
+			'host'   => 'peertube',
+			'id'     => $matches[1],
+			'domain' => $domain,
+		);
+	}
+
+	/**
 	 * Generate an embed URL.
 	 *
 	 * @param string $url Video URL.
@@ -381,6 +414,8 @@ class FrontEnd {
 				}
 			} elseif ( 'dailymotion' === $embed_data['host'] ) {
 				$embed_url = 'https://www.dailymotion.com/embed/video/' . $embed_data['id'];
+			} elseif ( 'peertube' === $embed_data['host'] && ! empty( $embed_data['domain'] ) ) {
+				$embed_url = 'https://' . $embed_data['domain'] . '/videos/embed/' . rawurlencode( $embed_data['id'] );
 			}
 		}
 
