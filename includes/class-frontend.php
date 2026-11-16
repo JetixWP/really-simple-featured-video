@@ -319,8 +319,40 @@ class FrontEnd {
 				);
 				break;
 
+			case 'player.mediadelivery.net':
+			case 'iframe.mediadelivery.net':
+				// Bunny Stream: /embed/{library}/{video} or /play/{library}/{video}.
+				$embed_data = false;
+
+				if ( ! empty( $parsed['path'] ) && preg_match( '#^/(?:embed|play)/(\d+)/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})/?$#', $parsed['path'], $matches ) ) {
+					$embed_data = array(
+						'host'    => 'bunny',
+						'id'      => strtolower( $matches[2] ),
+						'library' => $matches[1],
+						'domain'  => $host,
+					);
+				}
+				break;
+
+			case 'loom.com':
+			case 'www.loom.com':
+				// Share links can carry a title slug before the ID.
+				$embed_data = false;
+
+				if ( ! empty( $parsed['path'] ) && preg_match( '#^/(?:share|embed)/(?:[^/]*-)?([0-9a-fA-F]{32})/?$#', $parsed['path'], $matches ) ) {
+					$embed_data = array(
+						'host' => 'loom',
+						'id'   => strtolower( $matches[1] ),
+					);
+				}
+				break;
+
 			default:
-				$embed_data = $this->parse_peertube_url( $parsed );
+				$embed_data = $this->parse_wistia_url( $parsed );
+
+				if ( ! $embed_data ) {
+					$embed_data = $this->parse_peertube_url( $parsed );
+				}
 				break;
 		}
 
@@ -357,6 +389,36 @@ class FrontEnd {
 		}
 
 		return '';
+	}
+
+	/**
+	 * Parse a Wistia video URL. Accounts use their own subdomain, such as acme.wistia.com.
+	 *
+	 * Supports /medias/{id}, /embed/iframe/{id} and /embed/medias/{id} on wistia.com, wistia.net and wi.st.
+	 *
+	 * @param array $parsed Result of wp_parse_url().
+	 *
+	 * @return array|false
+	 */
+	private function parse_wistia_url( $parsed ) {
+		if ( empty( $parsed['path'] ) || empty( $parsed['host'] ) ) {
+			return false;
+		}
+
+		$host = strtolower( $parsed['host'] );
+
+		if ( 'wi.st' !== $host && ! preg_match( '/(?:^|\.)wistia\.(?:com|net)$/', $host ) ) {
+			return false;
+		}
+
+		if ( ! preg_match( '#^/(?:medias|embed/iframe|embed/medias)/([a-z0-9]{10})(?:\.jsonp)?/?$#', $parsed['path'], $matches ) ) {
+			return false;
+		}
+
+		return array(
+			'host' => 'wistia',
+			'id'   => $matches[1],
+		);
 	}
 
 	/**
@@ -416,6 +478,12 @@ class FrontEnd {
 				$embed_url = 'https://www.dailymotion.com/embed/video/' . $embed_data['id'];
 			} elseif ( 'peertube' === $embed_data['host'] && ! empty( $embed_data['domain'] ) ) {
 				$embed_url = 'https://' . $embed_data['domain'] . '/videos/embed/' . rawurlencode( $embed_data['id'] );
+			} elseif ( 'bunny' === $embed_data['host'] && ! empty( $embed_data['domain'] ) && ! empty( $embed_data['library'] ) ) {
+				$embed_url = 'https://' . $embed_data['domain'] . '/embed/' . absint( $embed_data['library'] ) . '/' . rawurlencode( $embed_data['id'] );
+			} elseif ( 'wistia' === $embed_data['host'] ) {
+				$embed_url = 'https://fast.wistia.net/embed/iframe/' . rawurlencode( $embed_data['id'] );
+			} elseif ( 'loom' === $embed_data['host'] ) {
+				$embed_url = 'https://www.loom.com/embed/' . rawurlencode( $embed_data['id'] );
 			}
 		}
 

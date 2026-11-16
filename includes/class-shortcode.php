@@ -358,6 +358,55 @@ class Shortcode {
 	}
 
 	/**
+	 * Player settings for providers that do not use the common autoplay=1 style parameters.
+	 *
+	 * @param array       $video_controls Video control settings.
+	 * @param array|false $embed_data     Parsed embed data.
+	 * @return string|null Query string, or null to use the common parameters.
+	 */
+	public static function get_provider_embed_parameters( $video_controls, $embed_data ) {
+		$host   = is_array( $embed_data ) && isset( $embed_data['host'] ) ? $embed_data['host'] : '';
+		$params = array();
+
+		if ( 'wistia' === $host ) {
+			// Wistia embed options: https://docs.wistia.com/docs/embed-options-and-plugins .
+			$params[] = 'autoPlay=' . ( empty( $video_controls['autoplay'] ) ? 'false' : 'true' );
+
+			if ( ! empty( $video_controls['mute'] ) ) {
+				$params[] = 'muted=true';
+			}
+
+			if ( ! empty( $video_controls['loop'] ) ) {
+				$params[] = 'endVideoBehavior=loop';
+			}
+
+			// The big play button stays so a video without autoplay can still start.
+			if ( empty( $video_controls['controls'] ) ) {
+				$params[] = 'controlsVisibleOnLoad=false&playbar=false&smallPlayButton=false&volumeControl=false&fullscreenButton=false&settingsControl=false';
+			}
+
+			return implode( '&', $params );
+		}
+
+		if ( 'loom' === $host ) {
+			// Loom has no option to hide its controls.
+			$params[] = 'autoplay=' . ( empty( $video_controls['autoplay'] ) ? '0' : '1' );
+
+			if ( ! empty( $video_controls['mute'] ) ) {
+				$params[] = 'muted=1&mute_video=true';
+			}
+
+			if ( ! empty( $video_controls['loop'] ) ) {
+				$params[] = 'loop_video=true';
+			}
+
+			return implode( '&', $params );
+		}
+
+		return null;
+	}
+
+	/**
 	 * Loop parameter for an embed. YouTube only loops a single video when it is also named as the playlist.
 	 *
 	 * @param array|false $embed_data Parsed embed data.
@@ -379,6 +428,12 @@ class Shortcode {
 	 * @return string
 	 */
 	private function get_embed_url_parameters( $video_controls, $embed_data = false ) {
+		$provider_params = self::get_provider_embed_parameters( $video_controls, $embed_data );
+
+		if ( null !== $provider_params ) {
+			return $provider_params;
+		}
+
 		$params = array();
 
 		$params[] = ! empty( $video_controls['autoplay'] ) ? 'autoplay=1' : 'autoplay=0';

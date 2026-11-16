@@ -762,7 +762,7 @@ class Bulk_Import {
 	}
 
 	/**
-	 * Whether an embed URL is YouTube, Vimeo, Dailymotion, or PeerTube.
+	 * Whether an embed URL is YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia, or Loom.
 	 *
 	 * @param string $url Embed URL.
 	 *
@@ -1010,7 +1010,7 @@ class Bulk_Import {
 			case 'invalid_embed':
 				return __( 'The embed link is not a valid URL.', 'rsfv' );
 			case 'unsupported_embed':
-				return __( 'Embed links must be YouTube, Vimeo, Dailymotion, or PeerTube.', 'rsfv' );
+				return __( 'Embed links must be YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia, or Loom.', 'rsfv' );
 			case 'invalid_url':
 				return __( 'The video link is not allowed.', 'rsfv' );
 			case 'invalid_mime':

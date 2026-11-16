@@ -717,6 +717,12 @@ class Compatibility extends Base_Compatibility {
 	 * @return string
 	 */
 	private static function get_woo_embed_url_parameters( $video_controls, $video_data ) {
+		$provider_params = Shortcode::get_provider_embed_parameters( $video_controls, $video_data['embed_data'] ?? false );
+
+		if ( null !== $provider_params ) {
+			return $provider_params;
+		}
+
 		// Standard parameters.
 		$is_autoplay  = ! empty( $video_controls['autoplay'] ) ? 'autoplay=1&' : 'autoplay=0&';
 		$is_loop      = ! empty( $video_controls['loop'] ) ? Shortcode::get_embed_loop_parameter( $video_data['embed_data'] ?? false ) . '&' : '';

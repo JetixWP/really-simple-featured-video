@@ -268,7 +268,7 @@ class Metabox {
 			RSFV_EMBED_META_KEY,
 			esc_attr( $embed_url ),
 			__( 'Video url goes here', 'rsfv' ),
-			__( 'Directly copy &amp; paste video urls from YouTube, Vimeo, Dailymotion &amp; PeerTube.', 'rsfv' )
+			__( 'Directly copy &amp; paste video urls from YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia &amp; Loom.', 'rsfv' )
 		);
 
 		$self_input = sprintf(

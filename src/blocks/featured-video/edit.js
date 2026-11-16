@@ -39,6 +39,9 @@ const PROVIDERS = {
 	vimeo: 'Vimeo',
 	dailymotion: 'Dailymotion',
 	peertube: 'PeerTube',
+	bunny: 'Bunny Stream',
+	wistia: 'Wistia',
+	loom: 'Loom',
 	unknown: __( 'Embed', 'rsfv' ),
 };
 

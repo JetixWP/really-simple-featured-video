@@ -472,7 +472,7 @@ class REST_API {
 			if ( ! empty( $embed_url ) && ( ! is_array( $embed_data ) || empty( $embed_data['id'] ) ) ) {
 				return new WP_Error(
 					'unsupported_embed',
-					__( 'Embed URL must be from YouTube, Vimeo, Dailymotion or PeerTube.', 'rsfv' ),
+					__( 'Embed URL must be from YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia or Loom.', 'rsfv' ),
 					array( 'status' => 400 )
 				);
 			}
