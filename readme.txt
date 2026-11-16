@@ -3,7 +3,7 @@ Contributors: jetixwp, lushkant
 Requires at least: 6.3
 Requires PHP: 8.0
 Tested up to: 7.1
-Stable tag: 1.2.0
+Stable tag: 1.5.0
 Tags: video, featured video, woocommerce, product video, video embed
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -27,15 +27,15 @@ You get a really simple settings page which has all the controls you need for ma
 
 * **Video Studio** - Auto generate featured videos from templates, right inside WordPress. Pick a template, change the text, colors, font and images (filled from the post or WooCommerce product), preview it and click Make video. The video is made in your browser and saved to your Media Library.
 * **Featured Video block** - Add the block wherever you want a video: it shows the featured video of the entry it is in, or of any other post you pick. Works in templates and Query Loops, with player settings you can change per block.
-* **Embed support from Youtube, Dailymotion and Vimeo** - You can now embed videos from Youtube, Dailymotion and Vimeo directly at each post/page/product or any custom type that supports featured images.
-* **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site, self hosted and embeds.
+* **Embed videos from YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia and Loom** - Paste a video link at each post/page/product or any custom type that supports featured images. Unlisted Vimeo links work too.
+* **Autoplay on Hover** - Enable autoplay on hover on all videos added via the plugin on the site: self hosted videos and YouTube, Vimeo and Dailymotion embeds.
 * **Self host videos** - Upload and feature videos on posts/pages and WooCommerce products directly from your site.
 * **WooCommerce Single and Shop Archives Support** - A straightforward implementation for WooCommerce Product Featured Video.
 * **Sticky Videos** - Add a play button at the bottom-left of your pages that opens a popup player, with display conditions, multi-video support and customizable controls.
 * **Video Controls such as Autoplay, Mute and more** - Manage everything for the featured videos, by setting them accordingly, options for these are available at settings page.
 * **Shortcodes** - Shortcodes to embed featured video at any post, page or product you want.
 * **Manage Featured Videos** - Manage featured videos from one single place for all your post types and skip the repetitive steps of going to the edit screen to edit each post/page/product individually.
-* **Bulk Video Uploader** - Assign video files or Youtube, Vimeo, and Dailymotion links to posts from Video Tools. Add rows by hand, or import a CSV or TXT file.
+* **Bulk Video Uploader** - Assign video files or YouTube, Vimeo, Dailymotion, PeerTube, Bunny Stream, Wistia and Loom links to posts from Video Tools. Add rows by hand, or import a CSV or TXT file.
 * **Video Analytics** - See views and plays for featured videos in Video Tools. Counts stay on your site. No cookie is set. Records the last 14 days of history.
 * **Elementor Pro Support** - Support for Posts/Archive, WooCommerce Product widgets with Elementor Pro builder.
 * **Elementor Widget** - A dedicated Featured Video widget for Elementor that seamlessly integrates with your page designs, allowing easy video embedding and customization.
@@ -178,6 +178,9 @@ No. Featured videos still show where your theme shows the featured image. The bl
 = Can I show the featured video of another post? =
 Yes. Add the block, choose "Another post" and pick a post, page or product that has a featured video. The shortcode [rsfv_by_postid post_id="281"] does the same. The video is only shown to people who are allowed to see that post.
 
+= Which video sites can I embed from? =
+YouTube (including Shorts), Vimeo (including unlisted links), Dailymotion, PeerTube (any instance), Bunny Stream, Wistia and Loom. Paste the link you copy from the video page or its share button. Autoplay, loop, mute and controls follow your settings where the site supports them. Loom always shows its own controls. Autoplay on hover works with self hosted videos and YouTube, Vimeo and Dailymotion embeds.
+
 = Can I upload many videos at once? =
 Yes. Open Video Tools and use the Bulk upload tab. You can add files or embed links by hand, or import a CSV or TXT file. Each row needs a post. A row without a post is discarded, and its file is not uploaded.
 
@@ -205,6 +208,14 @@ Video Studio uses these libraries and fonts:
 * Manrope, Ysabeau Office, Roboto Slab and Vollkorn fonts (SIL Open Font License 1.1), see assets/studio/fonts/LICENSE.txt
 
 == Changelog ==
+
+= 1.5.0 =
+* New: Embed videos from PeerTube, Bunny Stream, Wistia and Loom. Paste the video link like any other embed
+* Improvement: Self hosted videos load only their size, duration and first frame until they play, so pages with many videos load less data. Autoplay videos load as before. Use the rsfv_video_preload filter to change this
+* Improvement: Redesigned the PRO upgrade box in the Settings and Video Studio sidebars, with links straight to checkout
+* Improvement: Removed the Delta card from the Settings and Video Studio sidebars
+* Fix: Loop now works for YouTube videos
+* Fix: Unlisted Vimeo videos no longer show "Sorry, this video does not exist"
 
 = 1.2.0 =
 * Improvement: Removed the review card from the sidebar
