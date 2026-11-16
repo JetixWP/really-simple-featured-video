@@ -12,8 +12,6 @@ Really Simple Featured Video lets you add product video & featured video to WooC
 
 == Description ==
 
-✨ Have you seen our brand new launch? [Delta, the agent-first WordPress theme with built-in MCP](https://deltatheme.com/?utm_medium=wp.org&utm_source=wordpressorg&utm_campaign=readme)
-
 Really Simple Featured Video plugin provides a really straightforward way of adding featured video support to your Posts, Pages & WooCommerce Products. Adding your own videos to the site is a breeze and you get an easy to use settings panel with the options you really need.
 
 Show those videos wherever you build: your theme's featured image spot, the **Featured Video block** in the block editor and Site Editor, a shortcode, or the Elementor and Bricks builders.
