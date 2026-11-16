@@ -344,10 +344,11 @@ class Shortcode {
 		/**
 		 * Filters the preload hint for self-hosted videos.
 		 *
-		 * Browsers fetch the whole file when no hint is set. "metadata" loads only
-		 * the size, duration and first frame until the video plays. Autoplay
-		 * videos load in full either way. Return "auto" for the old behaviour or
-		 * an empty string to leave the attribute out.
+		 * "metadata" loads only the size, duration and first frame until the video
+		 * plays. Without a hint each browser decides: Chrome and Firefox already
+		 * load metadata, Safari loads the whole file. Autoplay videos load in full
+		 * either way. Return "auto" to load the whole file or an empty string to
+		 * leave the attribute out, as before 1.5.0.
 		 *
 		 * @param string $preload        One of "auto", "metadata", "none" or "".
 		 * @param array  $video_controls Video control settings.
