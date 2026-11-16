@@ -1,14 +1,12 @@
 <?php
 /**
- * Admin View: sidebar with the Delta card and the PRO upgrade box.
+ * Admin View: sidebar with the PRO upgrade box.
  *
  * Used by Settings and Video Studio. Set $rsfv_promo_studio to true before
  * including it to list Video Studio PRO first.
  *
  * @package RSFV
  */
-
-use RSFV\Settings\Register;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -17,11 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 $rsfv_has_pro = class_exists( '\RSFV_Pro\Plugin' );
 
 ?>
-					<?php // Updates through WP-CLI or a host can leave an older Register class in OPcache for a while. ?>
-					<?php if ( is_callable( array( Register::class, 'should_show_delta_promo' ) ) && Register::should_show_delta_promo() ) : ?>
-						<?php require RSFV_PLUGIN_DIR . 'includes/Settings/Views/html-admin-sidebar-delta-promo.php'; ?>
-					<?php endif; ?>
-
 					<?php if ( ! $rsfv_has_pro ) : ?>
 						<?php $rsfv_pro_url = 'https://jetixwp.com/plugins/really-simple-featured-video/?utm_campaign=' . ( empty( $rsfv_promo_studio ) ? 'settings-sidebar' : 'studio-sidebar' ) . '&utm_source=rsfv-plugin'; ?>
 						<div class="upgrade-box">
