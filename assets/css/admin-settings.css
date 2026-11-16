@@ -1037,43 +1037,6 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 	margin-bottom: 10px;
 }
 
-/* Video Studio: compact deal that sticks beside the long entry list. */
-.rsfv-studio-layout > .sidebar {
-	align-self: stretch;
-}
-
-.rsfv .sidebar .rsfv-bf-mini {
-	position: sticky;
-	top: calc(var(--wp-admin--admin-bar--height, 32px) + 20px);
-	margin-top: 24px;
-	padding: 16px 20px;
-	background: #101418;
-	border-radius: 4px;
-	color: #fff;
-}
-
-.rsfv .sidebar .rsfv-bf-mini p {
-	display: flex;
-	flex-direction: column;
-	gap: 2px;
-	margin: 0 0 12px;
-}
-
-.rsfv .sidebar .rsfv-bf-mini strong {
-	font-size: 15px;
-}
-
-.rsfv .sidebar .rsfv-bf-mini span {
-	color: #3ddc6a;
-	font-size: 13px;
-}
-
-@media screen and (max-width: 1099px) {
-	.rsfv .sidebar .rsfv-bf-mini {
-		display: none;
-	}
-}
-
 .rsfv .sidebar .upgrade-box .rsfv-upgrade-features {
 	margin: 0;
 	padding: 0;
@@ -1089,6 +1052,12 @@ body.jetixwp_page_rsfv-settings #wpbody-content > *:not(.wrap.rsfv):not(#screen-
 .rsfv .sidebar .upgrade-box .rsfv-upgrade-compare {
 	margin: 4px 0 0;
 	font-size: 13px;
+	text-align: start;
+}
+
+/* Video Studio has no .tab-content wrapper, so set the link colour here too. */
+.rsfv .sidebar .upgrade-box a:not(.button):not(.rsfv-bf__plan) {
+	color: var(--jwp-wtc__color-brand);
 }
 
 .rsfv .sidebar .upgrade-box .rsfv-upgrade-founder {

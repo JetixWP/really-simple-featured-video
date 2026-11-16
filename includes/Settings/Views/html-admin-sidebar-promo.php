@@ -75,15 +75,4 @@ $rsfv_has_pro = class_exists( '\RSFV_Pro\Plugin' );
 
 							</div>
 						</div>
-
-						<?php if ( ! empty( $rsfv_promo_studio ) ) : ?>
-							<?php // The Studio list runs long, this keeps the deal in view once the box above scrolls away. ?>
-							<div class="rsfv-bf-mini">
-								<p>
-									<strong><?php esc_html_e( 'Black Friday: RSFV PRO from $59', 'rsfv' ); ?></strong>
-									<span><?php esc_html_e( 'Up to 50% off · ends December 2', 'rsfv' ); ?></span>
-								</p>
-								<a class="button rsfv-bf__cta" href="<?php echo esc_url( $rsfv_checkout_unlimited ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Claim 50% off', 'rsfv' ); ?></a>
-							</div>
-						<?php endif; ?>
 					<?php endif; ?>
