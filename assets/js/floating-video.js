@@ -53,11 +53,16 @@
 			baseUrl = 'https://www.youtube.com/embed/' + match[ 1 ];
 		}
 
-		// Vimeo.
+		// Vimeo. Unlisted videos keep their hash, from /ID/HASH or ?h=HASH.
 		if ( ! baseUrl ) {
-			match = url.match( /vimeo\.com\/(?:video\/)?(\d+)/ );
+			match = url.match( /vimeo\.com\/(?:video\/)?(\d+)(?:\/([a-f0-9]{6,})(?=[\/?#]|$))?/i );
 			if ( match ) {
 				baseUrl = 'https://player.vimeo.com/video/' + match[ 1 ];
+
+				var hash = match[ 2 ] || ( url.match( /[?&](?:amp;|#038;)?h=([a-f0-9]{6,})(?=[&#]|$)/i ) || [] )[ 1 ];
+				if ( hash ) {
+					baseUrl += '?h=' + hash;
+				}
 			}
 		}
 
@@ -112,7 +117,7 @@
 			params.push( 'api=postMessage' );
 		}
 
-		return baseUrl + '?' + params.join( '&' );
+		return baseUrl + ( baseUrl.indexOf( '?' ) === -1 ? '?' : '&' ) + params.join( '&' );
 	}
 
 	/**

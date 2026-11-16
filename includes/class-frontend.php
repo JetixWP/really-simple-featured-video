@@ -287,6 +287,13 @@ class FrontEnd {
 					'host' => 'vimeo',
 					'id'   => $id,
 				);
+
+				// Unlisted videos need their privacy hash, from /ID/HASH or ?h=HASH.
+				$hash = $id ? $this->get_vimeo_hash( $url, $id ) : '';
+
+				if ( $hash ) {
+					$embed_data['hash'] = $hash;
+				}
 				break;
 
 			case 'dailymotion.com':
@@ -327,6 +334,32 @@ class FrontEnd {
 	}
 
 	/**
+	 * Get the privacy hash of an unlisted Vimeo video.
+	 *
+	 * @param string $url Video URL.
+	 * @param string $id  Vimeo video ID.
+	 *
+	 * @return string Hash, or an empty string.
+	 */
+	private function get_vimeo_hash( $url, $id ) {
+		// Saved URLs can arrive escaped, with &#038; in place of &.
+		$url   = html_entity_decode( $url, ENT_QUOTES );
+		$query = array();
+
+		wp_parse_str( (string) wp_parse_url( $url, PHP_URL_QUERY ), $query );
+
+		if ( ! empty( $query['h'] ) && is_string( $query['h'] ) && preg_match( '/^[a-f0-9]{6,}$/i', $query['h'] ) ) {
+			return $query['h'];
+		}
+
+		if ( preg_match( '#/' . preg_quote( $id, '#' ) . '/([a-f0-9]{6,})(?:[/?\#]|$)#i', $url, $matches ) ) {
+			return $matches[1];
+		}
+
+		return '';
+	}
+
+	/**
 	 * Generate an embed URL.
 	 *
 	 * @param string $url Video URL.
@@ -342,6 +375,10 @@ class FrontEnd {
 				$embed_url = 'https://www.youtube.com/embed/' . $embed_data['id'];
 			} elseif ( 'vimeo' === $embed_data['host'] ) {
 				$embed_url = 'https://player.vimeo.com/video/' . $embed_data['id'];
+
+				if ( ! empty( $embed_data['hash'] ) ) {
+					$embed_url .= '?h=' . rawurlencode( $embed_data['hash'] );
+				}
 			} elseif ( 'dailymotion' === $embed_data['host'] ) {
 				$embed_url = 'https://www.dailymotion.com/embed/video/' . $embed_data['id'];
 			}
