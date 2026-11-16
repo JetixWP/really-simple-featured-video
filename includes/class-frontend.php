@@ -366,6 +366,22 @@ class FrontEnd {
 	}
 
 	/**
+	 * Sandbox for embeds whose domain is not fixed. PeerTube runs on any domain,
+	 * so its player may not submit forms or send the page somewhere else.
+	 *
+	 * @param string $host Provider key from parse_embed_url().
+	 *
+	 * @return string Sandbox tokens, or an empty string for no sandbox.
+	 */
+	public static function get_iframe_sandbox( $host ) {
+		if ( 'peertube' !== $host ) {
+			return '';
+		}
+
+		return 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-presentation';
+	}
+
+	/**
 	 * Get the privacy hash of an unlisted Vimeo video.
 	 *
 	 * @param string $url Video URL.
@@ -541,6 +557,7 @@ class FrontEnd {
 					'frameborder'             => array(),
 					'allowfullscreen'         => array(),
 					'allow'                   => array(),
+					'sandbox'                 => array(),
 					'loading'                 => array(),
 					'tabindex'                => array(),
 					'role'                    => array(),

@@ -379,6 +379,11 @@
 			iframe.allow = allowParts.join( '; ' );
 			iframe.allowFullscreen = true;
 
+			// PeerTube runs on any domain, so its player may not submit forms or send the page elsewhere.
+			if ( /^https:\/\/[^\/]+\/videos\/embed\//.test( embedSrc ) ) {
+				iframe.setAttribute( 'sandbox', 'allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-presentation' );
+			}
+
 			container.appendChild( iframe );
 
 			if ( videoData.analyticsId && typeof window.rsfvWatchEmbed === 'function' ) {

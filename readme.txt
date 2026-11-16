@@ -211,6 +211,7 @@ Video Studio uses these libraries and fonts:
 
 = 1.5.0 =
 * New: Embed videos from PeerTube, Bunny Stream, Wistia and Loom. Paste the video link like any other embed
+* Security: PeerTube videos can come from any domain, so their player runs in a sandbox that cannot submit forms or send visitors to another page
 * Improvement: Self hosted videos load only their size, duration and first frame until they play, so pages with many videos load less data. Autoplay videos load as before. Use the rsfv_video_preload filter to change this
 * Improvement: Redesigned the PRO upgrade box in the Settings and Video Studio sidebars, with links straight to checkout
 * Improvement: Removed the Delta card from the Settings and Video Studio sidebars

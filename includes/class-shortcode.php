@@ -275,10 +275,14 @@ class Shortcode {
 		// Apply filter to final embed URL with parameters.
 		$final_embed_url_with_params = apply_filters( 'rsfv_final_embed_url_with_params', $final_embed_url_with_params );
 
+		// Older cached copies of the Frontend class may not have this method during an update.
+		$sandbox = method_exists( $frontend, 'get_iframe_sandbox' ) ? $frontend::get_iframe_sandbox( $video_type ) : '';
+
 		// Build iframe.
 		$iframe_html = sprintf(
-			'<iframe class="rsfv-video" width="100%%" height="540" src="%s" frameborder="0" allowfullscreen></iframe>',
-			esc_url( $final_embed_url_with_params )
+			'<iframe class="rsfv-video" width="100%%" height="540" src="%s" frameborder="0" allowfullscreen%s></iframe>',
+			esc_url( $final_embed_url_with_params ),
+			$sandbox ? ' sandbox="' . esc_attr( $sandbox ) . '"' : ''
 		);
 
 		// Wrap in responsive container.

@@ -640,6 +640,13 @@ class Compatibility extends Base_Compatibility {
 			'loading'         => 'lazy',
 		);
 
+		// Older cached copies of the Frontend class may not have this method during an update.
+		$sandbox = method_exists( $frontend, 'get_iframe_sandbox' ) ? $frontend::get_iframe_sandbox( $video_type ) : '';
+
+		if ( $sandbox ) {
+			$iframe_attrs['sandbox'] = $sandbox;
+		}
+
 		// Add mobile-specific attributes.
 		if ( wp_is_mobile() ) {
 			$iframe_attrs['playsinline']        = true;
