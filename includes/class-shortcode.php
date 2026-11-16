@@ -262,7 +262,7 @@ class Shortcode {
 		}
 
 		// Build URL parameters.
-		$url_params = $this->get_embed_url_parameters( $video_controls );
+		$url_params = $this->get_embed_url_parameters( $video_controls, $embed_data );
 
 		// Apply hover enhancements to iframe src.
 		$final_embed_url = apply_filters( 'rsfv_video_iframe_src', $embed_url, $url_params, $video_data );
@@ -341,19 +341,34 @@ class Shortcode {
 	}
 
 	/**
-	 * Get embed URL parameters
+	 * Loop parameter for an embed. YouTube only loops a single video when it is also named as the playlist.
 	 *
-	 * @param array $video_controls Video control settings.
+	 * @param array|false $embed_data Parsed embed data.
 	 * @return string
 	 */
-	private function get_embed_url_parameters( $video_controls ) {
+	public static function get_embed_loop_parameter( $embed_data ) {
+		if ( is_array( $embed_data ) && isset( $embed_data['host'], $embed_data['id'] ) && 'youtube' === $embed_data['host'] && $embed_data['id'] ) {
+			return 'loop=1&playlist=' . rawurlencode( $embed_data['id'] );
+		}
+
+		return 'loop=1';
+	}
+
+	/**
+	 * Get embed URL parameters
+	 *
+	 * @param array       $video_controls Video control settings.
+	 * @param array|false $embed_data     Parsed embed data.
+	 * @return string
+	 */
+	private function get_embed_url_parameters( $video_controls, $embed_data = false ) {
 		$params = array();
 
 		$params[] = ! empty( $video_controls['autoplay'] ) ? 'autoplay=1' : 'autoplay=0';
 		$params[] = ! empty( $video_controls['controls'] ) ? 'controls=1' : 'controls=0';
 
 		if ( ! empty( $video_controls['loop'] ) ) {
-			$params[] = 'loop=1';
+			$params[] = self::get_embed_loop_parameter( $embed_data );
 		}
 
 		if ( ! empty( $video_controls['mute'] ) ) {

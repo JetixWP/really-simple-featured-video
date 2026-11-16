@@ -81,6 +81,11 @@
 
 		if ( embedControls.loop ) {
 			params.push( 'loop=1' );
+
+			// YouTube only loops a single video when it is also named as the playlist.
+			if ( baseUrl.indexOf( 'youtube.com' ) !== -1 ) {
+				params.push( 'playlist=' + baseUrl.split( '/embed/' )[ 1 ] );
+			}
 		}
 
 		if ( embedControls.mute ) {

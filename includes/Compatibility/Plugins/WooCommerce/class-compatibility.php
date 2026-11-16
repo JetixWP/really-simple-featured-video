@@ -618,7 +618,8 @@ class Compatibility extends Base_Compatibility {
 		}
 
 		// Get URL parameters.
-		$url_params = self::get_woo_embed_url_parameters( $video_controls, $video_data );
+		$video_data['embed_data'] = $embed_data;
+		$url_params               = self::get_woo_embed_url_parameters( $video_controls, $video_data );
 
 		// Determine the correct URL concatenation method.
 		$final_embed_url_with_params = false !== strpos( $embed_url, '?' )
@@ -718,7 +719,7 @@ class Compatibility extends Base_Compatibility {
 	private static function get_woo_embed_url_parameters( $video_controls, $video_data ) {
 		// Standard parameters.
 		$is_autoplay  = ! empty( $video_controls['autoplay'] ) ? 'autoplay=1&' : 'autoplay=0&';
-		$is_loop      = ! empty( $video_controls['loop'] ) ? 'loop=1&' : '';
+		$is_loop      = ! empty( $video_controls['loop'] ) ? Shortcode::get_embed_loop_parameter( $video_data['embed_data'] ?? false ) . '&' : '';
 		$is_muted     = ! empty( $video_controls['mute'] ) ? 'mute=1&muted=1&' : '';
 		$is_pip       = ! empty( $video_controls['pip'] ) ? 'picture-in-picture=1&' : '';
 		$has_controls = ! empty( $video_controls['controls'] ) ? 'controls=1&' : 'controls=0&';
