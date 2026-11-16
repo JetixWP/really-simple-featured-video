@@ -563,12 +563,14 @@
 
 	&__deal {
 		align-self: flex-start;
-		padding: 1px 6px;
-		border-radius: 3px;
-		background: #101418;
-		color: #3ddc6a;
+		padding: 3px 8px;
+		border: 1px solid rgba(227, 194, 126, 0.45);
+		border-radius: 4px;
+		background: #16171b;
+		color: #e3c27e;
 		font-size: 11px;
 		font-weight: 600;
+		line-height: 1.45;
 	}
 }
 
